@@ -1,0 +1,109 @@
+---
+/**
+ * Service Block Component
+ * Displays a service in grid format with minimal card styling
+ * Source: docs/design/mockups/home.md - Services section
+ */
+
+interface Props {
+  title: string;
+  description: string;
+  icon?: string | undefined;
+  href: string;
+}
+
+const { title, description, icon, href } = Astro.props;
+---
+
+<article class="service-block">
+  {
+    icon && (
+      <div class="service-icon" aria-hidden="true">
+        {icon}
+      </div>
+    )
+  }
+
+  <h3 class="service-title">{title}</h3>
+
+  <p class="service-description">{description}</p>
+
+  <a href={href} class="service-link">
+    Learn More <span aria-hidden="true">→</span>
+  </a>
+</article>
+
+<style>
+  .service-block {
+    /* Minimal containment - editorial blocks not heavy cards */
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    transition: border-color var(--transition-fast);
+  }
+
+  .service-block:hover {
+    border-color: var(--color-primary-500);
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    color: var(--color-primary-500);
+    line-height: 1;
+  }
+
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .service-description {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: var(--line-height-loose);
+    color: var(--color-text-secondary);
+    margin: 0;
+    /* Limit to 4 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .service-link {
+    color: var(--color-text-link);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+    margin-top: auto;
+  }
+
+  .service-link:hover {
+    color: var(--color-text-link-hover);
+    text-decoration: underline;
+  }
+
+  .service-link:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .service-block,
+    .service-link {
+      transition: none;
+    }
+  }
+</style>

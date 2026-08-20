@@ -1,0 +1,146 @@
+---
+/**
+ * Button Component
+ * Reusable button with primary, secondary, and tertiary variants
+ * Source: docs/design/component-visual-language.md
+ */
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'accent';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  disabled?: boolean;
+}
+
+const {
+  variant = 'primary',
+  href,
+  type = 'button',
+  class: className = '',
+  disabled = false,
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+const props = href
+  ? { href, rel: 'noopener', class: `btn btn-${variant} ${className}`.trim() }
+  : { type, disabled, class: `btn btn-${variant} ${className}`.trim() };
+---
+
+<Tag {...props}>
+  <slot />
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    background-color: var(--color-primary-500);
+    color: var(--color-white);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-sm);
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background-color: var(--color-primary-600);
+  }
+
+  .btn-primary:active:not(:disabled) {
+    background-color: var(--color-primary-700);
+  }
+
+  .btn-primary:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-primary-500);
+    padding: calc(var(--space-3) - 2px) calc(var(--space-6) - 2px);
+    border: 2px solid var(--color-primary-500);
+    border-radius: var(--radius-sm);
+  }
+
+  .btn-secondary:hover:not(:disabled) {
+    background-color: var(--color-primary-50);
+  }
+
+  .btn-secondary:focus-visible {
+    border-width: 3px;
+    padding: calc(var(--space-3) - 3px) calc(var(--space-6) - 3px);
+  }
+
+  /* Tertiary Button (Text Link) */
+  .btn-tertiary {
+    background-color: transparent;
+    color: var(--color-primary-500);
+    padding: var(--space-1) var(--space-2);
+    border-radius: 0;
+    text-decoration: none;
+  }
+
+  .btn-tertiary:hover:not(:disabled) {
+    color: var(--color-primary-700);
+    text-decoration: underline;
+  }
+
+  .btn-tertiary:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Accent Button (Rare - Hero CTAs) */
+  .btn-accent {
+    background-color: var(--color-secondary-500);
+    color: var(--color-white);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-sm);
+  }
+
+  .btn-accent:hover:not(:disabled) {
+    background-color: var(--color-secondary-600);
+  }
+
+  .btn-accent:active:not(:disabled) {
+    background-color: var(--color-secondary-700);
+  }
+
+  .btn-accent:focus-visible {
+    outline: 2px solid var(--color-secondary-500);
+    outline-offset: 2px;
+  }
+
+  /* Disabled State */
+  .btn:disabled {
+    background-color: var(--color-gray-300);
+    color: var(--color-gray-500);
+    border-color: var(--color-gray-300);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition: none;
+    }
+  }
+</style>

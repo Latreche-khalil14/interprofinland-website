@@ -1,0 +1,356 @@
+---
+/**
+ * Magazine Item Component
+ * Magazine cover with metadata and download link
+ * Source: docs/design/mockups/home.md - Magazine section
+ */
+
+import { formatDate } from '@/utils/formatDate';
+
+interface Props {
+  issueNumber: number;
+  title: string;
+  description: string;
+  publishedDate: Date;
+  coverImage: string;
+  pdfUrl: string;
+  pdfSize?: string;
+  href: string;
+  variant?: 'card' | 'featured';
+}
+
+const {
+  issueNumber,
+  title,
+  description,
+  publishedDate,
+  coverImage,
+  pdfUrl,
+  pdfSize,
+  href,
+  variant = 'card',
+} = Astro.props;
+
+const formattedDate = formatDate(publishedDate, 'en-US', { year: 'numeric', month: 'long' });
+---
+
+{
+  variant === 'featured' ? (
+    <article class="magazine-featured">
+      <a href={href} class="magazine-cover-link" tabindex="-1" aria-hidden="true">
+        <div class="magazine-cover">
+          <img
+            src={coverImage}
+            alt={`InterProFinland Magazine Issue ${issueNumber} cover`}
+            width="400"
+            height="560"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </a>
+
+      <div class="magazine-details">
+        <p class="magazine-eyebrow">InterProFinland Magazine</p>
+        <h3 class="magazine-title">
+          <a href={href}>{title}</a>
+        </h3>
+        <p class="magazine-meta">
+          Issue #{issueNumber} · {formattedDate}
+        </p>
+        <p class="magazine-description">{description}</p>
+        <div class="magazine-actions">
+          <a href={href} class="btn-browse">
+            Browse Archive
+          </a>
+          <a href={pdfUrl} class="btn-download" download rel="noopener">
+            Download PDF {pdfSize && <span class="pdf-size">({pdfSize})</span>}
+          </a>
+        </div>
+      </div>
+    </article>
+  ) : (
+    <article class="magazine-card">
+      <a href={href} class="magazine-cover-link">
+        <div class="magazine-cover">
+          <img
+            src={coverImage}
+            alt={`InterProFinland Magazine Issue ${issueNumber} cover`}
+            width="280"
+            height="392"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </a>
+
+      <div class="magazine-info">
+        <p class="magazine-issue-label">Issue #{issueNumber}</p>
+        <h3 class="magazine-card-title">
+          <a href={href}>{title}</a>
+        </h3>
+        <p class="magazine-card-date">{formattedDate}</p>
+        <a href={pdfUrl} class="magazine-download-link" download rel="noopener">
+          Download PDF {pdfSize && <span>({pdfSize})</span>}
+        </a>
+      </div>
+    </article>
+  )
+}
+
+<style>
+  /* ── Featured variant ── */
+  .magazine-featured {
+    display: grid;
+    grid-template-columns: 35fr 65fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .magazine-cover {
+    position: relative;
+  }
+
+  .magazine-featured .magazine-cover img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 7;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-magazine);
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  .magazine-featured .magazine-cover-link:hover img,
+  .magazine-featured .magazine-cover-link:focus-visible img {
+    transform: translateY(-4px);
+  }
+
+  .magazine-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .magazine-eyebrow {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
+    margin: 0;
+  }
+
+  .magazine-title a,
+  .magazine-card-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .magazine-title a:hover,
+  .magazine-card-title a:hover {
+    color: var(--color-primary-500);
+    text-decoration: underline;
+  }
+
+  .magazine-title a:focus-visible,
+  .magazine-card-title a:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .magazine-meta {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .magazine-description {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    line-height: var(--line-height-loose);
+    color: var(--color-gray-700);
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .magazine-actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-browse {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-primary-500);
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+  }
+
+  .btn-browse:hover {
+    background-color: var(--color-primary-600);
+  }
+
+  .btn-browse:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  .btn-download {
+    color: var(--color-text-link);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+  }
+
+  .btn-download:hover {
+    color: var(--color-text-link-hover);
+    text-decoration: underline;
+  }
+
+  .btn-download:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .pdf-size {
+    font-size: 0.875em;
+    color: var(--color-text-tertiary);
+  }
+
+  /* ── Card variant ── */
+  .magazine-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .magazine-card .magazine-cover-link {
+    display: block;
+  }
+
+  .magazine-card .magazine-cover img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 7;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-magazine);
+    border: 1px solid var(--color-border-default);
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  .magazine-card .magazine-cover-link:hover img,
+  .magazine-card .magazine-cover-link:focus-visible img {
+    transform: translateY(-4px);
+  }
+
+  .magazine-card .magazine-cover-link:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+  }
+
+  .magazine-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .magazine-issue-label {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-primary-500);
+    margin: 0;
+  }
+
+  .magazine-card-title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: var(--line-height-snug);
+  }
+
+  .magazine-card-date {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .magazine-download-link {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-link);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .magazine-download-link:hover {
+    color: var(--color-text-link-hover);
+    text-decoration: underline;
+  }
+
+  .magazine-download-link:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Mobile — stack featured layout */
+  @media (max-width: 767px) {
+    .magazine-featured {
+      grid-template-columns: 1fr;
+    }
+
+    .magazine-featured .magazine-cover img {
+      max-width: 18rem;
+      margin-inline: auto;
+    }
+
+    .magazine-eyebrow {
+      font-size: 1.75rem;
+    }
+
+    .magazine-actions {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .magazine-featured .magazine-cover img,
+    .magazine-card .magazine-cover img,
+    .btn-browse,
+    .btn-download,
+    .magazine-download-link {
+      transition: none;
+    }
+
+    .magazine-featured .magazine-cover-link:hover img,
+    .magazine-featured .magazine-cover-link:focus-visible img,
+    .magazine-card .magazine-cover-link:hover img,
+    .magazine-card .magazine-cover-link:focus-visible img {
+      transform: none;
+    }
+  }
+</style>

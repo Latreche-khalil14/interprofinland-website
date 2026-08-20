@@ -1,0 +1,198 @@
+---
+/**
+ * Project Block Component
+ * Displays a project with status badge and description
+ */
+
+interface Props {
+  title: string;
+  summary: string;
+  status?: 'active' | 'completed' | 'planned' | 'on-hold';
+  href: string;
+  image?: string;
+  tags?: string[];
+}
+
+const { title, summary, status, href, image, tags = [] } = Astro.props;
+
+const statusLabels: Record<string, string> = {
+  active: 'Active',
+  completed: 'Completed',
+  planned: 'Planned',
+  'on-hold': 'On Hold',
+};
+---
+
+<article class="project-block">
+  {
+    image && (
+      <a href={href} class="project-image-link" tabindex="-1" aria-hidden="true">
+        <div class="project-image">
+          <img src={image} alt="" width="600" height="400" loading="lazy" decoding="async" />
+        </div>
+      </a>
+    )
+  }
+
+  <div class="project-content">
+    <div class="project-meta">
+      {
+        status && (
+          <span class={`project-status status-${status}`}>{statusLabels[status] ?? status}</span>
+        )
+      }
+      {tags.map((tag) => <span class="project-tag">{tag}</span>)}
+    </div>
+
+    <h3 class="project-title">
+      <a href={href}>{title}</a>
+    </h3>
+
+    <p class="project-summary">{summary}</p>
+
+    <a href={href} class="project-link">
+      View Project <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>
+
+<style>
+  .project-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .project-image-link {
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+
+  .project-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  .project-image-link:hover img {
+    transform: scale(1.03);
+  }
+
+  .project-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+  }
+
+  .project-status {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+  }
+
+  .status-active {
+    background: var(--color-primary-50);
+    color: var(--color-primary-700);
+  }
+  .status-completed {
+    background: #e6f4ec;
+    color: #2d7a4f;
+  }
+  .status-planned {
+    background: var(--color-gray-100);
+    color: var(--color-gray-700);
+  }
+  .status-on-hold {
+    background: var(--color-secondary-50);
+    color: var(--color-secondary-700);
+  }
+
+  .project-tag {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    background-color: var(--color-gray-100);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+  }
+
+  .project-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .project-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .project-title a:hover {
+    color: var(--color-primary-500);
+    text-decoration: underline;
+  }
+
+  .project-title a:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .project-summary {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: var(--line-height-loose);
+    color: var(--color-text-secondary);
+    margin: 0;
+    max-width: 65ch;
+  }
+
+  .project-link {
+    color: var(--color-text-link);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+  }
+
+  .project-link:hover {
+    color: var(--color-text-link-hover);
+    text-decoration: underline;
+  }
+
+  .project-link:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-image img,
+    .project-link {
+      transition: none;
+    }
+
+    .project-image-link:hover img {
+      transform: none;
+    }
+  }
+</style>

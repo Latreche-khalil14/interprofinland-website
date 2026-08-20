@@ -1,0 +1,42 @@
+---
+/**
+ * Section Component
+ * Provides consistent vertical spacing for page sections
+ * Supports background color variations for editorial rhythm
+ */
+
+interface Props {
+  spacing?: 'sm' | 'md' | 'lg';
+  background?: 'default' | 'surface' | 'primary-tint' | 'secondary-tint';
+  class?: string;
+}
+
+const { spacing = 'md', background = 'default', class: className = '' } = Astro.props;
+
+const sectionClass = `section section-${spacing} bg-${background} ${className}`.trim();
+---
+
+<section class={sectionClass}>
+  <slot />
+</section>
+
+<style>
+  /* Background variations for editorial rhythm */
+  .bg-default {
+    background-color: var(--color-bg-page);
+  }
+
+  .bg-surface {
+    background-color: var(--color-bg-surface);
+  }
+
+  .bg-primary-tint {
+    background-color: var(--color-primary-50);
+  }
+
+  .bg-secondary-tint {
+    background-color: var(--color-secondary-50);
+  }
+
+  /* Section spacing classes already defined in global.css */
+</style>

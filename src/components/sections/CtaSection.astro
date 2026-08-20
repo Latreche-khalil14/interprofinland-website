@@ -1,0 +1,88 @@
+---
+/**
+ * CTA Section
+ * Centered minimal call-to-action
+ * Source: docs/design/mockups/home.md - Final CTA section
+ */
+
+interface Props {
+  heading: string;
+  subheading?: string;
+  cta: { label: string; href: string };
+}
+
+const { heading, subheading, cta } = Astro.props;
+---
+
+<section class="cta-section" aria-labelledby="cta-heading">
+  <div class="cta-inner container-narrow">
+    <h2 id="cta-heading" class="cta-heading">{heading}</h2>
+    {subheading && <p class="cta-sub">{subheading}</p>}
+    <a href={cta.href} class="cta-btn">{cta.label}</a>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    background-color: var(--color-bg-page);
+    padding-top: var(--section-spacing-md);
+    padding-bottom: var(--section-spacing-md);
+  }
+
+  .cta-inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .cta-heading {
+    font-family: var(--font-display);
+    font-size: var(--font-size-display-2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    color: var(--color-text-primary);
+    margin: 0;
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+
+  .cta-sub {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    line-height: var(--line-height-loose);
+    color: var(--color-text-secondary);
+    margin: 0;
+    max-width: 55ch;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-primary-500);
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    padding: var(--space-3) var(--space-8);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+  }
+
+  .cta-btn:hover {
+    background-color: var(--color-primary-600);
+  }
+
+  .cta-btn:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-btn {
+      transition: none;
+    }
+  }
+</style>

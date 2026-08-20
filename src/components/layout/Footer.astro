@@ -1,0 +1,263 @@
+---
+/**
+ * Footer Component
+ * Site-wide footer with navigation links and org info
+ * Source: docs/design/component-visual-language.md - Footer Navigation
+ */
+
+const year = new Date().getFullYear();
+
+const footerLinks = {
+  organization: {
+    label: 'Organization',
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Community', href: '/community' },
+      { label: 'Projects', href: '/projects' },
+      { label: 'Stories', href: '/stories' },
+    ],
+  },
+  services: {
+    label: 'Services',
+    links: [
+      { label: 'Career Guidance', href: '/services/career-guidance' },
+      { label: 'Qualification Recognition', href: '/services/qualification-recognition' },
+      { label: 'Mentorship', href: '/services/mentorship' },
+      { label: 'Networking & Events', href: '/services/networking' },
+    ],
+  },
+  resources: {
+    label: 'Resources',
+    links: [
+      { label: 'Magazine', href: '/magazine' },
+      { label: 'Events', href: '/events' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+} as const;
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner container-content">
+    <!-- Top: Org info + Nav columns -->
+    <div class="footer-top">
+      <!-- Brand column -->
+      <div class="footer-brand">
+        <a href="/" class="footer-logo" aria-label="InterProFinland — Home">
+          <span class="logo-mark" aria-hidden="true">IP</span>
+          <span class="logo-text">InterProFinland</span>
+        </a>
+        <p class="footer-tagline">
+          Supporting international professionals in Finland with career guidance, mentorship, and
+          qualification recognition.
+        </p>
+      </div>
+
+      <!-- Navigation columns -->
+      <nav class="footer-nav" aria-label="Footer navigation">
+        {
+          Object.values(footerLinks).map((section) => (
+            <div class="footer-nav-column">
+              <h3 class="footer-nav-heading">{section.label}</h3>
+              <ul class="footer-nav-list" role="list">
+                {section.links.map((link) => (
+                  <li>
+                    <a href={link.href} class="footer-nav-link">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </nav>
+    </div>
+
+    <!-- Bottom: copyright -->
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        &copy; {year} InterProFinland. All rights reserved.
+      </p>
+      <div class="footer-legal">
+        <a href="/privacy-policy" class="footer-legal-link">Privacy Policy</a>
+        <span aria-hidden="true">·</span>
+        <a href="/contact" class="footer-legal-link">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-gray-800);
+    color: var(--color-gray-300);
+    margin-top: auto;
+  }
+
+  .footer-inner {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-8);
+  }
+
+  /* ── Top Section ── */
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    padding-bottom: var(--space-12);
+    border-bottom: 1px solid var(--color-gray-700);
+    margin-bottom: var(--space-8);
+  }
+
+  /* ── Brand ── */
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    text-decoration: none;
+    margin-bottom: var(--space-4);
+  }
+
+  .footer-logo:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--color-primary-500);
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.04em;
+  }
+
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-white);
+  }
+
+  .footer-tagline {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: var(--line-height-loose);
+    color: var(--color-gray-400);
+    max-width: 30ch;
+    margin: 0;
+  }
+
+  /* ── Nav Columns ── */
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: var(--space-8);
+  }
+
+  .footer-nav-column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .footer-nav-heading {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-gray-400);
+    margin: 0;
+  }
+
+  .footer-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer-nav-link {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    color: var(--color-gray-300);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    display: inline-block;
+  }
+
+  .footer-nav-link:hover {
+    color: var(--color-white);
+  }
+
+  .footer-nav-link:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ── Bottom Bar ── */
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .footer-copyright {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    color: var(--color-gray-500);
+    margin: 0;
+  }
+
+  .footer-legal {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .footer-legal-link {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    color: var(--color-gray-500);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .footer-legal-link:hover {
+    color: var(--color-white);
+  }
+
+  .footer-legal-link:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Tablet+ */
+  @media (min-width: 768px) {
+    .footer-top {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-nav-link,
+    .footer-legal-link {
+      transition: none;
+    }
+  }
+</style>

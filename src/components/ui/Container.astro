@@ -1,0 +1,25 @@
+---
+/**
+ * Container Component
+ * Provides consistent max-width and padding for page sections
+ * Source: docs/design/layout-grid.md
+ */
+
+interface Props {
+  size?: 'page' | 'content' | 'narrow' | 'wide';
+  class?: string;
+}
+
+const { size = 'content', class: className = '' } = Astro.props;
+
+const containerClass = `container-${size} ${className}`.trim();
+---
+
+<div class={containerClass}>
+  <slot />
+</div>
+
+<style>
+  /* Container utilities already defined in global.css */
+  /* This component uses those utilities */
+</style>

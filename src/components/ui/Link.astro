@@ -1,0 +1,73 @@
+---
+/**
+ * Link Component
+ * Styled link with optional arrow indicator
+ * Source: docs/design/component-visual-language.md
+ */
+
+interface Props {
+  href: string;
+  arrow?: boolean;
+  external?: boolean;
+  class?: string;
+}
+
+const { href, arrow = false, external = false, class: className = '' } = Astro.props;
+
+const linkProps = external ? { href, rel: 'noopener noreferrer', target: '_blank' } : { href };
+---
+
+<a {...linkProps} class={`link ${className}`.trim()}>
+  <slot />
+  {
+    arrow && (
+      <span class="arrow" aria-hidden="true">
+        →
+      </span>
+    )
+  }
+</a>
+
+<style>
+  .link {
+    color: var(--color-text-link);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .link:hover {
+    color: var(--color-text-link-hover);
+    text-decoration: underline;
+  }
+
+  .link:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .arrow {
+    transition: transform var(--transition-fast);
+  }
+
+  .link:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .link,
+    .arrow {
+      transition: none;
+    }
+
+    .link:hover .arrow {
+      transform: none;
+    }
+  }
+</style>

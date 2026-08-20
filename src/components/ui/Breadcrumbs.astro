@@ -1,0 +1,114 @@
+---
+/**
+ * Breadcrumbs Component
+ * Accessible navigation breadcrumbs with structured data
+ * Source: docs/design/component-visual-language.md
+ */
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="breadcrumbs">
+  <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+    {
+      items.map((item, index) => {
+        const isLast = index === items.length - 1;
+        const position = index + 1;
+        return (
+          <li
+            class="breadcrumb-item"
+            itemprop="itemListElement"
+            itemscope
+            itemtype="https://schema.org/ListItem"
+          >
+            {!isLast && item.href ? (
+              <>
+                <a href={item.href} class="breadcrumb-link" itemprop="item">
+                  <span itemprop="name">{item.label}</span>
+                </a>
+                <span class="breadcrumb-sep" aria-hidden="true">
+                  /
+                </span>
+              </>
+            ) : (
+              <span class="breadcrumb-current" aria-current="page" itemprop="name">
+                {item.label}
+              </span>
+            )}
+            <meta itemprop="position" content={String(position)} />
+          </li>
+        );
+      })
+    }
+  </ol>
+</nav>
+
+<style>
+  .breadcrumbs {
+    padding: var(--space-3) 0;
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .breadcrumb-link {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--color-primary-500);
+    text-decoration: underline;
+  }
+
+  .breadcrumb-link:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .breadcrumb-sep {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    color: var(--color-gray-400);
+    user-select: none;
+  }
+
+  .breadcrumb-current {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .breadcrumb-link {
+      transition: none;
+    }
+  }
+</style>

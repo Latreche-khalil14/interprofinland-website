@@ -1,0 +1,170 @@
+---
+/**
+ * Homepage — Component Showcase (Phase 6 Foundation)
+ * Demonstrates all Phase 6 components using placeholder data.
+ * Real content will be populated in Phase 7 (Page Development).
+ */
+
+import Layout from '@/layouts/Layout.astro';
+import HeroSection from '@/components/sections/HeroSection.astro';
+import ServicesGrid from '@/components/sections/ServicesGrid.astro';
+import EventsList from '@/components/sections/EventsList.astro';
+import MagazineFeature from '@/components/sections/MagazineFeature.astro';
+import StoryBlock from '@/components/ui/StoryBlock.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+
+/* ── Placeholder data (Phase 7 will pull from Content Collections) ── */
+
+const services = [
+  {
+    title: 'Career Guidance',
+    description:
+      'Get personalised guidance on the Finnish labour market, working culture, and effective job search strategies.',
+    icon: '💼',
+    href: '/services/career-guidance',
+  },
+  {
+    title: 'Qualification Recognition',
+    description:
+      'Navigate the qualification recognition process with expert support and step-by-step guidance.',
+    icon: '🎓',
+    href: '/services/qualification-recognition',
+  },
+  {
+    title: 'Mentorship',
+    description:
+      'Connect with experienced Finnish professionals who share your field and career goals.',
+    icon: '🤝',
+    href: '/services/mentorship',
+  },
+  {
+    title: 'Networking & Events',
+    description:
+      'Build your professional network through workshops, seminars, and community events.',
+    icon: '📅',
+    href: '/services/networking',
+  },
+];
+
+const events = [
+  {
+    title: 'Professional Networking Workshop',
+    description:
+      'Join fellow professionals for an evening of networking and skill building. Light refreshments provided.',
+    startDate: new Date('2026-09-15T18:00:00+03:00'),
+    location: 'InterProFinland Office, Pori',
+    registrationUrl: '/contact',
+    href: '/events',
+  },
+  {
+    title: 'Qualification Recognition Info Session',
+    description:
+      'Learn the step-by-step process for getting your foreign qualifications recognised in Finland.',
+    startDate: new Date('2026-09-28T17:00:00+03:00'),
+    location: 'Online (Zoom)',
+    registrationUrl: '/contact',
+    href: '/events',
+  },
+  {
+    title: 'Job Search Strategies Seminar',
+    description:
+      'Practical seminar covering effective job search techniques, CV writing, and interview preparation for Finland.',
+    startDate: new Date('2026-10-10T09:00:00+03:00'),
+    location: 'InterProFinland Office, Pori',
+    href: '/events',
+  },
+];
+---
+
+<Layout
+  title="InterProFinland — Supporting International Professionals in Finland"
+  description="InterProFinland empowers international professionals with career guidance, mentorship, and qualification recognition support in Finland."
+>
+  <!-- Hero -->
+  <HeroSection
+    headline="Supporting International Professionals in Finland"
+    subheadline="Empowering you with career guidance, mentorship, and qualification recognition to build a successful career in Finland."
+    primaryCta={{ label: 'Get Started', href: '/contact' }}
+    secondaryCta={{ label: 'Learn More', href: '/about' }}
+  />
+
+  <!-- Mission Statement -->
+  <Section background="surface">
+    <Container size="narrow">
+      <div class="mission">
+        <h2 class="mission-heading">Our Mission</h2>
+        <p class="mission-body">
+          We empower international professionals to build successful careers in Finland through
+          personalised guidance, mentorship, and qualification recognition support.
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Services -->
+  <ServicesGrid services={services} />
+
+  <!-- Featured Story -->
+  <Section background="primary-tint">
+    <Container size="content">
+      <StoryBlock
+        title="From Engineer to Tech Lead in 18 Months"
+        summary="Maria shares how the mentorship programme and qualification recognition support helped her transition from an international engineer to a tech lead role at a Finnish company."
+        quote="The mentorship programme changed my career trajectory completely. I felt supported every step of the way."
+        person="Maria"
+        personRole="Tech Lead"
+        href="/stories/from-engineer-to-tech-lead"
+        imageLeft={true}
+      />
+    </Container>
+  </Section>
+
+  <!-- Events -->
+  <EventsList events={events} centered={true} />
+
+  <!-- Magazine Feature -->
+  <MagazineFeature
+    issueNumber={3}
+    title="Spring 2026 — Professional Integration"
+    description="Stories, insights, and community from international professionals in Finland. This issue explores professional integration journeys, qualification recognition tips, and community impact stories."
+    publishedDate={new Date('2026-03-15')}
+    coverImage="/magazines/covers/issue-03.jpg"
+    pdfUrl="/magazines/issue-03.pdf"
+    pdfSize="2.8 MB"
+    href="/magazine/3"
+  />
+
+  <!-- Final CTA -->
+  <CtaSection
+    heading="Ready to advance your career in Finland?"
+    subheading="Get in touch and discover how InterProFinland can support your professional journey."
+    cta={{ label: 'Contact Us', href: '/contact' }}
+  />
+</Layout>
+
+<style>
+  .mission {
+    text-align: center;
+    padding: var(--space-12) 0;
+  }
+
+  .mission-heading {
+    font-family: var(--font-display);
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary-500);
+    margin: 0 0 var(--space-6);
+    line-height: var(--line-height-snug);
+  }
+
+  .mission-body {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    line-height: var(--line-height-loose);
+    color: var(--color-text-primary);
+    margin: 0 auto;
+    max-width: 60ch;
+  }
+</style>

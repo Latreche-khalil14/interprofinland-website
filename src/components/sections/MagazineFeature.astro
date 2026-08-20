@@ -1,0 +1,36 @@
+---
+/**
+ * Magazine Feature Section
+ * Full-width editorial magazine feature with warm background tint
+ * Source: docs/design/mockups/home.md - Magazine Feature section
+ */
+
+import MagazineItem from '@/components/ui/MagazineItem.astro';
+
+interface Props {
+  issueNumber: number;
+  title: string;
+  description: string;
+  publishedDate: Date;
+  coverImage: string;
+  pdfUrl: string;
+  pdfSize?: string;
+  href: string;
+}
+
+const props = Astro.props;
+---
+
+<section class="magazine-section" aria-labelledby="magazine-heading">
+  <div class="container-content">
+    <MagazineItem variant="featured" {...props} />
+  </div>
+</section>
+
+<style>
+  .magazine-section {
+    background-color: var(--color-secondary-50);
+    padding-top: var(--section-spacing-lg);
+    padding-bottom: var(--section-spacing-lg);
+  }
+</style>

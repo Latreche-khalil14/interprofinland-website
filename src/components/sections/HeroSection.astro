@@ -1,0 +1,220 @@
+---
+/**
+ * Hero Section
+ * Asymmetrical 60/40 split — text left, image right
+ * Source: docs/design/mockups/home.md - Hero Section
+ */
+
+interface Props {
+  headline: string;
+  subheadline?: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  image?: { src: string; alt: string };
+}
+
+const { headline, subheadline, primaryCta, secondaryCta, image } = Astro.props;
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero-inner container-content">
+    <div class="hero-text">
+      <h1 id="hero-heading" class="hero-headline">{headline}</h1>
+
+      {subheadline && <p class="hero-sub">{subheadline}</p>}
+
+      {
+        (primaryCta || secondaryCta) && (
+          <div class="hero-actions">
+            {primaryCta && (
+              <a href={primaryCta.href} class="hero-btn-primary">
+                {primaryCta.label}
+              </a>
+            )}
+            {secondaryCta && (
+              <a href={secondaryCta.href} class="hero-btn-secondary">
+                {secondaryCta.label} <span aria-hidden="true">→</span>
+              </a>
+            )}
+          </div>
+        )
+      }
+    </div>
+
+    <div class="hero-media">
+      {
+        image ? (
+          <img
+            src={image.src}
+            alt={image.alt}
+            width="600"
+            height="450"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            class="hero-image"
+          />
+        ) : (
+          <div class="hero-image-placeholder" aria-hidden="true">
+            <span>Hero Image</span>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background-color: var(--color-bg-page);
+    padding-top: clamp(3.5rem, 10vw, 6rem);
+    padding-bottom: clamp(3.5rem, 10vw, 6rem);
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  /* ── Text Side ── */
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: var(--font-size-display-1);
+    font-weight: var(--font-weight-extrabold);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--color-text-primary);
+    margin: 0;
+    max-width: 18ch;
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-size: clamp(1.0625rem, 2vw, 1.25rem);
+    line-height: 1.7;
+    color: var(--color-gray-700);
+    margin: 0;
+    max-width: 55ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .hero-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-primary-500);
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+  }
+
+  .hero-btn-primary:hover {
+    background-color: var(--color-primary-600);
+  }
+
+  .hero-btn-primary:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  .hero-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--color-primary-500);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .hero-btn-secondary:hover {
+    color: var(--color-primary-700);
+    text-decoration: underline;
+  }
+
+  .hero-btn-secondary:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ── Image Side ── */
+  .hero-media {
+    position: relative;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    display: block;
+  }
+
+  .hero-image-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-gray-200);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-500);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+  }
+
+  /* ── Tablet: balanced 50/50 ── */
+  @media (max-width: 1023px) and (min-width: 640px) {
+    .hero-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* ── Mobile: stack ── */
+  @media (max-width: 639px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+
+    /* Image first on mobile */
+    .hero-media {
+      order: 1;
+    }
+    .hero-text {
+      order: 2;
+    }
+
+    .hero-headline {
+      max-width: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-btn-primary,
+    .hero-btn-secondary {
+      transition: none;
+    }
+  }
+</style>

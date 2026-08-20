@@ -1,0 +1,221 @@
+---
+/**
+ * Form Field Primitive
+ * Wraps label + input/textarea/select with accessible error handling
+ * Source: docs/design/component-visual-language.md - Form Elements
+ */
+
+interface Props {
+  label: string;
+  name: string;
+  type?: 'text' | 'email' | 'tel' | 'textarea' | 'select';
+  placeholder?: string;
+  required?: boolean;
+  error?: string | undefined;
+  hint?: string | undefined;
+  value?: string | undefined;
+  rows?: number;
+  options?: { value: string; label: string }[];
+  class?: string;
+}
+
+const {
+  label,
+  name,
+  type = 'text',
+  placeholder,
+  required = false,
+  error,
+  hint,
+  value,
+  rows = 5,
+  options = [],
+  class: className = '',
+} = Astro.props;
+
+const fieldId = `field-${name}`;
+const errorId = `error-${name}`;
+const hintId = `hint-${name}`;
+
+const describedBy =
+  [error ? errorId : '', hint ? hintId : ''].filter(Boolean).join(' ') || undefined;
+
+// Only text/email/tel go to <input>
+const isInput = type !== 'textarea' && type !== 'select';
+const isTextarea = type === 'textarea';
+const isSelect = type === 'select';
+---
+
+<div class={`form-field ${error ? 'has-error' : ''} ${className}`.trim()}>
+  <label for={fieldId} class="field-label">
+    {label}
+    {
+      required && (
+        <span class="field-required" aria-label="required">
+          *
+        </span>
+      )
+    }
+  </label>
+
+  {
+    hint && (
+      <p id={hintId} class="field-hint">
+        {hint}
+      </p>
+    )
+  }
+
+  {
+    isTextarea && (
+      <textarea
+        id={fieldId}
+        name={name}
+        placeholder={placeholder}
+        required={required}
+        rows={rows}
+        aria-describedby={describedBy}
+        aria-invalid={error ? 'true' : undefined}
+        class="field-input field-textarea"
+      >
+        {value}
+      </textarea>
+    )
+  }
+
+  {
+    isSelect && (
+      <select
+        id={fieldId}
+        name={name}
+        required={required}
+        aria-describedby={describedBy}
+        aria-invalid={error ? 'true' : undefined}
+        class="field-input field-select"
+      >
+        {placeholder && (
+          <option value="" disabled selected>
+            {placeholder}
+          </option>
+        )}
+        {options.map((opt) => (
+          <option value={opt.value} selected={value === opt.value}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
+    )
+  }
+
+  {
+    isInput && (
+      <input
+        id={fieldId}
+        name={name}
+        type={type as 'text' | 'email' | 'tel'}
+        placeholder={placeholder}
+        required={required}
+        value={value}
+        aria-describedby={describedBy}
+        aria-invalid={error ? 'true' : undefined}
+        class="field-input"
+      />
+    )
+  }
+
+  {
+    error && (
+      <p id={errorId} class="field-error" role="alert">
+        <span aria-hidden="true">⚠ </span>
+        {error}
+      </p>
+    )
+  }
+</div>
+
+<style>
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .field-label {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-normal);
+  }
+
+  .field-required {
+    color: var(--color-error);
+    margin-left: var(--space-1);
+  }
+
+  .field-hint {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    color: var(--color-text-tertiary);
+    margin: 0;
+  }
+
+  .field-input {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+    width: 100%;
+    line-height: var(--line-height-normal);
+    transition: border-color var(--transition-fast);
+    appearance: none;
+  }
+
+  .field-input::placeholder {
+    color: var(--color-text-tertiary);
+  }
+
+  .field-input:focus {
+    outline: none;
+    border-width: 2px;
+    border-color: var(--color-primary-500);
+    /* compensate border width to avoid layout shift */
+    padding: calc(var(--space-3) - 1px) calc(var(--space-4) - 1px);
+  }
+
+  .has-error .field-input {
+    border-width: 2px;
+    border-color: var(--color-error);
+    padding: calc(var(--space-3) - 1px) calc(var(--space-4) - 1px);
+  }
+
+  .field-textarea {
+    resize: vertical;
+    min-height: 7.5rem;
+  }
+
+  .field-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235C5C54' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-4) center;
+    padding-right: var(--space-10);
+    cursor: pointer;
+  }
+
+  .field-error {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-error);
+    margin: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .field-input {
+      transition: none;
+    }
+  }
+</style>

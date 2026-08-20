@@ -1,0 +1,275 @@
+---
+/**
+ * Story Block Component
+ * Featured success story with asymmetrical editorial layout
+ * Source: docs/design/mockups/home.md - Featured Story section
+ */
+
+interface Props {
+  title: string;
+  summary: string;
+  quote?: string;
+  person?: string;
+  personRole?: string;
+  personImage?: string;
+  href: string;
+  imageLeft?: boolean;
+}
+
+const {
+  title,
+  summary,
+  quote,
+  person,
+  personRole,
+  personImage,
+  href,
+  imageLeft = false,
+} = Astro.props;
+---
+
+<article class={`story-block ${imageLeft ? 'image-left' : 'image-right'}`}>
+  <div class="story-image">
+    {
+      personImage ? (
+        <img
+          src={personImage}
+          alt={person ? `${person}${personRole ? `, ${personRole}` : ''}` : ''}
+          width="500"
+          height="600"
+          loading="lazy"
+          decoding="async"
+          class="story-photo"
+        />
+      ) : (
+        <div class="story-image-placeholder" aria-hidden="true">
+          <span>Photo</span>
+        </div>
+      )
+    }
+  </div>
+
+  <div class="story-content">
+    <p class="story-label">Success Story</p>
+
+    {
+      quote && (
+        <blockquote class="story-quote">
+          <p>"{quote}"</p>
+          {person && (
+            <footer class="story-attribution">
+              <cite>
+                <span class="person-name">— {person}</span>
+                {personRole && <span class="person-role">, {personRole}</span>}
+              </cite>
+            </footer>
+          )}
+        </blockquote>
+      )
+    }
+
+    <h3 class="story-title">{title}</h3>
+    <p class="story-summary">{summary}</p>
+
+    <a href={href} class="story-link">
+      Read Full Story <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>
+
+<style>
+  .story-block {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  /* Reversed layout variant */
+  .story-block.image-left .story-image {
+    order: 1;
+  }
+  .story-block.image-left .story-content {
+    order: 2;
+  }
+  .story-block.image-right .story-image {
+    order: 2;
+  }
+  .story-block.image-right .story-content {
+    order: 1;
+  }
+
+  .story-image {
+    position: relative;
+  }
+
+  .story-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    /* Black and white editorial treatment */
+    filter: grayscale(100%);
+    transition: filter var(--duration-slow) var(--ease-out);
+  }
+
+  .story-photo:hover {
+    filter: grayscale(0%);
+  }
+
+  .story-image-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background-color: var(--color-gray-200);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-500);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+  }
+
+  .story-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .story-label {
+    font-family: var(--font-display);
+    font-size: var(--font-size-label-small);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-secondary-500);
+    margin: 0;
+  }
+
+  .story-quote {
+    border-left: 4px solid var(--color-secondary-500);
+    padding-left: var(--space-6);
+    margin: 0;
+  }
+
+  .story-quote p {
+    font-family: var(--font-body);
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-style: italic;
+    font-weight: var(--font-weight-semibold);
+    line-height: 1.5;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3);
+    max-width: 50ch;
+  }
+
+  .story-attribution {
+    font-style: normal;
+  }
+
+  .person-name {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+  }
+
+  .person-role {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-text-secondary);
+  }
+
+  .story-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .story-summary {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: var(--line-height-loose);
+    color: var(--color-text-secondary);
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .story-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background-color: var(--color-primary-500);
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-sm);
+    width: fit-content;
+    transition: background-color var(--transition-fast);
+  }
+
+  .story-link:hover {
+    background-color: var(--color-primary-600);
+  }
+
+  .story-link:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  /* Tablet */
+  @media (max-width: 1023px) {
+    .story-block {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* Mobile — always stack, image first */
+  @media (max-width: 639px) {
+    .story-block,
+    .story-block.image-left,
+    .story-block.image-right {
+      grid-template-columns: 1fr;
+    }
+
+    .story-block .story-image,
+    .story-block.image-left .story-image,
+    .story-block.image-right .story-image {
+      order: 1;
+    }
+
+    .story-block .story-content,
+    .story-block.image-left .story-content,
+    .story-block.image-right .story-content {
+      order: 2;
+    }
+
+    .story-photo,
+    .story-image-placeholder {
+      aspect-ratio: 4 / 3;
+      max-height: 20rem;
+    }
+
+    .story-quote p {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .story-photo,
+    .story-link {
+      transition: none;
+    }
+
+    .story-photo:hover {
+      filter: grayscale(100%);
+    }
+  }
+</style>
