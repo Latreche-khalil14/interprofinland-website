@@ -12,6 +12,8 @@ interface ServiceItem {
   description: string;
   icon?: string;
   href: string;
+  index?: string | number;
+  tag?: string;
 }
 
 interface Props {
@@ -30,7 +32,7 @@ const {
 ---
 
 <section class="services-section" aria-labelledby="services-heading">
-  <div class="container-content">
+  <div class="container-page">
     <div class="services-header">
       <h2 id="services-heading" class="services-heading">{heading}</h2>
       {subheading && <p class="services-subheading">{subheading}</p>}
@@ -38,12 +40,14 @@ const {
 
     <div class="services-grid">
       {
-        services.map((service) => (
+        services.map((service, idx) => (
           <ServiceBlock
             title={service.title}
             description={service.description}
             icon={service.icon}
             href={service.href}
+            index={service.index ?? idx + 1}
+            tag={service.tag}
           />
         ))
       }

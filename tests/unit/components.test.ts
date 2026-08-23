@@ -80,7 +80,7 @@ describe('Breadcrumbs data shape', () => {
   });
 
   it('non-last items have href', () => {
-    items.slice(0, -1).forEach(item => {
+    items.slice(0, -1).forEach((item) => {
       expect(item.href).toBeTruthy();
     });
   });

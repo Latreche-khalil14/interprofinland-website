@@ -80,9 +80,15 @@ const {
 <style>
   .story-block {
     display: grid;
-    grid-template-columns: 2fr 3fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: clamp(2rem, 5vw, 4rem);
     align-items: center;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-xl, 20px);
+    padding: clamp(2rem, 4vw, 3.5rem);
+    box-shadow: 0 4px 24px -6px rgba(0, 0, 0, 0.05);
+    margin-bottom: var(--space-10);
   }
 
   /* Reversed layout variant */
@@ -101,28 +107,37 @@ const {
 
   .story-image {
     position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .story-photo {
-    width: 100%;
+    width: auto;
     height: auto;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    border-radius: var(--radius-md);
-    /* Black and white editorial treatment */
-    filter: grayscale(100%);
-    transition: filter var(--duration-slow) var(--ease-out);
+    max-width: 100%;
+    max-height: 440px;
+    object-fit: contain;
+    border-radius: var(--radius-lg, 14px);
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.1);
+    filter: grayscale(10%);
+    transition: filter var(--duration-slow) var(--ease-out), transform var(--duration-slow) var(--ease-out);
   }
 
   .story-photo:hover {
     filter: grayscale(0%);
+    transform: scale(1.02);
   }
 
   .story-image-placeholder {
     width: 100%;
-    aspect-ratio: 3 / 4;
+    height: 100%;
+    min-height: 380px;
     background-color: var(--color-gray-200);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg, 14px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -134,34 +149,38 @@ const {
   .story-content {
     display: flex;
     flex-direction: column;
-    gap: var(--space-5);
+    gap: var(--space-4);
   }
 
   .story-label {
+    display: inline-block;
     font-family: var(--font-display);
     font-size: var(--font-size-label-small);
     font-weight: var(--font-weight-semibold);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--color-secondary-500);
+    color: var(--color-primary-700);
+    background-color: var(--color-primary-50);
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    width: fit-content;
     margin: 0;
   }
 
   .story-quote {
-    border-left: 4px solid var(--color-secondary-500);
-    padding-left: var(--space-6);
-    margin: 0;
+    border-left: 3px solid var(--color-primary-500);
+    padding-left: var(--space-5);
+    margin: var(--space-1) 0;
   }
 
   .story-quote p {
     font-family: var(--font-body);
-    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-size: clamp(1.125rem, 1.8vw, 1.375rem);
     font-style: italic;
-    font-weight: var(--font-weight-semibold);
-    line-height: 1.5;
+    font-weight: 500;
+    line-height: 1.55;
     color: var(--color-text-primary);
-    margin: 0 0 var(--space-3);
-    max-width: 50ch;
+    margin: 0 0 var(--space-2);
   }
 
   .story-attribution {
@@ -170,95 +189,78 @@ const {
 
   .person-name {
     font-family: var(--font-display);
-    font-size: 1.125rem;
-    font-weight: var(--font-weight-semibold);
+    font-size: 1rem;
+    font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
   }
 
   .person-role {
     font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: var(--font-weight-regular);
+    font-size: 0.9375rem;
     color: var(--color-text-secondary);
   }
 
   .story-title {
     font-family: var(--font-display);
     font-size: clamp(1.25rem, 2vw, 1.5rem);
-    font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
-    margin: 0;
+    margin: var(--space-2) 0 0;
+    line-height: 1.25;
   }
 
   .story-summary {
     font-family: var(--font-body);
-    font-size: 1.0625rem;
-    line-height: var(--line-height-loose);
-    color: var(--color-text-secondary);
+    font-size: 1rem;
+    line-height: var(--line-height-relaxed);
+    color: var(--color-gray-600);
     margin: 0;
-    max-width: 60ch;
   }
 
+  /* ── Story CTA Button — Gold → Navy flip ── */
   .story-link {
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    background-color: var(--color-primary-500);
-    color: var(--color-white);
+    background-color: var(--color-gold, #FFD26F);
+    color: #131F5B;
+    border: 2px solid var(--color-gold, #FFD26F);
     font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: var(--font-weight-semibold);
+    font-size: 0.9375rem;
+    font-weight: 700;
     text-decoration: none;
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-sm);
     width: fit-content;
-    transition: background-color var(--transition-fast);
+    margin-top: var(--space-2);
+    box-shadow: 0 4px 14px var(--color-gold-shadow, rgba(255, 210, 111, 0.35));
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
   }
 
   .story-link:hover {
-    background-color: var(--color-primary-600);
+    background-color: #1E3A8A;
+    border-color: #1E3A8A;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(19, 31, 91, 0.3);
   }
 
   .story-link:focus-visible {
-    outline: 2px solid var(--color-primary-500);
-    outline-offset: 2px;
+    outline: 3px solid #FFD26F;
+    outline-offset: 3px;
   }
 
   /* Tablet */
   @media (max-width: 1023px) {
     .story-block {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  /* Mobile — always stack, image first */
-  @media (max-width: 639px) {
-    .story-block,
-    .story-block.image-left,
-    .story-block.image-right {
       grid-template-columns: 1fr;
+      padding: var(--space-8);
+      gap: var(--space-6);
     }
 
-    .story-block .story-image,
-    .story-block.image-left .story-image,
-    .story-block.image-right .story-image {
-      order: 1;
-    }
-
-    .story-block .story-content,
-    .story-block.image-left .story-content,
-    .story-block.image-right .story-content {
-      order: 2;
-    }
-
-    .story-photo,
-    .story-image-placeholder {
-      aspect-ratio: 4 / 3;
-      max-height: 20rem;
-    }
-
-    .story-quote p {
-      font-size: 1.125rem;
+    .story-image {
+      min-height: 280px;
+      max-height: 340px;
     }
   }
 
@@ -266,10 +268,6 @@ const {
     .story-photo,
     .story-link {
       transition: none;
-    }
-
-    .story-photo:hover {
-      filter: grayscale(100%);
     }
   }
 </style>

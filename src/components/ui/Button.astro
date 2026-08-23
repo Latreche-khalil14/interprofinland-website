@@ -44,102 +44,153 @@ const props = href
     text-decoration: none;
     border: none;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      box-shadow 200ms ease,
+      transform 150ms ease;
     white-space: nowrap;
   }
 
-  /* Primary Button */
+  /* ── Primary Button ─────────────────────────────── */
   .btn-primary {
     background-color: var(--color-primary-500);
     color: var(--color-white);
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-sm);
+    box-shadow: 0 1px 3px rgba(19, 31, 91, 0.25);
   }
 
   .btn-primary:hover:not(:disabled) {
     background-color: var(--color-primary-600);
+    box-shadow: 0 6px 20px rgba(19, 31, 91, 0.35);
+    transform: translateY(-2px);
   }
 
   .btn-primary:active:not(:disabled) {
     background-color: var(--color-primary-700);
+    box-shadow: 0 1px 4px rgba(19, 31, 91, 0.3);
+    transform: translateY(0);
   }
 
   .btn-primary:focus-visible {
-    outline: 2px solid var(--color-primary-500);
-    outline-offset: 2px;
+    outline: 3px solid var(--color-primary-600);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
   }
 
-  /* Secondary Button */
+  /* ── Secondary Button ───────────────────────────── */
   .btn-secondary {
     background-color: transparent;
     color: var(--color-primary-500);
     padding: calc(var(--space-3) - 2px) calc(var(--space-6) - 2px);
     border: 2px solid var(--color-primary-500);
     border-radius: var(--radius-sm);
+    box-shadow: none;
   }
 
   .btn-secondary:hover:not(:disabled) {
-    background-color: var(--color-primary-50);
+    background-color: var(--color-primary-500);
+    color: var(--color-white);
+    border-color: var(--color-primary-500);
+    box-shadow: 0 4px 16px rgba(19, 31, 91, 0.25);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary:active:not(:disabled) {
+    background-color: var(--color-primary-600);
+    border-color: var(--color-primary-600);
+    transform: translateY(0);
   }
 
   .btn-secondary:focus-visible {
-    border-width: 3px;
-    padding: calc(var(--space-3) - 3px) calc(var(--space-6) - 3px);
+    outline: 3px solid var(--color-primary-600);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
   }
 
-  /* Tertiary Button (Text Link) */
+  /* ── Tertiary Button (Text Link) ────────────────── */
   .btn-tertiary {
     background-color: transparent;
     color: var(--color-primary-500);
     padding: var(--space-1) var(--space-2);
     border-radius: 0;
     text-decoration: none;
+    position: relative;
+  }
+
+  .btn-tertiary::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: var(--space-2);
+    right: var(--space-2);
+    height: 1.5px;
+    background-color: var(--color-primary-500);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 200ms ease;
   }
 
   .btn-tertiary:hover:not(:disabled) {
-    color: var(--color-primary-700);
-    text-decoration: underline;
+    color: var(--color-primary-600);
+    text-decoration: none;
+  }
+
+  .btn-tertiary:hover:not(:disabled)::after {
+    transform: scaleX(1);
   }
 
   .btn-tertiary:focus-visible {
-    outline: 2px solid var(--color-primary-500);
+    outline: 2px solid var(--color-primary-600);
     outline-offset: 2px;
     border-radius: var(--radius-sm);
   }
 
-  /* Accent Button (Rare - Hero CTAs) */
+  /* ── Accent Button (Hero CTAs) ──────────────────── */
   .btn-accent {
     background-color: var(--color-secondary-500);
     color: var(--color-white);
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-sm);
+    box-shadow: 0 1px 3px rgba(200, 90, 63, 0.25);
   }
 
   .btn-accent:hover:not(:disabled) {
     background-color: var(--color-secondary-600);
+    box-shadow: 0 6px 20px rgba(200, 90, 63, 0.35);
+    transform: translateY(-2px);
   }
 
   .btn-accent:active:not(:disabled) {
     background-color: var(--color-secondary-700);
+    box-shadow: 0 1px 4px rgba(200, 90, 63, 0.3);
+    transform: translateY(0);
   }
 
   .btn-accent:focus-visible {
-    outline: 2px solid var(--color-secondary-500);
-    outline-offset: 2px;
+    outline: 3px solid var(--color-secondary-500);
+    outline-offset: 3px;
   }
 
-  /* Disabled State */
+  /* ── Disabled State ─────────────────────────────── */
   .btn:disabled {
     background-color: var(--color-gray-300);
     color: var(--color-gray-500);
     border-color: var(--color-gray-300);
     cursor: not-allowed;
     opacity: 0.6;
+    transform: none;
+    box-shadow: none;
   }
 
-  /* Reduced Motion */
+  /* ── Reduced Motion ─────────────────────────────── */
   @media (prefers-reduced-motion: reduce) {
     .btn {
+      transition: none;
+    }
+    .btn-tertiary::after {
       transition: none;
     }
   }

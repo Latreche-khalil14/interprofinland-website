@@ -1,24 +1,36 @@
 ---
 /**
- * Hero Section
- * Asymmetrical 60/40 split — text left, image right
+ * Hero Section — Editorial Style with Performance-Optimized Video / Image
+ * Asymmetrical 60/40 split — text left, media (video or photo) right
  * Source: docs/design/mockups/home.md - Hero Section
  */
 
 interface Props {
   headline: string;
-  subheadline?: string;
-  primaryCta?: { label: string; href: string };
-  secondaryCta?: { label: string; href: string };
-  image?: { src: string; alt: string };
+  subheadline?: string | undefined;
+  eyebrow?: string | undefined;
+  badge?: string | undefined;
+  primaryCta?: { label: string; href: string } | undefined;
+  secondaryCta?: { label: string; href: string } | undefined;
+  image?: { src: string; alt: string } | undefined;
+  video?: { src: string; poster?: string | undefined } | undefined;
 }
 
-const { headline, subheadline, primaryCta, secondaryCta, image } = Astro.props;
+const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, video } = Astro.props;
 ---
 
 <section class="hero" aria-labelledby="hero-heading">
-  <div class="hero-inner container-content">
+  <div class="hero-inner container-page">
     <div class="hero-text">
+      {
+        eyebrow && (
+          <div class="hero-eyebrow-wrap">
+            <span class="hero-eyebrow-dot" aria-hidden="true" />
+            <span class="hero-eyebrow">{eyebrow}</span>
+          </div>
+        )
+      }
+
       <h1 id="hero-heading" class="hero-headline">{headline}</h1>
 
       {subheadline && <p class="hero-sub">{subheadline}</p>}
@@ -28,12 +40,14 @@ const { headline, subheadline, primaryCta, secondaryCta, image } = Astro.props;
           <div class="hero-actions">
             {primaryCta && (
               <a href={primaryCta.href} class="hero-btn-primary">
-                {primaryCta.label}
+                <span>{primaryCta.label}</span>
+                <span class="btn-arrow" aria-hidden="true">→</span>
               </a>
             )}
             {secondaryCta && (
               <a href={secondaryCta.href} class="hero-btn-secondary">
-                {secondaryCta.label} <span aria-hidden="true">→</span>
+                <span>{secondaryCta.label}</span>
+                <span class="btn-arrow" aria-hidden="true">→</span>
               </a>
             )}
           </div>
@@ -43,20 +57,58 @@ const { headline, subheadline, primaryCta, secondaryCta, image } = Astro.props;
 
     <div class="hero-media">
       {
-        image ? (
-          <img
-            src={image.src}
-            alt={image.alt}
-            width="600"
-            height="450"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-            class="hero-image"
-          />
+        video ? (
+          <div class="hero-media-wrapper hero-video-wrapper">
+            <video
+              class="hero-video"
+              poster={video.poster || '/assets/poster-hero.png'}
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-label="International professionals working and collaborating together in Finland"
+            >
+              <source src={video.src} type="video/mp4" />
+            </video>
+            <button
+              class="hero-video-toggle"
+              type="button"
+              aria-label="Pause background video"
+              title="Pause / Play background video"
+            >
+              <span class="video-icon video-icon--pause" aria-hidden="true">❚❚</span>
+              <span class="video-icon video-icon--play" aria-hidden="true">▶</span>
+              <span class="video-control-text">Pause</span>
+            </button>
+            {badge && (
+              <div class="hero-floating-badge">
+                <span class="badge-icon">★</span>
+                <span class="badge-text">{badge}</span>
+              </div>
+            )}
+          </div>
+        ) : image ? (
+          <div class="hero-media-wrapper hero-image-wrapper">
+            <img
+              src={image.src}
+              alt={image.alt}
+              width="600"
+              height="450"
+              loading="eager"
+              decoding="async"
+              class="hero-image"
+            />
+            {badge && (
+              <div class="hero-floating-badge">
+                <span class="badge-icon">★</span>
+                <span class="badge-text">{badge}</span>
+              </div>
+            )}
+          </div>
         ) : (
           <div class="hero-image-placeholder" aria-hidden="true">
-            <span>Hero Image</span>
+            <span>Hero Media</span>
           </div>
         )
       }
@@ -64,45 +116,137 @@ const { headline, subheadline, primaryCta, secondaryCta, image } = Astro.props;
   </div>
 </section>
 
+<script>
+  // High-performance video controller with IntersectionObserver & reduced-motion support
+  const heroVideo = document.querySelector<HTMLVideoElement>('.hero-video');
+  const videoToggle = document.querySelector<HTMLButtonElement>('.hero-video-toggle');
+
+  if (heroVideo) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      heroVideo.pause();
+      if (videoToggle) {
+        videoToggle.setAttribute('aria-label', 'Play background video');
+        videoToggle.classList.add('is-paused');
+        const text = videoToggle.querySelector('.video-control-text');
+        if (text) text.textContent = 'Play';
+      }
+    } else {
+      // IntersectionObserver: Only render video frames when the hero is in view
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (!videoToggle?.classList.contains('is-paused')) {
+                heroVideo.play().catch(() => {
+                  // Autoplay blocked by browser policy; silently catch
+                });
+              }
+            } else {
+              heroVideo.pause();
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      observer.observe(heroVideo);
+    }
+
+    // Interactive Toggle button
+    videoToggle?.addEventListener('click', () => {
+      const isPaused = heroVideo.paused;
+      const text = videoToggle.querySelector('.video-control-text');
+
+      if (isPaused) {
+        heroVideo.play().then(() => {
+          videoToggle.classList.remove('is-paused');
+          videoToggle.setAttribute('aria-label', 'Pause background video');
+          if (text) text.textContent = 'Pause';
+        });
+      } else {
+        heroVideo.pause();
+        videoToggle.classList.add('is-paused');
+        videoToggle.setAttribute('aria-label', 'Play background video');
+        if (text) text.textContent = 'Play';
+      }
+    });
+  }
+</script>
+
 <style>
   .hero {
     background-color: var(--color-bg-page);
-    padding-top: clamp(3.5rem, 10vw, 6rem);
-    padding-bottom: clamp(3.5rem, 10vw, 6rem);
+    padding-top: clamp(4.5rem, 10vw, 7rem);
+    padding-bottom: clamp(4.5rem, 10vw, 7rem);
   }
 
   .hero-inner {
     display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: clamp(2rem, 5vw, 4rem);
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: clamp(1.8rem, 5vw, 4.5rem);
     align-items: center;
+  }
+
+  /* ── Eyebrow — Centered editorial with gold dashes ── */
+  .hero-eyebrow-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    width: fit-content;
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-eyebrow-wrap::before,
+  .hero-eyebrow-wrap::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2.5px;
+    background-color: #FFD26F;
+    flex-shrink: 0;
+  }
+
+  .hero-eyebrow-dot {
+    display: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary-500);
+    line-height: 1;
   }
 
   /* ── Text Side ── */
   .hero-text {
     display: flex;
     flex-direction: column;
-    gap: var(--space-8);
+    gap: var(--space-6);
   }
 
   .hero-headline {
     font-family: var(--font-display);
     font-size: var(--font-size-display-1);
     font-weight: var(--font-weight-extrabold);
-    line-height: var(--line-height-tight);
-    letter-spacing: var(--letter-spacing-tight);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
     color: var(--color-text-primary);
     margin: 0;
-    max-width: 18ch;
+    max-width: 16ch;
   }
 
   .hero-sub {
     font-family: var(--font-body);
-    font-size: clamp(1.0625rem, 2vw, 1.25rem);
-    line-height: 1.7;
+    font-size: clamp(1.125rem, 1.8vw, 1.3125rem);
+    line-height: var(--line-height-loose);
     color: var(--color-gray-700);
     margin: 0;
-    max-width: 55ch;
+    max-width: 50ch;
   }
 
   .hero-actions {
@@ -110,73 +254,195 @@ const { headline, subheadline, primaryCta, secondaryCta, image } = Astro.props;
     flex-wrap: wrap;
     align-items: center;
     gap: var(--space-4);
+    margin-top: var(--space-6);
   }
 
+  /* ── Hero Primary CTA — Gold #FFD26F → Navy hover ── */
   .hero-btn-primary {
     display: inline-flex;
     align-items: center;
-    background-color: var(--color-primary-500);
-    color: var(--color-white);
+    justify-content: center;
+    gap: var(--space-3);
+    background-color: #FFD26F;
+    color: #131F5B;
     font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: var(--font-weight-semibold);
+    font-size: 1.0625rem;
+    font-weight: 700;
     text-decoration: none;
-    padding: var(--space-3) var(--space-6);
-    border-radius: var(--radius-sm);
-    transition: background-color var(--transition-fast);
+    padding: 0.9375rem 2rem;
+    border-radius: 6px;
+    border: 2px solid #FFD26F;
+    box-shadow: 0 4px 18px rgba(255, 210, 111, 0.35);
+    transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .hero-btn-primary:hover {
-    background-color: var(--color-primary-600);
+    background-color: #1E3A8A;
+    border-color: #1E3A8A;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(19, 31, 91, 0.35);
+  }
+
+  .hero-btn-primary .btn-arrow {
+    transition: transform 220ms ease;
+    font-size: 1.125rem;
+  }
+
+  .hero-btn-primary:hover .btn-arrow {
+    transform: translateX(4px);
   }
 
   .hero-btn-primary:focus-visible {
-    outline: 2px solid var(--color-primary-500);
-    outline-offset: 2px;
+    outline: 3px solid #FFD26F;
+    outline-offset: 3px;
   }
 
+  /* ── Hero Secondary CTA — Navy outline ── */
   .hero-btn-secondary {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-1);
-    color: var(--color-primary-500);
+    justify-content: center;
+    gap: var(--space-3);
+    color: #131F5B;
     font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: var(--font-weight-semibold);
+    font-size: 1.0625rem;
+    font-weight: 600;
     text-decoration: none;
-    transition: color var(--transition-fast);
+    padding: 0.9375rem 1.875rem;
+    border: 2px solid #131F5B;
+    background-color: transparent;
+    border-radius: 6px;
+    transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .hero-btn-secondary:hover {
-    color: var(--color-primary-700);
-    text-decoration: underline;
+    background-color: #131F5B;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(19, 31, 91, 0.25);
+  }
+
+  .hero-btn-secondary .btn-arrow {
+    transition: transform 220ms ease;
+    font-size: 1.125rem;
+  }
+
+  .hero-btn-secondary:hover .btn-arrow {
+    transform: translateX(4px);
   }
 
   .hero-btn-secondary:focus-visible {
-    outline: 2px solid var(--color-border-focus);
-    outline-offset: 2px;
-    border-radius: var(--radius-sm);
+    outline: 3px solid #131F5B;
+    outline-offset: 3px;
   }
 
-  /* ── Image Side ── */
+  /* ── Media Side (Video & Image) ── */
   .hero-media {
     position: relative;
   }
 
-  .hero-image {
+  .hero-media-wrapper {
+    position: relative;
+    overflow: visible;
+  }
+
+  .hero-image,
+  .hero-video {
     width: 100%;
     height: auto;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
+    min-height: clamp(380px, 35vw, 540px);
     object-fit: cover;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg, 18px);
+    box-shadow: 0 28px 60px -12px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--color-border-default);
     display: block;
+    background-color: var(--color-gray-900);
+  }
+
+  /* Video Toggle Pill */
+  .hero-video-toggle {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(23, 33, 38, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    padding: 6px 12px;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    z-index: 5;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .hero-video-toggle:hover {
+    background-color: rgba(23, 33, 38, 0.92);
+    transform: scale(1.04);
+  }
+
+  .hero-video-toggle:focus-visible {
+    outline: 2px solid var(--color-primary-400);
+    outline-offset: 2px;
+  }
+
+  .video-icon {
+    font-size: 0.6875rem;
+    line-height: 1;
+  }
+
+  .video-icon--play {
+    display: none;
+  }
+
+  .hero-video-toggle.is-paused .video-icon--pause {
+    display: none;
+  }
+
+  .hero-video-toggle.is-paused .video-icon--play {
+    display: inline;
+  }
+
+  .hero-floating-badge {
+    position: absolute;
+    bottom: -18px;
+    left: -18px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-primary-200);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-5);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    box-shadow: 0 14px 30px -6px rgba(0, 0, 0, 0.12);
+    z-index: 4;
+  }
+
+  .badge-icon {
+    color: var(--color-secondary-500);
+    font-size: 1.125rem;
+  }
+
+  .badge-text {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
   }
 
   .hero-image-placeholder {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 11;
     background-color: var(--color-gray-200);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg, 16px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -185,10 +451,11 @@ const { headline, subheadline, primaryCta, secondaryCta, image } = Astro.props;
     font-size: 0.875rem;
   }
 
-  /* ── Tablet: balanced 50/50 ── */
+  /* ── Tablet ── */
   @media (max-width: 1023px) and (min-width: 640px) {
     .hero-inner {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
     }
   }
 
@@ -196,24 +463,21 @@ const { headline, subheadline, primaryCta, secondaryCta, image } = Astro.props;
   @media (max-width: 639px) {
     .hero-inner {
       grid-template-columns: 1fr;
+      gap: var(--space-8);
     }
 
-    /* Image first on mobile */
-    .hero-media {
-      order: 1;
-    }
-    .hero-text {
-      order: 2;
-    }
-
-    .hero-headline {
-      max-width: none;
+    .hero-floating-badge {
+      position: static;
+      margin-top: var(--space-3);
+      width: 100%;
+      justify-content: center;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .hero-btn-primary,
-    .hero-btn-secondary {
+    .hero-btn-secondary,
+    .hero-video-toggle {
       transition: none;
     }
   }

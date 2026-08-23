@@ -41,3 +41,6 @@ test-results/
 
 # Nested repos / scratch folders
 ecliptic-ellipse/
+
+# Image backups
+public/assets_backup_originals/

@@ -15,6 +15,7 @@
     "lint:fix": "eslint . --ext .ts,.astro --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "optimize:images": "python scripts/optimize_images.py",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",

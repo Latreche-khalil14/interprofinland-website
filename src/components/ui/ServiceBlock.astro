@@ -10,26 +10,44 @@ interface Props {
   description: string;
   icon?: string | undefined;
   href: string;
+  index?: string | number | undefined;
+  tag?: string | undefined;
 }
 
-const { title, description, icon, href } = Astro.props;
+const { title, description, icon, href, index, tag } = Astro.props;
+const formattedIndex = index ? String(index).padStart(2, '0') : undefined;
 ---
 
 <article class="service-block">
-  {
-    icon && (
-      <div class="service-icon" aria-hidden="true">
-        {icon}
-      </div>
-    )
-  }
+  <div class="service-top">
+    {
+      icon && (
+        <div class="service-icon" aria-hidden="true">
+          {icon}
+        </div>
+      )
+    }
+    {
+      tag && (
+        <span class="service-tag">{tag}</span>
+      )
+    }
+    {
+      formattedIndex && (
+        <span class="service-index" aria-hidden="true">{formattedIndex}</span>
+      )
+    }
+  </div>
 
-  <h3 class="service-title">{title}</h3>
+  <h3 class="service-title">
+    <a href={href} class="service-title-link">{title}</a>
+  </h3>
 
   <p class="service-description">{description}</p>
 
   <a href={href} class="service-link">
-    Learn More <span aria-hidden="true">→</span>
+    <span>Learn More</span>
+    <span class="service-arrow" aria-hidden="true">→</span>
   </a>
 </article>
 
@@ -39,35 +57,78 @@ const { title, description, icon, href } = Astro.props;
     background-color: var(--color-white);
     border: 1px solid var(--color-border-default);
     border-radius: var(--radius-md);
-    padding: var(--space-6);
+    padding: var(--space-8) var(--space-6);
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
-    transition: border-color var(--transition-fast);
+    position: relative;
+    transition: transform var(--duration-base) var(--ease-out),
+                border-color var(--duration-base) var(--ease-out),
+                box-shadow var(--duration-base) var(--ease-out);
   }
 
   .service-block:hover {
     border-color: var(--color-primary-500);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px -8px rgba(0, 107, 125, 0.08);
+  }
+
+  .service-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    margin-bottom: var(--space-1);
   }
 
   .service-icon {
-    font-size: 2rem;
-    color: var(--color-primary-500);
+    font-size: 1.75rem;
     line-height: 1;
+  }
+
+  .service-tag {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary-700);
+    background-color: var(--color-primary-50);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+  }
+
+  .service-index {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-400);
+    margin-left: auto;
+    letter-spacing: 0.05em;
   }
 
   .service-title {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.375rem;
     font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-snug);
     color: var(--color-text-primary);
     margin: 0;
   }
 
+  .service-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .service-title-link:hover {
+    color: var(--color-primary-600);
+  }
+
   .service-description {
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 0.9375rem;
     line-height: var(--line-height-loose);
     color: var(--color-text-secondary);
     margin: 0;
@@ -82,18 +143,30 @@ const { title, description, icon, href } = Astro.props;
     color: var(--color-text-link);
     text-decoration: none;
     font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: var(--font-weight-medium);
+    font-size: 0.9375rem;
+    font-weight: var(--font-weight-semibold);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
     transition: color var(--transition-fast);
     margin-top: auto;
+    padding-top: var(--space-2);
+  }
+
+  .service-arrow {
+    transition: transform var(--duration-fast) var(--ease-out);
+  }
+
+  .service-block:hover .service-arrow {
+    transform: translateX(4px);
   }
 
   .service-link:hover {
     color: var(--color-text-link-hover);
-    text-decoration: underline;
   }
 
-  .service-link:focus-visible {
+  .service-link:focus-visible,
+  .service-title-link:focus-visible {
     outline: 2px solid var(--color-border-focus);
     outline-offset: 2px;
     border-radius: var(--radius-sm);
@@ -102,8 +175,15 @@ const { title, description, icon, href } = Astro.props;
   /* Reduced Motion */
   @media (prefers-reduced-motion: reduce) {
     .service-block,
-    .service-link {
+    .service-link,
+    .service-arrow {
       transition: none;
+    }
+    .service-block:hover {
+      transform: none;
+    }
+    .service-block:hover .service-arrow {
+      transform: none;
     }
   }
 </style>
