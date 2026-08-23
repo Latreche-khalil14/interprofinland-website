@@ -16,7 +16,8 @@ interface Props {
   video?: { src: string; poster?: string | undefined } | undefined;
 }
 
-const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, video } = Astro.props;
+const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, video } =
+  Astro.props;
 ---
 
 <section class="hero" aria-labelledby="hero-heading">
@@ -41,13 +42,17 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
             {primaryCta && (
               <a href={primaryCta.href} class="hero-btn-primary">
                 <span>{primaryCta.label}</span>
-                <span class="btn-arrow" aria-hidden="true">→</span>
+                <span class="btn-arrow" aria-hidden="true">
+                  →
+                </span>
               </a>
             )}
             {secondaryCta && (
               <a href={secondaryCta.href} class="hero-btn-secondary">
                 <span>{secondaryCta.label}</span>
-                <span class="btn-arrow" aria-hidden="true">→</span>
+                <span class="btn-arrow" aria-hidden="true">
+                  →
+                </span>
               </a>
             )}
           </div>
@@ -61,7 +66,7 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
           <div class="hero-media-wrapper hero-video-wrapper">
             <video
               class="hero-video"
-              poster={video.poster || '/assets/poster-hero.png'}
+              poster={video.poster || '/images/hero/homepage/poster-hero.png'}
               autoplay
               muted
               loop
@@ -71,16 +76,6 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
             >
               <source src={video.src} type="video/mp4" />
             </video>
-            <button
-              class="hero-video-toggle"
-              type="button"
-              aria-label="Pause background video"
-              title="Pause / Play background video"
-            >
-              <span class="video-icon video-icon--pause" aria-hidden="true">❚❚</span>
-              <span class="video-icon video-icon--play" aria-hidden="true">▶</span>
-              <span class="video-control-text">Pause</span>
-            </button>
             {badge && (
               <div class="hero-floating-badge">
                 <span class="badge-icon">★</span>
@@ -119,30 +114,21 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
 <script>
   // High-performance video controller with IntersectionObserver & reduced-motion support
   const heroVideo = document.querySelector<HTMLVideoElement>('.hero-video');
-  const videoToggle = document.querySelector<HTMLButtonElement>('.hero-video-toggle');
 
   if (heroVideo) {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReducedMotion) {
       heroVideo.pause();
-      if (videoToggle) {
-        videoToggle.setAttribute('aria-label', 'Play background video');
-        videoToggle.classList.add('is-paused');
-        const text = videoToggle.querySelector('.video-control-text');
-        if (text) text.textContent = 'Play';
-      }
     } else {
       // IntersectionObserver: Only render video frames when the hero is in view
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              if (!videoToggle?.classList.contains('is-paused')) {
-                heroVideo.play().catch(() => {
-                  // Autoplay blocked by browser policy; silently catch
-                });
-              }
+              heroVideo.play().catch(() => {
+                // Autoplay blocked by browser policy; silently catch
+              });
             } else {
               heroVideo.pause();
             }
@@ -153,25 +139,6 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
 
       observer.observe(heroVideo);
     }
-
-    // Interactive Toggle button
-    videoToggle?.addEventListener('click', () => {
-      const isPaused = heroVideo.paused;
-      const text = videoToggle.querySelector('.video-control-text');
-
-      if (isPaused) {
-        heroVideo.play().then(() => {
-          videoToggle.classList.remove('is-paused');
-          videoToggle.setAttribute('aria-label', 'Pause background video');
-          if (text) text.textContent = 'Pause';
-        });
-      } else {
-        heroVideo.pause();
-        videoToggle.classList.add('is-paused');
-        videoToggle.setAttribute('aria-label', 'Play background video');
-        if (text) text.textContent = 'Play';
-      }
-    });
   }
 </script>
 
@@ -204,7 +171,7 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
     display: block;
     width: 28px;
     height: 2.5px;
-    background-color: #FFD26F;
+    background-color: #ffd26f;
     flex-shrink: 0;
   }
 
@@ -263,22 +230,22 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
     align-items: center;
     justify-content: center;
     gap: var(--space-3);
-    background-color: #FFD26F;
-    color: #131F5B;
+    background-color: #ffd26f;
+    color: #131f5b;
     font-family: var(--font-display);
     font-size: 1.0625rem;
     font-weight: 700;
     text-decoration: none;
     padding: 0.9375rem 2rem;
     border-radius: 6px;
-    border: 2px solid #FFD26F;
+    border: 2px solid #ffd26f;
     box-shadow: 0 4px 18px rgba(255, 210, 111, 0.35);
     transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .hero-btn-primary:hover {
-    background-color: #1E3A8A;
-    border-color: #1E3A8A;
+    background-color: #1e3a8a;
+    border-color: #1e3a8a;
     color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 8px 28px rgba(19, 31, 91, 0.35);
@@ -294,7 +261,7 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
   }
 
   .hero-btn-primary:focus-visible {
-    outline: 3px solid #FFD26F;
+    outline: 3px solid #ffd26f;
     outline-offset: 3px;
   }
 
@@ -304,20 +271,20 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
     align-items: center;
     justify-content: center;
     gap: var(--space-3);
-    color: #131F5B;
+    color: #131f5b;
     font-family: var(--font-display);
     font-size: 1.0625rem;
     font-weight: 600;
     text-decoration: none;
     padding: 0.9375rem 1.875rem;
-    border: 2px solid #131F5B;
+    border: 2px solid #131f5b;
     background-color: transparent;
     border-radius: 6px;
     transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .hero-btn-secondary:hover {
-    background-color: #131F5B;
+    background-color: #131f5b;
     color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 8px 22px rgba(19, 31, 91, 0.25);
@@ -333,7 +300,7 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
   }
 
   .hero-btn-secondary:focus-visible {
-    outline: 3px solid #131F5B;
+    outline: 3px solid #131f5b;
     outline-offset: 3px;
   }
 
@@ -359,56 +326,6 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
     border: 1px solid var(--color-border-default);
     display: block;
     background-color: var(--color-gray-900);
-  }
-
-  /* Video Toggle Pill */
-  .hero-video-toggle {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background-color: rgba(23, 33, 38, 0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 9999px;
-    padding: 6px 12px;
-    font-family: var(--font-display);
-    font-size: 0.75rem;
-    font-weight: var(--font-weight-medium);
-    cursor: pointer;
-    z-index: 5;
-    transition: background-color var(--transition-fast), transform var(--transition-fast);
-  }
-
-  .hero-video-toggle:hover {
-    background-color: rgba(23, 33, 38, 0.92);
-    transform: scale(1.04);
-  }
-
-  .hero-video-toggle:focus-visible {
-    outline: 2px solid var(--color-primary-400);
-    outline-offset: 2px;
-  }
-
-  .video-icon {
-    font-size: 0.6875rem;
-    line-height: 1;
-  }
-
-  .video-icon--play {
-    display: none;
-  }
-
-  .hero-video-toggle.is-paused .video-icon--pause {
-    display: none;
-  }
-
-  .hero-video-toggle.is-paused .video-icon--play {
-    display: inline;
   }
 
   .hero-floating-badge {
@@ -476,8 +393,7 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
 
   @media (prefers-reduced-motion: reduce) {
     .hero-btn-primary,
-    .hero-btn-secondary,
-    .hero-video-toggle {
+    .hero-btn-secondary {
       transition: none;
     }
   }

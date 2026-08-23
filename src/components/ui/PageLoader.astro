@@ -10,7 +10,7 @@
   <div class="loader-content">
     <div class="logo-wrapper">
       <img
-        src="/assets/logo.jpg"
+        src="/images/brand/logo/logo.jpg"
         alt="InterProFinland"
         class="loader-logo"
         width="280"
@@ -20,7 +20,7 @@
       />
       <div class="logo-shine" aria-hidden="true"></div>
     </div>
-    
+
     <div class="loader-progress-track" aria-hidden="true">
       <div class="loader-progress-bar"></div>
     </div>
@@ -91,7 +91,11 @@
   .loader-backdrop {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(238, 242, 255, 0.65) 0%, rgba(255, 255, 255, 1) 75%);
+    background: radial-gradient(
+      circle at center,
+      rgba(238, 242, 255, 0.65) 0%,
+      rgba(255, 255, 255, 1) 75%
+    );
     pointer-events: none;
   }
 
@@ -161,7 +165,7 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background: linear-gradient(90deg, #FFD26F 0%, #131F5B 100%);
+    background: linear-gradient(90deg, #ffd26f 0%, #131f5b 100%);
     border-radius: 9999px;
     transform-origin: left center;
     animation: loaderProgress 1.1s cubic-bezier(0.65, 0, 0.35, 1) infinite;

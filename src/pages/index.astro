@@ -27,7 +27,7 @@ const services = [
     category: 'Diploma Equivalency',
     title: 'Foreign Qualification & Degree Recognition',
     description:
-      'Step-by-step navigation through OPH, Valvira, and regulated profession authorities to evaluate and validate your international degrees and professional credentials in Finland.',
+      'Step-by-step navigation through OPH, Valvira, and regulated profession authorities to navigate the recognition of your international qualifications and professional credentials in Finland.',
     href: '/services/qualification-recognition',
   },
   {
@@ -43,7 +43,7 @@ const services = [
     category: 'Professional Networks',
     title: 'Networking & Regional Opportunities',
     description:
-      'Bridge the gap to Finnish working life through regional employer linkups, trade union introductions, and annual international talent fairs across Satakunta.',
+      'Bridge the gap to Finnish working life through regional employer linkups, professional networks, and annual international talent fairs across Satakunta.',
     href: '/services/networking',
   },
 ];
@@ -57,7 +57,7 @@ const featuredEvents = [
     location: 'Pori & Online',
     description:
       'Informal, welcoming Finnish conversation practice for all skill levels. Meet native speakers and fellow international residents in a relaxed environment.',
-    image: '/assets/events/Kieli-Kaverit-2.webp',
+    image: '/images/events/kielikaverit/kieli-kaverit-1.webp',
     href: '/community',
   },
   {
@@ -67,7 +67,7 @@ const featuredEvents = [
     location: 'Online Webinar',
     description:
       'Specialized webinars detailing diploma equivalency procedures, sworn translations, and licensing steps for regulated professions in Finland.',
-    image: '/assets/events/DA-webinar-poster-2023.webp',
+    image: '/images/projects/degree-amplify/da-webinar-poster-2023.webp',
     href: '/projects/degree-amplify',
   },
   {
@@ -77,27 +77,30 @@ const featuredEvents = [
     location: 'Pori, Satakunta',
     description:
       'The region’s premier international gathering connecting skilled foreign residents with employers, universities, and municipal organizations.',
-    image: '/assets/events/SIPF2024-2048x2048.webp',
+    image: '/images/events/sipf/sipf-2024.webp',
     href: '/events',
   },
 ];
 
 /* ── Authentic Partner Logos ── */
 const partnerLogos = [
-  { name: 'European Network of Innovation for Inclusion (ENIIE)', logo: '/assets/partners/ENII-logo.webp' },
-  { name: 'EURES Finland', logo: '/assets/partners/EURES_logo.webp' },
-  { name: 'Satakunta University of Applied Sciences (SAMK)', logo: '/assets/partners/samk.webp' },
-  { name: 'Moniheli ry', logo: '/assets/partners/moniheliii.webp' },
-  { name: 'Nicehearts ry', logo: '/assets/partners/Nicehearts.ry_logo_2022.webp' },
-  { name: 'Pori Entrepreneurship Society (PoriES)', logo: '/assets/partners/PoriES-logo.webp' },
-  { name: 'JCI Pori', logo: '/assets/partners/JCI-pori-logo-2-e1656931601644.webp' },
-  { name: 'Satarekry', logo: '/assets/partners/Satarekry-2-e1656932035974.webp' },
-  { name: 'Finnwards', logo: '/assets/partners/Finnwards_pieni-logo.webp' },
-  { name: 'African Music & Arts (AMA)', logo: '/assets/partners/AMA-e1630949866471.webp' },
-  { name: 'International Working Women of Finland (IWWOF)', logo: '/assets/partners/IWWOF.webp' },
-  { name: 'KYKY Today', logo: '/assets/partners/KYKY-Today.webp' },
-  { name: 'Satakunnan Monikulttuuriyhdistys (SMY)', logo: '/assets/partners/SMY-logo.webp' },
-  { name: 'Seasons', logo: '/assets/partners/logo-seasons-PNG.webp' },
+  {
+    name: 'European Network of Innovation for Inclusion (ENIIE)',
+    logo: '/images/partners/eniie-logo.webp',
+  },
+  { name: 'EURES Finland', logo: '/images/partners/eures-logo.webp' },
+  { name: 'Satakunta University of Applied Sciences (SAMK)', logo: '/images/partners/samk-logo.webp' },
+  { name: 'Moniheli ry', logo: '/images/partners/moniheli-logo.webp' },
+  { name: 'Nicehearts ry', logo: '/images/partners/nicehearts-logo.webp' },
+  { name: 'Pori Entrepreneurship Society (PoriES)', logo: '/images/partners/pories-logo.webp' },
+  { name: 'JCI Pori', logo: '/images/partners/jci-pori-logo.webp' },
+  { name: 'Satarekry', logo: '/images/partners/satarekry-logo.webp' },
+  { name: 'Finnwards', logo: '/images/partners/finnwards-logo.webp' },
+  { name: 'African Music & Arts (AMA)', logo: '/images/partners/ama-logo.webp' },
+  { name: 'International Working Women of Finland (IWWOF)', logo: '/images/partners/iwwof-logo.webp' },
+  { name: 'KYKY Today', logo: '/images/partners/kyky-today-logo.webp' },
+  { name: 'Satakunnan Monikulttuuriyhdistys (SMY)', logo: '/images/partners/smy-logo.webp' },
+  { name: 'Seasons', logo: '/images/partners/seasons-logo.webp' },
 ];
 ---
 
@@ -110,12 +113,12 @@ const partnerLogos = [
     eyebrow="Support Network for International Talents in Finland"
     headline="Supporting International Professionals in Finland"
     subheadline="Providing a supportive network and tailored guidance to help international talents overcome barriers, recognize qualifications, and build meaningful careers in the Finnish labour market."
-    badge="ENIIE European Finalist · Socio-Labour Inclusion"
+    badge="European Recognition · Socio-Labour Innovation"
     primaryCta={{ label: 'Explore Our Services', href: '/services' }}
     secondaryCta={{ label: 'Contact Our Team', href: '/contact' }}
     video={{
       src: '/assets/video-working-together.mp4',
-      poster: '/assets/poster-hero.png',
+      poster: '/images/hero/homepage/poster-hero.png',
     }}
   />
 
@@ -126,25 +129,37 @@ const partnerLogos = [
     <Container size="page">
       <div class="purpose-manifesto">
         <div class="purpose-manifesto-left">
+          <div class="purpose-image-wrap">
+            <img
+              src="/images/projects/connect-integrate/connect-integrate-pori.webp"
+              alt="International professionals connecting and integrating in Finland through InterProFinland programs"
+              class="purpose-img"
+              width="540"
+              height="640"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+        <div class="purpose-manifesto-right">
           <div class="purpose-pill">
-            <span class="pulse-dot" aria-hidden="true" />
+            <span class="pulse-dot" aria-hidden="true"></span>
             <span>Why We Exist</span>
           </div>
           <h2 class="purpose-title">
             Bridging Global Talent with <span class="purpose-serif">Finnish Opportunities</span>
           </h2>
-        </div>
-
-        <div class="purpose-manifesto-right">
+          
           <p class="purpose-lead">
             International professionals often face barriers that prevent them from using their
             skills and qualifications in Finland. InterProFinland provides guidance, support and
             connections to help turn international expertise into meaningful opportunities.
           </p>
           <p class="purpose-subtext">
-            We exist as an active network of individualized guidance, empowering professionals
-            to build rewarding careers while enabling the Finnish economy to benefit sustainably
-            from the global expertise living here.
+            We exist as an active network of individualized guidance, empowering professionals to
+            build rewarding careers while enabling the Finnish economy to benefit sustainably from
+            the global expertise living here.
           </p>
           <div class="purpose-action">
             <a href="/about" class="purpose-cta-link">
@@ -165,35 +180,152 @@ const partnerLogos = [
       <div class="editorial-services-header">
         <div class="editorial-services-title-wrap">
           <span class="section-eyebrow">What We Do</span>
-          <h2 class="editorial-services-heading">Four Focus Areas of Our Support</h2>
+          <h2 class="editorial-services-heading">Four Ways We Support Your Journey</h2>
         </div>
         <p class="editorial-services-desc">
-          Structured guidance designed to move you from initial orientation to full qualification equivalency and long-term career growth in Finland.
+          Structured guidance designed to move you from initial orientation to full qualification
+          equivalency and long-term career growth in Finland.
         </p>
       </div>
 
-      <div class="editorial-services-list" role="list">
-        {
-          services.map((item) => (
-            <a href={item.href} class="editorial-service-row" role="listitem">
-              <div class="service-row-num" aria-hidden="true">
-                <span>{item.index}</span>
-              </div>
-
-              <div class="service-row-content">
-                <span class="service-row-category">{item.category}</span>
-                <h3 class="service-row-title">{item.title}</h3>
-                <p class="service-row-desc">{item.description}</p>
-              </div>
-
-              <div class="service-row-action" aria-hidden="true">
-                <span class="service-row-arrow-circle">
-                  <span class="service-row-arrow">→</span>
-                </span>
-              </div>
+      <div class="editorial-services-layout">
+      <!-- Service 01: Career Guidance (Text | Image) -->
+      <article class="editorial-service-split">
+        <div class="service-split-content">
+          <div class="service-index-badge">
+            <span>01</span>
+          </div>
+          <span class="service-category">Labour Market Guidance</span>
+          <h3 class="service-title">
+            <a href="/services/career-guidance" class="service-title-link">
+              Career Guidance & Workplace Culture
             </a>
-          ))
-        }
+          </h3>
+          <p class="service-description">
+            Gain practical insights into the Finnish labour market, working culture expectations,
+            recruitment standards, and strategic job search approaches tailored to your profession.
+          </p>
+          <a href="/services/career-guidance" class="service-learn-more">
+            <span>Learn More</span>
+            <span class="learn-more-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="service-split-visual">
+          <img
+            src="/images/services/career-connect-workshop.jpg"
+            alt="Career Connect workshop with recruitment experts and international professionals"
+            class="service-split-image"
+            width="480"
+            height="360"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </article>
+
+      <!-- Service 02: Qualification Recognition (Image | Text - Reversed) -->
+      <article class="editorial-service-split is-reversed">
+        <div class="service-split-content">
+          <div class="service-index-badge">
+            <span>02</span>
+          </div>
+          <span class="service-category">Diploma Equivalency</span>
+          <h3 class="service-title">
+            <a href="/services/qualification-recognition" class="service-title-link">
+              Foreign Qualification & Degree Recognition
+            </a>
+          </h3>
+          <p class="service-description">
+            Step-by-step navigation through OPH, Valvira, and regulated profession authorities to
+            navigate the recognition of your international qualifications and professional
+            credentials in Finland.
+          </p>
+          <a href="/services/qualification-recognition" class="service-learn-more">
+            <span>Learn More</span>
+            <span class="learn-more-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="service-split-visual">
+          <img
+            src="/images/services/degree-recognition-support.png"
+            alt="Degree recognition support session for international professionals"
+            class="service-split-image"
+            width="480"
+            height="360"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </article>
+
+      <!-- Service 03: Mentorship (Text | Image) -->
+      <article class="editorial-service-split">
+        <div class="service-split-content">
+          <div class="service-index-badge">
+            <span>03</span>
+          </div>
+          <span class="service-category">Mentorship & Clubs</span>
+          <h3 class="service-title">
+            <a href="/services/mentorship" class="service-title-link">
+              1-on-1 Mentorship & Peer Community
+            </a>
+          </h3>
+          <p class="service-description">
+            Connect directly with experienced professionals in your field and participate in weekly
+            Finnish language clubs (Kielikaverit) to gain local industry context and lasting
+            connections.
+          </p>
+          <a href="/services/mentorship" class="service-learn-more">
+            <span>Learn More</span>
+            <span class="learn-more-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="service-split-visual">
+          <img
+            src="/images/events/kielikaverit/kieli-kaverit-1.webp"
+            alt="Mentorship and peer community connections"
+            class="service-split-image"
+            width="480"
+            height="360"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </article>
+
+      <!-- Service 04: Networking (Image | Text - Reversed) -->
+      <article class="editorial-service-split is-reversed">
+        <div class="service-split-content">
+          <div class="service-index-badge">
+            <span>04</span>
+          </div>
+          <span class="service-category">Professional Networks</span>
+          <h3 class="service-title">
+            <a href="/services/networking" class="service-title-link">
+              Networking & Regional Opportunities
+            </a>
+          </h3>
+          <p class="service-description">
+            Bridge the gap to Finnish working life through regional employer linkups, professional
+            networks, and annual international talent fairs across Satakunta.
+          </p>
+          <a href="/services/networking" class="service-learn-more">
+            <span>Learn More</span>
+            <span class="learn-more-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="service-split-visual">
+          <img
+            src="/images/events/sipf/sipf-2024.webp"
+            alt="Networking opportunities and regional talent fairs"
+            class="service-split-image"
+            width="480"
+            height="360"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </article>
       </div>
 
       <div class="editorial-services-footer">
@@ -221,26 +353,32 @@ const partnerLogos = [
           <p class="flagship-subtitle">Foreign Diploma & Qualification Recognition Support</p>
 
           <p class="flagship-summary">
-            Our flagship yearly initiative empowering international professionals to understand, prepare, and successfully navigate the official foreign diploma recognition process in Finland. Specialists who navigated the process guide new applicants step by step through competent Finnish authorities.
+            Our flagship yearly initiative empowering international professionals to understand,
+            prepare, and successfully navigate the official foreign diploma recognition process in
+            Finland. Specialists who navigated the process guide new applicants step by step through
+            competent Finnish authorities.
           </p>
 
           <div class="flagship-pillars-grid">
             <div class="flagship-pillar-item">
               <span class="pillar-check" aria-hidden="true">✓</span>
               <div class="pillar-info">
-                <strong>OPH & Valvira Navigation:</strong> Guidance through official evaluation and licensing procedures for regulated and non-regulated professions.
+                <strong>OPH & Valvira Navigation:</strong> Guidance through official evaluation and licensing
+                procedures for regulated and non-regulated professions.
               </div>
             </div>
             <div class="flagship-pillar-item">
               <span class="pillar-check" aria-hidden="true">✓</span>
               <div class="pillar-info">
-                <strong>Specialist Mentors:</strong> 1-on-1 coaching from peers who already achieved credential recognition in Finland.
+                <strong>Specialist Mentors:</strong> 1-on-1 coaching from peers who already achieved credential
+                recognition in Finland.
               </div>
             </div>
             <div class="flagship-pillar-item">
               <span class="pillar-check" aria-hidden="true">✓</span>
               <div class="pillar-info">
-                <strong>European Good Practice:</strong> Recognized as an Innovative Good Practice Finalist by ENIIE and presented at the Madrid European Forum.
+                <strong>European Good Practice:</strong> Recognized as an Innovative Good Practice Finalist
+                by ENIIE and presented at the Madrid European Forum.
               </div>
             </div>
           </div>
@@ -259,7 +397,7 @@ const partnerLogos = [
         <div class="flagship-visual">
           <div class="flagship-media-frame">
             <img
-              src="/assets/events/Degree-AMPLIFY_Finalist.webp"
+              src="/images/projects/degree-amplify/degree-amplify-finalist.webp"
               alt="Degree AMPLIFY — European Good Practice Finalist Certificate, Madrid 2023"
               class="flagship-certificate-img"
               width="540"
@@ -267,7 +405,9 @@ const partnerLogos = [
               loading="lazy"
               decoding="async"
             />
-            <span class="flagship-media-caption">VII Call for Good Practices · ENIIE Madrid 2023</span>
+            <span class="flagship-media-caption"
+              >VII Call for Good Practices · ENIIE Madrid 2023</span
+            >
           </div>
         </div>
       </div>
@@ -323,7 +463,7 @@ const partnerLogos = [
         <div class="community-teaser-media">
           <div class="community-teaser-frame">
             <img
-              src="/assets/events/Kieli-Kaverit-2.webp"
+              src="/images/events/kielikaverit/kieli-kaverit-1.webp"
               alt="InterProFinland Finnish Language Club and community gathering"
               width="540"
               height="360"
@@ -355,7 +495,7 @@ const partnerLogos = [
         quote="I was able to save time because my mentor knows how the diploma equivalency process works and gave me great advice about it."
         person="Cyrille"
         personRole="Participant, One Mentor One Program"
-        personImage="/assets/persons-rols/Cyrille.webp"
+        personImage="/images/people/testimonials/cyrille.webp"
         href="/stories"
       />
 
@@ -364,6 +504,124 @@ const partnerLogos = [
           <span>Read All Participant Success Stories</span>
           <span aria-hidden="true">→</span>
         </a>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Community Gallery Showcase -->
+  <Section>
+    <Container size="page">
+      <div class="community-gallery-header">
+        <span class="section-eyebrow">Community in Action</span>
+        <h2 class="section-heading">Building Connections Together</h2>
+        <p class="section-intro">
+          From networking events to social gatherings, our community comes together to support,
+          connect, and grow professionally.
+        </p>
+      </div>
+
+      <div class="community-showcase-list">
+        <article class="community-showcase-card">
+          <div class="community-showcase-media">
+            <img
+              src="/images/events/general/picnic.webp"
+              alt="InterProFinland community picnic event"
+              class="community-showcase-img"
+              width="540"
+              height="380"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div class="community-showcase-content">
+            <div class="community-header-meta">
+              <span class="community-index">01</span>
+            </div>
+
+            <h3 class="community-title">Community Picnics & Social Gatherings</h3>
+
+            <p class="community-desc">
+              Regular outdoor events and social meetups where community members connect in a relaxed
+              atmosphere, building lasting friendships and professional networks beyond formal settings.
+            </p>
+
+            <div class="community-action-row">
+              <a href="/community" class="btn-community-showcase">
+                <span>Join Community Events</span>
+                <span class="cta-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="community-showcase-card is-reversed">
+          <div class="community-showcase-media">
+            <img
+              src="/images/community/gatherings/img-4678.webp"
+              alt="InterProFinland workshop and professional development session"
+              class="community-showcase-img"
+              width="540"
+              height="380"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div class="community-showcase-content">
+            <div class="community-header-meta">
+              <span class="community-index">02</span>
+            </div>
+
+            <h3 class="community-title">Workshops & Professional Development</h3>
+
+            <p class="community-desc">
+              Interactive sessions focused on career advancement, skill building, and navigating the
+              Finnish job market. Learn from experts and peers in collaborative environments.
+            </p>
+
+            <div class="community-action-row">
+              <a href="/community" class="btn-community-showcase">
+                <span>Explore Workshops</span>
+                <span class="cta-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="community-showcase-card">
+          <div class="community-showcase-media">
+            <img
+              src="/images/events/general/wellness.webp"
+              alt="Wellness and integration event for international professionals"
+              class="community-showcase-img"
+              width="540"
+              height="380"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div class="community-showcase-content">
+            <div class="community-header-meta">
+              <span class="community-index">03</span>
+            </div>
+
+            <h3 class="community-title">Wellness & Integration Activities</h3>
+
+            <p class="community-desc">
+              Holistic support through wellness events, cultural integration activities, and peer
+              support sessions that help international professionals feel at home in Finland.
+            </p>
+
+            <div class="community-action-row">
+              <a href="/community" class="btn-community-showcase">
+                <span>View All Activities</span>
+                <span class="cta-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
       </div>
     </Container>
   </Section>
@@ -379,7 +637,8 @@ const partnerLogos = [
           <h2 class="events-section-heading">Signature Programs & Regular Formats</h2>
         </div>
         <p class="events-section-desc">
-          Discover our recurring language clubs, qualification guidance series, and regional talent fairs designed to empower international professionals.
+          Discover our recurring language clubs, qualification guidance series, and regional talent
+          fairs designed to empower international professionals.
         </p>
       </div>
 
@@ -406,18 +665,24 @@ const partnerLogos = [
                   <span class="program-index">0{idx + 1}</span>
                   <div class="program-meta-chips">
                     <span class="meta-chip">
-                      <span class="chip-icon" aria-hidden="true">🗓</span>
+                      <span class="chip-icon" aria-hidden="true">
+                        🗓
+                      </span>
                       <span>{evt.schedule}</span>
                     </span>
                     <span class="meta-chip">
-                      <span class="chip-icon" aria-hidden="true">📍</span>
+                      <span class="chip-icon" aria-hidden="true">
+                        📍
+                      </span>
                       <span>{evt.location}</span>
                     </span>
                   </div>
                 </div>
 
                 <h3 class="program-title">
-                  <a href={evt.href} class="program-title-link">{evt.title}</a>
+                  <a href={evt.href} class="program-title-link">
+                    {evt.title}
+                  </a>
                 </h3>
 
                 <p class="program-desc">{evt.description}</p>
@@ -425,7 +690,9 @@ const partnerLogos = [
                 <div class="program-action-row">
                   <a href={evt.href} class="btn-program-cta">
                     <span>Explore This Format</span>
-                    <span class="cta-arrow" aria-hidden="true">→</span>
+                    <span class="cta-arrow" aria-hidden="true">
+                      →
+                    </span>
                   </a>
                 </div>
               </div>
@@ -439,7 +706,8 @@ const partnerLogos = [
         <div class="callout-content">
           <h3 class="callout-heading">Looking for Real-Time Schedules & Pop-up Sessions?</h3>
           <p class="callout-desc">
-            We regularly post weekly club locations, workshop links, and guest speaker announcements in our Facebook group.
+            We regularly post weekly club locations, workshop links, and guest speaker announcements
+            in our Facebook group.
           </p>
         </div>
         <div class="callout-actions">
@@ -470,9 +738,9 @@ const partnerLogos = [
           </div>
           <h2 class="magazine-feature-heading">InterProFinland Magazine & Handbook</h2>
           <p class="magazine-feature-body">
-            Stories, practical guidance and insights for international professionals in Finland.
-            Our qualification handbooks offer step-by-step navigation through Finnish
-            administrative and accreditation systems.
+            Stories, practical guidance and insights for international professionals in Finland. Our
+            qualification handbooks offer step-by-step navigation through Finnish administrative and
+            accreditation systems.
           </p>
           <ul class="magazine-highlights">
             <li>
@@ -485,7 +753,9 @@ const partnerLogos = [
             </li>
             <li>
               <span class="highlight-check">✓</span>
-              <span>Free digital access and resources to support international talents in Finland</span>
+              <span
+                >Free digital access and resources to support international talents in Finland</span
+              >
             </li>
           </ul>
           <div class="magazine-feature-actions">
@@ -502,7 +772,7 @@ const partnerLogos = [
         <div class="magazine-feature-media">
           <div class="magazine-media-frame">
             <img
-              src="/assets/QR-Handbook-cover.webp"
+              src="/images/services/handbook/qr-handbook-cover.webp"
               alt="InterProFinland Qualifications Recognition Handbook Cover"
               width="320"
               height="450"
@@ -526,8 +796,9 @@ const partnerLogos = [
         <span class="section-eyebrow">Partnership & Cooperation</span>
         <h2 class="partners-heading">Collaborating for Socio-Labour Inclusion</h2>
         <p class="partners-intro">
-          We collaborate with municipalities, educational institutions, European networks, and regional
-          organizations to build an inclusive, supportive ecosystem for international talents in Finland.
+          We collaborate with municipalities, educational institutions, European networks, and
+          regional organizations to build an inclusive, supportive ecosystem for international
+          talents in Finland.
         </p>
 
         <!-- Partner Logos Grid -->
@@ -586,17 +857,40 @@ const partnerLogos = [
     display: block;
     width: 28px;
     height: 2.5px;
-    background-color: #FFD26F;
+    background-color: #ffd26f;
     flex-shrink: 0;
   }
 
-
-  /* ── Purpose Manifesto Section (50/50 Editorial Split) ── */
+  /* ── Purpose Manifesto Section (Image Left + Text Right) ── */
   .purpose-manifesto {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.9fr 1.1fr;
     gap: clamp(2.5rem, 6vw, 5rem);
-    align-items: start;
+    align-items: center;
+  }
+
+  /* ── Purpose Image Container ── */
+  .purpose-manifesto-left {
+    position: relative;
+  }
+
+  .purpose-image-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.18);
+    border: 1px solid var(--color-border-default);
+  }
+
+  .purpose-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 400ms ease;
+  }
+
+  .purpose-image-wrap:hover .purpose-img {
+    transform: scale(1.03);
   }
 
   /* ── Purpose Pill — Centered editorial (matches section-eyebrow) ── */
@@ -620,7 +914,7 @@ const partnerLogos = [
     display: block;
     width: 28px;
     height: 2.5px;
-    background-color: #FFD26F;
+    background-color: #ffd26f;
     flex-shrink: 0;
   }
 
@@ -635,7 +929,7 @@ const partnerLogos = [
     color: var(--color-text-primary);
     line-height: 1.18;
     letter-spacing: -0.025em;
-    margin: 0;
+    margin: 0 0 var(--space-6) 0;
   }
 
   .purpose-serif {
@@ -649,7 +943,6 @@ const partnerLogos = [
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
-    padding-top: var(--space-1);
   }
 
   .purpose-lead {
@@ -680,16 +973,19 @@ const partnerLogos = [
     font-family: var(--font-display);
     font-size: 1rem;
     font-weight: 700;
-    color: var(--color-primary-500, #131F5B);
+    color: var(--color-primary-500, #131f5b);
     text-decoration: none;
     padding-bottom: 4px;
-    border-bottom: 2px solid var(--color-primary-400, #1E3A8A);
-    transition: color 200ms ease, border-color 200ms ease, transform 200ms ease;
+    border-bottom: 2px solid var(--color-primary-400, #1e3a8a);
+    transition:
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 200ms ease;
   }
 
   .purpose-cta-link:hover {
-    color: var(--color-primary-600, #1E3A8A);
-    border-color: var(--color-primary-600, #1E3A8A);
+    color: var(--color-primary-600, #1e3a8a);
+    border-color: var(--color-primary-600, #1e3a8a);
     transform: translateX(4px);
   }
 
@@ -716,7 +1012,7 @@ const partnerLogos = [
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-12);
   }
 
   .editorial-services-heading {
@@ -740,121 +1036,137 @@ const partnerLogos = [
     max-width: 60ch;
   }
 
-  /* ── Editorial Rows Container ── */
-  .editorial-services-list {
+  /* ── Editorial Services Layout (Split Editorial Pattern) ── */
+  .editorial-services-layout {
     display: flex;
     flex-direction: column;
-    border-top: 1px solid var(--color-border-default);
-    border-bottom: 1px solid var(--color-border-default);
+    gap: var(--space-20);
   }
 
-  .editorial-service-row {
+  /* ── Split Service Item (Alternating Text | Image) ── */
+  .editorial-service-split {
     display: grid;
-    grid-template-columns: 80px 1fr 60px;
-    gap: clamp(1.5rem, 4vw, 3.5rem);
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(3rem, 8vw, 6rem);
     align-items: center;
-    padding: clamp(1.5rem, 3.5vw, 2.25rem) var(--space-4);
-    text-decoration: none;
-    color: inherit;
-    transition: background-color var(--transition-fast);
-    border-bottom: 1px solid var(--color-border-subtle);
   }
 
-  .editorial-service-row:last-child {
-    border-bottom: none;
+  /* Reversed layout (Image | Text) */
+  .editorial-service-split.is-reversed {
+    direction: rtl;
   }
 
-  .editorial-service-row:hover {
-    background-color: var(--color-primary-50);
+  .editorial-service-split.is-reversed > * {
+    direction: ltr;
   }
 
-  .editorial-service-row:focus-visible {
-    outline: 2px solid var(--color-primary-500);
-    outline-offset: -2px;
-  }
-
-  .service-row-index {
-    font-family: var(--font-display);
-    font-size: 1.75rem;
-    font-weight: 800;
-    color: var(--color-primary-500);
-    opacity: 0.35;
-    line-height: 1;
-    letter-spacing: -0.03em;
-  }
-
-  .service-row-content {
+  /* ── Service Content ── */
+  .service-split-content {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
   }
 
-  .service-row-category {
-    font-family: var(--font-display);
-    font-size: 0.75rem;
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-primary-700);
-  }
-
-  .service-row-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.15rem, 1.8vw, 1.45rem);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text-primary);
-    line-height: 1.25;
-    letter-spacing: -0.015em;
-    margin: 0;
-    transition: color var(--transition-fast);
-  }
-
-  .editorial-service-row:hover .service-row-title {
-    color: var(--color-primary-600);
-  }
-
-  .service-row-desc {
-    font-family: var(--font-body);
-    font-size: 0.9375rem;
-    line-height: var(--line-height-relaxed);
-    color: var(--color-gray-600);
-    margin: 0;
-    max-width: 68ch;
-  }
-
-  .service-row-action {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-
-  .service-row-arrow-circle {
-    display: flex;
+  .service-index-badge {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.75rem;
-    height: 2.75rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 50%;
-    background-color: var(--color-white);
-    border: 1px solid var(--color-border-default);
-    color: var(--color-primary-600);
+    background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+    color: var(--color-white);
+    font-family: var(--font-display);
     font-size: 1.25rem;
-    transition: background-color var(--transition-fast),
-                color var(--transition-fast),
-                border-color var(--transition-fast),
-                transform var(--transition-fast);
+    font-weight: 800;
+    margin-bottom: var(--space-5);
+    box-shadow: 0 4px 12px rgba(19, 31, 91, 0.2);
   }
 
-  .editorial-service-row:hover .service-row-arrow-circle {
-    background-color: var(--color-primary-600);
-    border-color: var(--color-primary-600);
-    color: #ffffff;
-    transform: translateX(6px);
+  .service-category {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary-700);
+    margin-bottom: var(--space-3);
   }
 
+  .service-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.65rem, 2.5vw, 2.25rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin: 0 0 var(--space-5);
+  }
+
+  .service-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--transition-base);
+  }
+
+  .service-title-link:hover {
+    color: var(--color-primary-600);
+  }
+
+  .service-description {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--space-6);
+    max-width: 52ch;
+  }
+
+  /* ── Learn More Link ── */
+  .service-learn-more {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-primary-600);
+    text-decoration: none;
+    transition: gap var(--transition-fast);
+  }
+
+  .service-learn-more:hover {
+    gap: var(--space-3);
+  }
+
+  .learn-more-arrow {
+    transition: transform var(--transition-fast);
+  }
+
+  .service-learn-more:hover .learn-more-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Service Visual ── */
+  .service-split-visual {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.18);
+  }
+
+  .service-split-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  /* ── Services Footer with CTA ── */
   .editorial-services-footer {
     text-align: center;
-    margin-top: var(--space-10);
+    margin-top: var(--space-12);
   }
 
   /* ── All Services Button — Gold → Navy flip ── */
@@ -862,9 +1174,9 @@ const partnerLogos = [
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    background-color: var(--color-gold, #FFD26F);
+    background-color: var(--color-gold, #ffd26f);
     color: var(--color-primary-500);
-    border: 2px solid var(--color-gold, #FFD26F);
+    border: 2px solid var(--color-gold, #ffd26f);
     font-family: var(--font-display);
     font-size: 1rem;
     font-weight: 700;
@@ -872,11 +1184,12 @@ const partnerLogos = [
     padding: var(--space-3) var(--space-7);
     border-radius: var(--radius-sm);
     box-shadow: 0 4px 16px var(--color-gold-shadow, rgba(255, 210, 111, 0.35));
-    transition: background-color 200ms ease,
-                color 200ms ease,
-                border-color 200ms ease,
-                transform 150ms ease,
-                box-shadow 200ms ease;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 150ms ease,
+      box-shadow 200ms ease;
   }
 
   .btn-all-services:hover {
@@ -889,19 +1202,18 @@ const partnerLogos = [
 
   /* Responsive for mobile */
   @media (max-width: 640px) {
-    .editorial-services-header {
-      grid-template-columns: 1fr;
-      gap: var(--space-4);
+    .editorial-services-layout {
+      gap: var(--space-10);
     }
 
-    .editorial-service-row {
-      grid-template-columns: 1fr;
-      gap: var(--space-3);
-      padding: var(--space-6) 0;
+    .service-index-badge {
+      width: 2.75rem;
+      height: 2.75rem;
+      font-size: 1rem;
     }
 
-    .service-row-action {
-      display: none;
+    .service-learn-more {
+      font-size: 0.9375rem;
     }
   }
 
@@ -930,7 +1242,7 @@ const partnerLogos = [
 
   /* ── Featured Flagship Initiative Showcase (Section 4: Degree AMPLIFY — Luxury Royal Navy Card) ── */
   .flagship-showcase-card {
-    background: linear-gradient(145deg, #131F5B 0%, #0a1133 100%);
+    background: linear-gradient(145deg, #131f5b 0%, #0a1133 100%);
     border: 1.5px solid rgba(255, 210, 111, 0.35);
     border-radius: var(--radius-xl, 24px);
     padding: clamp(2rem, 3.5vw, 3.25rem);
@@ -938,8 +1250,9 @@ const partnerLogos = [
     grid-template-columns: 1.15fr 0.85fr;
     gap: clamp(2rem, 3.5vw, 3.25rem);
     align-items: center;
-    box-shadow: 0 20px 50px -10px rgba(19, 31, 91, 0.4),
-                0 0 0 1px rgba(255, 210, 111, 0.1);
+    box-shadow:
+      0 20px 50px -10px rgba(19, 31, 91, 0.4),
+      0 0 0 1px rgba(255, 210, 111, 0.1);
     position: relative;
     overflow: hidden;
   }
@@ -960,7 +1273,7 @@ const partnerLogos = [
   }
 
   .flagship-eyebrow-row .section-eyebrow {
-    color: #FFD26F;
+    color: #ffd26f;
     margin-bottom: 0;
   }
 
@@ -974,8 +1287,8 @@ const partnerLogos = [
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #131F5B;
-    background-color: #FFD26F;
+    color: #131f5b;
+    background-color: #ffd26f;
     padding: 4px 12px;
     border-radius: 9999px;
     box-shadow: 0 2px 10px rgba(255, 210, 111, 0.4);
@@ -995,7 +1308,7 @@ const partnerLogos = [
     font-family: var(--font-display);
     font-size: clamp(1.125rem, 2vw, 1.35rem);
     font-weight: 600;
-    color: #FFD26F;
+    color: #ffd26f;
     margin: 0;
     line-height: 1.35;
   }
@@ -1032,8 +1345,8 @@ const partnerLogos = [
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background-color: #FFD26F;
-    color: #131F5B;
+    background-color: #ffd26f;
+    color: #131f5b;
     font-size: 0.75rem;
     font-weight: 800;
     flex-shrink: 0;
@@ -1065,23 +1378,28 @@ const partnerLogos = [
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    background-color: var(--color-gold, #FFD26F);
-    color: #131F5B;
+    background-color: var(--color-gold, #ffd26f);
+    color: #131f5b;
     font-family: var(--font-display);
     font-size: 1rem;
     font-weight: 700;
     text-decoration: none;
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-sm);
-    border: 2px solid var(--color-gold, #FFD26F);
+    border: 2px solid var(--color-gold, #ffd26f);
     box-shadow: 0 4px 16px var(--color-gold-shadow, rgba(255, 210, 111, 0.4));
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 150ms ease,
+      box-shadow 200ms ease;
   }
 
   .btn-flagship-primary:hover {
     background-color: #ffffff;
     border-color: #ffffff;
-    color: #131F5B;
+    color: #131f5b;
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
   }
@@ -1099,7 +1417,11 @@ const partnerLogos = [
     text-decoration: none;
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-sm);
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 150ms ease;
   }
 
   .btn-flagship-secondary:hover {
@@ -1129,12 +1451,14 @@ const partnerLogos = [
     max-height: 480px;
     object-fit: contain;
     border-radius: var(--radius-lg, 16px);
-    box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 20px 48px -10px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.15);
     background-color: #ffffff;
     padding: var(--space-2);
-    transition: transform var(--duration-slow) var(--ease-out),
-                box-shadow var(--duration-slow) var(--ease-out);
+    transition:
+      transform var(--duration-slow) var(--ease-out),
+      box-shadow var(--duration-slow) var(--ease-out);
   }
 
   .flagship-showcase-card:hover .flagship-certificate-img {
@@ -1148,7 +1472,7 @@ const partnerLogos = [
     font-family: var(--font-display);
     font-size: 0.8125rem;
     font-weight: 600;
-    color: #FFD26F;
+    color: #ffd26f;
     text-align: center;
     letter-spacing: 0.03em;
   }
@@ -1222,7 +1546,7 @@ const partnerLogos = [
     font-family: var(--font-display);
     font-size: clamp(1.2rem, 1.8vw, 1.45rem);
     font-weight: 800;
-    color: var(--color-primary-500, #131F5B);
+    color: var(--color-primary-500, #131f5b);
     line-height: 1;
     letter-spacing: -0.02em;
   }
@@ -1248,9 +1572,9 @@ const partnerLogos = [
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    background-color: var(--color-gold, #FFD26F);
-    color: #131F5B;
-    border: 2px solid var(--color-gold, #FFD26F);
+    background-color: var(--color-gold, #ffd26f);
+    color: #131f5b;
+    border: 2px solid var(--color-gold, #ffd26f);
     font-family: var(--font-display);
     font-size: 0.9375rem;
     font-weight: 700;
@@ -1258,12 +1582,17 @@ const partnerLogos = [
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-sm);
     box-shadow: 0 4px 14px var(--color-gold-shadow, rgba(255, 210, 111, 0.35));
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 150ms ease,
+      box-shadow 200ms ease;
   }
 
   .btn-community-teaser:hover {
-    background-color: var(--color-primary-600, #1E3A8A);
-    border-color: var(--color-primary-600, #1E3A8A);
+    background-color: var(--color-primary-600, #1e3a8a);
+    border-color: var(--color-primary-600, #1e3a8a);
     color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 8px 22px rgba(19, 31, 91, 0.3);
@@ -1274,20 +1603,25 @@ const partnerLogos = [
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-    color: #131F5B;
+    color: #131f5b;
     font-family: var(--font-display);
     font-size: 0.9375rem;
     font-weight: 600;
     text-decoration: none;
     padding: var(--space-3) var(--space-6);
-    border: 2px solid #131F5B;
+    border: 2px solid #131f5b;
     background-color: transparent;
     border-radius: var(--radius-sm);
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 150ms ease,
+      box-shadow 200ms ease;
   }
 
   .btn-community-secondary:hover {
-    background-color: #131F5B;
+    background-color: #131f5b;
     color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(19, 31, 91, 0.25);
@@ -1347,16 +1681,151 @@ const partnerLogos = [
     font-family: var(--font-display);
     font-size: 0.9375rem;
     font-weight: 700;
-    color: var(--color-primary-500, #131F5B);
+    color: var(--color-primary-500, #131f5b);
     text-decoration: none;
     padding-bottom: 2px;
-    border-bottom: 2px solid var(--color-primary-400, #1E3A8A);
-    transition: color 200ms ease, border-color 200ms ease, transform 200ms ease;
+    border-bottom: 2px solid var(--color-primary-400, #1e3a8a);
+    transition:
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 200ms ease;
   }
 
   .story-all-link:hover {
-    color: var(--color-primary-600, #1E3A8A);
-    border-color: var(--color-primary-600, #1E3A8A);
+    color: var(--color-primary-600, #1e3a8a);
+    border-color: var(--color-primary-600, #1e3a8a);
+    transform: translateX(4px);
+  }
+
+  /* ── Community Showcase Section (same style as programs) ── */
+  .community-gallery-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .community-showcase-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .community-showcase-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: center;
+    padding: var(--space-8) 0;
+  }
+
+  .community-showcase-card.is-reversed {
+    direction: rtl;
+  }
+
+  .community-showcase-card.is-reversed > * {
+    direction: ltr;
+  }
+
+  .community-showcase-media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: var(--color-gray-100);
+  }
+
+  .community-media-link {
+    display: block;
+  }
+
+  .community-showcase-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 400ms ease;
+  }
+
+  .community-showcase-card:hover .community-showcase-img {
+    transform: scale(1.05);
+  }
+
+  .community-showcase-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .community-header-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .community-index {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-200);
+    line-height: 1;
+    opacity: 0.6;
+  }
+
+  .community-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2vw, 1.75rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+
+  .community-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+
+  .community-title-link:hover {
+    color: var(--color-primary-600);
+  }
+
+  .community-desc {
+    font-family: var(--font-body);
+    font-size: 0.96875rem;
+    line-height: var(--line-height-relaxed);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .community-action-row {
+    margin-top: var(--space-2);
+  }
+
+  .btn-community-showcase {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    background-color: var(--color-primary-500);
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 200ms ease;
+  }
+
+  .btn-community-showcase:hover {
+    background-color: var(--color-primary-600);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(19, 31, 91, 0.2);
+  }
+
+  .btn-community-showcase .cta-arrow {
+    transition: transform 200ms ease;
+  }
+
+  .btn-community-showcase:hover .cta-arrow {
     transform: translateX(4px);
   }
 
@@ -1433,9 +1902,9 @@ const partnerLogos = [
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    background-color: var(--color-gold, #FFD26F);
+    background-color: var(--color-gold, #ffd26f);
     color: var(--color-primary-500);
-    border: 2px solid var(--color-gold, #FFD26F);
+    border: 2px solid var(--color-gold, #ffd26f);
     font-family: var(--font-display);
     font-size: 0.9375rem;
     font-weight: 700;
@@ -1443,8 +1912,12 @@ const partnerLogos = [
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-sm);
     box-shadow: 0 4px 14px var(--color-gold-shadow, rgba(255, 210, 111, 0.35));
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease,
-                transform 150ms ease, box-shadow 200ms ease;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 150ms ease,
+      box-shadow 200ms ease;
   }
 
   .btn-magazine-primary:hover {
@@ -1461,20 +1934,25 @@ const partnerLogos = [
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-    color: #131F5B;
+    color: #131f5b;
     font-family: var(--font-display);
     font-size: 0.9375rem;
     font-weight: 600;
     text-decoration: none;
     padding: var(--space-3) var(--space-6);
-    border: 2px solid #131F5B;
+    border: 2px solid #131f5b;
     background-color: transparent;
     border-radius: var(--radius-sm);
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 150ms ease,
+      box-shadow 200ms ease;
   }
 
   .btn-magazine-secondary:hover {
-    background-color: #131F5B;
+    background-color: #131f5b;
     color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(19, 31, 91, 0.25);
@@ -1494,7 +1972,9 @@ const partnerLogos = [
     height: auto;
     object-fit: contain;
     border-radius: var(--radius-md, 12px);
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2), 0 0 1px rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 20px 40px -10px rgba(0, 0, 0, 0.2),
+      0 0 1px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--color-border-default);
     margin: 0 auto var(--space-3);
     transition: transform var(--duration-slow) var(--ease-out);
@@ -1591,15 +2071,18 @@ const partnerLogos = [
     max-height: 380px;
     border-radius: var(--radius-lg, 16px);
     overflow: hidden;
-    box-shadow: 0 10px 28px -6px rgba(19, 31, 91, 0.12),
-                0 0 0 1px rgba(19, 31, 91, 0.08);
+    box-shadow:
+      0 10px 28px -6px rgba(19, 31, 91, 0.12),
+      0 0 0 1px rgba(19, 31, 91, 0.08);
     background-color: transparent;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     justify-self: start;
     flex-shrink: 0;
-    transition: box-shadow 300ms ease, transform 300ms ease;
+    transition:
+      box-shadow 300ms ease,
+      transform 300ms ease;
   }
 
   .program-showcase-card.is-reversed .program-showcase-media {
@@ -1608,8 +2091,9 @@ const partnerLogos = [
 
   .program-showcase-card:hover .program-showcase-media {
     transform: translateY(-3px);
-    box-shadow: 0 16px 36px -8px rgba(19, 31, 91, 0.18),
-                0 0 0 1px rgba(19, 31, 91, 0.12);
+    box-shadow:
+      0 16px 36px -8px rgba(19, 31, 91, 0.18),
+      0 0 0 1px rgba(19, 31, 91, 0.12);
   }
 
   .program-media-link {
@@ -1652,7 +2136,7 @@ const partnerLogos = [
     font-family: var(--font-display);
     font-size: 1.35rem;
     font-weight: 800;
-    color: #131F5B;
+    color: #131f5b;
     opacity: 0.3;
     line-height: 1;
     letter-spacing: -0.02em;
@@ -1672,7 +2156,7 @@ const partnerLogos = [
     font-family: var(--font-display);
     font-size: 0.78125rem;
     font-weight: 600;
-    color: #131F5B;
+    color: #131f5b;
     background-color: #f1f5f9;
     padding: 3px 8px;
     border-radius: var(--radius-sm);
@@ -1721,20 +2205,25 @@ const partnerLogos = [
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    color: #131F5B;
+    color: #131f5b;
     font-family: var(--font-display);
     font-size: 0.9375rem;
     font-weight: 700;
     text-decoration: none;
     padding: var(--space-2) var(--space-5);
-    border: 2px solid #131F5B;
+    border: 2px solid #131f5b;
     background-color: transparent;
     border-radius: var(--radius-sm);
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 150ms ease,
+      box-shadow 200ms ease;
   }
 
   .btn-program-cta:hover {
-    background-color: #131F5B;
+    background-color: #131f5b;
     color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(19, 31, 91, 0.25);
@@ -1792,9 +2281,9 @@ const partnerLogos = [
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    background-color: var(--color-gold, #FFD26F);
+    background-color: var(--color-gold, #ffd26f);
     color: var(--color-primary-500);
-    border: 2px solid var(--color-gold, #FFD26F);
+    border: 2px solid var(--color-gold, #ffd26f);
     font-family: var(--font-display);
     font-size: 0.9375rem;
     font-weight: 700;
@@ -1802,7 +2291,12 @@ const partnerLogos = [
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-sm);
     box-shadow: 0 4px 14px var(--color-gold-shadow, rgba(255, 210, 111, 0.35));
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 150ms ease,
+      box-shadow 200ms ease;
   }
 
   .btn-callout-primary:hover {
@@ -1826,7 +2320,11 @@ const partnerLogos = [
     text-decoration: none;
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-sm);
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 150ms ease;
   }
 
   .btn-callout-secondary:hover {
@@ -1835,8 +2333,6 @@ const partnerLogos = [
     border-color: var(--color-primary-500);
     transform: translateY(-1px);
   }
-
-
 
   .btn-notice-secondary:hover {
     background-color: var(--color-primary-50);
@@ -1922,18 +2418,20 @@ const partnerLogos = [
   }
 
   .partners-contact-link {
-    color: var(--color-primary-500, #131F5B);
+    color: var(--color-primary-500, #131f5b);
     font-weight: 700;
     text-decoration: none;
-    border-bottom: 2px solid var(--color-primary-400, #1E3A8A);
+    border-bottom: 2px solid var(--color-primary-400, #1e3a8a);
     padding-bottom: 1px;
     white-space: nowrap;
-    transition: color 200ms ease, border-color 200ms ease;
+    transition:
+      color 200ms ease,
+      border-color 200ms ease;
   }
 
   .partners-contact-link:hover {
-    color: var(--color-primary-600, #1E3A8A);
-    border-color: var(--color-primary-600, #1E3A8A);
+    color: var(--color-primary-600, #1e3a8a);
+    border-color: var(--color-primary-600, #1e3a8a);
   }
 
   /* ── Comprehensive Responsive Adaptations (High-End Mobile & Tablet UX) ── */
@@ -1941,6 +2439,28 @@ const partnerLogos = [
     .purpose-manifesto {
       grid-template-columns: 1fr;
       gap: var(--space-8);
+    }
+
+    .purpose-image-wrap {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ── Responsive Services ── */
+    .editorial-service-split {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .editorial-service-split.is-reversed {
+      direction: ltr;
+    }
+
+    .service-split-visual {
+      order: -1;
+      max-width: 500px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .flagship-showcase-card {
@@ -2016,19 +2536,27 @@ const partnerLogos = [
   }
 
   @media (max-width: 768px) {
-    .editorial-services-header {
-      grid-template-columns: 1fr;
-      gap: var(--space-4);
+    /* ── Mobile Services Adjustments ── */
+    .editorial-services-layout {
+      gap: var(--space-12);
     }
 
-    .editorial-service-row {
-      grid-template-columns: 1fr;
-      gap: var(--space-3);
-      padding: var(--space-6) 0;
+    .service-split-visual {
+      max-width: 100%;
     }
 
-    .service-row-action {
-      display: none;
+    .service-index-badge {
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.125rem;
+    }
+
+    .service-title {
+      font-size: clamp(1.35rem, 5vw, 1.75rem);
+    }
+
+    .service-description {
+      font-size: 1rem;
     }
 
     .btn-all-services {
@@ -2117,6 +2645,23 @@ const partnerLogos = [
       text-align: center;
       min-height: 48px;
     }
+
+    /* Gallery responsive - tablet */
+    .community-showcase-card {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+      padding: var(--space-6) 0;
+    }
+
+    .community-showcase-card.is-reversed {
+      direction: ltr;
+    }
+
+    .btn-community-showcase {
+      width: 100%;
+      justify-content: center;
+      min-height: 48px;
+    }
   }
 
   @media (max-width: 600px) {
@@ -2148,6 +2693,11 @@ const partnerLogos = [
 
     .partner-logo-item {
       height: 55px;
+    }
+
+    /* Gallery responsive - mobile */
+    .community-showcase-card {
+      padding: var(--space-5) 0;
     }
 
     .program-showcase-media {

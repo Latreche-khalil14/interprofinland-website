@@ -21,7 +21,11 @@ const footerLinks: Record<string, { label: string; links: FooterLink[] }> = {
       { label: 'Community', href: '/community' },
       { label: 'Projects', href: '/projects' },
       { label: 'Stories', href: '/stories' },
-      { label: 'Apply for Membership', href: 'https://form.jotform.com/InterProFinland/membership-application-form', external: true },
+      {
+        label: 'Apply for Membership',
+        href: 'https://form.jotform.com/InterProFinland/membership-application-form',
+        external: true,
+      },
     ],
   },
   services: {
@@ -53,7 +57,7 @@ const footerLinks: Record<string, { label: string; links: FooterLink[] }> = {
       <div class="footer-brand">
         <a href="/" class="footer-logo" aria-label="InterProFinland — Home">
           <img
-            src="/assets/logo.jpg"
+            src="/images/brand/logo/logo.jpg"
             alt="InterProFinland"
             class="footer-logo-img"
             width="150"
@@ -69,7 +73,9 @@ const footerLinks: Record<string, { label: string; links: FooterLink[] }> = {
         <div class="footer-appointment-note">
           <span class="note-icon" aria-hidden="true">ℹ️</span>
           <p>
-            <strong>Visiting Notice:</strong> Due to busy schedules, visits are <em>only by appointment</em> on Mondays &amp; Wednesdays.
+            <strong>Visiting Notice:</strong> Due to busy schedules, visits are <em
+              >only by appointment</em
+            > on Mondays &amp; Wednesdays.
           </p>
         </div>
       </div>
@@ -99,7 +105,9 @@ const footerLinks: Record<string, { label: string; links: FooterLink[] }> = {
             <span class="contact-icon" aria-hidden="true">✉️</span>
             <div>
               <strong>General Inquiries:</strong>
-              <a href="mailto:info@interprofinland.fi" class="footer-link-highlight">info@interprofinland.fi</a>
+              <a href="mailto:info@interprofinland.fi" class="footer-link-highlight"
+                >info@interprofinland.fi</a
+              >
             </div>
           </div>
 
@@ -115,7 +123,9 @@ const footerLinks: Record<string, { label: string; links: FooterLink[] }> = {
             <span class="contact-icon" aria-hidden="true">🎓</span>
             <div>
               <strong>Diploma Recognition Support:</strong>
-              <a href="mailto:degree.amplify@interprofinland.fi" class="footer-link-highlight">degree.amplify@interprofinland.fi</a>
+              <a href="mailto:degree.amplify@interprofinland.fi" class="footer-link-highlight"
+                >degree.amplify@interprofinland.fi</a
+              >
             </div>
           </div>
         </address>
@@ -153,7 +163,12 @@ const footerLinks: Record<string, { label: string; links: FooterLink[] }> = {
         &copy; {year} InterProFinland (International Professionals in Finland). All rights reserved.
       </p>
       <div class="footer-legal">
-        <a href="https://wa.me/358449367069" target="_blank" rel="noopener noreferrer" class="footer-legal-link">Book an Appointment</a>
+        <a
+          href="https://wa.me/358449367069"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-legal-link">Book an Appointment</a
+        >
         <span aria-hidden="true">·</span>
         <a href="/privacy-policy" class="footer-legal-link">Privacy Policy</a>
         <span aria-hidden="true">·</span>
@@ -165,7 +180,7 @@ const footerLinks: Record<string, { label: string; links: FooterLink[] }> = {
 
 <style>
   .site-footer {
-    background-color: #131F5B;
+    background-color: #131f5b;
     color: var(--color-gray-300);
     margin-top: auto;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -295,7 +310,9 @@ const footerLinks: Record<string, { label: string; links: FooterLink[] }> = {
   .footer-link-highlight {
     color: var(--color-primary-400, #4db3c4);
     text-decoration: none;
-    transition: color var(--transition-fast), text-decoration var(--transition-fast);
+    transition:
+      color var(--transition-fast),
+      text-decoration var(--transition-fast);
     word-break: break-all;
   }
 

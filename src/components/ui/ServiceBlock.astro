@@ -27,14 +27,12 @@ const formattedIndex = index ? String(index).padStart(2, '0') : undefined;
         </div>
       )
     }
-    {
-      tag && (
-        <span class="service-tag">{tag}</span>
-      )
-    }
+    {tag && <span class="service-tag">{tag}</span>}
     {
       formattedIndex && (
-        <span class="service-index" aria-hidden="true">{formattedIndex}</span>
+        <span class="service-index" aria-hidden="true">
+          {formattedIndex}
+        </span>
       )
     }
   </div>
@@ -62,9 +60,10 @@ const formattedIndex = index ? String(index).padStart(2, '0') : undefined;
     flex-direction: column;
     gap: var(--space-4);
     position: relative;
-    transition: transform var(--duration-base) var(--ease-out),
-                border-color var(--duration-base) var(--ease-out),
-                box-shadow var(--duration-base) var(--ease-out);
+    transition:
+      transform var(--duration-base) var(--ease-out),
+      border-color var(--duration-base) var(--ease-out),
+      box-shadow var(--duration-base) var(--ease-out);
   }
 
   .service-block:hover {

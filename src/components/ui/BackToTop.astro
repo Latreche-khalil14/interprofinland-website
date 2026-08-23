@@ -33,12 +33,16 @@
       ticking = false;
     };
 
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(handleScroll);
-        ticking = true;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(handleScroll);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
 
     backToTopBtn.addEventListener('click', () => {
       window.scrollTo({
@@ -66,9 +70,9 @@
     width: 3.125rem; /* 50px */
     height: 3.125rem;
     border-radius: 50%;
-    background-color: var(--color-gold, #FFD26F);
-    color: var(--color-primary-500, #131F5B);
-    border: 2px solid var(--color-gold, #FFD26F);
+    background-color: var(--color-gold, #ffd26f);
+    color: var(--color-primary-500, #131f5b);
+    border: 2px solid var(--color-gold, #ffd26f);
     cursor: pointer;
     box-shadow: 0 4px 18px var(--color-gold-shadow, rgba(255, 210, 111, 0.45));
     opacity: 0;
@@ -91,8 +95,8 @@
   }
 
   .back-to-top:hover {
-    background-color: var(--color-primary-600, #1E3A8A);
-    border-color: var(--color-primary-600, #1E3A8A);
+    background-color: var(--color-primary-600, #1e3a8a);
+    border-color: var(--color-primary-600, #1e3a8a);
     color: #ffffff;
     transform: translateY(-4px) scale(1.08);
     box-shadow: 0 8px 24px rgba(19, 31, 91, 0.35);
@@ -104,7 +108,7 @@
   }
 
   .back-to-top:focus-visible {
-    outline: 3px solid #FFD26F;
+    outline: 3px solid #ffd26f;
     outline-offset: 3px;
   }
 

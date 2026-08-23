@@ -10,16 +10,16 @@
      ============================================ */
 
   /* Brand Colors - Primary (Royal Navy Blue) */
-  --color-primary-50:  #eef2ff;
+  --color-primary-50: #eef2ff;
   --color-primary-100: #e0e7ff;
   --color-primary-400: #3b5fc0;
-  --color-primary-500: #131F5B;
-  --color-primary-600: #1E3A8A;
+  --color-primary-500: #131f5b;
+  --color-primary-600: #1e3a8a;
   --color-primary-700: #0f1e52;
 
   /* Brand Accent - Gold (High-emphasis CTAs) */
-  --color-gold:        #FFD26F;
-  --color-gold-hover:  #ffc340;
+  --color-gold: #ffd26f;
+  --color-gold-hover: #ffc340;
   --color-gold-shadow: rgba(255, 210, 111, 0.35);
 
   /* Brand Colors - Secondary (Warm Terra Cotta) */

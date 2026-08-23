@@ -43,11 +43,10 @@ function isActive(href: string) {
   <div id="scroll-progress-bar" class="scroll-progress-bar" aria-hidden="true"></div>
 
   <div class="header-inner container-page">
-
     <!-- Logo -->
     <a href="/" class="site-logo" aria-label="InterProFinland — Home">
       <img
-        src="/assets/logo.jpg"
+        src="/images/brand/logo/logo.jpg"
         alt="InterProFinland"
         class="logo-img"
         width="200"
@@ -60,52 +59,58 @@ function isActive(href: string) {
     <!-- Desktop Navigation -->
     <nav class="desktop-nav" aria-label="Primary navigation">
       <ul class="nav-list" role="list">
-        {mainLinks.map((link) =>
-          link.hasDropdown ? (
-            <li class="nav-item has-dropdown">
-              <a
-                href={link.href}
-                class={`nav-link nav-link--dropdown ${isActive(link.href) ? 'is-active' : ''}`}
-                aria-haspopup="true"
-                aria-expanded="false"
-                id="services-menu-btn"
-              >
-                <span>{link.label}</span>
-                <span class="dropdown-chevron" aria-hidden="true">▾</span>
-              </a>
-              <div class="dropdown-panel" role="region" aria-labelledby="services-menu-btn">
-                <div class="dropdown-panel-inner">
-                  <ul class="dropdown-list" role="list">
-                    {serviceLinks.map((s) => (
-                      <li>
-                        <a
-                          href={s.href}
-                          class={`dropdown-link ${isActive(s.href) ? 'is-active' : ''}`}
-                          aria-current={isActive(s.href) ? 'page' : undefined}
-                        >
-                          {s.label}
+        {
+          mainLinks.map((link) =>
+            link.hasDropdown ? (
+              <li class="nav-item has-dropdown">
+                <a
+                  href={link.href}
+                  class={`nav-link nav-link--dropdown ${isActive(link.href) ? 'is-active' : ''}`}
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  id="services-menu-btn"
+                >
+                  <span>{link.label}</span>
+                  <span class="dropdown-chevron" aria-hidden="true">
+                    ▾
+                  </span>
+                </a>
+                <div class="dropdown-panel" role="region" aria-labelledby="services-menu-btn">
+                  <div class="dropdown-panel-inner">
+                    <ul class="dropdown-list" role="list">
+                      {serviceLinks.map((s) => (
+                        <li>
+                          <a
+                            href={s.href}
+                            class={`dropdown-link ${isActive(s.href) ? 'is-active' : ''}`}
+                            aria-current={isActive(s.href) ? 'page' : undefined}
+                          >
+                            {s.label}
+                          </a>
+                        </li>
+                      ))}
+                      <li class="dropdown-all-link-row">
+                        <a href="/services" class="dropdown-all-link">
+                          All Services →
                         </a>
                       </li>
-                    ))}
-                    <li class="dropdown-all-link-row">
-                      <a href="/services" class="dropdown-all-link">All Services →</a>
-                    </li>
-                  </ul>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </li>
-          ) : (
-            <li class="nav-item">
-              <a
-                href={link.href}
-                class={`nav-link ${isActive(link.href) ? 'is-active' : ''}`}
-                aria-current={isActive(link.href) ? 'page' : undefined}
-              >
-                {link.label}
-              </a>
-            </li>
+              </li>
+            ) : (
+              <li class="nav-item">
+                <a
+                  href={link.href}
+                  class={`nav-link ${isActive(link.href) ? 'is-active' : ''}`}
+                  aria-current={isActive(link.href) ? 'page' : undefined}
+                >
+                  {link.label}
+                </a>
+              </li>
+            )
           )
-        )}
+        }
       </ul>
     </nav>
 
@@ -137,7 +142,6 @@ function isActive(href: string) {
         </span>
       </button>
     </div>
-
   </div>
 </header>
 
@@ -151,10 +155,16 @@ function isActive(href: string) {
   aria-modal="true"
 >
   <div class="mobile-menu-inner">
-
     <div class="mobile-menu-header">
       <a href="/" class="site-logo" aria-label="InterProFinland — Home" tabindex="-1">
-        <img src="/assets/logo.jpg" alt="InterProFinland" class="logo-img" width="170" height="50" loading="lazy" />
+        <img
+          src="/images/brand/logo/logo.jpg"
+          alt="InterProFinland"
+          class="logo-img"
+          width="170"
+          height="50"
+          loading="lazy"
+        />
       </a>
       <button class="menu-close" aria-label="Close navigation menu" type="button">
         <span aria-hidden="true">✕</span>
@@ -163,43 +173,44 @@ function isActive(href: string) {
 
     <nav aria-label="Mobile navigation">
       <ul class="mobile-nav-list" role="list">
-
-        {mainLinks.map((link) =>
-          link.hasDropdown ? (
-            <li class="mobile-nav-item mobile-nav-item--parent">
-              <a
-                href={link.href}
-                class={`mobile-nav-link ${isActive(link.href) ? 'is-active' : ''}`}
-                aria-current={isActive(link.href) ? 'page' : undefined}
-              >
-                {link.label}
-              </a>
-              <ul class="mobile-sub-list" role="list">
-                {serviceLinks.map((s) => (
-                  <li>
-                    <a
-                      href={s.href}
-                      class={`mobile-sub-link ${isActive(s.href) ? 'is-active' : ''}`}
-                      aria-current={isActive(s.href) ? 'page' : undefined}
-                    >
-                      {s.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ) : (
-            <li class="mobile-nav-item">
-              <a
-                href={link.href}
-                class={`mobile-nav-link ${isActive(link.href) ? 'is-active' : ''}`}
-                aria-current={isActive(link.href) ? 'page' : undefined}
-              >
-                {link.label}
-              </a>
-            </li>
+        {
+          mainLinks.map((link) =>
+            link.hasDropdown ? (
+              <li class="mobile-nav-item mobile-nav-item--parent">
+                <a
+                  href={link.href}
+                  class={`mobile-nav-link ${isActive(link.href) ? 'is-active' : ''}`}
+                  aria-current={isActive(link.href) ? 'page' : undefined}
+                >
+                  {link.label}
+                </a>
+                <ul class="mobile-sub-list" role="list">
+                  {serviceLinks.map((s) => (
+                    <li>
+                      <a
+                        href={s.href}
+                        class={`mobile-sub-link ${isActive(s.href) ? 'is-active' : ''}`}
+                        aria-current={isActive(s.href) ? 'page' : undefined}
+                      >
+                        {s.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li class="mobile-nav-item">
+                <a
+                  href={link.href}
+                  class={`mobile-nav-link ${isActive(link.href) ? 'is-active' : ''}`}
+                  aria-current={isActive(link.href) ? 'page' : undefined}
+                >
+                  {link.label}
+                </a>
+              </li>
+            )
           )
-        )}
+        }
 
         <li class="mobile-nav-item mobile-nav-item--contact">
           <a
@@ -212,10 +223,8 @@ function isActive(href: string) {
             <span aria-hidden="true">→</span>
           </a>
         </li>
-
       </ul>
     </nav>
-
   </div>
 </div>
 
@@ -310,18 +319,23 @@ function isActive(href: string) {
     let ticking = false;
     const updateProgress = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const docHeight =
+        document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const progress = docHeight > 0 ? Math.min(Math.max(scrollTop / docHeight, 0), 1) : 0;
       progressBar.style.transform = `scaleX(${progress})`;
       ticking = false;
     };
 
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateProgress);
-        ticking = true;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateProgress);
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
 
     window.addEventListener('resize', updateProgress, { passive: true });
     updateProgress();
@@ -346,7 +360,7 @@ function isActive(href: string) {
     left: 0;
     width: 100%;
     height: 3.5px;
-    background: linear-gradient(90deg, #FFD26F 0%, #ffc340 50%, #FFD26F 100%);
+    background: linear-gradient(90deg, #ffd26f 0%, #ffc340 50%, #ffd26f 100%);
     box-shadow: 0 1px 8px rgba(255, 210, 111, 0.6);
     transform-origin: left center;
     transform: scaleX(0);
@@ -370,7 +384,9 @@ function isActive(href: string) {
     text-decoration: none;
     flex-shrink: 0;
     animation: logoEntranceSway 1s cubic-bezier(0.22, 1, 0.36, 1) both;
-    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), filter 300ms ease;
+    transition:
+      transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+      filter 300ms ease;
   }
 
   .site-logo:hover {
@@ -569,7 +585,9 @@ function isActive(href: string) {
     color: var(--color-gray-700);
     text-decoration: none;
     padding: var(--space-3) var(--space-6);
-    transition: color var(--transition-fast), background-color var(--transition-fast);
+    transition:
+      color var(--transition-fast),
+      background-color var(--transition-fast);
   }
 
   .dropdown-link:hover {
@@ -623,15 +641,15 @@ function isActive(href: string) {
     font-family: var(--font-display);
     font-size: 1.0625rem;
     font-weight: 700;
-    color: #131F5B;
+    color: #131f5b;
     text-decoration: none;
     white-space: nowrap;
     align-items: center;
     gap: var(--space-2);
     padding: 0.75rem 1.625rem;
-    border: 2px solid #FFD26F;
+    border: 2px solid #ffd26f;
     border-radius: 6px;
-    background-color: #FFD26F;
+    background-color: #ffd26f;
     box-shadow: 0 4px 14px rgba(255, 210, 111, 0.35);
     transition:
       color 200ms ease,
@@ -643,10 +661,10 @@ function isActive(href: string) {
 
   .header-contact-cta:hover {
     color: #ffffff;
-    background-color: #1E3A8A;
-    border-color: #1E3A8A;
+    background-color: #1e3a8a;
+    border-color: #1e3a8a;
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(19, 31, 91, 0.30);
+    box-shadow: 0 8px 24px rgba(19, 31, 91, 0.3);
   }
 
   .cta-arrow {
@@ -659,7 +677,7 @@ function isActive(href: string) {
   }
 
   .header-contact-cta:focus-visible {
-    outline: 3px solid #FFD26F;
+    outline: 3px solid #ffd26f;
     outline-offset: 3px;
     border-radius: var(--radius-sm);
   }

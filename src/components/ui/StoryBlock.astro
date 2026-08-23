@@ -124,7 +124,9 @@ const {
     border-radius: var(--radius-lg, 14px);
     box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.1);
     filter: grayscale(10%);
-    transition: filter var(--duration-slow) var(--ease-out), transform var(--duration-slow) var(--ease-out);
+    transition:
+      filter var(--duration-slow) var(--ease-out),
+      transform var(--duration-slow) var(--ease-out);
   }
 
   .story-photo:hover {
@@ -222,9 +224,9 @@ const {
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    background-color: var(--color-gold, #FFD26F);
-    color: #131F5B;
-    border: 2px solid var(--color-gold, #FFD26F);
+    background-color: var(--color-gold, #ffd26f);
+    color: #131f5b;
+    border: 2px solid var(--color-gold, #ffd26f);
     font-family: var(--font-display);
     font-size: 0.9375rem;
     font-weight: 700;
@@ -234,19 +236,24 @@ const {
     width: fit-content;
     margin-top: var(--space-2);
     box-shadow: 0 4px 14px var(--color-gold-shadow, rgba(255, 210, 111, 0.35));
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 150ms ease,
+      box-shadow 200ms ease;
   }
 
   .story-link:hover {
-    background-color: #1E3A8A;
-    border-color: #1E3A8A;
+    background-color: #1e3a8a;
+    border-color: #1e3a8a;
     color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 8px 22px rgba(19, 31, 91, 0.3);
   }
 
   .story-link:focus-visible {
-    outline: 3px solid #FFD26F;
+    outline: 3px solid #ffd26f;
     outline-offset: 3px;
   }
 
