@@ -7,7 +7,7 @@ export default defineConfig({
   site: 'https://www.interprofinland.fi',
   trailingSlash: 'never',
   build: {
-    format: 'file',
+    format: 'directory',
   },
   integrations: [
     tailwind({
