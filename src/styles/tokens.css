@@ -136,9 +136,9 @@
   --space-32: 8rem; /* 128px */
 
   /* Section Spacing (Airy Nordic Rhythm) */
-  --section-spacing-sm: clamp(3.5rem, 8vw, 5.5rem);
-  --section-spacing-md: clamp(5rem, 11vw, 8rem);
-  --section-spacing-lg: clamp(6rem, 14vw, 10rem);
+  --section-spacing-sm: clamp(2.5rem, 6vw, 4rem);
+  --section-spacing-md: clamp(3.5rem, 8vw, 5.5rem);
+  --section-spacing-lg: clamp(4.5rem, 10vw, 7rem);
 
   /* ============================================
      LAYOUT TOKENS

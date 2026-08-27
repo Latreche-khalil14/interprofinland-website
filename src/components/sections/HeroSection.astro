@@ -64,6 +64,7 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
       {
         video ? (
           <div class="hero-media-wrapper hero-video-wrapper">
+            {subheadline && <p class="hero-sub hero-sub-mobile">{subheadline}</p>}
             <video
               class="hero-video"
               poster={video.poster || '/images/hero/homepage/poster-hero.png'}
@@ -85,6 +86,7 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
           </div>
         ) : image ? (
           <div class="hero-media-wrapper hero-image-wrapper">
+            {subheadline && <p class="hero-sub hero-sub-mobile">{subheadline}</p>}
             <img
               src={image.src}
               alt={image.alt}
@@ -145,7 +147,7 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
 <style>
   .hero {
     background-color: var(--color-bg-page);
-    padding-top: clamp(4.5rem, 10vw, 7rem);
+    padding-top: clamp(2.5rem, 6vw, 4rem);
     padding-bottom: clamp(4.5rem, 10vw, 7rem);
   }
 
@@ -368,6 +370,10 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
     font-size: 0.875rem;
   }
 
+  .hero-sub-mobile {
+    display: none;
+  }
+
   /* ── Tablet ── */
   @media (max-width: 1023px) and (min-width: 640px) {
     .hero-inner {
@@ -380,12 +386,80 @@ const { headline, subheadline, eyebrow, badge, primaryCta, secondaryCta, image, 
   @media (max-width: 639px) {
     .hero-inner {
       grid-template-columns: 1fr;
-      gap: var(--space-8);
+      gap: 0;
+    }
+
+    .hero-text {
+      display: contents;
+    }
+
+    .hero-eyebrow-wrap {
+      order: 1;
+      margin-bottom: var(--space-4);
+    }
+
+    .hero-headline {
+      order: 2;
+      max-width: 100%;
+      font-size: clamp(2rem, 8vw, 2.5rem);
+      margin-bottom: var(--space-5);
+    }
+
+    .hero-text > .hero-sub {
+      display: none;
+    }
+
+    .hero-media {
+      order: 3;
+      position: relative;
+      margin-bottom: var(--space-5);
+    }
+
+    .hero-media-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-sub-mobile {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      padding: var(--space-5) var(--space-4) var(--space-6);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.3) 80%, transparent 100%);
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      color: rgba(255, 255, 255, 0.98);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+      margin: 0;
+      pointer-events: none;
+    }
+
+    .hero-actions {
+      order: 4;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-top: 0;
+      gap: var(--space-3);
+    }
+
+    .hero-image,
+    .hero-video {
+      min-height: 320px;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-md, 12px);
     }
 
     .hero-floating-badge {
-      position: static;
-      margin-top: var(--space-3);
+      display: none;
+    }
+
+    .hero-btn-primary,
+    .hero-btn-secondary {
       width: 100%;
       justify-content: center;
     }
