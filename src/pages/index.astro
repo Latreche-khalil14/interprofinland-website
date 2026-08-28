@@ -479,140 +479,22 @@ const partnerLogos = [
     </Container>
   </Section>
 
-  <!-- Community Gallery Showcase -->
-  <Section>
-    <Container size="page">
-      <div class="community-gallery-header">
-        <span class="section-eyebrow">Community in Action</span>
-        <h2 class="section-heading">Building Connections Together</h2>
-        <p class="section-intro">
-          From networking events to social gatherings, our community comes together to support,
-          connect, and grow professionally.
-        </p>
-      </div>
-
-      <div class="community-showcase-list">
-        <article class="community-showcase-card">
-          <div class="community-showcase-media">
-            <img
-              src="/images/home/Community Picnics.jpg"
-              alt="InterProFinland community picnic event"
-              class="community-showcase-img"
-              width="540"
-              height="380"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          <div class="community-showcase-content">
-            <div class="community-header-meta">
-              <span class="community-index">01</span>
-            </div>
-
-            <h3 class="community-title">Community Picnics & Social Gatherings</h3>
-
-            <p class="community-desc">
-              Regular outdoor events and social meetups where community members connect in a relaxed
-              atmosphere, building lasting friendships and professional networks beyond formal settings.
-            </p>
-
-            <div class="community-action-row">
-              <a href="/community" class="btn-community-showcase">
-                <span>Join Community Events</span>
-                <span class="cta-arrow" aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="community-showcase-card is-reversed">
-          <div class="community-showcase-media">
-            <img
-              src="/images/home/workshop.webp"
-              alt="InterProFinland workshop and professional development session"
-              class="community-showcase-img"
-              width="540"
-              height="380"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          <div class="community-showcase-content">
-            <div class="community-header-meta">
-              <span class="community-index">02</span>
-            </div>
-
-            <h3 class="community-title">Workshops & Professional Development</h3>
-
-            <p class="community-desc">
-              Interactive sessions focused on career advancement, skill building, and navigating the
-              Finnish job market. Learn from experts and peers in collaborative environments.
-            </p>
-
-            <div class="community-action-row">
-              <a href="/community" class="btn-community-showcase">
-                <span>Explore Workshops</span>
-                <span class="cta-arrow" aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="community-showcase-card">
-          <div class="community-showcase-media">
-            <img
-              src="/images/home/Wellness & Integration Activities.png"
-              alt="Wellness and integration event for international professionals"
-              class="community-showcase-img"
-              width="540"
-              height="380"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          <div class="community-showcase-content">
-            <div class="community-header-meta">
-              <span class="community-index">03</span>
-            </div>
-
-            <h3 class="community-title">Wellness & Integration Activities</h3>
-
-            <p class="community-desc">
-              Holistic support through wellness events, cultural integration activities, and peer
-              support sessions that help international professionals feel at home in Finland.
-            </p>
-
-            <div class="community-action-row">
-              <a href="/community" class="btn-community-showcase">
-                <span>View All Activities</span>
-                <span class="cta-arrow" aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </Container>
-  </Section>
-
   <!-- ══════════════════════════════════
-       SECTION 7: SIGNATURE PROGRAMS & REGULAR FORMATS
+       SECTION 7: SIGNATURE PROGRAMS & ACTIVE COMMUNITY
        ══════════════════════════════════ -->
   <Section background="surface">
     <Container size="page">
       <div class="events-section-header">
         <div class="events-section-title-wrap">
-          <span class="section-eyebrow">Community Activities & Initiatives</span>
-          <h2 class="events-section-heading">Signature Programs & Regular Formats</h2>
+          <span class="section-eyebrow">Community & Programs</span>
+          <h2 class="events-section-heading">Signature Programs & Active Community</h2>
         </div>
         <p class="events-section-desc">
-          Discover our recurring language clubs, qualification guidance series, and regional talent
-          fairs designed to empower international professionals.
+          From weekly language clubs and foreign credential webinars to outdoor gatherings and skill workshops — discover how our members connect and grow in Finland.
         </p>
       </div>
 
+      <!-- Signature Programs (Editorial Rows) -->
       <div class="programs-showcase-list">
         {
           featuredEvents.map((evt, idx) => (
@@ -670,6 +552,52 @@ const partnerLogos = [
             </article>
           ))
         }
+      </div>
+
+      <!-- Community Activities 3-Card Grid Spotlight -->
+      <div class="community-spotlight-section">
+        <div class="community-spotlight-header">
+          <h3 class="community-spotlight-title">More Ways to Connect & Participate</h3>
+          <p class="community-spotlight-subtitle">Everyday life, cultural integration, and peer support across the region</p>
+        </div>
+
+        <div class="community-spotlight-grid">
+          <div class="community-spotlight-card">
+            <div class="community-spotlight-img-wrap">
+              <img src="/images/home/Community Picnics.jpg" alt="Community Picnics & Social Gatherings" loading="lazy" decoding="async" class="community-spotlight-img" />
+            </div>
+            <div class="community-spotlight-info">
+              <span class="community-spotlight-tag">Social Gatherings</span>
+              <h4 class="community-spotlight-name">Community Picnics & Meetups</h4>
+              <p class="community-spotlight-desc">Outdoor events and casual gatherings building lasting friendships beyond formal settings.</p>
+              <a href="/community" class="community-spotlight-link">Explore Activities →</a>
+            </div>
+          </div>
+
+          <div class="community-spotlight-card">
+            <div class="community-spotlight-img-wrap">
+              <img src="/images/home/workshop.webp" alt="Workshops & Professional Development" loading="lazy" decoding="async" class="community-spotlight-img" />
+            </div>
+            <div class="community-spotlight-info">
+              <span class="community-spotlight-tag">Skill Building</span>
+              <h4 class="community-spotlight-name">Collaborative Workshops</h4>
+              <p class="community-spotlight-desc">Hands-on sessions tackling job search strategies, CV standards, and workplace culture.</p>
+              <a href="/community" class="community-spotlight-link">Explore Workshops →</a>
+            </div>
+          </div>
+
+          <div class="community-spotlight-card">
+            <div class="community-spotlight-img-wrap">
+              <img src="/images/home/Wellness & Integration Activities.png" alt="Wellness & Integration Activities" loading="lazy" decoding="async" class="community-spotlight-img" />
+            </div>
+            <div class="community-spotlight-info">
+              <span class="community-spotlight-tag">Wellbeing & Culture</span>
+              <h4 class="community-spotlight-name">Wellness & Peer Support</h4>
+              <p class="community-spotlight-desc">Holistic wellness events and integration circles to help international talents thrive.</p>
+              <a href="/community" class="community-spotlight-link">View All Activities →</a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Real-time community connect callout -->
@@ -799,9 +727,11 @@ const partnerLogos = [
 
   <!-- Final CTA -->
   <CtaSection
+    eyebrow="Join Us"
     heading="Ready to Take the Next Step in Your Career?"
     subheading="Connect with experienced mentors, access qualification recognition guidance, and join our active network of international professionals in Finland."
-    cta={{ label: 'Contact Us Today', href: '/contact' }}
+    cta={{ label: 'Get in Touch', href: '/contact' }}
+    secondaryCta={{ label: 'Apply for Membership', href: 'https://form.jotform.com/InterProFinland/membership-application-form', target: '_blank' }}
   />
 </Layout>
 
@@ -2196,8 +2126,132 @@ const partnerLogos = [
     transition: transform 200ms ease;
   }
 
-  .btn-program-cta:hover .cta-arrow {
-    transform: translateX(4px);
+  /* ── Community Spotlight 3-Card Grid ── */
+  .community-spotlight-section {
+    margin-top: var(--space-10);
+    margin-bottom: var(--space-12);
+    padding-top: var(--space-10);
+    border-top: 1px solid var(--color-border-subtle, #e2e8f0);
+  }
+
+  .community-spotlight-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .community-spotlight-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-2);
+  }
+
+  .community-spotlight-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.96875rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .community-spotlight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  @media (max-width: 900px) {
+    .community-spotlight-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .community-spotlight-card {
+    background: var(--color-white, #ffffff);
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 300ms ease, box-shadow 300ms ease;
+  }
+
+  .community-spotlight-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px -8px rgba(19, 31, 91, 0.12);
+    border-color: var(--color-primary-300, #93c5fd);
+  }
+
+  .community-spotlight-img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #0f172a;
+  }
+
+  .community-spotlight-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 500ms ease;
+  }
+
+  .community-spotlight-card:hover .community-spotlight-img {
+    transform: scale(1.05);
+  }
+
+  .community-spotlight-info {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: var(--space-2);
+  }
+
+  .community-spotlight-tag {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary-600, #1e3a8a);
+  }
+
+  .community-spotlight-name {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .community-spotlight-desc {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--space-3);
+    flex-grow: 1;
+  }
+
+  .community-spotlight-link {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-primary-600, #1e3a8a);
+    text-decoration: none;
+    transition: color 200ms ease, transform 200ms ease;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .community-spotlight-link:hover {
+    color: #ffd26f;
+    transform: translateX(3px);
   }
 
   /* ── Events Community Callout ── */
