@@ -14,27 +14,31 @@ import CtaSection from '@/components/sections/CtaSection.astro';
 const authorities = [
   {
     code: 'OPH',
+    category: 'Higher Education & Teaching',
     name: 'Finnish National Agency for Education (Opetushallitus)',
-    scope: 'Higher education degree comparability (Bachelor, Master, Doctorate), teachers, subject instructors, early childhood educators, and public sector eligibility decisions.',
-    link: 'https://www.oph.fi',
+    scope: 'Evaluates foreign higher education qualifications for equivalence with Finnish university degrees (Bachelor, Master, Doctorate). Grants eligibility decisions for public sector posts, teachers, subject instructors, and early childhood educators.',
+    link: 'https://www.oph.fi/en/services/recognition-and-international-comparability-qualifications',
   },
   {
     code: 'Valvira',
+    category: 'Healthcare & Social Welfare',
     name: 'National Supervisory Authority for Welfare and Health',
-    scope: 'Licensing and practice rights for regulated healthcare and social welfare professionals (doctors, nurses, dentists, pharmacists, psychologists, physiotherapists, social workers).',
-    link: 'https://valvira.fi',
+    scope: 'Grants official practice rights, professional registrations, and title protection for regulated healthcare and social welfare practitioners (doctors, nurses, dentists, pharmacists, psychologists, social workers).',
+    link: 'https://valvira.fi/en/rights-to-practise',
   },
   {
     code: 'Ruokavirasto',
+    category: 'Veterinary & Food Safety',
     name: 'Finnish Food Authority',
-    scope: 'Official practice rights for veterinarians, animal health practitioners, and food hygiene inspectors qualifying outside the EU/EEA.',
-    link: 'https://www.ruokavirasto.fi',
+    scope: 'Approves qualifications and issues official practice licenses for veterinarians, animal health practitioners, and food safety inspectors qualifying outside the EU/EEA.',
+    link: 'https://www.ruokavirasto.fi/en/',
   },
   {
     code: 'Traficom',
+    category: 'Transport & Maritime',
     name: 'Finnish Transport and Communications Agency',
-    scope: 'Professional qualifications and credential conversions for maritime captains, aviation pilots, engineers, and specialized transport professionals.',
-    link: 'https://www.traficom.fi',
+    scope: 'Validates professional qualifications, maritime captain licenses, aviation pilot credentials, and specialized transport engineering endorsements.',
+    link: 'https://www.traficom.fi/en/',
   },
 ];
 
@@ -42,27 +46,31 @@ const authorities = [
 const roadmapStages = [
   {
     stage: '01',
-    title: 'Determining Authority & Path',
+    title: 'Determine Authority & Pathway',
     description:
-      'We identify whether your profession is regulated or non-regulated in Finland, determining whether you need an OPH comparability decision or official licensing from a specific agency like Valvira.',
+      'We help you identify whether your profession is regulated or non-regulated in Finland, determining whether you need an academic comparability statement (OPH) or formal licensure from a specific agency (Valvira).',
+    finnishTerm: 'Toimivaltainen viranomainen',
   },
   {
     stage: '02',
-    title: 'Dossier Assembly & Sworn Translations',
+    title: 'Assemble Dossier & Sworn Translations',
     description:
-      'Compiling your degree certificate, Diploma Supplement, transcript of records with credit hours/ECTS, and arranging certified translations by an authorized translator (Auktorisoitu kääntäjä).',
+      'Compiling your degree certificate, Diploma Supplement, and complete transcripts. Arranging certified translations prepared by an authorized translator when documents are in non-official languages.',
+    finnishTerm: 'Auktorisoitu kääntäjä',
   },
   {
     stage: '03',
-    title: 'Application Submission & Processing',
+    title: 'Submit Application & Track Progress',
     description:
-      'Submitting your official dossier to the competent authority, tracking verification requests, and preparing for any formal statements or requests for additional clarification.',
+      'Submitting your formal dossier to the relevant authority, monitoring progress, managing verification requests, and preparing any supplementary clarifications if requested.',
+    finnishTerm: 'Hakemuksen käsittely',
   },
   {
     stage: '04',
-    title: 'Adaptation Period or Final Practice Rights',
+    title: 'Adaptation Period or Full Practice Rights',
     description:
-      'For regulated professions, navigating any required aptitude tests (kelpoisuuskoe), adaptation periods (sopeutumisaika), or supplementary university courses to achieve full licensure.',
+      'For regulated professions requiring conditional decisions, navigating required aptitude tests, supervised adaptation periods, or supplementary university modules to achieve full licensure.',
+    finnishTerm: 'Kelpoisuuskoe / Sopeutumisaika',
   },
 ];
 
@@ -74,15 +82,15 @@ const documentRequirements = [
   },
   {
     title: 'Official Academic Transcript (Diploma Supplement)',
-    detail: 'Comprehensive list of courses completed, study hours, credits, and grading scale explanation.',
+    detail: 'Comprehensive record of completed courses, study hours, credits (ECTS equivalent), and grading scale description.',
   },
   {
     title: 'Professional License / Certificate of Good Standing',
-    detail: 'Required for healthcare and regulated fields to prove you held legal practice rights in your home country.',
+    detail: 'Required for regulated healthcare and legal professions to confirm active, unencumbered practice rights in your home country.',
   },
   {
-    title: 'Valid Passport or Finnish Residence Permit',
-    detail: 'Official identification verifying your personal identity and right of residence in Finland.',
+    title: 'Valid Passport or Official Identity Document',
+    detail: 'Official identification verifying personal identity, nationality, and right of residence in Finland.',
   },
 ];
 
@@ -90,7 +98,7 @@ const documentRequirements = [
 const recognitionFaqs = [
   {
     q: 'How long does the OPH degree comparability process typically take?',
-    a: 'Processing times for OPH comparability decisions typically range from 2 to 4 months once all required certified documents have been received.',
+    a: 'Processing times for OPH comparability decisions typically range from 2 to 4 months once all required certified documents have been received by the agency.',
   },
   {
     q: 'Do I need a decision if my profession is non-regulated (e.g. IT or Business)?',
@@ -101,8 +109,8 @@ const recognitionFaqs = [
     a: 'An academic statement compares degree level (e.g., your Bachelor equals a Finnish Kandidaatti). Professional recognition grants the legal right to practice a specific regulated profession in Finland.',
   },
   {
-    q: 'How can InterProFinland assist with Valvira or OPH paperwork?',
-    a: 'We review your documents for completeness, help clarify authority instructions, advise on certified translation requirements, and connect you with peers who completed the same process.',
+    q: 'How does InterProFinland assist with Valvira or OPH paperwork?',
+    a: 'We review your documents for completeness, help clarify authority instructions, advise on certified translation requirements, and connect you with peers who completed the same process. Note that official decisions are issued solely by competent Finnish authorities.',
   },
 ];
 ---
@@ -112,7 +120,7 @@ const recognitionFaqs = [
   description="Step-by-step guidance on validating foreign degrees, navigating OPH and Valvira regulations, and achieving professional practice rights in Finland."
 >
   <!-- ==========================================================================
-       HERO SECTION: Purpose Manifesto Pattern (16:9 Image Frame)
+       HERO SECTION: Purpose Manifesto Pattern (16:9 Realistic Frame)
        ========================================================================== -->
   <Section background="surface">
     <Container size="page">
@@ -130,11 +138,11 @@ const recognitionFaqs = [
 
           <p class="service-hero-lead">
             Navigating Finnish regulatory authorities can be complex. We provide step-by-step guidance
-            to help you validate your international credentials, obtain official comparability decisions, and gain
-            licensure for regulated professions.
+            to help you understand qualification requirements, compile authentic application dossiers, and navigate
+            comparability or licensing pathways.
           </p>
 
-          <div class="service-hero-chips">
+          <div class="service-hero-chips" aria-label="Key Recognition Focus Areas">
             <span class="hero-chip">OPH Comparability Decisions</span>
             <span class="hero-chip">Valvira Healthcare Licensing</span>
             <span class="hero-chip">Sworn Translation Guidance</span>
@@ -151,8 +159,8 @@ const recognitionFaqs = [
               <span>Request Recognition Guidance</span>
               <span aria-hidden="true">→</span>
             </a>
-            <a href="#authorities-directory" class="btn-secondary-action">
-              <span>View Regulatory Bodies</span>
+            <a href="#roadmap" class="btn-secondary-action">
+              <span>Explore 4-Stage Roadmap</span>
             </a>
           </div>
         </div>
@@ -160,8 +168,8 @@ const recognitionFaqs = [
         <div class="service-hero-media">
           <div class="service-hero-frame">
             <img
-              src="https://placehold.co/800x450/131f5b/ffd26f?text=Qualification+Recognition+Support"
-              alt="Foreign degree recognition and credential validation advising"
+              src="/images/services/Qualification-Recognition/recognition-hero.jpg"
+              alt="Professional reviewing international degree certificates and academic credentials for Finnish recognition process"
               class="service-hero-img"
               width="800"
               height="450"
@@ -175,16 +183,17 @@ const recognitionFaqs = [
   </Section>
 
   <!-- ==========================================================================
-       AUTHORITIES DIRECTORY (4-Column Grid)
+       AUTHORITIES DIRECTORY: Categorized Official Bodies (4-Column Grid)
        ========================================================================== -->
   <Section>
     <div id="authorities-directory"></div>
     <Container size="page">
       <div class="section-header-center">
         <span class="section-eyebrow">Regulatory Authorities</span>
-        <h2 class="section-heading">Key Finnish Decision-Making Bodies</h2>
+        <h2 class="section-heading">Who Evaluates Your Credentials in Finland?</h2>
         <p class="section-intro">
-          Depending on your profession, specific state agencies evaluate credentials and grant official practice rights.
+          Different competent authorities handle specific fields. Below are the primary official bodies
+          responsible for degree comparability and professional licensing.
         </p>
       </div>
 
@@ -192,7 +201,10 @@ const recognitionFaqs = [
         {
           authorities.map((auth) => (
             <div class="authority-card">
-              <div class="authority-code-badge">{auth.code}</div>
+              <div class="authority-card-header">
+                <span class="authority-category-tag">{auth.category}</span>
+                <span class="authority-code-badge">{auth.code}</span>
+              </div>
               <h3 class="authority-name">{auth.name}</h3>
               <p class="authority-scope">{auth.scope}</p>
               <a href={auth.link} target="_blank" rel="noopener noreferrer" class="authority-ext-link">
@@ -207,15 +219,16 @@ const recognitionFaqs = [
   </Section>
 
   <!-- ==========================================================================
-       ROADMAP: 4-Stage Recognition Process (Cards)
+       ROADMAP: 4-Stage Recognition Process (Cards with Secondary Finnish Terms)
        ========================================================================== -->
   <Section background="surface">
+    <div id="roadmap"></div>
     <Container size="page">
       <div class="section-header-center">
         <span class="section-eyebrow">Step-by-Step Roadmap</span>
-        <h2 class="section-heading">The 4 Stages of Degree Recognition</h2>
+        <h2 class="section-heading">The 4 Stages of the Recognition Journey</h2>
         <p class="section-intro">
-          Understanding the sequence of actions prevents costly delays and ensures your application dossier is complete.
+          A structured sequence ensures all documentation meets Finnish legal standards before formal submission.
         </p>
       </div>
 
@@ -223,7 +236,10 @@ const recognitionFaqs = [
         {
           roadmapStages.map((st) => (
             <div class="roadmap-card">
-              <div class="roadmap-badge">{st.stage}</div>
+              <div class="roadmap-card-top">
+                <span class="roadmap-badge">{st.stage}</span>
+                <span class="roadmap-finnish-badge">{st.finnishTerm}</span>
+              </div>
               <h3 class="roadmap-title">{st.title}</h3>
               <p class="roadmap-desc">{st.description}</p>
             </div>
@@ -243,9 +259,17 @@ const recognitionFaqs = [
           <span class="section-eyebrow">Document Checklist</span>
           <h2 class="split-heading">Required Documents &amp; Translation Standards</h2>
           <p class="split-lead">
-            Finnish authorities maintain strict requirements for document authentication. Having certified
+            Finnish authorities maintain strict standards for document authentication. Having certified
             translations and complete transcripts ready is vital.
           </p>
+
+          <div class="document-disclaimer-note">
+            <span class="disclaimer-icon" aria-hidden="true">ℹ</span>
+            <p class="disclaimer-text">
+              <strong>Important:</strong> Document requirements vary depending on your specific profession,
+              country of qualification, and the competent evaluating authority.
+            </p>
+          </div>
 
           <div class="requirements-list">
             {
@@ -265,8 +289,8 @@ const recognitionFaqs = [
         <div class="split-visual-side">
           <div class="split-image-frame">
             <img
-              src="https://placehold.co/800x600/e5e7eb/131f5b?text=Document+Preparation"
-              alt="Document preparation and official certified translation guide"
+              src="/images/services/Qualification-Recognition/1.jfif"
+              alt="International degree documents, diplomas, and certified translations required for Finnish qualification recognition"
               class="split-img"
               width="800"
               height="600"
@@ -288,7 +312,7 @@ const recognitionFaqs = [
         <div class="handbook-content">
           <div class="handbook-badge-row">
             <span class="handbook-pill">Official Member Resource</span>
-            <span class="handbook-free-tag">100% Free for Members</span>
+            <span class="handbook-free-tag">Available Free to Members</span>
           </div>
 
           <h2 class="handbook-title">Qualifications Recognition in Finland Handbook</h2>
@@ -297,7 +321,7 @@ const recognitionFaqs = [
           </p>
 
           <p class="handbook-desc">
-            Finland’s qualification recognition process can be complex, but you don't have to navigate it alone.
+            Finland’s qualification recognition process can be intricate, but you don't have to navigate it alone.
             Our comprehensive handbook provides clear, step-by-step instructions designed to fast-track your career.
           </p>
 
@@ -338,7 +362,7 @@ const recognitionFaqs = [
         <div class="handbook-visual">
           <div class="handbook-media-frame">
             <img
-              src="https://placehold.co/800x600/131f5b/ffd26f?text=Recognition+Handbook"
+              src="/images/home/handbook-cover.webp"
               alt="Qualifications Recognition in Finland Handbook cover"
               class="handbook-cover-img"
               width="800"
@@ -355,7 +379,7 @@ const recognitionFaqs = [
   <!-- ==========================================================================
        SPECIFIC RECOGNITION FAQS
        ========================================================================== -->
-  <Section background="surface">
+  <Section>
     <Container size="page">
       <div class="section-header-center">
         <span class="section-eyebrow">Recognition FAQs</span>
@@ -372,7 +396,18 @@ const recognitionFaqs = [
               <summary class="faq-accordion-trigger">
                 <span class="faq-q-text">{faq.q}</span>
                 <span class="faq-accordion-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
                     <polyline points="6 9 12 15 18 9"></polyline>
                   </svg>
                 </span>
@@ -393,9 +428,15 @@ const recognitionFaqs = [
   <CtaSection
     heading="Need Guidance on Your Foreign Degree in Finland?"
     subheading="Book a consultation with our advisory team to review your qualifications, identify competent authorities, and map out your official recognition pathway."
+    background="surface"
     cta={{
-      label: 'Apply for Recognition Guidance',
+      label: 'Request Recognition Guidance',
       href: 'https://form.jotform.com/InterProFinland/membership-application-form',
+      target: '_blank',
+    }}
+    secondaryCta={{
+      label: 'Explore All Services',
+      href: '/services',
     }}
   />
 </Layout>

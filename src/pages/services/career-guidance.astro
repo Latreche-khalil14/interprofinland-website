@@ -27,10 +27,10 @@ const advisoryPillars = [
     number: '02',
     title: 'Unlocking the Hidden Job Market (Piilotyöpaikat)',
     description:
-      'Over 70% of open positions in Finland are filled without ever being published on public job boards. We provide systematic strategies for direct recruiter outreach, industry mapping, and proactive networking.',
+      'Many open positions in Finland are filled through professional networks, direct recruiter outreach, and proactive applications before ever being advertised on public job boards. We provide systematic strategies for direct outreach and industry mapping.',
     highlights: [
       'Identifying growing regional companies and decision-makers in your sector',
-      'Constructing professional cold-contact messages in English and Finnish',
+      'Constructing professional outreach messages in English and Finnish',
       'Optimizing your LinkedIn profile for Finnish recruiters and search algorithms',
     ],
   },
@@ -38,32 +38,36 @@ const advisoryPillars = [
     number: '03',
     title: 'Workplace Culture & Labour Legislation (TES)',
     description:
-      'Understanding Finnish working norms—flat hierarchy, low-context direct communication, punctuality, and self-direction—is essential for passing trial periods and building long-term career growth.',
+      'Understanding Finnish working norms—flat hierarchy, direct communication, punctuality, and high autonomy—is essential for passing trial periods and building long-term career growth in Finland.',
     highlights: [
-      'Collective labour agreements (Työehtosopimus / TES) and salary standards',
-      'Trial period (Koeaika) expectations, employee rights, and occupational health',
+      'Collective labour agreements (Työehtosopimus / TES) and realistic salary benchmarking using industry standards',
+      'Trial period (Koeaika) expectations, employee rights, and occupational health orientation',
       'Communication nuances, autonomy, and constructive feedback in Finnish teams',
     ],
   },
 ];
 
-/* ── Interview & Preparation Checklist ── */
+/* ── Interview & Preparation Checklist (Visual 2x2 Numbered Cards) ── */
 const interviewTips = [
   {
+    number: '01',
     title: 'Directness & Authenticity',
-    text: 'Finnish interviewers value honesty over exaggeration. Clearly state what you know, acknowledge areas you are learning, and give concrete examples.',
+    text: 'Finnish interviewers value factual honesty over exaggeration. Clearly state what you know, acknowledge areas you are learning, and give concrete, measurable examples of your past work.',
   },
   {
-    title: 'Preparation on Company Strategy',
-    text: 'Demonstrate deep knowledge of the company’s recent projects, clients, and industry standing. Ask thoughtful questions about team workflows.',
+    number: '02',
+    title: 'Company Preparation & Strategy',
+    text: `Demonstrate thoughtful research on the organization's current operations, industry position, and technological ecosystem. Ask strategic questions about team workflows.`,
   },
   {
-    title: 'Salary Expectation (Palkkatoive)',
-    text: 'In Finland, job seekers are frequently asked for a salary request. We assist you in benchmarking realistic salary ranges using union statistics.',
+    number: '03',
+    title: 'Salary Expectation & Negotiation',
+    text: 'In Finland, job candidates are frequently asked for a salary request (Palkkatoive). We assist you in benchmarking realistic ranges using public union statistics and collective agreements.',
   },
   {
-    title: 'Language Proficiency Context',
-    text: 'Clearly articulate your current Finnish language learning plan, even for English-speaking roles, showing commitment to long-term integration.',
+    number: '04',
+    title: 'Language Proficiency & Commitment',
+    text: 'Clearly articulate your current Finnish language learning plan, even for English-speaking workplaces, showing long-term dedication to team integration.',
   },
 ];
 
@@ -86,6 +90,34 @@ const careerFaqs = [
     a: 'We can provide general orientation on standard Finnish contract elements (working hours, trial period clauses, TES references). For legal disputes, we refer to specialized trade unions.',
   },
 ];
+
+/* ── Process steps ── */
+const processSteps = [
+  {
+    icon: '📋',
+    step: '01',
+    title: 'Initial Assessment',
+    desc: 'We review your background, qualifications, and career goals to map the most effective Finnish job search strategy.',
+  },
+  {
+    icon: '✏️',
+    step: '02',
+    title: 'CV & Materials Review',
+    desc: 'Your CV, cover letter, and LinkedIn profile are refined to meet Finnish employer expectations and ATS requirements.',
+  },
+  {
+    icon: '🎯',
+    step: '03',
+    title: 'Market Strategy',
+    desc: 'We identify target companies, sectors, and hidden opportunities specific to your field and Finnish region.',
+  },
+  {
+    icon: '🤝',
+    step: '04',
+    title: 'Interview Readiness',
+    desc: 'Mock interviews, salary negotiation practice, and Finnish workplace culture coaching to boost your confidence.',
+  },
+];
 ---
 
 <Layout
@@ -93,61 +125,74 @@ const careerFaqs = [
   description="Master the Finnish labour market with individualized CV reviews, hidden job search strategies, interview coaching, and workplace culture orientation."
 >
   <!-- ==========================================================================
-       HERO SECTION: Purpose Manifesto Pattern (16:9 Image Frame)
+       HERO SECTION: Clear Visual Hierarchy — Title → Description → Chips → CTAs → Image
        ========================================================================== -->
   <Section background="surface">
     <Container size="page">
-      <div class="service-hero-layout">
-        <div class="service-hero-content">
-          <div class="service-hero-breadcrumb">
-            <a href="/services" class="breadcrumb-back">← Back to Services</a>
-            <span class="breadcrumb-separator">/</span>
-            <span class="breadcrumb-current">Career Guidance</span>
-          </div>
+      <!-- Breadcrumb -->
+      <nav class="service-breadcrumb" aria-label="Breadcrumb">
+        <a href="/services" class="breadcrumb-back">← Back to Services</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="breadcrumb-current">Career Guidance</span>
+      </nav>
 
-          <h1 class="service-hero-title">
-            Career Guidance &amp; Finnish <span class="service-hero-serif">Workplace Culture</span>
+      <!-- Hero: Two-Column Layout (Text Left · Image Right) -->
+      <div class="hero-split-layout">
+        <!-- Left: Text block -->
+        <div class="hero-text-block">
+          <h1 class="hero-title">
+            Career Guidance &amp; Finnish <span class="hero-title-serif">Workplace Culture</span>
           </h1>
 
-          <p class="service-hero-lead">
+          <p class="hero-description">
             Gain strategic clarity and practical tools to navigate the Finnish employment landscape,
             tailor your application materials, and confidently integrate into Finnish working life.
           </p>
 
-          <div class="service-hero-chips">
-            <span class="hero-chip">CV &amp; Cover Letter Review</span>
-            <span class="hero-chip">Hidden Job Market Strategy</span>
-            <span class="hero-chip">Interview Coaching</span>
-            <span class="hero-chip">Labour Rights &amp; TES</span>
+          <!-- Key Areas -->
+          <div class="hero-areas-list" aria-label="Key Guidance Areas">
+            <span class="area-item">CV &amp; Cover Letter Review</span>
+            <span class="area-divider">•</span>
+            <span class="area-item">Hidden Job Market Strategy</span>
+            <span class="area-divider">•</span>
+            <span class="area-item">Interview Coaching</span>
+            <span class="area-divider">•</span>
+            <span class="area-item">Labour Rights &amp; TES</span>
           </div>
 
-          <div class="service-hero-actions">
+          <!-- CTAs -->
+          <div class="hero-cta-row">
             <a
               href="https://form.jotform.com/InterProFinland/membership-application-form"
               target="_blank"
               rel="noopener noreferrer"
-              class="btn-primary-action"
+              class="btn-primary"
+              id="hero-primary-cta"
             >
-              <span>Book a Career Advisory Session</span>
+              <span>Apply for Career Advisory</span>
               <span aria-hidden="true">→</span>
             </a>
-            <a href="#advisory-pillars" class="btn-secondary-action">
+            <a href="#advisory-pillars" class="btn-ghost" id="hero-secondary-cta">
               <span>View Guidance Pillars</span>
             </a>
           </div>
         </div>
 
-        <div class="service-hero-media">
-          <div class="service-hero-frame">
+        <!-- Right: Image -->
+        <div class="hero-image-block">
+          <div class="hero-image-frame">
             <img
-              src="https://placehold.co/800x450/131f5b/ffd26f?text=Career+Guidance+Finnish+Workplace"
-              alt="Career guidance consultation and job search strategy session"
-              class="service-hero-img"
+              src="/images/services/career-guidance/career-consultation.jpg"
+              alt="Career advisor and international professional reviewing CV and career strategy together"
+              class="hero-img"
               width="800"
-              height="450"
+              height="600"
               loading="eager"
               decoding="async"
             />
+            <div class="hero-image-overlay" aria-hidden="true">
+              <span class="hero-image-caption">1-on-1 Career Advisory · CV Review · Interview Prep</span>
+            </div>
           </div>
         </div>
       </div>
@@ -155,9 +200,39 @@ const careerFaqs = [
   </Section>
 
   <!-- ==========================================================================
-       CORE GUIDANCE PILLARS (3-Column Cards)
+       HOW IT WORKS: 4-Step Process (Clean & Elegant)
        ========================================================================== -->
   <Section>
+    <Container size="page">
+      <div class="section-header-center">
+        <span class="section-eyebrow">Our Process</span>
+        <h2 class="section-heading">How Career Guidance Works</h2>
+        <p class="section-intro">
+          A structured, personalized approach designed to move you from uncertainty to a confident
+          Finnish job search strategy in four focused sessions.
+        </p>
+      </div>
+
+      <div class="process-grid">
+        {
+          processSteps.map((s) => (
+            <div class="process-step">
+              <div class="step-header">
+                <div class="step-number">{s.step}</div>
+                <h3 class="step-title">{s.title}</h3>
+              </div>
+              <p class="step-description">{s.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       CORE GUIDANCE PILLARS (3-Column Cards)
+       ========================================================================== -->
+  <Section background="surface">
     <div id="advisory-pillars"></div>
     <Container size="page">
       <div class="section-header-center">
@@ -178,7 +253,7 @@ const careerFaqs = [
                 <h3 class="pillar-title">{p.title}</h3>
               </div>
               <p class="pillar-desc">{p.description}</p>
-              
+
               <ul class="pillar-highlights" role="list">
                 {p.highlights.map((h) => (
                   <li>
@@ -197,7 +272,7 @@ const careerFaqs = [
   <!-- ==========================================================================
        SPLIT EDITORIAL: Mastering the Finnish Job Interview (4:3 Media Frame)
        ========================================================================== -->
-  <Section background="surface">
+  <Section>
     <Container size="page">
       <div class="editorial-split-layout">
         <div class="split-content-side">
@@ -211,8 +286,11 @@ const careerFaqs = [
           <div class="tips-grid">
             {
               interviewTips.map((tip) => (
-                <div class="tip-box">
-                  <h4 class="tip-title">{tip.title}</h4>
+                <div class="tip-card">
+                  <div class="tip-card-header">
+                    <span class="tip-number" aria-hidden="true">{tip.number}</span>
+                    <h3 class="tip-title">{tip.title}</h3>
+                  </div>
                   <p class="tip-text">{tip.text}</p>
                 </div>
               ))
@@ -223,14 +301,31 @@ const careerFaqs = [
         <div class="split-visual-side">
           <div class="split-image-frame">
             <img
-              src="https://placehold.co/800x600/e5e7eb/131f5b?text=Interview+Coaching"
-              alt="Finnish job interview coaching and preparation session"
+              src="/images/services/career-guidance/interview-coaching.jpg"
+              alt="Finnish job interview coaching and mock recruitment session"
               class="split-img"
               width="800"
               height="600"
               loading="lazy"
               decoding="async"
             />
+          </div>
+          <!-- Stats block -->
+          <div class="split-stats-block">
+            <div class="stat-item">
+              <span class="stat-number">73%</span>
+              <span class="stat-label">of Finnish jobs are filled through networks</span>
+            </div>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div class="stat-item">
+              <span class="stat-number">1–2</span>
+              <span class="stat-label">page Finnish CV standard</span>
+            </div>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div class="stat-item">
+              <span class="stat-number">EN/FI</span>
+              <span class="stat-label">advisory sessions available</span>
+            </div>
           </div>
         </div>
       </div>
@@ -240,7 +335,7 @@ const careerFaqs = [
   <!-- ==========================================================================
        SPECIFIC FAQS
        ========================================================================== -->
-  <Section>
+  <Section background="surface">
     <Container size="page">
       <div class="section-header-center">
         <span class="section-eyebrow">Career Guidance FAQs</span>
@@ -257,7 +352,18 @@ const careerFaqs = [
               <summary class="faq-accordion-trigger">
                 <span class="faq-q-text">{faq.q}</span>
                 <span class="faq-accordion-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
                     <polyline points="6 9 12 15 18 9"></polyline>
                   </svg>
                 </span>
@@ -278,76 +384,29 @@ const careerFaqs = [
   <CtaSection
     heading="Ready to Accelerate Your Career in Finland?"
     subheading="Book a dedicated 1-on-1 career guidance session to review your CV, target open opportunities, and master Finnish workplace standards."
+    background="surface"
     cta={{
       label: 'Apply for Career Advisory',
       href: 'https://form.jotform.com/InterProFinland/membership-application-form',
+      target: '_blank',
+    }}
+    secondaryCta={{
+      label: 'Explore All Services',
+      href: '/services',
     }}
   />
 </Layout>
 
 <style>
-  .section-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-family: var(--font-display);
-    font-size: 0.8125rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-primary-600, #1E3A8A);
-    margin-bottom: var(--space-2);
-  }
-
-  .section-heading {
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 2.8vw, 2.35rem);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-text-primary);
-    margin: 0 0 var(--space-3);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    text-align: center;
-  }
-
-  .section-intro {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    color: var(--color-text-secondary);
-    max-width: 65ch;
-    margin: 0 auto var(--space-8);
-    line-height: var(--line-height-relaxed);
-    text-align: center;
-  }
-
-  .section-header-center {
-    text-align: center;
-    margin-bottom: var(--space-10);
-  }
-
-  /* ── Hero Section (16:9 Frame) ── */
-  .service-hero-layout {
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(2.5rem, 5vw, 4.5rem);
-    align-items: center;
-    padding: clamp(2rem, 4vw, 3.5rem) 0;
-  }
-
-  .service-hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-4);
-  }
-
-  .service-hero-breadcrumb {
+  /* ── Breadcrumb ── */
+  .service-breadcrumb {
     display: flex;
     align-items: center;
     gap: var(--space-2);
     font-family: var(--font-display);
     font-size: 0.8125rem;
     font-weight: 600;
+    margin-bottom: var(--space-5);
   }
 
   .breadcrumb-back {
@@ -361,65 +420,87 @@ const careerFaqs = [
     text-decoration: underline;
   }
 
-  .breadcrumb-separator {
+  .breadcrumb-sep {
     color: var(--color-gray-400);
   }
 
   .breadcrumb-current {
-    color: var(--color-gray-600);
+    color: var(--color-gray-500);
   }
 
-  .service-hero-title {
+  /* ── Hero Split Layout (Text Left · Image Right) ── */
+  .hero-split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: center;
+    padding: clamp(0.5rem, 1.5vw, 1.5rem) 0 clamp(2rem, 3vw, 3rem);
+  }
+
+  .hero-text-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 3.5vw, 2.85rem);
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
     font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
-    line-height: 1.18;
-    letter-spacing: -0.025em;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
     margin: 0;
   }
 
-  .service-hero-serif {
+  .hero-title-serif {
     font-family: var(--font-body);
     font-style: italic;
     font-weight: var(--font-weight-regular);
     color: var(--color-primary-600, #1E3A8A);
   }
 
-  .service-hero-lead {
+  .hero-description {
     font-family: var(--font-body);
-    font-size: clamp(1.0625rem, 1.4vw, 1.1875rem);
-    line-height: var(--line-height-relaxed);
-    color: var(--color-gray-800);
+    font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
+    line-height: 1.6;
+    color: var(--color-gray-700);
     margin: 0;
+    max-width: 68ch;
   }
 
-  .service-hero-chips {
+  /* Key Areas List — Clean & Simple */
+  .hero-areas-list {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2);
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
   }
 
-  .hero-chip {
-    font-family: var(--font-display);
-    font-size: 0.78125rem;
-    font-weight: 600;
-    color: #131F5B;
-    background-color: #ffffff;
-    border: 1px solid var(--color-border-subtle, #e2e8f0);
-    padding: 4px 10px;
-    border-radius: var(--radius-sm, 6px);
+  .area-item {
+    color: var(--color-text-primary);
+    font-weight: 500;
   }
 
-  .service-hero-actions {
+  .area-divider {
+    color: var(--color-gray-400);
+    font-weight: 300;
+  }
+
+  /* CTAs */
+  .hero-cta-row {
     display: flex;
     align-items: center;
-    gap: clamp(1rem, 2.5vw, 1.75rem);
+    gap: clamp(0.75rem, 2vw, 1.25rem);
     flex-wrap: wrap;
-    margin-top: var(--space-2);
+    margin-top: var(--space-1);
   }
 
-  .btn-primary-action {
+  .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
@@ -432,74 +513,217 @@ const careerFaqs = [
     text-decoration: none;
     padding: var(--space-3) var(--space-6);
     border-radius: var(--radius-sm);
-    box-shadow: 0 4px 14px var(--color-gold-shadow, rgba(255, 210, 111, 0.35));
+    box-shadow: 0 4px 14px rgba(255, 210, 111, 0.35);
     transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
   }
 
-  .btn-primary-action:hover {
-    background-color: var(--color-primary-600, #1E3A8A);
-    border-color: var(--color-primary-600, #1E3A8A);
+  .btn-primary:hover {
+    background-color: #131F5B;
+    border-color: #131F5B;
     color: #ffffff;
     transform: translateY(-2px);
   }
 
-  .btn-secondary-action {
+  .btn-ghost {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: var(--space-2);
-    color: #131F5B;
+    color: var(--color-gray-700);
     font-family: var(--font-display);
     font-size: 0.9375rem;
     font-weight: 600;
     text-decoration: none;
-    padding: var(--space-3) var(--space-6);
-    border: 2px solid #131F5B;
+    padding: var(--space-3) var(--space-5);
+    border: 1.5px solid var(--color-border-subtle, #e2e8f0);
     background-color: transparent;
     border-radius: var(--radius-sm);
-    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+    transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease;
   }
 
-  .btn-secondary-action:hover {
-    background-color: #131F5B;
-    color: #ffffff;
-    transform: translateY(-2px);
-  }
-
-  .service-hero-frame {
-    position: relative;
-    border-radius: var(--radius-lg, 16px);
-    overflow: hidden;
-    aspect-ratio: 16 / 9;
-    box-shadow: 0 12px 32px -8px rgba(19, 31, 91, 0.12),
-                0 0 0 1px rgba(19, 31, 91, 0.08);
+  .btn-ghost:hover {
+    border-color: #131F5B;
+    color: #131F5B;
     background-color: #f8fafc;
   }
 
-  .service-hero-img {
+  /* Hero Image Block */
+  .hero-image-block {
+    width: 100%;
+  }
+
+  .hero-image-frame {
+    position: relative;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 16px 48px -12px rgba(19, 31, 91, 0.18),
+                0 0 0 1px rgba(19, 31, 91, 0.06);
+    background-color: #f1f5f9;
+  }
+
+  .hero-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 30%;
     display: block;
-    transition: transform 500ms ease;
+    transition: transform 600ms ease;
   }
 
-  .service-hero-frame:hover .service-hero-img {
-    transform: scale(1.03);
+  .hero-image-frame:hover .hero-img {
+    transform: scale(1.02);
+  }
+
+  .hero-image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-4) var(--space-6);
+    background: linear-gradient(to top, rgba(19, 31, 91, 0.65) 0%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-image-caption {
+    font-family: var(--font-display);
+    font-size: 0.78125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  /* ── Section Utilities ── */
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary-500);
+    margin-bottom: var(--space-3);
+    line-height: 1;
+  }
+
+  .section-eyebrow::before,
+  .section-eyebrow::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2.5px;
+    background-color: #ffd26f;
+    flex-shrink: 0;
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.875rem, 3vw, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+
+  .section-intro {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    max-width: 65ch;
+    margin: 0 auto var(--space-6);
+    line-height: var(--line-height-relaxed);
+    text-align: center;
+  }
+
+  .section-header-center {
+    text-align: center;
+    margin-bottom: var(--space-6);
+  }
+
+  /* ── Process Grid (Clean & Elegant) ── */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .process-step {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    transition: all 300ms ease;
+    position: relative;
+  }
+
+  .process-step:hover {
+    border-color: #1E3A8A;
+    box-shadow: 0 8px 24px -4px rgba(19, 31, 91, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md, 12px);
+    background-color: #1E3A8A;
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    flex-shrink: 0;
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .step-description {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-gray-700);
+    margin: 0;
   }
 
   /* ── 3 Pillars Grid ── */
   .pillars-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-6);
+    gap: var(--space-5);
   }
 
   .pillar-card {
     background: #ffffff;
     border: 1px solid var(--color-border-subtle, #e2e8f0);
     border-radius: var(--radius-lg, 16px);
-    padding: var(--space-8);
+    padding: var(--space-6);
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
@@ -514,23 +738,30 @@ const careerFaqs = [
 
   .pillar-header {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
+    align-items: center;
+    gap: var(--space-3);
     border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
     padding-bottom: var(--space-3);
   }
 
   .pillar-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md, 10px);
+    background-color: #1E3A8A;
+    color: #ffffff;
     font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #131F5B;
-    opacity: 0.35;
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
   }
 
   .pillar-title {
     font-family: var(--font-display);
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--color-text-primary);
     margin: 0;
@@ -573,9 +804,9 @@ const careerFaqs = [
   /* ── Split Editorial: Interview Prep (4:3 Frame) ── */
   .editorial-split-layout {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(2.5rem, 5vw, 4.5rem);
-    align-items: center;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: start;
   }
 
   .split-content-side {
@@ -597,7 +828,7 @@ const careerFaqs = [
   .split-lead {
     font-family: var(--font-body);
     font-size: 0.96875rem;
-    line-height: 1.6;
+    line-height: 1.65;
     color: var(--color-gray-700);
     margin: 0 0 var(--space-2);
   }
@@ -605,15 +836,46 @@ const careerFaqs = [
   .tips-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-4);
+    gap: var(--space-3);
     width: 100%;
   }
 
-  .tip-box {
+  .tip-card {
     background-color: #ffffff;
     border: 1px solid var(--color-border-subtle, #e2e8f0);
-    border-radius: var(--radius-md, 10px);
+    border-radius: var(--radius-md, 12px);
     padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+
+  .tip-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -4px rgba(19, 31, 91, 0.08);
+  }
+
+  .tip-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .tip-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    color: var(--color-primary-600, #1E3A8A);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 800;
+    flex-shrink: 0;
   }
 
   .tip-title {
@@ -621,15 +883,24 @@ const careerFaqs = [
     font-size: 0.9375rem;
     font-weight: 700;
     color: #131F5B;
-    margin: 0 0 4px;
+    margin: 0;
   }
 
   .tip-text {
     font-family: var(--font-body);
     font-size: 0.84375rem;
-    line-height: 1.5;
+    line-height: 1.55;
     color: var(--color-gray-600);
     margin: 0;
+  }
+
+  /* Split Visual Side */
+  .split-visual-side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    position: sticky;
+    top: var(--space-8);
   }
 
   .split-image-frame {
@@ -654,11 +925,54 @@ const careerFaqs = [
     transform: scale(1.03);
   }
 
+  /* Stats Block */
+  .split-stats-block {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-md, 12px);
+    padding: var(--space-5) var(--space-6);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    gap: 2px;
+  }
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #131F5B;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--font-body);
+    font-size: 0.71875rem;
+    color: var(--color-gray-500);
+    line-height: 1.35;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 36px;
+    background-color: var(--color-border-subtle, #e2e8f0);
+    flex-shrink: 0;
+  }
+
   /* ── FAQs Accordion ── */
   .faqs-grid {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
+    gap: var(--space-3);
     max-width: 860px;
     margin: 0 auto;
   }
@@ -667,8 +981,8 @@ const careerFaqs = [
     background: #ffffff;
     border: 1px solid var(--color-border-subtle, #e2e8f0);
     border-radius: var(--radius-lg, 14px);
-    padding: var(--space-5) var(--space-6);
-    transition: border-color 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+    padding: var(--space-4) var(--space-5);
+    transition: border-color 200ms ease, box-shadow 200ms ease;
   }
 
   .faq-accordion-item[open] {
@@ -738,19 +1052,42 @@ const careerFaqs = [
   }
 
   /* ── Responsive Adaptations ── */
-  /* ── 1024px: Tablet — stack hero, collapse grids ── */
+
+  /* 1024px: Tablet */
   @media (max-width: 1024px) {
-    .service-hero-layout {
+    .hero-split-layout {
       grid-template-columns: 1fr;
       gap: var(--space-6);
     }
 
-    .service-hero-media {
-      order: -1;
+    .process-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
     }
 
     .pillars-grid {
       grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .pillar-card {
+      padding: var(--space-5);
+    }
+
+    .pillar-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .pillar-index {
+      width: 36px;
+      height: 36px;
+      font-size: 0.9375rem;
+    }
+
+    .pillar-title {
+      font-size: 1.0625rem;
     }
 
     .editorial-split-layout {
@@ -759,27 +1096,69 @@ const careerFaqs = [
     }
 
     .split-visual-side {
-      order: -1;
+      position: static;
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .split-image-frame {
+      flex: 1;
+      aspect-ratio: 16 / 9;
+    }
+
+    .split-stats-block {
+      flex-direction: column;
+      width: auto;
+      min-width: 180px;
+    }
+
+    .stat-divider {
+      width: 100%;
+      height: 1px;
     }
 
     .faqs-grid {
-      grid-template-columns: 1fr;
       max-width: 100%;
     }
   }
 
-  /* ── 768px: Mobile — buttons full-width, tighten typography ── */
+  /* 768px: Mobile */
   @media (max-width: 768px) {
-    .service-hero-layout {
+    .hero-split-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
       padding: var(--space-6) 0;
     }
 
-    .service-hero-title {
-      font-size: clamp(1.75rem, 6vw, 2.25rem);
+    .hero-title {
+      font-size: clamp(1.875rem, 7vw, 2.5rem);
     }
 
-    .service-hero-lead {
+    .hero-description {
       font-size: 1rem;
+    }
+
+    .hero-areas-list {
+      font-size: 0.875rem;
+      gap: var(--space-2);
+    }
+
+    .hero-image-frame {
+      aspect-ratio: 4 / 3;
+    }
+
+    .hero-cta-row {
+      flex-direction: column;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      width: 100%;
+      justify-content: center;
+      min-height: 48px;
+      text-align: center;
     }
 
     .section-heading {
@@ -791,63 +1170,84 @@ const careerFaqs = [
       margin-bottom: var(--space-6);
     }
 
-    .service-hero-actions {
-      flex-direction: column;
-      width: 100%;
-      align-items: stretch;
+    .section-header-center {
+      margin-bottom: var(--space-5);
     }
 
-    .btn-primary-action,
-    .btn-secondary-action {
-      width: 100%;
-      justify-content: center;
-      min-height: 48px;
-      text-align: center;
+    .process-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .step-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+
+    .step-title {
+      font-size: 1.125rem;
     }
 
     .tips-grid {
       grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .split-visual-side {
+      flex-direction: column;
+    }
+
+    .split-stats-block {
+      flex-direction: row;
+      min-width: unset;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 36px;
     }
 
     .pillar-card {
       padding: var(--space-5);
     }
 
-    .pillar-highlights {
+    .pillar-header {
+      flex-direction: column;
+      align-items: flex-start;
       gap: var(--space-2);
     }
 
-    .highlight-item {
-      font-size: 0.875rem;
-    }
-
     .faq-accordion-item {
-      padding: var(--space-4);
+      padding: var(--space-3) var(--space-4);
     }
 
     .faq-q-text {
       font-size: 0.9375rem;
     }
-
-    .section-header-center {
-      margin-bottom: var(--space-6);
-    }
   }
 
-  /* ── 480px: Small phones — extra compact layout ── */
+  /* 480px: Small phones */
   @media (max-width: 480px) {
-    .service-hero-title {
-      font-size: 1.625rem;
-      letter-spacing: -0.02em;
+    .hero-title {
+      font-size: 1.75rem;
     }
 
-    .service-hero-chips {
+    .hero-areas-list {
+      font-size: 0.8125rem;
+      flex-direction: column;
+      align-items: flex-start;
       gap: var(--space-1);
     }
 
-    .hero-chip {
-      font-size: 0.71875rem;
-      padding: 3px 8px;
+    .area-divider {
+      display: none;
     }
 
     .breadcrumb-current {
@@ -858,8 +1258,14 @@ const careerFaqs = [
       padding: var(--space-4);
     }
 
-    .pillar-number {
-      font-size: 1.75rem;
+    .split-stats-block {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .stat-divider {
+      width: 100%;
+      height: 1px;
     }
   }
 </style>
