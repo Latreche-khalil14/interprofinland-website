@@ -1,45 +1,1162 @@
 ---
 /**
  * Services Hub — InterProFinland
- * Overview of all support services
+ * Dedicated, in-depth directory of professional advisory, qualification recognition,
+ * mentorship, and employer matchmaking services.
+ * Clean luxury editorial design with 4:3 and 16:9 placeholder media framing.
  */
 
 import Layout from '@/layouts/Layout.astro';
 import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+
+/* ── 4 Dedicated Core Services ── */
+const services = [
+  {
+    index: '01',
+    category: 'Labour Market Advisory',
+    title: 'Career Guidance & Workplace Culture',
+    description:
+      'Personalized consultation designed to align your international background with Finnish recruitment expectations, workplace standards, and strategic job search methodologies.',
+    benefits: [
+      'Tailoring your CV and cover letter to Finnish industry norms and ATS standards',
+      'Navigating the Finnish hidden job market and direct outreach to decision-makers',
+      'Understanding collective labour agreements (TES), employment contracts, and salary benchmarks',
+      'Interview coaching, communication etiquette, and workplace culture orientation',
+    ],
+    image: 'https://placehold.co/800x600/e5e7eb/131f5b?text=Career+Guidance',
+    imageAlt: 'Career guidance consultation and Finnish labour market advising',
+    href: '/services/career-guidance',
+    ctaText: 'Explore Career Guidance',
+  },
+  {
+    index: '02',
+    category: 'Diploma Equivalency & Licensing',
+    title: 'Foreign Qualification & Degree Recognition',
+    description:
+      'Comprehensive step-by-step assistance navigating Finnish regulatory bodies to validate your overseas educational credentials and gain official practice rights in Finland.',
+    benefits: [
+      'Identifying the competent regulatory authority (OPH, Valvira, Ruokavirasto, Traficom)',
+      'Assembling application dossiers, transcript verification, and sworn translation advisory',
+      'Guidance on comparative academic statements vs. full professional practice rights',
+      'Navigating supplementary studies, aptitude tests, and adaptation training periods',
+    ],
+    image: 'https://placehold.co/800x600/e5e7eb/131f5b?text=Degree+Recognition',
+    imageAlt: 'Foreign qualification recognition and diploma equivalency support',
+    href: '/services/qualification-recognition',
+    ctaText: 'Explore Degree Recognition',
+  },
+  {
+    index: '03',
+    category: '1-on-1 Mentoring',
+    title: 'One Mentor One (OmO) & Professional Mentorship',
+    description:
+      'Structured individual mentorship pairing you with experienced professionals established in your specific industry in Finland for strategic guidance and career growth.',
+    benefits: [
+      '6-month structured matching with industry peers and established professionals',
+      'Goal-setting frameworks focused on career transition and professional milestones',
+      'Unwritten rules of Finnish workplace culture and industry networking guidance',
+      'Direct feedback on portfolio presentation, technical skills, and industry positioning',
+    ],
+    image: 'https://placehold.co/800x600/e5e7eb/131f5b?text=One+Mentor+One',
+    imageAlt: 'One-on-one professional mentorship session',
+    href: '/services/mentorship',
+    ctaText: 'Explore Mentorship Program',
+  },
+  {
+    index: '04',
+    category: 'Employer Matchmaking',
+    title: 'Networking & Regional Opportunities',
+    description:
+      'Connecting international professionals directly with regional employers, municipal development agencies, and professional networks looking for global expertise.',
+    benefits: [
+      'Direct matchmaking roundtables with recruiting companies across Satakunta and nationwide',
+      'Participation in specialized international recruitment fairs and employer speed-dating',
+      'Interdisciplinary networking seminars with business leaders and municipal partners',
+      'Access to partner initiatives, regional startup hubs, and innovation projects',
+    ],
+    image: 'https://placehold.co/800x600/e5e7eb/131f5b?text=Employer+Matchmaking',
+    imageAlt: 'Professional networking and employer matchmaking in Finland',
+    href: '/services/networking',
+    ctaText: 'Explore Networking & Matchmaking',
+  },
+];
+
+/* ── Qualification Recognition Decision Pathways ── */
+const recognitionPaths = [
+  {
+    title: 'Regulated Professions (Säännellyt ammatit)',
+    badge: 'Mandatory Official Decision',
+    description:
+      'Professions where Finnish law specifies required educational qualifications or official licensing before you are legally permitted to practice.',
+    examples: 'Healthcare professionals (doctors, nurses, dentists via Valvira), teachers & educators (via OPH), veterinarians, lawyers, maritime officers.',
+    action: 'Requires formal application, transcript assessment, sworn translations, and often supplementary clinical/academic adaptation.',
+  },
+  {
+    title: 'Non-Regulated Professions (Muut ammatit)',
+    badge: 'Comparative Academic Statement',
+    description:
+      'Professions where Finnish employers independently assess your suitability and qualifications during the recruitment process without mandatory state licensing.',
+    examples: 'Software engineers, marketing specialists, business analysts, data scientists, project managers, graphic designers, HR specialists.',
+    action: 'OPH comparability statement is optional but strongly recommended to clearly demonstrate educational level (Bachelor, Master) to Finnish employers.',
+  },
+];
+
+/* ── Service Consultation Workflow ── */
+const workflowSteps = [
+  {
+    step: '01',
+    title: 'Intake & Document Submission',
+    desc: 'Submit your initial application with your CV, academic degree copies, and career goals via our secure online intake form.',
+  },
+  {
+    step: '02',
+    title: '1-on-1 Advisory Consultation',
+    desc: 'Meet with an advisor (in-person at our Pori office or online via Teams/Zoom) for a comprehensive review of your situation.',
+  },
+  {
+    step: '03',
+    title: 'Customized Action Roadmap',
+    desc: 'Receive an actionable plan outlining your qualification recognition route, CV improvements, or mentorship matching timeline.',
+  },
+  {
+    step: '04',
+    title: 'Ongoing Follow-Up & Pairing',
+    desc: 'Access continuous guidance, attend targeted workshops, and connect directly with mentors and regional employment opportunities.',
+  },
+];
+
+/* ── Document Readiness Checklist ── */
+const documentChecklist = [
+  {
+    title: 'Degree Certificates & Diplomas',
+    detail: 'Original language copies and certified English/Finnish/Swedish translations of higher education certificates.',
+  },
+  {
+    title: 'Transcript of Records / Diploma Supplement',
+    detail: 'Detailed course breakdown with credit units (ECTS or equivalent), grades, and official syllabi where applicable.',
+  },
+  {
+    title: 'Current Professional CV',
+    detail: 'Updated CV detailing your international work history, key projects, technical proficiencies, and language skills.',
+  },
+  {
+    title: 'Proof of Identity & Residency Status',
+    detail: 'Valid passport, Finnish residence permit card, or official identification documents for verification.',
+  },
+];
+
+/* ── Specific Services FAQ ── */
+const faqs = [
+  {
+    q: 'Are your advisory services and consultations free of charge?',
+    a: 'Yes, all advisory consultations, CV reviews, qualification recognition guidance, and mentorship matching provided by InterProFinland are completely free for international professionals living in Finland.',
+  },
+  {
+    q: 'How do I book an individual guidance consultation?',
+    a: 'Consultations are organized by appointment on Mondays and Wednesdays. You can apply through our online application form or reach out directly to schedule a dedicated in-person or remote slot.',
+  },
+  {
+    q: 'Do you submit OPH or Valvira applications on my behalf?',
+    a: 'We guide you through the entire application preparation process, review your documents for completeness, and clarify requirements. However, the formal submission and state administrative fees remain the responsibility of the applicant.',
+  },
+  {
+    q: 'Can I access your services if I reside outside the Satakunta region?',
+    a: 'Yes! While our office is located in Pori, all individual guidance sessions, document reviews, webinars, and mentorship matching are available online for international professionals across all regions of Finland.',
+  },
+];
 ---
 
 <Layout
-  title="Services — InterProFinland"
-  description="Discover how InterProFinland supports international professionals through career guidance, qualification recognition, mentorship, and networking opportunities."
+  title="Services & Advisory Pathways — InterProFinland"
+  description="Explore InterProFinland's specialized advisory services: career guidance, foreign degree recognition, One Mentor One mentoring, and regional employer matchmaking."
 >
-  <Section>
-    <Container size="content">
-      <div style="text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
-      <h1>Services Hub</h1>
-      
-      <h2 style="margin-top: 2rem;">📋 Page Sections</h2>
-      <p style="text-align: left; line-height: 2;">
-        • Hero<br>
-        • Intro<br>
-        • 4 Main Services<br>
-        • Supporting Programs<br>
-        • How support works<br>
-        • Related Projects<br>
-        • Related Community Activities<br>
-        • CTA
-      </p>
+  <!-- ==========================================================================
+       HERO SECTION: Purpose Manifesto Pattern (4:2.25 / 16:9 Image Frame)
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="services-hero-layout">
+        <div class="services-hero-info">
+          <div class="services-hero-pill-row">
+            <span class="section-eyebrow">Advisory &amp; Support Pathways</span>
+            <span class="hero-status-pill">Comprehensive Guidance</span>
+          </div>
 
-      <h2 style="margin-top: 2rem;">🎯 Main Services</h2>
-      <p style="text-align: left; line-height: 2;">
-        <a href="/services/career-guidance" style="color: #131f5b;">→ Career Guidance</a><br>
-        <a href="/services/qualification-recognition" style="color: #131f5b;">→ Qualification Recognition</a><br>
-        <a href="/services/mentorship" style="color: #131f5b;">→ Mentorship</a><br>
-        <a href="/services/networking" style="color: #131f5b;">→ Networking</a>
-      </p>
+          <h1 class="services-hero-title">
+            Tailored Career &amp; Recognition Services for <span class="services-hero-serif">International Talents</span>
+          </h1>
 
-      <p style="margin-top: 2rem;"><em>Page under construction</em></p>
+          <p class="services-hero-lead">
+            Navigating the Finnish professional landscape requires structured support. Our dedicated services
+            guide you through foreign credential validation, job search adaptation, industry mentoring, and direct
+            employer connections.
+          </p>
+
+          <div class="services-hero-audience-chips">
+            <span class="audience-chip">🎓 Foreign Degree Holders</span>
+            <span class="audience-chip">💼 Skilled Job Seekers</span>
+            <span class="audience-chip">🏥 Regulated Profession Licensure</span>
+            <span class="audience-chip">🤝 Mid-Career Professionals</span>
+          </div>
+
+          <div class="services-hero-actions">
+            <a
+              href="https://form.jotform.com/InterProFinland/membership-application-form"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-services-primary"
+            >
+              <span>Book an Advisory Consultation</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href="#core-services-list" class="btn-services-secondary">
+              <span>Explore All 4 Services</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="services-hero-media-wrap">
+          <div class="services-hero-frame">
+            <img
+              src="https://placehold.co/800x450/131f5b/ffd26f?text=Advisory+Services+Hub"
+              alt="InterProFinland individualized advisory consultation and career pathways"
+              class="services-hero-img"
+              width="800"
+              height="450"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
       </div>
     </Container>
   </Section>
+
+  <!-- ==========================================================================
+       THE 4 CORE SERVICES: Alternating Editorial Split Rows (4:3 Media Frame)
+       ========================================================================== -->
+  <Section>
+    <div id="core-services-list"></div>
+    <Container size="page">
+      <div class="services-section-header">
+        <span class="section-eyebrow">Core Service Pillars</span>
+        <h2 class="section-heading">Four Comprehensive Support Pathways</h2>
+        <p class="section-intro">
+          Each service is designed to tackle a specific stage of your professional journey in Finland,
+          delivering practical clarity and tangible progress.
+        </p>
+      </div>
+
+      <div class="services-editorial-stack">
+        {
+          services.map((svc, idx) => (
+            <article class={`service-editorial-card ${idx % 2 !== 0 ? 'is-reversed' : ''}`}>
+              <div class="service-editorial-content">
+                <div class="service-meta-header">
+                  <span class="service-index-number">{svc.index}</span>
+                  <span class="service-category-tag">{svc.category}</span>
+                </div>
+
+                <h3 class="service-heading">
+                  <a href={svc.href} class="service-heading-link">{svc.title}</a>
+                </h3>
+
+                <p class="service-description-text">{svc.description}</p>
+
+                <div class="service-benefits-block">
+                  <span class="benefits-label">Key Service Elements:</span>
+                  <ul class="benefits-list" role="list">
+                    {svc.benefits.map((b) => (
+                      <li>
+                        <span class="check-icon" aria-hidden="true">✓</span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div class="service-actions-row">
+                  <a href={svc.href} class="btn-service-view">
+                    <span>{svc.ctaText}</span>
+                    <span class="cta-arrow" aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="service-editorial-visual">
+                <div class="service-image-box">
+                  <img
+                    src={svc.image}
+                    alt={svc.imageAlt}
+                    class="service-box-img"
+                    width="800"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       DECISION MATRIX: Regulated vs. Non-Regulated Professions
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="services-section-header">
+        <span class="section-eyebrow">Guidance Framework</span>
+        <h2 class="section-heading">Understanding Your Qualification Pathway in Finland</h2>
+        <p class="section-intro">
+          The procedure for using foreign qualifications in Finland depends primarily on whether your
+          profession is legally regulated by Finnish legislation.
+        </p>
+      </div>
+
+      <div class="pathways-comparison-grid">
+        {
+          recognitionPaths.map((path) => (
+            <div class="pathway-matrix-card">
+              <div class="pathway-card-header">
+                <span class="pathway-badge">{path.badge}</span>
+                <h3 class="pathway-title">{path.title}</h3>
+              </div>
+              <p class="pathway-desc">{path.description}</p>
+              
+              <div class="pathway-meta-box">
+                <strong>Typical Professions:</strong>
+                <p>{path.examples}</p>
+              </div>
+
+              <div class="pathway-action-box">
+                <strong>Next Step:</strong>
+                <p>{path.action}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="pathways-cta-footer">
+        <a href="/services/qualification-recognition" class="btn-services-primary">
+          <span>Read Comprehensive Recognition Guide</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       WORKFLOW SECTION: What to Expect in the Advisory Process
+       ========================================================================== -->
+  <Section>
+    <Container size="page">
+      <div class="services-section-header">
+        <span class="section-eyebrow">Service Delivery Workflow</span>
+        <h2 class="section-heading">What to Expect When You Contact Us</h2>
+        <p class="section-intro">
+          A structured, confidential advisory process built to give you actionable clarity in every consultation.
+        </p>
+      </div>
+
+      <div class="workflow-steps-grid">
+        {
+          workflowSteps.map((wf) => (
+            <div class="workflow-step-card">
+              <div class="step-badge">{wf.step}</div>
+              <h3 class="step-title">{wf.title}</h3>
+              <p class="step-desc">{wf.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       DOCUMENT READINESS: What to Prepare Before Your Consultation
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="services-section-header">
+        <span class="section-eyebrow">Consultation Preparation</span>
+        <h2 class="section-heading">Document Readiness Checklist</h2>
+        <p class="section-intro">
+          To maximize the value of your one-on-one session, prepare the following materials in advance.
+        </p>
+      </div>
+
+      <div class="checklist-grid">
+        {
+          documentChecklist.map((item, i) => (
+            <div class="checklist-card">
+              <div class="checklist-icon-box">
+                <span class="checklist-number">0{i + 1}</span>
+              </div>
+              <div class="checklist-content">
+                <h3 class="checklist-title">{item.title}</h3>
+                <p class="checklist-detail">{item.detail}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       FAQ SECTION: Specific Practical Service Questions
+       ========================================================================== -->
+  <Section>
+    <Container size="page">
+      <div class="services-section-header">
+        <span class="section-eyebrow">Practical Details</span>
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <p class="section-intro">
+          Answers to common questions regarding eligibility, appointment scheduling, and advisory scope.
+        </p>
+      </div>
+
+      <div class="services-faq-grid">
+        {
+          faqs.map((faq) => (
+            <div class="services-faq-item">
+              <h3 class="faq-q-text">
+                <span class="faq-q-icon" aria-hidden="true">💡</span>
+                <span>{faq.q}</span>
+              </h3>
+              <p class="faq-a-text">{faq.a}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       BOTTOM CTA SECTION
+       ========================================================================== -->
+  <CtaSection
+    heading="Take the Next Step in Your Professional Career"
+    subheading="Whether you need foreign diploma recognition, CV review, or an experienced mentor in your field, our advisory network is here to support you."
+    cta={{
+      label: 'Apply for Advisory Guidance',
+      href: 'https://form.jotform.com/InterProFinland/membership-application-form',
+    }}
+  />
 </Layout>
+
+<style>
+  /* ══════════════════════════════════════════════════════════════════════════
+     SERVICES HUB — DEDICATED EDITORIAL DESIGN SYSTEM
+     ══════════════════════════════════════════════════════════════════════════ */
+
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+    margin-bottom: var(--space-2);
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2.8vw, 2.35rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+
+  .section-intro {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    max-width: 65ch;
+    margin: 0 auto var(--space-8);
+    line-height: var(--line-height-relaxed);
+    text-align: center;
+  }
+
+  /* ── Hero Section (16:9 / 4:2.25 Frame) ── */
+  .services-hero-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+    padding: clamp(2rem, 4vw, 3.5rem) 0;
+  }
+
+  .services-hero-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .services-hero-pill-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .hero-status-pill {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #131F5B;
+    background-color: #FFD26F;
+    padding: 3px 10px;
+    border-radius: 9999px;
+  }
+
+  .services-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.85rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+
+  .services-hero-serif {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-primary-600, #1E3A8A);
+  }
+
+  .services-hero-lead {
+    font-family: var(--font-body);
+    font-size: clamp(1.0625rem, 1.4vw, 1.1875rem);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-gray-800);
+    margin: 0;
+  }
+
+  .services-hero-audience-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding: var(--space-2) 0;
+  }
+
+  .audience-chip {
+    font-family: var(--font-display);
+    font-size: 0.78125rem;
+    font-weight: 600;
+    color: #131F5B;
+    background-color: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm, 6px);
+  }
+
+  .services-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    flex-wrap: wrap;
+    margin-top: var(--space-2);
+  }
+
+  .btn-services-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background-color: var(--color-gold, #FFD26F);
+    color: #131F5B;
+    border: 2px solid var(--color-gold, #FFD26F);
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 14px var(--color-gold-shadow, rgba(255, 210, 111, 0.35));
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+  }
+
+  .btn-services-primary:hover {
+    background-color: var(--color-primary-600, #1E3A8A);
+    border-color: var(--color-primary-600, #1E3A8A);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .btn-services-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    color: #131F5B;
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border: 2px solid #131F5B;
+    background-color: transparent;
+    border-radius: var(--radius-sm);
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+  }
+
+  .btn-services-secondary:hover {
+    background-color: #131F5B;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .services-hero-media-wrap {
+    width: 100%;
+  }
+
+  .services-hero-frame {
+    position: relative;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 12px 32px -8px rgba(19, 31, 91, 0.12),
+                0 0 0 1px rgba(19, 31, 91, 0.08);
+    background-color: #f8fafc;
+  }
+
+  .services-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 500ms ease;
+  }
+
+  .services-hero-frame:hover .services-hero-img {
+    transform: scale(1.03);
+  }
+
+  /* ── 4 Core Services Editorial Stack (4:3 Media Frame) ── */
+  .services-section-header {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  .services-editorial-stack {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--space-12);
+  }
+
+  .service-editorial-card {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: center;
+    padding: clamp(2.5rem, 4vw, 3.5rem) 0;
+    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+  }
+
+  .service-editorial-card:first-child {
+    border-top: 1px solid var(--color-border-subtle, #e2e8f0);
+  }
+
+  .service-editorial-card.is-reversed {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+
+  .service-editorial-card.is-reversed .service-editorial-visual {
+    order: 1;
+  }
+
+  .service-editorial-card.is-reversed .service-editorial-content {
+    order: 2;
+  }
+
+  .service-editorial-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .service-meta-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .service-index-number {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #131F5B;
+    opacity: 0.35;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .service-category-tag {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary-700, #1E3A8A);
+  }
+
+  .service-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2vw, 1.65rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+
+  .service-heading-link {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+
+  .service-heading-link:hover {
+    color: var(--color-primary-600, #1E3A8A);
+  }
+
+  .service-description-text {
+    font-family: var(--font-body);
+    font-size: 0.96875rem;
+    line-height: var(--line-height-relaxed);
+    color: var(--color-gray-700);
+    margin: 0;
+    max-width: 58ch;
+  }
+
+  .service-benefits-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin: var(--space-1) 0;
+    background-color: #f8fafc;
+    padding: var(--space-4);
+    border-radius: var(--radius-md, 10px);
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    width: 100%;
+  }
+
+  .benefits-label {
+    font-family: var(--font-display);
+    font-size: 0.78125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #131F5B;
+  }
+
+  .benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .benefits-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--color-gray-700);
+    line-height: 1.45;
+  }
+
+  .check-icon {
+    color: var(--color-primary-600, #1E3A8A);
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .service-actions-row {
+    margin-top: var(--space-2);
+  }
+
+  .btn-service-view {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: #131F5B;
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: var(--space-2) var(--space-5);
+    border: 2px solid #131F5B;
+    background-color: transparent;
+    border-radius: var(--radius-sm);
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+  }
+
+  .btn-service-view:hover {
+    background-color: #131F5B;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .btn-service-view .cta-arrow {
+    transition: transform 200ms ease;
+  }
+
+  .btn-service-view:hover .cta-arrow {
+    transform: translateX(4px);
+  }
+
+  .service-editorial-visual {
+    width: 100%;
+  }
+
+  .service-image-box {
+    position: relative;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 10px 28px -6px rgba(19, 31, 91, 0.12),
+                0 0 0 1px rgba(19, 31, 91, 0.08);
+    background-color: #f8fafc;
+  }
+
+  .service-box-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 450ms ease;
+  }
+
+  .service-image-box:hover .service-box-img {
+    transform: scale(1.03);
+  }
+
+  /* ── Decision Matrix (Regulated vs Non-Regulated) ── */
+  .pathways-comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+    margin-bottom: var(--space-8);
+  }
+
+  .pathway-matrix-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  }
+
+  .pathway-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .pathway-badge {
+    display: inline-flex;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #131F5B;
+    background-color: #f1f5f9;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    width: fit-content;
+  }
+
+  .pathway-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .pathway-desc {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-gray-700);
+    margin: 0;
+  }
+
+  .pathway-meta-box,
+  .pathway-action-box {
+    background-color: #f8fafc;
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
+    font-size: 0.84375rem;
+    line-height: 1.5;
+    color: var(--color-gray-700);
+  }
+
+  .pathway-meta-box strong,
+  .pathway-action-box strong {
+    display: block;
+    color: #131F5B;
+    margin-bottom: 2px;
+  }
+
+  .pathway-meta-box p,
+  .pathway-action-box p {
+    margin: 0;
+  }
+
+  .pathways-cta-footer {
+    text-align: center;
+    margin-top: var(--space-4);
+  }
+
+  /* ── Workflow Steps Grid ── */
+  .workflow-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+
+  .workflow-step-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    transition: transform 250ms ease, box-shadow 250ms ease;
+  }
+
+  .workflow-step-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px -6px rgba(19, 31, 91, 0.1);
+  }
+
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: #131F5B;
+    color: #FFD26F;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 0.9375rem;
+    border-radius: var(--radius-md);
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: var(--space-1) 0 0;
+  }
+
+  .step-desc {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-gray-600);
+    margin: 0;
+  }
+
+  /* ── Document Readiness Checklist Grid ── */
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .checklist-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-6);
+  }
+
+  .checklist-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+  }
+
+  .checklist-number {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 800;
+    color: #1E3A8A;
+  }
+
+  .checklist-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .checklist-title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .checklist-detail {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-gray-600);
+    margin: 0;
+  }
+
+  /* ── Specific Services FAQ Grid ── */
+  .services-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .services-faq-item {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .faq-q-text {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .faq-q-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .faq-a-text {
+    font-family: var(--font-body);
+    font-size: 0.90625rem;
+    line-height: 1.65;
+    color: var(--color-gray-600);
+    margin: 0;
+    padding-left: calc(1.1rem + var(--space-2));
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     RESPONSIVE MEDIA QUERIES (Mobile & Tablet Optimization)
+     ══════════════════════════════════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .services-hero-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .services-hero-media-wrap {
+      order: -1;
+    }
+
+    .service-editorial-card {
+      grid-template-columns: 1fr !important;
+      gap: var(--space-6);
+    }
+
+    .service-editorial-card.is-reversed .service-editorial-visual {
+      order: 1;
+    }
+
+    .service-editorial-card.is-reversed .service-editorial-content {
+      order: 2;
+    }
+
+    .pathways-comparison-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .workflow-steps-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .checklist-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .services-faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .services-hero-actions {
+      flex-direction: column;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .btn-services-primary,
+    .btn-services-secondary {
+      width: 100%;
+      justify-content: center;
+      min-height: 48px;
+    }
+
+    .btn-service-view {
+      width: 100%;
+      justify-content: center;
+      min-height: 48px;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .workflow-steps-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

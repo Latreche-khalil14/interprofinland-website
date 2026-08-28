@@ -1,44 +1,905 @@
 ---
 /**
- * Mentorship Service — InterProFinland
+ * Mentorship Program (One Mentor One) — InterProFinland
+ * Comprehensive guidance on 1-on-1 industry mentoring, mentor matching, and career acceleration.
+ * Luxury editorial design matching Home and About design systems.
  */
 
 import Layout from '@/layouts/Layout.astro';
 import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+
+/* ── 3 Mentorship Pillars ── */
+const mentorshipPillars = [
+  {
+    number: '01',
+    title: 'Individual Industry Matching',
+    description:
+      'We pair you with an experienced mentor working in your specific profession or sector in Finland—ensuring contextual, highly relevant career advice.',
+    bullets: [
+      'Sector-specific matching across engineering, IT, healthcare, business, education, and creative industries',
+      'Pairs formed based on professional goals, language preferences, and career stage',
+      'Confidential and supportive environment focused on your personal progression',
+    ],
+  },
+  {
+    number: '02',
+    title: 'Structured 6-Month Framework',
+    description:
+      'Our structured timeline includes monthly one-on-one meetings, milestone tracking, and practical goal-setting to maintain steady forward momentum.',
+    bullets: [
+      'Monthly 1-to-1 meetings (in-person in Satakunta or online nationwide)',
+      'Defined milestone setting (portfolio review, target company outreach, interview practice)',
+      'Mid-term reflection workshops and check-ins with program coordinators',
+    ],
+  },
+  {
+    number: '03',
+    title: 'Unwritten Workplace Insights',
+    description:
+      'Mentors share invaluable insight into Finnish workplace culture, organizational hierarchies, recruiter expectations, and professional networking norms.',
+    bullets: [
+      'Navigating workplace dynamics, team communication, and managerial expectations',
+      'Direct feedback on local industry positioning and credential presentation',
+      'Expanding your professional circle through mentor introductions',
+    ],
+  },
+];
+
+/* ── Mentorship Timeline Milestones ── */
+const timelineStages = [
+  {
+    step: 'Month 1',
+    title: 'Orientation & Goal Alignment',
+    desc: 'Kick-off meeting with your mentor, establishing expectations, agreeing on communication channels, and defining 3 core milestones for the 6-month period.',
+  },
+  {
+    step: 'Months 2–3',
+    title: 'Profile Optimization & Market Mapping',
+    desc: 'In-depth review of your Finnish CV, LinkedIn profile, and portfolio. Identifying key companies and hiring trends in your sector.',
+  },
+  {
+    step: 'Months 4–5',
+    title: 'Proactive Outreach & Interview Prep',
+    desc: 'Mock interview simulations, hidden job market exploration, and strategic direct contact with decision-makers in Finnish organizations.',
+  },
+  {
+    step: 'Month 6',
+    title: 'Review & Peer Network Transition',
+    desc: 'Final progress review, celebrating milestone achievements, and transition into our active alumni peer support circles.',
+  },
+];
+
+/* ── Dual Value: Mentee & Mentor Benefits ── */
+const dualRoles = [
+  {
+    role: 'For International Mentees',
+    badge: 'Grow Your Career',
+    points: [
+      'Actionable advice from someone who understands the Finnish industry landscape',
+      'Expanded network of local professional contacts and industry connections',
+      'Increased confidence in navigating job interviews and workplace communication',
+      'Clear direction on qualification equivalency and supplementary skills',
+    ],
+  },
+  {
+    role: 'For Industry Mentors',
+    badge: 'Give Back & Lead',
+    points: [
+      'Enhance your cross-cultural leadership and coaching capabilities',
+      'Discover high-potential international talent and innovative global perspectives',
+      'Make a meaningful social impact by supporting skilled integration in Finland',
+      'Connect with a dynamic network of forward-thinking professionals and mentors',
+    ],
+  },
+];
+
+/* ── Specific Mentorship FAQs ── */
+const mentorshipFaqs = [
+  {
+    q: 'How long does the One Mentor One (OmO) program run?',
+    a: 'Each mentorship cohort runs for 6 months, typically comprising 1–2 hours of one-on-one meetings per month, supported by peer workshops and check-ins.',
+  },
+  {
+    q: 'Can I participate if I live outside the Satakunta region?',
+    a: 'Yes, our mentorship program operates in hybrid and fully remote formats, connecting mentors and mentees across all regions of Finland via Zoom/Teams.',
+  },
+  {
+    q: 'What is required to become a mentor?',
+    a: 'Mentors are experienced professionals (both native Finns and established internationals) with at least 3 years of work experience in Finland who wish to support newcomers.',
+  },
+  {
+    q: 'Is there any fee to join the mentorship program?',
+    a: 'No, participation as a mentee or mentor is completely free of charge as part of InterProFinland’s non-profit mission.',
+  },
+];
 ---
 
 <Layout
-  title="1-on-1 Mentorship & Peer Community — InterProFinland"
-  description="Connect with experienced professionals and participate in peer support programs."
+  title="Mentorship Program (One Mentor One) — InterProFinland"
+  description="Accelerate your professional career in Finland with 1-on-1 industry mentorship, 6-month structured goal-setting, and Finnish workplace orientation."
 >
-  <Section>
-    <Container size="content">
-      <div style="text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
-      <h1>1-on-1 Mentorship & Peer Community</h1>
-      
-      <h2 style="margin-top: 2rem;">📋 Page Sections</h2>
-      <p style="text-align: left; line-height: 2;">
-        • Hero<br>
-        • What is mentorship?<br>
-        • Who it is for<br>
-        • How mentorship works<br>
-        • Mentor perspective<br>
-        • Mentee perspective<br>
-        • Peer support<br>
-        • Language / community connection<br>
-        • Related programs<br>
-        • Success stories<br>
-        • CTA
-      </p>
+  <!-- ==========================================================================
+       HERO SECTION: Purpose Manifesto Pattern (16:9 Image Frame)
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="service-hero-layout">
+        <div class="service-hero-content">
+          <div class="service-hero-breadcrumb">
+            <a href="/services" class="breadcrumb-back">← Back to Services</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Mentorship Program</span>
+          </div>
 
-      <p style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin: 2rem 0;">
-        <strong>⚠️ Note:</strong> No registration system in V1 — external application process.
-      </p>
+          <h1 class="service-hero-title">
+            One Mentor One: 1-on-1 <span class="service-hero-serif">Professional Mentorship</span>
+          </h1>
 
-      <p style="margin-top: 2rem;"><em>Page under construction</em></p>
-      <p><a href="/services" style="color: #131f5b;">← Back to Services</a></p>
+          <p class="service-hero-lead">
+            Connect directly with an experienced professional in your field in Finland. Gain practical
+            workplace insights, expand your industry network, and achieve targeted career milestones through our
+            structured 6-month mentorship model.
+          </p>
+
+          <div class="service-hero-chips">
+            <span class="hero-chip">🤝 Sector-Specific Matching</span>
+            <span class="hero-chip">🗓️ 6-Month Structured Program</span>
+            <span class="hero-chip">🎯 Milestone Goal Tracking</span>
+            <span class="hero-chip">🌐 Hybrid &amp; Remote Across Finland</span>
+          </div>
+
+          <div class="service-hero-actions">
+            <a
+              href="https://form.jotform.com/InterProFinland/membership-application-form"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary-action"
+            >
+              <span>Apply as a Mentee</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href="#mentorship-framework" class="btn-secondary-action">
+              <span>View Program Structure</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="service-hero-media">
+          <div class="service-hero-frame">
+            <img
+              src="https://placehold.co/800x450/131f5b/ffd26f?text=One+Mentor+One+Program"
+              alt="One-on-one professional mentorship meeting in Finland"
+              class="service-hero-img"
+              width="800"
+              height="450"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
       </div>
     </Container>
   </Section>
+
+  <!-- ==========================================================================
+       CORE PILLARS (3-Column Grid)
+       ========================================================================== -->
+  <Section>
+    <div id="mentorship-framework"></div>
+    <Container size="page">
+      <div class="section-header-center">
+        <span class="section-eyebrow">Program Architecture</span>
+        <h2 class="section-heading">How One Mentor One Accelerates Your Growth</h2>
+        <p class="section-intro">
+          Our mentorship model is built on structured reciprocity, personal accountability, and deep industry context.
+        </p>
+      </div>
+
+      <div class="pillars-grid">
+        {
+          mentorshipPillars.map((p) => (
+            <div class="pillar-card">
+              <div class="pillar-header">
+                <span class="pillar-index">{p.number}</span>
+                <h3 class="pillar-title">{p.title}</h3>
+              </div>
+              <p class="pillar-desc">{p.description}</p>
+              
+              <ul class="pillar-bullets" role="list">
+                {p.bullets.map((b) => (
+                  <li>
+                    <span class="check-icon" aria-hidden="true">✓</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       SPLIT EDITORIAL: 6-Month Timeline (4:3 Frame)
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="editorial-split-layout">
+        <div class="split-content-side">
+          <span class="section-eyebrow">Program Timeline</span>
+          <h2 class="split-heading">The 6-Month Mentorship Roadmap</h2>
+          <p class="split-lead">
+            A clear monthly progression designed to transition from initial orientation to tangible job search breakthroughs.
+          </p>
+
+          <div class="timeline-steps-list">
+            {
+              timelineStages.map((st) => (
+                <div class="timeline-item">
+                  <div class="timeline-badge">{st.step}</div>
+                  <div class="timeline-info">
+                    <h4 class="timeline-title">{st.title}</h4>
+                    <p class="timeline-desc">{st.desc}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="split-visual-side">
+          <div class="split-image-frame">
+            <img
+              src="https://placehold.co/800x600/e5e7eb/131f5b?text=Mentorship+Timeline"
+              alt="Mentorship milestone roadmap and goal tracking"
+              class="split-img"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       DUAL ROLES: Mentee vs Mentor Matrix
+       ========================================================================== -->
+  <Section>
+    <Container size="page">
+      <div class="section-header-center">
+        <span class="section-eyebrow">Shared Value</span>
+        <h2 class="section-heading">Mutual Benefits for Mentees &amp; Mentors</h2>
+        <p class="section-intro">
+          One Mentor One creates a collaborative bridge between skilled internationals and established professionals.
+        </p>
+      </div>
+
+      <div class="dual-roles-grid">
+        {
+          dualRoles.map((role) => (
+            <div class="role-card">
+              <div class="role-header">
+                <span class="role-badge">{role.badge}</span>
+                <h3 class="role-title">{role.role}</h3>
+              </div>
+              
+              <ul class="role-points-list" role="list">
+                {role.points.map((pt) => (
+                  <li>
+                    <span class="point-check" aria-hidden="true">✓</span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       SPECIFIC FAQS
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="section-header-center">
+        <span class="section-eyebrow">Mentorship FAQs</span>
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <p class="section-intro">
+          Practical details about program participation, matching criteria, and expectations.
+        </p>
+      </div>
+
+      <div class="faqs-grid">
+        {
+          mentorshipFaqs.map((faq) => (
+            <div class="faq-card">
+              <h3 class="faq-question">
+                <span class="faq-icon" aria-hidden="true">🤝</span>
+                <span>{faq.q}</span>
+              </h3>
+              <p class="faq-answer">{faq.a}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       BOTTOM CTA
+       ========================================================================== -->
+  <CtaSection
+    heading="Ready to Connect with an Industry Mentor in Finland?"
+    subheading="Apply now to be paired with an experienced professional in your field for 1-on-1 guidance, career strategy, and lasting connections."
+    cta={{
+      label: 'Apply for One Mentor One',
+      href: 'https://form.jotform.com/InterProFinland/membership-application-form',
+    }}
+  />
 </Layout>
+
+<style>
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+    margin-bottom: var(--space-2);
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2.8vw, 2.35rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+
+  .section-intro {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    max-width: 65ch;
+    margin: 0 auto var(--space-8);
+    line-height: var(--line-height-relaxed);
+    text-align: center;
+  }
+
+  .section-header-center {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  /* ── Hero Section (16:9 Frame) ── */
+  .service-hero-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+    padding: clamp(2rem, 4vw, 3.5rem) 0;
+  }
+
+  .service-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .service-hero-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .breadcrumb-back {
+    color: var(--color-primary-600, #1E3A8A);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+
+  .breadcrumb-back:hover {
+    color: #131F5B;
+    text-decoration: underline;
+  }
+
+  .breadcrumb-separator {
+    color: var(--color-gray-400);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-gray-600);
+  }
+
+  .service-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.85rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+
+  .service-hero-serif {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-primary-600, #1E3A8A);
+  }
+
+  .service-hero-lead {
+    font-family: var(--font-body);
+    font-size: clamp(1.0625rem, 1.4vw, 1.1875rem);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-gray-800);
+    margin: 0;
+  }
+
+  .service-hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .hero-chip {
+    font-family: var(--font-display);
+    font-size: 0.78125rem;
+    font-weight: 600;
+    color: #131F5B;
+    background-color: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm, 6px);
+  }
+
+  .service-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    flex-wrap: wrap;
+    margin-top: var(--space-2);
+  }
+
+  .btn-primary-action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background-color: var(--color-gold, #FFD26F);
+    color: #131F5B;
+    border: 2px solid var(--color-gold, #FFD26F);
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 14px var(--color-gold-shadow, rgba(255, 210, 111, 0.35));
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+  }
+
+  .btn-primary-action:hover {
+    background-color: var(--color-primary-600, #1E3A8A);
+    border-color: var(--color-primary-600, #1E3A8A);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    color: #131F5B;
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border: 2px solid #131F5B;
+    background-color: transparent;
+    border-radius: var(--radius-sm);
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+  }
+
+  .btn-secondary-action:hover {
+    background-color: #131F5B;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .service-hero-frame {
+    position: relative;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 12px 32px -8px rgba(19, 31, 91, 0.12),
+                0 0 0 1px rgba(19, 31, 91, 0.08);
+    background-color: #f8fafc;
+  }
+
+  .service-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 500ms ease;
+  }
+
+  .service-hero-frame:hover .service-hero-img {
+    transform: scale(1.03);
+  }
+
+  /* ── 3 Pillars Grid ── */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .pillar-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    transition: transform 250ms ease, box-shadow 250ms ease;
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px -6px rgba(19, 31, 91, 0.1);
+  }
+
+  .pillar-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+    padding-bottom: var(--space-3);
+  }
+
+  .pillar-index {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #131F5B;
+    opacity: 0.35;
+  }
+
+  .pillar-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .pillar-desc {
+    font-family: var(--font-body);
+    font-size: 0.90625rem;
+    line-height: 1.6;
+    color: var(--color-gray-700);
+    margin: 0;
+  }
+
+  .pillar-bullets {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-2) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pillar-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: 0.84375rem;
+    color: var(--color-gray-700);
+    line-height: 1.45;
+  }
+
+  .check-icon {
+    color: var(--color-primary-600, #1E3A8A);
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  /* ── Split Editorial: Timeline (4:3 Frame) ── */
+  .editorial-split-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  .split-content-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .split-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.22;
+    margin: 0;
+  }
+
+  .split-lead {
+    font-family: var(--font-body);
+    font-size: 0.96875rem;
+    line-height: 1.6;
+    color: var(--color-gray-700);
+    margin: 0 0 var(--space-2);
+  }
+
+  .timeline-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    width: 100%;
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    background-color: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .timeline-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #131F5B;
+    color: #FFD26F;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .timeline-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .timeline-title {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #131F5B;
+    margin: 0;
+  }
+
+  .timeline-desc {
+    font-family: var(--font-body);
+    font-size: 0.84375rem;
+    line-height: 1.5;
+    color: var(--color-gray-600);
+    margin: 0;
+  }
+
+  .split-image-frame {
+    position: relative;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 10px 28px -6px rgba(19, 31, 91, 0.12),
+                0 0 0 1px rgba(19, 31, 91, 0.08);
+    background-color: #f8fafc;
+  }
+
+  .split-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 450ms ease;
+  }
+
+  .split-image-frame:hover .split-img {
+    transform: scale(1.03);
+  }
+
+  /* ── Dual Roles Matrix ── */
+  .dual-roles-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+
+  .role-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  }
+
+  .role-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+    padding-bottom: var(--space-3);
+  }
+
+  .role-badge {
+    display: inline-flex;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #131F5B;
+    background-color: #f1f5f9;
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    width: fit-content;
+  }
+
+  .role-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .role-points-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .role-points-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--color-gray-700);
+    line-height: 1.5;
+  }
+
+  .point-check {
+    color: var(--color-primary-600, #1E3A8A);
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  /* ── FAQs Grid ── */
+  .faqs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .faq-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .faq-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .faq-answer {
+    font-family: var(--font-body);
+    font-size: 0.90625rem;
+    line-height: 1.65;
+    color: var(--color-gray-600);
+    margin: 0;
+    padding-left: calc(1.1rem + var(--space-2));
+  }
+
+  /* ── Responsive Adaptations ── */
+  @media (max-width: 1024px) {
+    .service-hero-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .service-hero-media {
+      order: -1;
+    }
+
+    .pillars-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .editorial-split-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .split-visual-side {
+      order: -1;
+    }
+
+    .dual-roles-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .faqs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .service-hero-actions {
+      flex-direction: column;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .btn-primary-action,
+    .btn-secondary-action {
+      width: 100%;
+      justify-content: center;
+      min-height: 48px;
+    }
+  }
+</style>

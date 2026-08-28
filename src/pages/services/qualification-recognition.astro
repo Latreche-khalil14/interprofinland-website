@@ -1,45 +1,846 @@
 ---
 /**
- * Qualification Recognition Service — InterProFinland
+ * Foreign Qualification & Degree Recognition — InterProFinland
+ * Comprehensive guidance on OPH, Valvira, and Finnish credential equivalency.
+ * Luxury editorial design matching Home and About design systems.
  */
 
 import Layout from '@/layouts/Layout.astro';
 import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+
+/* ── Competent Authorities Directory in Finland ── */
+const authorities = [
+  {
+    code: 'OPH',
+    name: 'Finnish National Agency for Education (Opetushallitus)',
+    scope: 'Higher education degree comparability (Bachelor, Master, Doctorate), teachers, subject instructors, early childhood educators, and public sector eligibility decisions.',
+    link: 'https://www.oph.fi',
+  },
+  {
+    code: 'Valvira',
+    name: 'National Supervisory Authority for Welfare and Health',
+    scope: 'Licensing and practice rights for regulated healthcare and social welfare professionals (doctors, nurses, dentists, pharmacists, psychologists, physiotherapists, social workers).',
+    link: 'https://valvira.fi',
+  },
+  {
+    code: 'Ruokavirasto',
+    name: 'Finnish Food Authority',
+    scope: 'Official practice rights for veterinarians, animal health practitioners, and food hygiene inspectors qualifying outside the EU/EEA.',
+    link: 'https://www.ruokavirasto.fi',
+  },
+  {
+    code: 'Traficom',
+    name: 'Finnish Transport and Communications Agency',
+    scope: 'Professional qualifications and credential conversions for maritime captains, aviation pilots, engineers, and specialized transport professionals.',
+    link: 'https://www.traficom.fi',
+  },
+];
+
+/* ── 4-Stage Recognition Roadmap ── */
+const roadmapStages = [
+  {
+    stage: '01',
+    title: 'Determining Authority & Path',
+    description:
+      'We identify whether your profession is regulated or non-regulated in Finland, determining whether you need an OPH comparability decision or official licensing from a specific agency like Valvira.',
+  },
+  {
+    stage: '02',
+    title: 'Dossier Assembly & Sworn Translations',
+    description:
+      'Compiling your degree certificate, Diploma Supplement, transcript of records with credit hours/ECTS, and arranging certified translations by an authorized translator (Auktorisoitu kääntäjä).',
+  },
+  {
+    stage: '03',
+    title: 'Application Submission & Processing',
+    description:
+      'Submitting your official dossier to the competent authority, tracking verification requests, and preparing for any formal statements or requests for additional clarification.',
+  },
+  {
+    stage: '04',
+    title: 'Adaptation Period or Final Practice Rights',
+    description:
+      'For regulated professions, navigating any required aptitude tests (kelpoisuuskoe), adaptation periods (sopeutumisaika), or supplementary university courses to achieve full licensure.',
+  },
+];
+
+/* ── Essential Document Requirements ── */
+const documentRequirements = [
+  {
+    title: 'Official Degree Certificate & Diploma',
+    detail: 'Original certificate in the native language plus certified English, Finnish, or Swedish translation.',
+  },
+  {
+    title: 'Official Academic Transcript (Diploma Supplement)',
+    detail: 'Comprehensive list of courses completed, study hours, credits, and grading scale explanation.',
+  },
+  {
+    title: 'Professional License / Certificate of Good Standing',
+    detail: 'Required for healthcare and regulated fields to prove you held legal practice rights in your home country.',
+  },
+  {
+    title: 'Valid Passport or Finnish Residence Permit',
+    detail: 'Official identification verifying your personal identity and right of residence in Finland.',
+  },
+];
+
+/* ── Specific Recognition FAQs ── */
+const recognitionFaqs = [
+  {
+    q: 'How long does the OPH degree comparability process typically take?',
+    a: 'Processing times for OPH comparability decisions typically range from 2 to 4 months once all required certified documents have been received.',
+  },
+  {
+    q: 'Do I need a decision if my profession is non-regulated (e.g. IT or Business)?',
+    a: 'For private sector non-regulated roles, employers can hire based on skills without a state decision. However, an OPH statement officially confirms your academic level (e.g., Master’s level) and provides credibility.',
+  },
+  {
+    q: 'What is the difference between an academic statement and professional recognition?',
+    a: 'An academic statement compares degree level (e.g., your Bachelor equals a Finnish Kandidaatti). Professional recognition grants the legal right to practice a specific regulated profession in Finland.',
+  },
+  {
+    q: 'How can InterProFinland assist with Valvira or OPH paperwork?',
+    a: 'We review your documents for completeness, help clarify authority instructions, advise on certified translation requirements, and connect you with peers who completed the same process.',
+  },
+];
 ---
 
 <Layout
   title="Foreign Qualification & Degree Recognition — InterProFinland"
-  description="Navigate the recognition of your international qualifications and professional credentials in Finland."
+  description="Step-by-step guidance on validating foreign degrees, navigating OPH and Valvira regulations, and achieving professional practice rights in Finland."
 >
-  <Section>
-    <Container size="content">
-      <div style="text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
-      <h1>Foreign Qualification & Degree Recognition</h1>
-      
-      <h2 style="margin-top: 2rem;">📋 Page Sections</h2>
-      <p style="text-align: left; line-height: 2;">
-        • Hero<br>
-        • Why recognition matters<br>
-        • Overview of the process<br>
-        • Step-by-step support<br>
-        • Competent authorities (OPH, Valvira, other)<br>
-        • Regulated professions<br>
-        • Complementary studies<br>
-        • Educational institutions<br>
-        • Qualification Recognition Handbook<br>
-        • Degree AMPLIFY<br>
-        • Related resources<br>
-        • CTA
-      </p>
+  <!-- ==========================================================================
+       HERO SECTION: Purpose Manifesto Pattern (16:9 Image Frame)
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="service-hero-layout">
+        <div class="service-hero-content">
+          <div class="service-hero-breadcrumb">
+            <a href="/services" class="breadcrumb-back">← Back to Services</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Qualification Recognition</span>
+          </div>
 
-      <p style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin: 2rem 0;">
-        <strong>⚠️ Important:</strong> InterProFinland provides guidance through the process; we are not the official recognition authority.
-      </p>
+          <h1 class="service-hero-title">
+            Foreign Qualification &amp; Degree <span class="service-hero-serif">Recognition in Finland</span>
+          </h1>
 
-      <p style="margin-top: 2rem;"><em>Page under construction</em></p>
-      <p><a href="/services" style="color: #131f5b;">← Back to Services</a></p>
+          <p class="service-hero-lead">
+            Navigating Finnish regulatory authorities can be complex. We provide step-by-step guidance
+            to help you validate your international credentials, obtain official comparability decisions, and gain
+            licensure for regulated professions.
+          </p>
+
+          <div class="service-hero-chips">
+            <span class="hero-chip">🏛️ OPH Comparability Decisions</span>
+            <span class="hero-chip">🏥 Valvira Healthcare Licensing</span>
+            <span class="hero-chip">📜 Sworn Translation Guidance</span>
+            <span class="hero-chip">🎓 Regulated Profession Rights</span>
+          </div>
+
+          <div class="service-hero-actions">
+            <a
+              href="https://form.jotform.com/InterProFinland/membership-application-form"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary-action"
+            >
+              <span>Request Recognition Guidance</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href="#authorities-directory" class="btn-secondary-action">
+              <span>View Regulatory Bodies</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="service-hero-media">
+          <div class="service-hero-frame">
+            <img
+              src="https://placehold.co/800x450/131f5b/ffd26f?text=Qualification+Recognition+Support"
+              alt="Foreign degree recognition and credential validation advising"
+              class="service-hero-img"
+              width="800"
+              height="450"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
       </div>
     </Container>
   </Section>
+
+  <!-- ==========================================================================
+       AUTHORITIES DIRECTORY (4-Column Grid)
+       ========================================================================== -->
+  <Section>
+    <div id="authorities-directory"></div>
+    <Container size="page">
+      <div class="section-header-center">
+        <span class="section-eyebrow">Regulatory Authorities</span>
+        <h2 class="section-heading">Key Finnish Decision-Making Bodies</h2>
+        <p class="section-intro">
+          Depending on your profession, specific state agencies evaluate credentials and grant official practice rights.
+        </p>
+      </div>
+
+      <div class="authorities-grid">
+        {
+          authorities.map((auth) => (
+            <div class="authority-card">
+              <div class="authority-code-badge">{auth.code}</div>
+              <h3 class="authority-name">{auth.name}</h3>
+              <p class="authority-scope">{auth.scope}</p>
+              <a href={auth.link} target="_blank" rel="noopener noreferrer" class="authority-ext-link">
+                <span>Visit Official Portal</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       ROADMAP: 4-Stage Recognition Process (Cards)
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="section-header-center">
+        <span class="section-eyebrow">Step-by-Step Roadmap</span>
+        <h2 class="section-heading">The 4 Stages of Degree Recognition</h2>
+        <p class="section-intro">
+          Understanding the sequence of actions prevents costly delays and ensures your application dossier is complete.
+        </p>
+      </div>
+
+      <div class="roadmap-grid">
+        {
+          roadmapStages.map((st) => (
+            <div class="roadmap-card">
+              <div class="roadmap-badge">{st.stage}</div>
+              <h3 class="roadmap-title">{st.title}</h3>
+              <p class="roadmap-desc">{st.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       SPLIT EDITORIAL: Document Preparation & Translations (4:3 Media Frame)
+       ========================================================================== -->
+  <Section>
+    <Container size="page">
+      <div class="editorial-split-layout">
+        <div class="split-content-side">
+          <span class="section-eyebrow">Document Checklist</span>
+          <h2 class="split-heading">Required Documents &amp; Translation Standards</h2>
+          <p class="split-lead">
+            Finnish authorities maintain strict requirements for document authentication. Having certified
+            translations and complete transcripts ready is vital.
+          </p>
+
+          <div class="requirements-list">
+            {
+              documentRequirements.map((doc) => (
+                <div class="requirement-item">
+                  <div class="req-check" aria-hidden="true">✓</div>
+                  <div class="req-info">
+                    <h4 class="req-title">{doc.title}</h4>
+                    <p class="req-detail">{doc.detail}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="split-visual-side">
+          <div class="split-image-frame">
+            <img
+              src="https://placehold.co/800x600/e5e7eb/131f5b?text=Document+Preparation"
+              alt="Document preparation and official certified translation guide"
+              class="split-img"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       SPECIFIC RECOGNITION FAQS
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="section-header-center">
+        <span class="section-eyebrow">Recognition FAQs</span>
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <p class="section-intro">
+          Direct answers to common questions on foreign degree evaluation in Finland.
+        </p>
+      </div>
+
+      <div class="faqs-grid">
+        {
+          recognitionFaqs.map((faq) => (
+            <div class="faq-card">
+              <h3 class="faq-question">
+                <span class="faq-icon" aria-hidden="true">📜</span>
+                <span>{faq.q}</span>
+              </h3>
+              <p class="faq-answer">{faq.a}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       BOTTOM CTA
+       ========================================================================== -->
+  <CtaSection
+    heading="Need Guidance on Your Foreign Degree in Finland?"
+    subheading="Book a consultation with our advisory team to review your qualifications, identify competent authorities, and map out your official recognition pathway."
+    cta={{
+      label: 'Apply for Recognition Guidance',
+      href: 'https://form.jotform.com/InterProFinland/membership-application-form',
+    }}
+  />
 </Layout>
+
+<style>
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+    margin-bottom: var(--space-2);
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2.8vw, 2.35rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+
+  .section-intro {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    max-width: 65ch;
+    margin: 0 auto var(--space-8);
+    line-height: var(--line-height-relaxed);
+    text-align: center;
+  }
+
+  .section-header-center {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  /* ── Hero Section (16:9 Frame) ── */
+  .service-hero-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+    padding: clamp(2rem, 4vw, 3.5rem) 0;
+  }
+
+  .service-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .service-hero-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .breadcrumb-back {
+    color: var(--color-primary-600, #1E3A8A);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+
+  .breadcrumb-back:hover {
+    color: #131F5B;
+    text-decoration: underline;
+  }
+
+  .breadcrumb-separator {
+    color: var(--color-gray-400);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-gray-600);
+  }
+
+  .service-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.85rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+
+  .service-hero-serif {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-primary-600, #1E3A8A);
+  }
+
+  .service-hero-lead {
+    font-family: var(--font-body);
+    font-size: clamp(1.0625rem, 1.4vw, 1.1875rem);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-gray-800);
+    margin: 0;
+  }
+
+  .service-hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .hero-chip {
+    font-family: var(--font-display);
+    font-size: 0.78125rem;
+    font-weight: 600;
+    color: #131F5B;
+    background-color: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm, 6px);
+  }
+
+  .service-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    flex-wrap: wrap;
+    margin-top: var(--space-2);
+  }
+
+  .btn-primary-action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background-color: var(--color-gold, #FFD26F);
+    color: #131F5B;
+    border: 2px solid var(--color-gold, #FFD26F);
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 14px var(--color-gold-shadow, rgba(255, 210, 111, 0.35));
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+  }
+
+  .btn-primary-action:hover {
+    background-color: var(--color-primary-600, #1E3A8A);
+    border-color: var(--color-primary-600, #1E3A8A);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    color: #131F5B;
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border: 2px solid #131F5B;
+    background-color: transparent;
+    border-radius: var(--radius-sm);
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+  }
+
+  .btn-secondary-action:hover {
+    background-color: #131F5B;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .service-hero-frame {
+    position: relative;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 12px 32px -8px rgba(19, 31, 91, 0.12),
+                0 0 0 1px rgba(19, 31, 91, 0.08);
+    background-color: #f8fafc;
+  }
+
+  .service-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 500ms ease;
+  }
+
+  .service-hero-frame:hover .service-hero-img {
+    transform: scale(1.03);
+  }
+
+  /* ── Authorities Grid ── */
+  .authorities-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+
+  .authority-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    transition: transform 250ms ease, box-shadow 250ms ease;
+  }
+
+  .authority-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px -6px rgba(19, 31, 91, 0.1);
+  }
+
+  .authority-code-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 0.875rem;
+    color: #131F5B;
+    background-color: #f1f5f9;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    width: fit-content;
+  }
+
+  .authority-name {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  .authority-scope {
+    font-family: var(--font-body);
+    font-size: 0.84375rem;
+    line-height: 1.55;
+    color: var(--color-gray-600);
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .authority-ext-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--color-primary-600, #1E3A8A);
+    text-decoration: none;
+    margin-top: var(--space-2);
+  }
+
+  .authority-ext-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ── Roadmap Cards (4 Stages) ── */
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+
+  .roadmap-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  }
+
+  .roadmap-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: #131F5B;
+    color: #FFD26F;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 0.9375rem;
+    border-radius: var(--radius-md);
+  }
+
+  .roadmap-title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: var(--space-1) 0 0;
+  }
+
+  .roadmap-desc {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-gray-600);
+    margin: 0;
+  }
+
+  /* ── Split Editorial: Document Checklist (4:3 Frame) ── */
+  .editorial-split-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  .split-content-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .split-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.22;
+    margin: 0;
+  }
+
+  .split-lead {
+    font-family: var(--font-body);
+    font-size: 0.96875rem;
+    line-height: 1.6;
+    color: var(--color-gray-700);
+    margin: 0 0 var(--space-2);
+  }
+
+  .requirements-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    width: 100%;
+  }
+
+  .requirement-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    background-color: #f8fafc;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .req-check {
+    color: var(--color-primary-600, #1E3A8A);
+    font-weight: 800;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .req-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .req-title {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #131F5B;
+    margin: 0;
+  }
+
+  .req-detail {
+    font-family: var(--font-body);
+    font-size: 0.84375rem;
+    line-height: 1.5;
+    color: var(--color-gray-600);
+    margin: 0;
+  }
+
+  .split-image-frame {
+    position: relative;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 10px 28px -6px rgba(19, 31, 91, 0.12),
+                0 0 0 1px rgba(19, 31, 91, 0.08);
+    background-color: #f8fafc;
+  }
+
+  .split-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 450ms ease;
+  }
+
+  .split-image-frame:hover .split-img {
+    transform: scale(1.03);
+  }
+
+  /* ── FAQs Grid ── */
+  .faqs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .faq-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .faq-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .faq-answer {
+    font-family: var(--font-body);
+    font-size: 0.90625rem;
+    line-height: 1.65;
+    color: var(--color-gray-600);
+    margin: 0;
+    padding-left: calc(1.1rem + var(--space-2));
+  }
+
+  /* ── Responsive Adaptations ── */
+  @media (max-width: 1024px) {
+    .service-hero-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .service-hero-media {
+      order: -1;
+    }
+
+    .authorities-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .roadmap-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .editorial-split-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .split-visual-side {
+      order: -1;
+    }
+
+    .faqs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .service-hero-actions {
+      flex-direction: column;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .btn-primary-action,
+    .btn-secondary-action {
+      width: 100%;
+      justify-content: center;
+      min-height: 48px;
+    }
+
+    .authorities-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .roadmap-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

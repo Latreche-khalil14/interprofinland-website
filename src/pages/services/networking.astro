@@ -1,39 +1,741 @@
 ---
 /**
- * Networking Service — InterProFinland
+ * Networking & Regional Opportunities — InterProFinland
+ * Direct employer matchmaking, professional roundtables, and regional integration networks.
+ * Luxury editorial design matching Home and About design systems.
  */
 
 import Layout from '@/layouts/Layout.astro';
 import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+
+/* ── 3 Networking Pillars ── */
+const networkingPillars = [
+  {
+    number: '01',
+    title: 'Employer Matchmaking Roundtables',
+    description:
+      'We organize focused roundtable discussions connecting recruiting companies, HR directors, and hiring managers directly with qualified international job seekers.',
+    bullets: [
+      'Direct, low-barrier introductions to hiring managers and corporate leaders',
+      'Pitching sessions and speed-networking formats tailored to your domain',
+      'Constructive feedback directly from recruiters on local candidate expectations',
+    ],
+  },
+  {
+    number: '02',
+    title: 'Cross-Sector Professional Seminars',
+    description:
+      'Regular industry panel discussions and topical webinars covering emerging technologies, green transition, regional economic trends, and international talent attraction.',
+    bullets: [
+      'Expert speakers from Finnish industry, academia, and public sector development',
+      'Interdisciplinary networking with peers from 80+ professions across Finland',
+      'Hybrid participation: physical venues in Satakunta and live Zoom streaming',
+    ],
+  },
+  {
+    number: '03',
+    title: 'Regional Ecosystem & Startup Partnerships',
+    description:
+      'Collaborations with regional entrepreneurship societies (PoriES), recruitment initiatives (Satarekry), universities (SAMK), and municipal integration agencies.',
+    bullets: [
+      'Connecting international professionals with local startup hubs and innovation clusters',
+      'Access to regional career fairs, business forums, and municipal workshops',
+      'Fostering entrepreneurial ventures and international business partnerships',
+    ],
+  },
+];
+
+/* ── Finnish Networking Etiquette & Culture ── */
+const networkingEtiquette = [
+  {
+    title: 'The Power of "Kahvittelu" (Coffee Chats)',
+    text: 'In Finland, an informal 15-minute coffee chat or virtual tea is the standard way to connect with industry peers. Keep requests concise, clear, and focused on learning.',
+  },
+  {
+    title: 'Directness Over Flattery',
+    text: 'Finnish professionals appreciate straightforward communication. Clearly state why you are reaching out and what specific industry topics you wish to discuss.',
+  },
+  {
+    title: 'LinkedIn as a Primary Professional Tool',
+    text: 'LinkedIn is widely used by Finnish recruiters and decision-makers. Connect with a personalized note referencing a shared event or mutual professional interest.',
+  },
+  {
+    title: 'Mutual Value & Long-Term Trust',
+    text: 'Networking in Finland is built on reliability and reciprocal value. Share industry insights, support peers, and nurture relationships consistently over time.',
+  },
+];
+
+/* ── Specific Networking FAQs ── */
+const networkingFaqs = [
+  {
+    q: 'How often are professional networking events held?',
+    a: 'We host monthly themed networking meetups, quarterly employer roundtables, and major regional events such as the annual Satakunta International Professionals Fair (SIPF).',
+  },
+  {
+    q: 'Do I need fluent Finnish to participate in networking events?',
+    a: 'No, our networking sessions and employer roundtables are conducted in English, with opportunities to practice Finnish in bilingual breakout discussions.',
+  },
+  {
+    q: 'Can employers contact InterProFinland to meet international talent?',
+    a: 'Yes! We actively collaborate with Finnish companies seeking specialized skills, organizing targeted matchmaking sessions and company showcase visits.',
+  },
+  {
+    q: 'Are your networking events open to students and recent graduates?',
+    a: 'Absolutely. International degree students, recent graduates, and seasoned professionals are all warmly welcome to join and expand their network.',
+  },
+];
 ---
 
 <Layout
   title="Networking & Regional Opportunities — InterProFinland"
-  description="Bridge the gap to Finnish working life through professional networks and regional talent fairs."
+  description="Connect with recruiting employers, industry leaders, and an active network of 1,800+ international professionals across Finland."
 >
-  <Section>
-    <Container size="content">
-      <div style="text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
-      <h1>Networking & Regional Opportunities</h1>
-      
-      <h2 style="margin-top: 2rem;">📋 Page Sections</h2>
-      <p style="text-align: left; line-height: 2;">
-        • Hero<br>
-        • Why professional networks matter<br>
-        • Networking opportunities<br>
-        • Regional opportunities<br>
-        • Employers / professional ecosystems<br>
-        • Networking events<br>
-        • International talent fairs<br>
-        • Community connections<br>
-        • Related projects<br>
-        • CTA
-      </p>
+  <!-- ==========================================================================
+       HERO SECTION: Purpose Manifesto Pattern (16:9 Image Frame)
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="service-hero-layout">
+        <div class="service-hero-content">
+          <div class="service-hero-breadcrumb">
+            <a href="/services" class="breadcrumb-back">← Back to Services</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Networking &amp; Opportunities</span>
+          </div>
 
-      <p style="margin-top: 2rem;"><em>Page under construction</em></p>
-      <p><a href="/services" style="color: #131f5b;">← Back to Services</a></p>
+          <h1 class="service-hero-title">
+            Networking &amp; Regional <span class="service-hero-serif">Opportunities in Finland</span>
+          </h1>
+
+          <p class="service-hero-lead">
+            Bridge the gap to Finnish employment through direct employer matchmaking, cross-sector industry
+            seminars, and regional business collaborations designed to connect global talent with local opportunities.
+          </p>
+
+          <div class="service-hero-chips">
+            <span class="hero-chip">🤝 Direct Employer Matchmaking</span>
+            <span class="hero-chip">🎙️ Industry Panel Seminars</span>
+            <span class="hero-chip">🚀 Regional Innovation Hubs</span>
+            <span class="hero-chip">🌐 Active 1,800+ Member Network</span>
+          </div>
+
+          <div class="service-hero-actions">
+            <a
+              href="https://form.jotform.com/InterProFinland/membership-application-form"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary-action"
+            >
+              <span>Join the Network</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href="#networking-pillars" class="btn-secondary-action">
+              <span>View Networking Formats</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="service-hero-media">
+          <div class="service-hero-frame">
+            <img
+              src="https://placehold.co/800x450/131f5b/ffd26f?text=Professional+Networking+Hub"
+              alt="Professional networking meeting and employer roundtable in Finland"
+              class="service-hero-img"
+              width="800"
+              height="450"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
       </div>
     </Container>
   </Section>
+
+  <!-- ==========================================================================
+       CORE PILLARS (3-Column Grid)
+       ========================================================================== -->
+  <Section>
+    <div id="networking-pillars"></div>
+    <Container size="page">
+      <div class="section-header-center">
+        <span class="section-eyebrow">Connection Formats</span>
+        <h2 class="section-heading">How We Connect Talent with Opportunities</h2>
+        <p class="section-intro">
+          Our networking initiatives are focused on creating genuine professional relationships,
+          demystifying Finnish hiring, and showcasing the value of international expertise.
+        </p>
+      </div>
+
+      <div class="pillars-grid">
+        {
+          networkingPillars.map((p) => (
+            <div class="pillar-card">
+              <div class="pillar-header">
+                <span class="pillar-index">{p.number}</span>
+                <h3 class="pillar-title">{p.title}</h3>
+              </div>
+              <p class="pillar-desc">{p.description}</p>
+              
+              <ul class="pillar-bullets" role="list">
+                {p.bullets.map((b) => (
+                  <li>
+                    <span class="check-icon" aria-hidden="true">✓</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       SPLIT EDITORIAL: Finnish Networking Etiquette (4:3 Frame)
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="editorial-split-layout">
+        <div class="split-content-side">
+          <span class="section-eyebrow">Cultural Context</span>
+          <h2 class="split-heading">The Finnish Networking Mindset</h2>
+          <p class="split-lead">
+            Networking in Finland differs from high-context cultures. Building authentic, low-pressure
+            relationships based on mutual trust is the key to discovering hidden opportunities.
+          </p>
+
+          <div class="etiquette-grid">
+            {
+              networkingEtiquette.map((et) => (
+                <div class="etiquette-box">
+                  <h4 class="etiquette-title">{et.title}</h4>
+                  <p class="etiquette-text">{et.text}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="split-visual-side">
+          <div class="split-image-frame">
+            <img
+              src="https://placehold.co/800x600/e5e7eb/131f5b?text=Finnish+Networking+Culture"
+              alt="Finnish professional networking and coffee chat culture"
+              class="split-img"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       SPECIFIC FAQS
+       ========================================================================== -->
+  <Section>
+    <Container size="page">
+      <div class="section-header-center">
+        <span class="section-eyebrow">Networking FAQs</span>
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <p class="section-intro">
+          Common questions on attending matchmaking sessions, meeting regional employers, and expanding your network.
+        </p>
+      </div>
+
+      <div class="faqs-grid">
+        {
+          networkingFaqs.map((faq) => (
+            <div class="faq-card">
+              <h3 class="faq-question">
+                <span class="faq-icon" aria-hidden="true">🌐</span>
+                <span>{faq.q}</span>
+              </h3>
+              <p class="faq-answer">{faq.a}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       BOTTOM CTA
+       ========================================================================== -->
+  <CtaSection
+    heading="Ready to Expand Your Professional Circle in Finland?"
+    subheading="Join InterProFinland today to participate in upcoming employer roundtables, industry seminars, and regional networking events."
+    cta={{
+      label: 'Join the Community & Events',
+      href: 'https://form.jotform.com/InterProFinland/membership-application-form',
+    }}
+  />
 </Layout>
+
+<style>
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+    margin-bottom: var(--space-2);
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2.8vw, 2.35rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+
+  .section-intro {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    max-width: 65ch;
+    margin: 0 auto var(--space-8);
+    line-height: var(--line-height-relaxed);
+    text-align: center;
+  }
+
+  .section-header-center {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  /* ── Hero Section (16:9 Frame) ── */
+  .service-hero-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+    padding: clamp(2rem, 4vw, 3.5rem) 0;
+  }
+
+  .service-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .service-hero-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .breadcrumb-back {
+    color: var(--color-primary-600, #1E3A8A);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+
+  .breadcrumb-back:hover {
+    color: #131F5B;
+    text-decoration: underline;
+  }
+
+  .breadcrumb-separator {
+    color: var(--color-gray-400);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-gray-600);
+  }
+
+  .service-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.85rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+
+  .service-hero-serif {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-primary-600, #1E3A8A);
+  }
+
+  .service-hero-lead {
+    font-family: var(--font-body);
+    font-size: clamp(1.0625rem, 1.4vw, 1.1875rem);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-gray-800);
+    margin: 0;
+  }
+
+  .service-hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .hero-chip {
+    font-family: var(--font-display);
+    font-size: 0.78125rem;
+    font-weight: 600;
+    color: #131F5B;
+    background-color: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm, 6px);
+  }
+
+  .service-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    flex-wrap: wrap;
+    margin-top: var(--space-2);
+  }
+
+  .btn-primary-action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background-color: var(--color-gold, #FFD26F);
+    color: #131F5B;
+    border: 2px solid var(--color-gold, #FFD26F);
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 14px var(--color-gold-shadow, rgba(255, 210, 111, 0.35));
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+  }
+
+  .btn-primary-action:hover {
+    background-color: var(--color-primary-600, #1E3A8A);
+    border-color: var(--color-primary-600, #1E3A8A);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    color: #131F5B;
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border: 2px solid #131F5B;
+    background-color: transparent;
+    border-radius: var(--radius-sm);
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+  }
+
+  .btn-secondary-action:hover {
+    background-color: #131F5B;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .service-hero-frame {
+    position: relative;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 12px 32px -8px rgba(19, 31, 91, 0.12),
+                0 0 0 1px rgba(19, 31, 91, 0.08);
+    background-color: #f8fafc;
+  }
+
+  .service-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 500ms ease;
+  }
+
+  .service-hero-frame:hover .service-hero-img {
+    transform: scale(1.03);
+  }
+
+  /* ── 3 Pillars Grid ── */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .pillar-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    transition: transform 250ms ease, box-shadow 250ms ease;
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px -6px rgba(19, 31, 91, 0.1);
+  }
+
+  .pillar-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+    padding-bottom: var(--space-3);
+  }
+
+  .pillar-index {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #131F5B;
+    opacity: 0.35;
+  }
+
+  .pillar-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .pillar-desc {
+    font-family: var(--font-body);
+    font-size: 0.90625rem;
+    line-height: 1.6;
+    color: var(--color-gray-700);
+    margin: 0;
+  }
+
+  .pillar-bullets {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-2) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pillar-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: 0.84375rem;
+    color: var(--color-gray-700);
+    line-height: 1.45;
+  }
+
+  .check-icon {
+    color: var(--color-primary-600, #1E3A8A);
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  /* ── Split Editorial: Etiquette (4:3 Frame) ── */
+  .editorial-split-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  .split-content-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .split-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.22;
+    margin: 0;
+  }
+
+  .split-lead {
+    font-family: var(--font-body);
+    font-size: 0.96875rem;
+    line-height: 1.6;
+    color: var(--color-gray-700);
+    margin: 0 0 var(--space-2);
+  }
+
+  .etiquette-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    width: 100%;
+  }
+
+  .etiquette-box {
+    background-color: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    padding: var(--space-4);
+  }
+
+  .etiquette-title {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #131F5B;
+    margin: 0 0 4px;
+  }
+
+  .etiquette-text {
+    font-family: var(--font-body);
+    font-size: 0.84375rem;
+    line-height: 1.5;
+    color: var(--color-gray-600);
+    margin: 0;
+  }
+
+  .split-image-frame {
+    position: relative;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 10px 28px -6px rgba(19, 31, 91, 0.12),
+                0 0 0 1px rgba(19, 31, 91, 0.08);
+    background-color: #f8fafc;
+  }
+
+  .split-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 450ms ease;
+  }
+
+  .split-image-frame:hover .split-img {
+    transform: scale(1.03);
+  }
+
+  /* ── FAQs Grid ── */
+  .faqs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .faq-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .faq-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .faq-answer {
+    font-family: var(--font-body);
+    font-size: 0.90625rem;
+    line-height: 1.65;
+    color: var(--color-gray-600);
+    margin: 0;
+    padding-left: calc(1.1rem + var(--space-2));
+  }
+
+  /* ── Responsive Adaptations ── */
+  @media (max-width: 1024px) {
+    .service-hero-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .service-hero-media {
+      order: -1;
+    }
+
+    .pillars-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .editorial-split-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .split-visual-side {
+      order: -1;
+    }
+
+    .faqs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .service-hero-actions {
+      flex-direction: column;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .btn-primary-action,
+    .btn-secondary-action {
+      width: 100%;
+      justify-content: center;
+      min-height: 48px;
+    }
+
+    .etiquette-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

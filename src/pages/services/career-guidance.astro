@@ -1,42 +1,741 @@
 ---
 /**
- * Career Guidance Service — InterProFinland
+ * Career Guidance & Workplace Culture — InterProFinland
+ * Dedicated in-depth service page for labour market navigation, CV tailoring, and workplace integration.
+ * Luxury editorial design matching Home and About design systems.
  */
 
 import Layout from '@/layouts/Layout.astro';
 import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+
+/* ── 3 Core Advisory Pillars ── */
+const advisoryPillars = [
+  {
+    number: '01',
+    title: 'Finnish-Standard CV & Application Tailoring',
+    description:
+      'Finnish employers expect concise, transparent, and impact-driven CVs. We guide you in highlighting transferable international experience, language capabilities, and technical competencies according to Finnish hiring standards.',
+    highlights: [
+      'Concise 1–2 page reverse-chronological layout formatted for Finnish ATS systems',
+      'Framing international projects and quantifiable achievements clearly',
+      'Tailoring targeted cover letters addressing specific role requirements',
+    ],
+  },
+  {
+    number: '02',
+    title: 'Unlocking the Hidden Job Market (Piilotyöpaikat)',
+    description:
+      'Over 70% of open positions in Finland are filled without ever being published on public job boards. We provide systematic strategies for direct recruiter outreach, industry mapping, and proactive networking.',
+    highlights: [
+      'Identifying growing regional companies and decision-makers in your sector',
+      'Constructing professional cold-contact messages in English and Finnish',
+      'Optimizing your LinkedIn profile for Finnish recruiters and search algorithms',
+    ],
+  },
+  {
+    number: '03',
+    title: 'Workplace Culture & Labour Legislation (TES)',
+    description:
+      'Understanding Finnish working norms—flat hierarchy, low-context direct communication, punctuality, and self-direction—is essential for passing trial periods and building long-term career growth.',
+    highlights: [
+      'Collective labour agreements (Työehtosopimus / TES) and salary standards',
+      'Trial period (Koeaika) expectations, employee rights, and occupational health',
+      'Communication nuances, autonomy, and constructive feedback in Finnish teams',
+    ],
+  },
+];
+
+/* ── Interview & Preparation Checklist ── */
+const interviewTips = [
+  {
+    title: 'Directness & Authenticity',
+    text: 'Finnish interviewers value honesty over exaggeration. Clearly state what you know, acknowledge areas you are learning, and give concrete examples.',
+  },
+  {
+    title: 'Preparation on Company Strategy',
+    text: 'Demonstrate deep knowledge of the company’s recent projects, clients, and industry standing. Ask thoughtful questions about team workflows.',
+  },
+  {
+    title: 'Salary Expectation (Palkkatoive)',
+    text: 'In Finland, job seekers are frequently asked for a salary request. We assist you in benchmarking realistic salary ranges using union statistics.',
+  },
+  {
+    title: 'Language Proficiency Context',
+    text: 'Clearly articulate your current Finnish language learning plan, even for English-speaking roles, showing commitment to long-term integration.',
+  },
+];
+
+/* ── Specific Career FAQs ── */
+const careerFaqs = [
+  {
+    q: 'What should I bring to a CV and career advisory session?',
+    a: 'Please bring your current CV, links to your LinkedIn or portfolio, examples of job descriptions you are targeting, and any questions regarding Finnish working life.',
+  },
+  {
+    q: 'Do you help with finding internships or first jobs in Finland?',
+    a: 'Yes, we assist international graduates and newly arrived professionals in identifying entry pathways, trainee programs, and municipal employment initiatives.',
+  },
+  {
+    q: 'Are career guidance consultations conducted in English or Finnish?',
+    a: 'Consultations can be held in English or Finnish based on your preference and comfort level.',
+  },
+  {
+    q: 'Can you review my contract before I sign with an employer?',
+    a: 'We can provide general orientation on standard Finnish contract elements (working hours, trial period clauses, TES references). For legal disputes, we refer to specialized trade unions.',
+  },
+];
 ---
 
 <Layout
   title="Career Guidance & Workplace Culture — InterProFinland"
-  description="Gain practical insights into the Finnish labour market, working culture, and strategic job search approaches."
+  description="Master the Finnish labour market with individualized CV reviews, hidden job search strategies, interview coaching, and workplace culture orientation."
 >
-  <Section>
-    <Container size="content">
-      <div style="text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
-      <h1>Career Guidance & Workplace Culture</h1>
-      
-      <h2 style="margin-top: 2rem;">📋 Page Sections</h2>
-      <p style="text-align: left; line-height: 2;">
-        • Hero<br>
-        • What this service is<br>
-        • Who it is for<br>
-        • Finnish labour market<br>
-        • Workplace culture<br>
-        • Job search<br>
-        • CV / application support<br>
-        • Profession-specific guidance<br>
-        • Webinars & workshops<br>
-        • One-to-one guidance<br>
-        • Related programs<br>
-        • Related events<br>
-        • CTA
-      </p>
+  <!-- ==========================================================================
+       HERO SECTION: Purpose Manifesto Pattern (16:9 Image Frame)
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="service-hero-layout">
+        <div class="service-hero-content">
+          <div class="service-hero-breadcrumb">
+            <a href="/services" class="breadcrumb-back">← Back to Services</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Career Guidance</span>
+          </div>
 
-      <p style="margin-top: 2rem;"><em>Page under construction</em></p>
-      <p><a href="/services" style="color: #131f5b;">← Back to Services</a></p>
+          <h1 class="service-hero-title">
+            Career Guidance &amp; Finnish <span class="service-hero-serif">Workplace Culture</span>
+          </h1>
+
+          <p class="service-hero-lead">
+            Gain strategic clarity and practical tools to navigate the Finnish employment landscape,
+            tailor your application materials, and confidently integrate into Finnish working life.
+          </p>
+
+          <div class="service-hero-chips">
+            <span class="hero-chip">📄 CV &amp; Cover Letter Review</span>
+            <span class="hero-chip">🎯 Hidden Job Market Strategy</span>
+            <span class="hero-chip">🗣️ Interview Coaching</span>
+            <span class="hero-chip">⚖️ Labour Rights &amp; TES</span>
+          </div>
+
+          <div class="service-hero-actions">
+            <a
+              href="https://form.jotform.com/InterProFinland/membership-application-form"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary-action"
+            >
+              <span>Book a Career Advisory Session</span>
+              <span aria-hidden="true">→</span>
+            </a>
+            <a href="#advisory-pillars" class="btn-secondary-action">
+              <span>View Guidance Pillars</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="service-hero-media">
+          <div class="service-hero-frame">
+            <img
+              src="https://placehold.co/800x450/131f5b/ffd26f?text=Career+Guidance+Finnish+Workplace"
+              alt="Career guidance consultation and job search strategy session"
+              class="service-hero-img"
+              width="800"
+              height="450"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
       </div>
     </Container>
   </Section>
+
+  <!-- ==========================================================================
+       CORE GUIDANCE PILLARS (3-Column Cards)
+       ========================================================================== -->
+  <Section>
+    <div id="advisory-pillars"></div>
+    <Container size="page">
+      <div class="section-header-center">
+        <span class="section-eyebrow">Strategic Advisory</span>
+        <h2 class="section-heading">How We Support Your Career Journey</h2>
+        <p class="section-intro">
+          Our structured career guidance covers the essential components required to transition
+          from international credentials to meaningful Finnish employment.
+        </p>
+      </div>
+
+      <div class="pillars-grid">
+        {
+          advisoryPillars.map((p) => (
+            <div class="pillar-card">
+              <div class="pillar-header">
+                <span class="pillar-index">{p.number}</span>
+                <h3 class="pillar-title">{p.title}</h3>
+              </div>
+              <p class="pillar-desc">{p.description}</p>
+              
+              <ul class="pillar-highlights" role="list">
+                {p.highlights.map((h) => (
+                  <li>
+                    <span class="check-icon" aria-hidden="true">✓</span>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       SPLIT EDITORIAL: Mastering the Finnish Job Interview (4:3 Media Frame)
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="editorial-split-layout">
+        <div class="split-content-side">
+          <span class="section-eyebrow">Interview Preparation</span>
+          <h2 class="split-heading">Mastering the Finnish Recruitment Interview</h2>
+          <p class="split-lead">
+            Interviews in Finland have distinct cultural expectations. Understanding these nuances
+            helps you present your experience with credibility and confidence.
+          </p>
+
+          <div class="tips-grid">
+            {
+              interviewTips.map((tip) => (
+                <div class="tip-box">
+                  <h4 class="tip-title">{tip.title}</h4>
+                  <p class="tip-text">{tip.text}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="split-visual-side">
+          <div class="split-image-frame">
+            <img
+              src="https://placehold.co/800x600/e5e7eb/131f5b?text=Interview+Coaching"
+              alt="Finnish job interview coaching and preparation session"
+              class="split-img"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       SPECIFIC FAQS
+       ========================================================================== -->
+  <Section>
+    <Container size="page">
+      <div class="section-header-center">
+        <span class="section-eyebrow">Career Guidance FAQs</span>
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <p class="section-intro">
+          Common inquiries about our career advisory consultations and support scope.
+        </p>
+      </div>
+
+      <div class="faqs-grid">
+        {
+          careerFaqs.map((faq) => (
+            <div class="faq-card">
+              <h3 class="faq-question">
+                <span class="faq-icon" aria-hidden="true">💼</span>
+                <span>{faq.q}</span>
+              </h3>
+              <p class="faq-answer">{faq.a}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       BOTTOM CTA
+       ========================================================================== -->
+  <CtaSection
+    heading="Ready to Accelerate Your Career in Finland?"
+    subheading="Book a dedicated 1-on-1 career guidance session to review your CV, target open opportunities, and master Finnish workplace standards."
+    cta={{
+      label: 'Apply for Career Advisory',
+      href: 'https://form.jotform.com/InterProFinland/membership-application-form',
+    }}
+  />
 </Layout>
+
+<style>
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+    margin-bottom: var(--space-2);
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2.8vw, 2.35rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+
+  .section-intro {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    max-width: 65ch;
+    margin: 0 auto var(--space-8);
+    line-height: var(--line-height-relaxed);
+    text-align: center;
+  }
+
+  .section-header-center {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  /* ── Hero Section (16:9 Frame) ── */
+  .service-hero-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+    padding: clamp(2rem, 4vw, 3.5rem) 0;
+  }
+
+  .service-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .service-hero-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .breadcrumb-back {
+    color: var(--color-primary-600, #1E3A8A);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+
+  .breadcrumb-back:hover {
+    color: #131F5B;
+    text-decoration: underline;
+  }
+
+  .breadcrumb-separator {
+    color: var(--color-gray-400);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-gray-600);
+  }
+
+  .service-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.85rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+
+  .service-hero-serif {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-primary-600, #1E3A8A);
+  }
+
+  .service-hero-lead {
+    font-family: var(--font-body);
+    font-size: clamp(1.0625rem, 1.4vw, 1.1875rem);
+    line-height: var(--line-height-relaxed);
+    color: var(--color-gray-800);
+    margin: 0;
+  }
+
+  .service-hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .hero-chip {
+    font-family: var(--font-display);
+    font-size: 0.78125rem;
+    font-weight: 600;
+    color: #131F5B;
+    background-color: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm, 6px);
+  }
+
+  .service-hero-actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    flex-wrap: wrap;
+    margin-top: var(--space-2);
+  }
+
+  .btn-primary-action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background-color: var(--color-gold, #FFD26F);
+    color: #131F5B;
+    border: 2px solid var(--color-gold, #FFD26F);
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 14px var(--color-gold-shadow, rgba(255, 210, 111, 0.35));
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+  }
+
+  .btn-primary-action:hover {
+    background-color: var(--color-primary-600, #1E3A8A);
+    border-color: var(--color-primary-600, #1E3A8A);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    color: #131F5B;
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: var(--space-3) var(--space-6);
+    border: 2px solid #131F5B;
+    background-color: transparent;
+    border-radius: var(--radius-sm);
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+  }
+
+  .btn-secondary-action:hover {
+    background-color: #131F5B;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  .service-hero-frame {
+    position: relative;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 12px 32px -8px rgba(19, 31, 91, 0.12),
+                0 0 0 1px rgba(19, 31, 91, 0.08);
+    background-color: #f8fafc;
+  }
+
+  .service-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 500ms ease;
+  }
+
+  .service-hero-frame:hover .service-hero-img {
+    transform: scale(1.03);
+  }
+
+  /* ── 3 Pillars Grid ── */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .pillar-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    transition: transform 250ms ease, box-shadow 250ms ease;
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px -6px rgba(19, 31, 91, 0.1);
+  }
+
+  .pillar-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+    padding-bottom: var(--space-3);
+  }
+
+  .pillar-index {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #131F5B;
+    opacity: 0.35;
+  }
+
+  .pillar-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .pillar-desc {
+    font-family: var(--font-body);
+    font-size: 0.90625rem;
+    line-height: 1.6;
+    color: var(--color-gray-700);
+    margin: 0;
+  }
+
+  .pillar-highlights {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-2) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pillar-highlights li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: 0.84375rem;
+    color: var(--color-gray-700);
+    line-height: 1.45;
+  }
+
+  .check-icon {
+    color: var(--color-primary-600, #1E3A8A);
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  /* ── Split Editorial: Interview Prep (4:3 Frame) ── */
+  .editorial-split-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  .split-content-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .split-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.22;
+    margin: 0;
+  }
+
+  .split-lead {
+    font-family: var(--font-body);
+    font-size: 0.96875rem;
+    line-height: 1.6;
+    color: var(--color-gray-700);
+    margin: 0 0 var(--space-2);
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    width: 100%;
+  }
+
+  .tip-box {
+    background-color: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-md, 10px);
+    padding: var(--space-4);
+  }
+
+  .tip-title {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #131F5B;
+    margin: 0 0 4px;
+  }
+
+  .tip-text {
+    font-family: var(--font-body);
+    font-size: 0.84375rem;
+    line-height: 1.5;
+    color: var(--color-gray-600);
+    margin: 0;
+  }
+
+  .split-image-frame {
+    position: relative;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 10px 28px -6px rgba(19, 31, 91, 0.12),
+                0 0 0 1px rgba(19, 31, 91, 0.08);
+    background-color: #f8fafc;
+  }
+
+  .split-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 450ms ease;
+  }
+
+  .split-image-frame:hover .split-img {
+    transform: scale(1.03);
+  }
+
+  /* ── FAQs Grid ── */
+  .faqs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .faq-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .faq-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .faq-answer {
+    font-family: var(--font-body);
+    font-size: 0.90625rem;
+    line-height: 1.65;
+    color: var(--color-gray-600);
+    margin: 0;
+    padding-left: calc(1.1rem + var(--space-2));
+  }
+
+  /* ── Responsive Adaptations ── */
+  @media (max-width: 1024px) {
+    .service-hero-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .service-hero-media {
+      order: -1;
+    }
+
+    .pillars-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .editorial-split-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .split-visual-side {
+      order: -1;
+    }
+
+    .faqs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .service-hero-actions {
+      flex-direction: column;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .btn-primary-action,
+    .btn-secondary-action {
+      width: 100%;
+      justify-content: center;
+      min-height: 48px;
+    }
+
+    .tips-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
