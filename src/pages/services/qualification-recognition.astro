@@ -208,83 +208,90 @@ const recognitionFaqs = [
   </Section>
 
   <!-- ==========================================================================
-       AUTHORITIES DIRECTORY: Clean 2×2 Grid Layout
+       AUTHORITIES DIRECTORY — Elegant List Layout
        ========================================================================== -->
   <Section>
     <div id="authorities-directory"></div>
     <Container size="page">
-      <div class="section-header-center">
-        <span class="section-eyebrow">Regulatory Authorities</span>
-        <h2 class="section-heading">Who Evaluates Your Credentials in Finland?</h2>
-        <p class="section-intro">
-          Different competent authorities handle specific fields. Below are the primary official bodies
-          responsible for degree comparability and professional licensing.
-        </p>
-      </div>
+      <div class="auth-section-layout">
 
-      <div class="authorities-grid">
-        {
-          authorities.map((auth) => (
-            <details class="authority-card" open>
-              <summary class="authority-summary">
-                <div class="authority-header">
-                  <div class="authority-top-row">
-                    <span class="authority-code">{auth.code}</span>
-                    <span class="authority-category">{auth.category}</span>
-                  </div>
-                  <h3 class="authority-name">{auth.name}</h3>
+        <!-- Left: Header -->
+        <div class="auth-section-header">
+          <span class="section-eyebrow">Regulatory Authorities</span>
+          <h2 class="auth-section-title">Who Evaluates Your Credentials in Finland?</h2>
+          <p class="auth-section-lead">
+            Different competent authorities handle specific fields. Each body has a defined
+            scope — knowing which one governs your profession is the first step.
+          </p>
+        </div>
+
+        <!-- Right: Authority List -->
+        <div class="auth-list">
+          {
+            authorities.map((auth) => (
+              <div class="auth-row">
+                <div class="auth-row-left">
+                  <span class="auth-badge">{auth.code}</span>
                 </div>
-                <span class="authority-toggle-icon" aria-hidden="true">▼</span>
-              </summary>
-              <div class="authority-content">
-                <p class="authority-scope">{auth.scope}</p>
-                <a href={auth.link} target="_blank" rel="noopener noreferrer" class="authority-link">
-                  <span>Visit Official Portal</span>
-                  <span aria-hidden="true">↗</span>
-                </a>
+                <div class="auth-row-body">
+                  <div class="auth-row-meta">
+                    <span class="auth-field">{auth.category}</span>
+                  </div>
+                  <h3 class="auth-row-name">{auth.name}</h3>
+                  <p class="auth-row-scope">{auth.scope}</p>
+                </div>
+                <div class="auth-row-action">
+                  <a href={auth.link} target="_blank" rel="noopener noreferrer" class="auth-portal-link">
+                    <span>Portal</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
               </div>
-            </details>
-          ))
-        }
+            ))
+          }
+        </div>
+
       </div>
     </Container>
   </Section>
 
   <!-- ==========================================================================
-       ROADMAP: 2×2 Grid — Clean Process Cards
+       ROADMAP — Vertical Timeline
        ========================================================================== -->
   <Section background="surface">
     <div id="roadmap"></div>
     <Container size="page">
-      <div class="section-header-center">
-        <span class="section-eyebrow">Step-by-Step Roadmap</span>
-        <h2 class="section-heading">The 4 Stages of the Recognition Journey</h2>
-        <p class="section-intro">
-          A structured sequence ensures all documentation meets Finnish legal standards before formal submission.
-        </p>
-      </div>
+      <div class="roadmap-section-layout">
 
-      <div class="roadmap-grid">
-        {
-          roadmapStages.map((st) => (
-            <details class="roadmap-card" open>
-              <summary class="roadmap-summary">
-                <div class="roadmap-header">
-                  <span class="roadmap-number">{st.stage}</span>
-                  <h3 class="roadmap-title">{st.title}</h3>
+        <!-- Header -->
+        <div class="roadmap-section-header">
+          <span class="section-eyebrow">Step-by-Step Roadmap</span>
+          <h2 class="roadmap-section-title">The 4 Stages of the Recognition Journey</h2>
+          <p class="roadmap-section-lead">
+            A structured sequence ensures all documentation meets Finnish legal standards
+            before formal submission.
+          </p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline">
+          {
+            roadmapStages.map((st, i) => (
+              <div class="timeline-item">
+                <div class="timeline-marker">
+                  <span class="timeline-number">{st.stage}</span>
+                  {i < roadmapStages.length - 1 && <span class="timeline-line" aria-hidden="true" />}
                 </div>
-                <span class="roadmap-toggle-icon" aria-hidden="true">▼</span>
-              </summary>
-              <div class="roadmap-content">
-                <p class="roadmap-desc">{st.description}</p>
-                <div class="roadmap-finnish-term">
-                  <span class="term-label">Finnish Term:</span>
-                  <span class="term-text">{st.finnishTerm}</span>
+                <div class="timeline-body">
+                  <h3 class="timeline-title">{st.title}</h3>
+                  <p class="timeline-desc">{st.description}</p>
+                  <span class="timeline-term">{st.finnishTerm}</span>
                 </div>
               </div>
-            </details>
-          ))
-        }
+            ))
+          }
+        </div>
+
       </div>
     </Container>
   </Section>
@@ -716,360 +723,435 @@ const recognitionFaqs = [
     transform: scale(1.03);
   }
 
-  /* ── Authorities Grid — 2×2 Clean Layout ── */
-  .authorities-grid {
+  /* ══════════════════════════════════════════════
+     AUTHORITIES — Elegant Side-by-Side List
+  ══════════════════════════════════════════════ */
+
+  .auth-section-layout {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-6);
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: 1fr 1.6fr;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: start;
   }
 
-  .authority-card {
-    background: #ffffff;
-    border: 1px solid var(--color-border-subtle, #e2e8f0);
-    border-radius: var(--radius-lg, 16px);
-    padding: var(--space-6);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-    transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
-  }
-
-  .authority-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 24px -6px rgba(19, 31, 91, 0.1);
-    border-color: #93c5fd;
-  }
-
-  .authority-card[open] {
-    border-color: #93c5fd;
-  }
-
-  /* Desktop: Open by default */
-  @media (min-width: 769px) {
-    .authority-card {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-4);
-    }
-
-    /* Force open and disable interaction on desktop */
-    .authority-card[open] {
-      pointer-events: auto;
-    }
-
-    .authority-summary {
-      display: contents;
-      cursor: default;
-      list-style: none;
-      user-select: auto;
-      pointer-events: none;
-    }
-
-    .authority-summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .authority-toggle-icon {
-      display: none;
-    }
-
-    .authority-content {
-      display: contents;
-      pointer-events: auto;
-    }
-
-    /* Restore pointer events for links */
-    .authority-link {
-      pointer-events: auto;
-    }
-  }
-
-  /* Mobile: Accordion behavior */
-  @media (max-width: 768px) {
-    .authority-summary {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: var(--space-3);
-      cursor: pointer;
-      list-style: none;
-      user-select: none;
-    }
-
-    .authority-summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .authority-toggle-icon {
-      display: inline-block;
-      font-size: 1rem;
-      color: var(--color-primary-600, #1E3A8A);
-      flex-shrink: 0;
-      transition: transform 250ms ease, color 200ms ease;
-      margin-top: 4px;
-      line-height: 1;
-    }
-
-    .authority-card[open] .authority-toggle-icon {
-      transform: rotate(180deg);
-      color: var(--color-primary-700, #131F5B);
-    }
-
-    .authority-content {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-      padding-top: var(--space-4);
-      margin-top: var(--space-3);
-      border-top: 1px solid var(--color-border-subtle, #e2e8f0);
-    }
-  }
-
-  .authority-header {
+  .auth-section-header {
+    position: sticky;
+    top: 2rem;
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
-    flex: 1;
+    align-items: flex-start;
   }
 
-  .authority-top-row {
+  .auth-section-header .section-eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .auth-section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.25;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .auth-section-lead {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-gray-500);
+    margin: 1.25rem 0 0;
+  }
+
+  /* List of authorities */
+  .auth-list {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-3);
-    padding-bottom: var(--space-3);
-    border-bottom: 2px solid var(--color-border-subtle, #e2e8f0);
+    flex-direction: column;
+    gap: 0;
   }
 
-  .authority-code {
+  .auth-row {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: var(--space-4);
+    align-items: start;
+    padding: var(--space-6) 0;
+    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+    transition: background-color 200ms ease;
+  }
+
+  .auth-row:first-child {
+    border-top: 1px solid var(--color-border-subtle, #e2e8f0);
+  }
+
+  .auth-row-left {
+    padding-top: 4px;
+  }
+
+  .auth-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 1.125rem;
-    color: #ffffff;
-    background-color: #1E3A8A;
-    padding: 6px 14px;
-    border-radius: var(--radius-sm, 6px);
-    letter-spacing: 0.02em;
+    font-size: 0.75rem;
+    color: var(--color-text-primary);
+    background-color: #f1f5f9;
+    border: 1.5px solid #cbd5e1;
+    padding: 5px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
   }
 
-  .authority-category {
+  .auth-row-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .auth-row-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: 12px;
+  }
+
+  .auth-field {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-gray-400, #94a3b8);
+  }
+
+  .auth-row-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 14px;
+    line-height: 1.35;
+  }
+
+  .auth-row-scope {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--color-gray-500, #64748b);
+    margin: 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-border-subtle, #f1f5f9);
+  }
+
+  .auth-row-action {
+    padding-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .auth-portal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-family: var(--font-display);
     font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--color-gray-500);
-    text-align: right;
-    line-height: 1.2;
+    font-weight: 700;
+    color: var(--color-gray-600, #475569);
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 6px;
+    transition: border-color 200ms ease, background-color 200ms ease, color 200ms ease;
+    white-space: nowrap;
   }
 
-  .authority-name {
+  .auth-portal-link:hover {
+    background-color: var(--color-text-primary, #0f172a);
+    border-color: var(--color-text-primary, #0f172a);
+    color: #ffffff;
+  }
+
+  /* ══════════════════════════════════════════════
+     ROADMAP — Vertical Timeline
+  ══════════════════════════════════════════════ */
+
+  .roadmap-section-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .roadmap-section-header {
+    text-align: center;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .roadmap-section-title {
     font-family: var(--font-display);
-    font-size: 1.125rem;
+    font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .roadmap-section-lead {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-gray-600);
+    margin: 0;
+  }
+
+  /* Timeline */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    width: 100%;
+    max-width: 1100px;
+    position: relative;
+  }
+
+  /* Shared top line connecting all circles */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 26px;
+    left: calc(12.5% + 26px);
+    right: calc(12.5% + 26px);
+    height: 1px;
+    background: #e2e8f0;
+    z-index: 0;
+  }
+
+  .timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    padding: 0 var(--space-3);
+    position: relative;
+  }
+
+  .timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+  }
+
+  .timeline-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background-color: #ffffff;
+    color: var(--color-text-primary, #0f172a);
+    border: 2px solid #cbd5e1;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+    letter-spacing: -0.01em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Remove old ::after connector */
+  .timeline-item:not(:last-child)::after {
+    display: none;
+  }
+
+  /* Horizontal connector line between items */
+  .timeline-line {
+    display: none;
+  }
+
+  .timeline-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    padding-top: var(--space-2);
+    width: 100%;
+  }
+
+  .timeline-title {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
     font-weight: 700;
     color: var(--color-text-primary);
     margin: 0;
     line-height: 1.35;
+    letter-spacing: -0.01em;
   }
 
-  .authority-scope {
+  .timeline-desc {
     font-family: var(--font-body);
-    font-size: 0.9375rem;
-    line-height: 1.65;
-    color: var(--color-gray-700);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--color-gray-500, #64748b);
     margin: 0;
   }
 
-  .authority-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-display);
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: var(--color-primary-600, #1E3A8A);
-    text-decoration: none;
-    padding-top: var(--space-3);
-    border-top: 1px solid var(--color-border-subtle, #f1f5f9);
-    transition: color 200ms ease;
+  .timeline-term {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-style: italic;
+    color: var(--color-gray-400, #94a3b8);
+    margin-top: 2px;
   }
 
-  .authority-link:hover {
-    color: #131F5B;
-    text-decoration: underline;
-  }
+  /* ══════════════════════════════════════════════
+     RESPONSIVE — Authorities & Roadmap
+  ══════════════════════════════════════════════ */
 
-  /* ── Roadmap Cards — 2×2 Grid with Accordion on Mobile ── */
-  .roadmap-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-6);
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .roadmap-card {
-    background: #ffffff;
-    border: 1px solid var(--color-border-subtle, #e2e8f0);
-    border-radius: var(--radius-lg, 16px);
-    padding: var(--space-6);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-    transition: all 300ms ease;
-  }
-
-  .roadmap-card:hover {
-    border-color: #1E3A8A;
-    box-shadow: 0 8px 24px -4px rgba(19, 31, 91, 0.08);
-    transform: translateY(-2px);
-  }
-
-  .roadmap-card[open] {
-    border-color: #1E3A8A;
-  }
-
-  /* Desktop: Open by default */
-  @media (min-width: 769px) {
-    .roadmap-card {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
+  @media (max-width: 1024px) {
+    /* Authorities: stack vertically */
+    .auth-section-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
     }
 
-    /* Force open and disable interaction on desktop */
-    .roadmap-card[open] {
-      pointer-events: auto;
+    .auth-section-header {
+      position: static;
+      text-align: center;
+      align-items: center;
     }
 
-    .roadmap-summary {
-      display: contents;
-      cursor: default;
-      list-style: none;
-      user-select: auto;
-      pointer-events: none;
+    .auth-section-header .section-eyebrow {
+      margin-bottom: 1rem;
     }
 
-    .roadmap-summary::-webkit-details-marker {
+    .auth-section-title {
+      margin: 0;
+    }
+
+    .auth-section-lead {
+      margin: 1rem 0 0;
+      max-width: 56ch;
+    }
+
+    /* Roadmap: 2 columns on tablet */
+    .timeline {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-10) 0;
+    }
+
+    .timeline::before {
       display: none;
     }
 
-    .roadmap-toggle-icon {
+    .timeline-item:nth-child(1)::after,
+    .timeline-item:nth-child(2)::after {
       display: none;
-    }
-
-    .roadmap-content {
-      display: contents;
-      pointer-events: auto;
     }
   }
 
-  /* Mobile: Accordion behavior */
-  @media (max-width: 768px) {
-    .roadmap-summary {
-      display: flex;
+  @media (max-width: 640px) {
+    /* Authorities: simplify row for small screens */
+    .auth-row {
+      grid-template-columns: 52px 1fr;
+      grid-template-rows: auto auto;
+    }
+
+    .auth-row-action {
+      grid-column: 2;
+      padding-top: var(--space-2);
+    }
+
+    /* Roadmap: single column on mobile */
+    .timeline {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .timeline::before {
+      display: none;
+    }
+
+    .timeline-item {
+      flex-direction: row;
       align-items: flex-start;
-      justify-content: space-between;
-      gap: var(--space-3);
-      cursor: pointer;
-      list-style: none;
-      user-select: none;
+      gap: var(--space-4);
+      padding: var(--space-5) 0;
+      border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
     }
 
-    .roadmap-summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .roadmap-toggle-icon {
-      display: inline-block;
-      font-size: 1rem;
-      color: var(--color-primary-600, #1E3A8A);
-      flex-shrink: 0;
-      transition: transform 250ms ease, color 200ms ease;
-      margin-top: 4px;
-      line-height: 1;
-    }
-
-    .roadmap-card[open] .roadmap-toggle-icon {
-      transform: rotate(180deg);
-      color: var(--color-primary-700, #131F5B);
-    }
-
-    .roadmap-content {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-      padding-top: var(--space-4);
-      margin-top: var(--space-3);
+    .timeline-item:first-child {
       border-top: 1px solid var(--color-border-subtle, #e2e8f0);
     }
-  }
 
-  .roadmap-header {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    flex: 1;
-  }
+    .timeline-item:not(:last-child)::after {
+      display: none;
+    }
 
-  .roadmap-number {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    background-color: #1E3A8A;
-    color: #ffffff;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 1.125rem;
-    border-radius: var(--radius-md, 12px);
-    flex-shrink: 0;
-    letter-spacing: -0.01em;
-  }
+    .timeline-marker {
+      width: auto;
+      flex-shrink: 0;
+    }
 
-  .roadmap-title {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin: 0;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-  }
+    .timeline-number {
+      width: 40px;
+      height: 40px;
+      font-size: 0.875rem;
+    }
 
-  .roadmap-desc {
-    font-family: var(--font-body);
-    font-size: 0.9375rem;
-    line-height: 1.65;
-    color: var(--color-gray-700);
-    margin: 0;
-  }
+    .timeline-body {
+      text-align: left;
+      padding-top: 6px;
+      gap: 4px;
+    }
 
-  .roadmap-finnish-term {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    padding-top: var(--space-2);
-    margin-top: var(--space-2);
-    border-top: 1px solid var(--color-border-subtle, #f1f5f9);
-  }
+    .timeline-title {
+      font-size: 0.875rem;
+    }
 
-  .term-label {
-    font-family: var(--font-display);
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-gray-500);
-  }
+    .timeline-desc {
+      font-size: 0.8125rem;
+    }
 
-  .term-text {
-    font-family: var(--font-body);
-    font-size: 0.875rem;
-    font-style: italic;
-    color: var(--color-gray-600);
+    .roadmap-section-header {
+      text-align: center;
+    }
+
+    /* Authorities: simplify row for small screens */
+    .auth-row {
+      grid-template-columns: 52px 1fr;
+      grid-template-rows: auto auto;
+    }
+
+    .auth-row-action {
+      grid-column: 2;
+      padding-top: var(--space-2);
+    }
+
+    .auth-badge {
+      font-size: 0.6875rem;
+      padding: 4px 7px;
+    }
+
+    .auth-row-name {
+      font-size: 0.9375rem;
+    }
+
+    .auth-row-scope {
+      font-size: 0.8125rem;
+    }
   }
 
   /* ── Split Editorial: Document Checklist (4:3 Frame) ── */
@@ -1536,15 +1618,21 @@ const recognitionFaqs = [
       gap: var(--space-4);
     }
 
+    /* Keep number + title side by side on mobile */
     .roadmap-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--space-2);
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-3);
     }
 
     .roadmap-number {
       width: 40px;
       height: 40px;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .roadmap-title {
       font-size: 1rem;
     }
 
@@ -1621,9 +1709,19 @@ const recognitionFaqs = [
     }
 
     .roadmap-number {
-      width: 40px;
-      height: 40px;
-      font-size: 1rem;
+      width: 38px;
+      height: 38px;
+      font-size: 0.9375rem;
+      flex-shrink: 0;
+    }
+
+    .roadmap-header {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .roadmap-title {
+      font-size: 0.9375rem;
     }
 
     .authority-card {
@@ -1657,42 +1755,7 @@ const recognitionFaqs = [
     }
   }
 
-  /* Mobile Image with Overlay */
-  .hero-image-mobile {
-    display: none;
-    width: 100%;
-    position: relative;
-    margin: var(--space-4) 0;
-  }
-
-  .hero-areas-list-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    background: linear-gradient(to top, rgba(19, 31, 91, 0.85), transparent);
-    padding: var(--space-4) var(--space-3) var(--space-3);
-    border-radius: 0 0 var(--radius-lg, 16px) var(--radius-lg, 16px);
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
-  }
-
-  .hero-areas-list-overlay .area-item {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #ffffff;
-    font-size: 0.625rem;
-    font-weight: 400;
-    padding: 2px 6px;
-    backdrop-filter: blur(4px);
-    text-align: center;
-    line-height: 1.3;
-    border-radius: var(--radius-sm);
-  }
-
-  /* ── Mobile Optimizations (≤1024px) ── */
+  /* ── Mobile Optimizations (≤1024px) — Hero Only ── */
   @media (max-width: 1024px) {
     /* Hero Layout */
     .service-hero-layout {
@@ -1715,7 +1778,6 @@ const recognitionFaqs = [
       max-width: 100%;
     }
 
-    /* Hide desktop image and regular chips */
     .hero-image-desktop {
       display: none;
     }
@@ -1724,54 +1786,88 @@ const recognitionFaqs = [
       display: none;
     }
 
-    /* Show mobile image with overlay */
     .hero-image-mobile {
       display: block;
     }
 
-    /* Center section eyebrows */
     .section-eyebrow {
       justify-content: center;
       width: 100%;
     }
 
-    /* Center CTAs */
     .service-hero-actions {
       justify-content: center;
       width: 100%;
     }
 
-    /* Reduce section spacing */
     .section-header-center {
       margin-bottom: var(--space-4);
     }
 
-    /* Authorities grid to single column */
-    .authorities-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-4);
-    }
-
-    /* Roadmap grid to single column */
-    .roadmap-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-4);
-    }
-
-    /* Editorial split to single column */
     .editorial-split-layout {
       grid-template-columns: 1fr;
       gap: var(--space-4);
     }
 
-    /* Checklist grid to single column */
-    .checklist-grid {
+    .handbook-spotlight-card {
       grid-template-columns: 1fr;
+      gap: var(--space-5);
+      padding: var(--space-5);
     }
 
-    /* FAQ grid to single column */
-    .recognition-faqs-grid {
+    .handbook-visual {
+      order: -1;
+    }
+
+    .faqs-grid {
+      max-width: 100%;
+    }
+  }
+
+  /* ── 768px: Mobile ── */
+  @media (max-width: 768px) {
+    .service-hero-layout {
+      padding: var(--space-4) 0;
+    }
+
+    .service-hero-title {
+      font-size: clamp(1.75rem, 6vw, 2.25rem);
+    }
+
+    .service-hero-lead {
+      font-size: 1rem;
+    }
+
+    .section-heading {
+      font-size: clamp(1.5rem, 5.5vw, 1.875rem);
+    }
+
+    .service-hero-actions {
+      flex-direction: column;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .btn-primary-action,
+    .btn-secondary-action {
+      width: 100%;
+      justify-content: center;
+      min-height: 48px;
+      text-align: center;
+    }
+
+    .handbook-spotlight-card {
       grid-template-columns: 1fr;
+      gap: var(--space-6);
+      padding: var(--space-6);
+    }
+
+    .faq-accordion-item {
+      padding: var(--space-4);
+    }
+
+    .faq-q-text {
+      font-size: 0.9375rem;
     }
   }
 
@@ -1786,26 +1882,9 @@ const recognitionFaqs = [
       display: none;
     }
 
-    .roadmap-step {
-      padding: var(--space-4);
-    }
-
-    .step-number {
-      font-size: 1.5rem;
-    }
-
     .hero-areas-list-overlay .area-item {
       font-size: 0.5625rem;
       padding: 1px 4px;
     }
   }
 </style>
-
-<script>
-  // Remove 'open' attribute on mobile for accordion behavior
-  if (window.innerWidth <= 768) {
-    document.querySelectorAll('.authority-card[open], .roadmap-card[open]').forEach((detail) => {
-      detail.removeAttribute('open');
-    });
-  }
-</script>
