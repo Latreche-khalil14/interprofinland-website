@@ -121,6 +121,27 @@ const networkingFaqs = [
             <span class="hero-chip">Active 1,800+ Member Network</span>
           </div>
 
+          <!-- Mobile Image with Overlay Chips -->
+          <div class="hero-image-mobile">
+            <div class="service-hero-frame">
+              <img
+                src="/images/services/networking/hero.png"
+                alt="Professional networking meeting and employer roundtable in Finland"
+                class="service-hero-img"
+                width="800"
+                height="450"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <div class="hero-areas-list-overlay">
+              <span class="area-item">Employer Matchmaking</span>
+              <span class="area-item">Industry Seminars</span>
+              <span class="area-item">Innovation Hubs</span>
+              <span class="area-item">1,800+ Network</span>
+            </div>
+          </div>
+
           <div class="service-hero-actions">
             <a
               href="https://form.jotform.com/InterProFinland/membership-application-form"
@@ -137,10 +158,10 @@ const networkingFaqs = [
           </div>
         </div>
 
-        <div class="service-hero-media">
+        <div class="service-hero-media hero-image-desktop">
           <div class="service-hero-frame">
             <img
-              src="https://placehold.co/800x450/131f5b/ffd26f?text=Professional+Networking+Hub"
+              src="/images/services/networking/hero.png"
               alt="Professional networking meeting and employer roundtable in Finland"
               class="service-hero-img"
               width="800"
@@ -208,6 +229,18 @@ const networkingFaqs = [
             relationships based on mutual trust is the key to discovering hidden opportunities.
           </p>
 
+          <div class="split-image-frame-mobile">
+            <img
+              src="/images/services/networking/second.png"
+              alt="Finnish professional networking and coffee chat culture"
+              class="split-img"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
           <div class="etiquette-grid">
             {
               networkingEtiquette.map((et) => (
@@ -223,7 +256,7 @@ const networkingFaqs = [
         <div class="split-visual-side">
           <div class="split-image-frame">
             <img
-              src="https://placehold.co/800x600/e5e7eb/131f5b?text=Finnish+Networking+Culture"
+              src="/images/services/networking/second.png"
               alt="Finnish professional networking and coffee chat culture"
               class="split-img"
               width="800"
@@ -289,7 +322,7 @@ const networkingFaqs = [
   .section-eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-2);
+    gap: var(--space-3);
     font-family: var(--font-display);
     font-size: 0.8125rem;
     font-weight: 700;
@@ -297,6 +330,14 @@ const networkingFaqs = [
     text-transform: uppercase;
     color: var(--color-primary-600, #1E3A8A);
     margin-bottom: var(--space-2);
+  }
+
+  .section-eyebrow::before,
+  .section-eyebrow::after {
+    content: '━━━';
+    color: var(--color-gold, #FFD26F);
+    letter-spacing: -0.15em;
+    font-size: 0.75rem;
   }
 
   .section-heading {
@@ -315,30 +356,30 @@ const networkingFaqs = [
     font-size: 1rem;
     color: var(--color-text-secondary);
     max-width: 65ch;
-    margin: 0 auto var(--space-8);
+    margin: 0 auto var(--space-5);
     line-height: var(--line-height-relaxed);
     text-align: center;
   }
 
   .section-header-center {
     text-align: center;
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-6);
   }
 
   /* ── Hero Section (16:9 Frame) ── */
   .service-hero-layout {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(2.5rem, 5vw, 4.5rem);
+    gap: clamp(2rem, 4vw, 3.5rem);
     align-items: center;
-    padding: clamp(2rem, 4vw, 3.5rem) 0;
+    padding: clamp(1.5rem, 3vw, 2.5rem) 0;
   }
 
   .service-hero-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-4);
+    gap: var(--space-3);
   }
 
   .service-hero-breadcrumb {
@@ -492,14 +533,14 @@ const networkingFaqs = [
   .pillars-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-6);
+    gap: var(--space-5);
   }
 
   .pillar-card {
     background: #ffffff;
     border: 1px solid var(--color-border-subtle, #e2e8f0);
     border-radius: var(--radius-lg, 16px);
-    padding: var(--space-8);
+    padding: var(--space-6);
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
@@ -514,27 +555,30 @@ const networkingFaqs = [
 
   .pillar-header {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+    align-items: center;
+    gap: var(--space-3);
     padding-bottom: var(--space-3);
+    margin-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-primary-600, #1E3A8A);
   }
 
   .pillar-index {
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: #131F5B;
-    opacity: 0.35;
+    line-height: 1;
+    flex-shrink: 0;
   }
 
   .pillar-title {
     font-family: var(--font-display);
-    font-size: 1.15rem;
+    font-size: 1.0625rem;
     font-weight: 700;
     color: var(--color-text-primary);
     margin: 0;
     line-height: 1.3;
+    flex: 1;
   }
 
   .pillar-desc {
@@ -737,31 +781,140 @@ const networkingFaqs = [
     margin: 0;
   }
 
+  /* Mobile Image with Overlay */
+  .hero-image-mobile {
+    display: none;
+    width: 100%;
+    position: relative;
+    margin: var(--space-4) 0;
+  }
+
+  .split-image-frame-mobile {
+    display: none;
+    width: 100%;
+    margin: var(--space-4) 0;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 10px 28px -6px rgba(19, 31, 91, 0.12),
+                0 0 0 1px rgba(19, 31, 91, 0.08);
+    background-color: #f8fafc;
+  }
+
+  .split-image-frame-mobile .split-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-areas-list-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: linear-gradient(to top, rgba(19, 31, 91, 0.85), transparent);
+    padding: var(--space-4) var(--space-3) var(--space-3);
+    border-radius: 0 0 var(--radius-lg, 16px) var(--radius-lg, 16px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .hero-areas-list-overlay .area-item {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-size: 0.625rem;
+    font-weight: 400;
+    padding: 2px 6px;
+    backdrop-filter: blur(4px);
+    text-align: center;
+    line-height: 1.3;
+    border-radius: var(--radius-sm);
+  }
+
   /* ── Responsive Adaptations ── */
-  /* ── 1024px: Tablet ── */
+  /* ── 1024px: Tablet / Mobile ── */
   @media (max-width: 1024px) {
+    /* Hero Layout */
     .service-hero-layout {
       grid-template-columns: 1fr;
-      gap: var(--space-6);
+      gap: var(--space-4);
+      padding: var(--space-2) 0 var(--space-4);
     }
 
-    .service-hero-media {
-      order: -1;
+    .service-hero-content {
+      align-items: center;
+      text-align: center;
     }
 
+    .service-hero-title {
+      text-align: center;
+    }
+
+    .service-hero-lead {
+      text-align: center;
+      max-width: 100%;
+    }
+
+    /* Hide desktop image and regular chips */
+    .hero-image-desktop {
+      display: none;
+    }
+
+    .service-hero-chips {
+      display: none;
+    }
+
+    /* Show mobile image with overlay */
+    .hero-image-mobile {
+      display: block;
+    }
+
+    /* Center section eyebrows */
+    .section-eyebrow {
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Center CTAs */
+    .service-hero-actions {
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Reduce section spacing */
+    .section-header-center {
+      margin-bottom: var(--space-4);
+    }
+
+    /* Pillars grid to single column */
     .pillars-grid {
       grid-template-columns: 1fr;
     }
 
+    /* Editorial split to single column */
     .editorial-split-layout {
       grid-template-columns: 1fr;
-      gap: var(--space-6);
+      gap: var(--space-5);
     }
 
     .split-visual-side {
-      order: -1;
+      display: none;
     }
 
+    .split-image-frame-mobile {
+      display: block;
+    }
+
+    /* Etiquette grid to single column */
+    .etiquette-grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* FAQ grid */
     .faqs-grid {
       max-width: 100%;
     }
@@ -770,7 +923,7 @@ const networkingFaqs = [
   /* ── 768px: Mobile ── */
   @media (max-width: 768px) {
     .service-hero-layout {
-      padding: var(--space-6) 0;
+      padding: var(--space-5) 0;
     }
 
     .service-hero-title {
@@ -787,7 +940,7 @@ const networkingFaqs = [
 
     .section-intro {
       font-size: 0.9375rem;
-      margin-bottom: var(--space-6);
+      margin-bottom: var(--space-4);
     }
 
     .service-hero-actions {
@@ -804,10 +957,6 @@ const networkingFaqs = [
       text-align: center;
     }
 
-    .etiquette-grid {
-      grid-template-columns: 1fr;
-    }
-
     .pillar-card {
       padding: var(--space-5);
     }
@@ -821,7 +970,7 @@ const networkingFaqs = [
     }
 
     .section-header-center {
-      margin-bottom: var(--space-6);
+      margin-bottom: var(--space-4);
     }
   }
 
@@ -832,25 +981,13 @@ const networkingFaqs = [
       letter-spacing: -0.02em;
     }
 
-    .service-hero-chips {
-      gap: var(--space-1);
-    }
-
-    .hero-chip {
-      font-size: 0.71875rem;
-      padding: 3px 8px;
-    }
-
     .breadcrumb-current {
       display: none;
     }
 
-    .pillar-number {
-      font-size: 1.75rem;
-    }
-
-    .platform-card {
-      padding: var(--space-4);
+    .hero-areas-list-overlay .area-item {
+      font-size: 0.5625rem;
+      padding: 1px 4px;
     }
   }
 </style>

@@ -143,11 +143,35 @@ const mentorshipFaqs = [
             structured 6-month mentorship model.
           </p>
 
-          <div class="service-hero-chips">
-            <span class="hero-chip">Sector-Specific Matching</span>
-            <span class="hero-chip">6-Month Structured Program</span>
-            <span class="hero-chip">Milestone Goal Tracking</span>
-            <span class="hero-chip">Hybrid &amp; Remote Across Finland</span>
+          <div class="service-hero-key-areas">
+            <span>Sector-Specific Matching</span>
+            <span aria-hidden="true" class="bullet-separator">•</span>
+            <span>6-Month Structured Program</span>
+            <span aria-hidden="true" class="bullet-separator">•</span>
+            <span>Milestone Goal Tracking</span>
+            <span aria-hidden="true" class="bullet-separator">•</span>
+            <span>Hybrid &amp; Remote Across Finland</span>
+          </div>
+
+          <!-- Mobile Image with Overlay Chips -->
+          <div class="hero-image-mobile">
+            <div class="service-hero-frame">
+              <img
+                src="/images/services/mentorship/one-toone.png"
+                alt="One-on-one professional mentorship meeting in Finland"
+                class="service-hero-img"
+                width="800"
+                height="450"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <div class="hero-areas-list-overlay">
+              <span class="area-item">Sector Matching</span>
+              <span class="area-item">6-Month Program</span>
+              <span class="area-item">Goal Tracking</span>
+              <span class="area-item">Hybrid & Remote</span>
+            </div>
           </div>
 
           <div class="service-hero-actions">
@@ -166,10 +190,10 @@ const mentorshipFaqs = [
           </div>
         </div>
 
-        <div class="service-hero-media">
+        <div class="service-hero-media hero-image-desktop">
           <div class="service-hero-frame">
             <img
-              src="https://placehold.co/800x450/131f5b/ffd26f?text=One+Mentor+One+Program"
+              src="/images/services/mentorship/one-toone.png"
               alt="One-on-one professional mentorship meeting in Finland"
               class="service-hero-img"
               width="800"
@@ -235,6 +259,18 @@ const mentorshipFaqs = [
             A clear monthly progression designed to transition from initial orientation to tangible job search breakthroughs.
           </p>
 
+          <div class="split-image-frame-mobile">
+            <img
+              src="/images/services/mentorship/roadmap.png"
+              alt="Mentorship milestone roadmap and goal tracking"
+              class="split-img"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
           <div class="timeline-steps-list">
             {
               timelineStages.map((st) => (
@@ -253,7 +289,7 @@ const mentorshipFaqs = [
         <div class="split-visual-side">
           <div class="split-image-frame">
             <img
-              src="https://placehold.co/800x600/e5e7eb/131f5b?text=Mentorship+Timeline"
+              src="/images/services/mentorship/roadmap.png"
               alt="Mentorship milestone roadmap and goal tracking"
               class="split-img"
               width="800"
@@ -356,7 +392,7 @@ const mentorshipFaqs = [
   .section-eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-2);
+    gap: var(--space-3);
     font-family: var(--font-display);
     font-size: 0.8125rem;
     font-weight: 700;
@@ -364,6 +400,14 @@ const mentorshipFaqs = [
     text-transform: uppercase;
     color: var(--color-primary-600, #1E3A8A);
     margin-bottom: var(--space-2);
+  }
+
+  .section-eyebrow::before,
+  .section-eyebrow::after {
+    content: '━━━';
+    color: var(--color-gold, #FFD26F);
+    letter-spacing: -0.15em;
+    font-size: 0.75rem;
   }
 
   .section-heading {
@@ -382,30 +426,30 @@ const mentorshipFaqs = [
     font-size: 1rem;
     color: var(--color-text-secondary);
     max-width: 65ch;
-    margin: 0 auto var(--space-8);
+    margin: 0 auto var(--space-5);
     line-height: var(--line-height-relaxed);
     text-align: center;
   }
 
   .section-header-center {
     text-align: center;
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-6);
   }
 
   /* ── Hero Section (16:9 Frame) ── */
   .service-hero-layout {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(2.5rem, 5vw, 4.5rem);
+    gap: clamp(2rem, 4vw, 3.5rem);
     align-items: center;
-    padding: clamp(2rem, 4vw, 3.5rem) 0;
+    padding: clamp(1.5rem, 3vw, 2.5rem) 0;
   }
 
   .service-hero-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-4);
+    gap: var(--space-3);
   }
 
   .service-hero-breadcrumb {
@@ -461,21 +505,20 @@ const mentorshipFaqs = [
     margin: 0;
   }
 
-  .service-hero-chips {
+  .service-hero-key-areas {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-gray-700);
   }
 
-  .hero-chip {
-    font-family: var(--font-display);
-    font-size: 0.78125rem;
-    font-weight: 600;
-    color: #131F5B;
-    background-color: #ffffff;
-    border: 1px solid var(--color-border-subtle, #e2e8f0);
-    padding: 4px 10px;
-    border-radius: var(--radius-sm, 6px);
+  .service-hero-key-areas .bullet-separator {
+    color: var(--color-gold, #FFD26F);
+    font-weight: 700;
   }
 
   .service-hero-actions {
@@ -559,14 +602,14 @@ const mentorshipFaqs = [
   .pillars-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-6);
+    gap: var(--space-5);
   }
 
   .pillar-card {
     background: #ffffff;
     border: 1px solid var(--color-border-subtle, #e2e8f0);
     border-radius: var(--radius-lg, 16px);
-    padding: var(--space-8);
+    padding: var(--space-6);
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
@@ -581,27 +624,30 @@ const mentorshipFaqs = [
 
   .pillar-header {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+    align-items: center;
+    gap: var(--space-3);
     padding-bottom: var(--space-3);
+    margin-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-primary-600, #1E3A8A);
   }
 
   .pillar-index {
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: #131F5B;
-    opacity: 0.35;
+    line-height: 1;
+    flex-shrink: 0;
   }
 
   .pillar-title {
     font-family: var(--font-display);
-    font-size: 1.15rem;
+    font-size: 1.0625rem;
     font-weight: 700;
     color: var(--color-text-primary);
     margin: 0;
     line-height: 1.3;
+    flex: 1;
   }
 
   .pillar-desc {
@@ -687,16 +733,11 @@ const mentorshipFaqs = [
   }
 
   .timeline-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #131F5B;
-    color: #FFD26F;
     font-family: var(--font-display);
-    font-size: 0.75rem;
+    font-size: 1.125rem;
     font-weight: 800;
-    padding: 4px 8px;
-    border-radius: var(--radius-sm);
+    color: #131F5B;
+    line-height: 1;
     flex-shrink: 0;
     white-space: nowrap;
   }
@@ -704,7 +745,8 @@ const mentorshipFaqs = [
   .timeline-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 4px;
+    padding-top: 2px;
   }
 
   .timeline-title {
@@ -749,14 +791,14 @@ const mentorshipFaqs = [
   .dual-roles-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-8);
+    gap: var(--space-6);
   }
 
   .role-card {
     background: #ffffff;
     border: 1px solid var(--color-border-subtle, #e2e8f0);
     border-radius: var(--radius-lg, 16px);
-    padding: var(--space-8);
+    padding: var(--space-6);
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
@@ -765,14 +807,16 @@ const mentorshipFaqs = [
 
   .role-header {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
-    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+    align-items: center;
+    gap: var(--space-2);
+    border-bottom: 1px solid var(--color-primary-600, #1E3A8A);
     padding-bottom: var(--space-3);
   }
 
   .role-badge {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-family: var(--font-display);
     font-size: 0.72rem;
     font-weight: 700;
@@ -780,17 +824,18 @@ const mentorshipFaqs = [
     letter-spacing: 0.05em;
     color: #131F5B;
     background-color: #f1f5f9;
-    padding: 3px 8px;
+    padding: 4px 10px;
     border-radius: var(--radius-sm);
-    width: fit-content;
+    flex-shrink: 0;
   }
 
   .role-title {
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-weight: 700;
     color: var(--color-text-primary);
     margin: 0;
+    flex: 1;
   }
 
   .role-points-list {
@@ -906,7 +951,7 @@ const mentorshipFaqs = [
   @media (max-width: 1024px) {
     .service-hero-layout {
       grid-template-columns: 1fr;
-      gap: var(--space-6);
+      gap: var(--space-5);
     }
 
     .service-hero-media {
@@ -919,7 +964,7 @@ const mentorshipFaqs = [
 
     .editorial-split-layout {
       grid-template-columns: 1fr;
-      gap: var(--space-6);
+      gap: var(--space-5);
     }
 
     .split-visual-side {
@@ -938,7 +983,15 @@ const mentorshipFaqs = [
   /* ── 768px: Mobile ── */
   @media (max-width: 768px) {
     .service-hero-layout {
-      padding: var(--space-6) 0;
+      padding: var(--space-5) 0;
+    }
+
+    .service-hero-key-areas {
+      flex-wrap: wrap;
+    }
+
+    .service-hero-key-areas .bullet-separator {
+      display: inline;
     }
 
     .service-hero-title {
@@ -955,7 +1008,7 @@ const mentorshipFaqs = [
 
     .section-intro {
       font-size: 0.9375rem;
-      margin-bottom: var(--space-6);
+      margin-bottom: var(--space-4);
     }
 
     .service-hero-actions {
@@ -989,7 +1042,153 @@ const mentorshipFaqs = [
     }
 
     .section-header-center {
-      margin-bottom: var(--space-6);
+      margin-bottom: var(--space-4);
+    }
+  }
+
+  /* Mobile Image with Overlay */
+  .hero-image-mobile {
+    display: none;
+    width: 100%;
+    position: relative;
+    margin: var(--space-4) 0;
+  }
+
+  .split-image-frame-mobile {
+    display: none;
+    width: 100%;
+    margin: var(--space-4) 0;
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 10px 28px -6px rgba(19, 31, 91, 0.12),
+                0 0 0 1px rgba(19, 31, 91, 0.08);
+    background-color: #f8fafc;
+  }
+
+  .split-image-frame-mobile .split-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-areas-list-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: linear-gradient(to top, rgba(19, 31, 91, 0.85), transparent);
+    padding: var(--space-4) var(--space-3) var(--space-3);
+    border-radius: 0 0 var(--radius-lg, 16px) var(--radius-lg, 16px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .hero-areas-list-overlay .area-item {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-size: 0.625rem;
+    font-weight: 400;
+    padding: 2px 6px;
+    backdrop-filter: blur(4px);
+    text-align: center;
+    line-height: 1.3;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ── Mobile Optimizations (≤1024px) ── */
+  @media (max-width: 1024px) {
+    /* Hero Layout */
+    .service-hero-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      padding: var(--space-2) 0 var(--space-4);
+    }
+
+    .service-hero-content {
+      align-items: center;
+      text-align: center;
+    }
+
+    .service-hero-title {
+      text-align: center;
+    }
+
+    .service-hero-lead {
+      text-align: center;
+      max-width: 100%;
+    }
+
+    /* Hide desktop image and regular key areas */
+    .hero-image-desktop {
+      display: none;
+    }
+
+    .service-hero-key-areas {
+      display: none;
+    }
+
+    /* Show mobile image with overlay */
+    .hero-image-mobile {
+      display: block;
+    }
+
+    /* Center section eyebrows */
+    .section-eyebrow {
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Center CTAs */
+    .service-hero-actions {
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Reduce section spacing */
+    .section-header-center {
+      margin-bottom: var(--space-4);
+    }
+
+    /* Pillars grid to single column */
+    .pillars-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    /* Timeline grid to single column */
+    .timeline-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    /* Editorial split - show mobile image, hide desktop */
+    .editorial-split-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .split-visual-side {
+      display: none;
+    }
+
+    .split-image-frame-mobile {
+      display: block;
+    }
+
+    /* Dual roles grid to single column */
+    .dual-roles-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    /* FAQ grid to single column */
+    .mentorship-faqs-grid {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -1000,21 +1199,13 @@ const mentorshipFaqs = [
       letter-spacing: -0.02em;
     }
 
-    .service-hero-chips {
-      gap: var(--space-1);
-    }
-
-    .hero-chip {
-      font-size: 0.71875rem;
-      padding: 3px 8px;
-    }
-
     .breadcrumb-current {
       display: none;
     }
 
-    .pillar-number {
-      font-size: 1.75rem;
+    .hero-areas-list-overlay .area-item {
+      font-size: 0.5625rem;
+      padding: 1px 4px;
     }
   }
 </style>

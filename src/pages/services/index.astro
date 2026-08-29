@@ -25,7 +25,7 @@ const services = [
       'Understanding collective labour agreements (TES), employment contracts, and salary benchmarks',
       'Interview coaching, communication etiquette, and workplace culture orientation',
     ],
-    image: 'https://placehold.co/800x600/e5e7eb/131f5b?text=Career+Guidance',
+    image: '/images/services/career-guidance/career-consultation.jpg',
     imageAlt: 'Career guidance consultation and Finnish labour market advising',
     href: '/services/career-guidance',
     ctaText: 'Explore Career Guidance',
@@ -42,7 +42,7 @@ const services = [
       'Guidance on comparative academic statements vs. full professional practice rights',
       'Navigating supplementary studies, aptitude tests, and adaptation training periods',
     ],
-    image: 'https://placehold.co/800x600/e5e7eb/131f5b?text=Degree+Recognition',
+    image: '/images/services/Qualification-Recognition/2.png',
     imageAlt: 'Foreign qualification recognition and diploma equivalency support',
     href: '/services/qualification-recognition',
     ctaText: 'Explore Degree Recognition',
@@ -59,7 +59,7 @@ const services = [
       'Unwritten rules of Finnish workplace culture and industry networking guidance',
       'Direct feedback on portfolio presentation, technical skills, and industry positioning',
     ],
-    image: 'https://placehold.co/800x600/e5e7eb/131f5b?text=One+Mentor+One',
+    image: '/images/services/mentorship/one-toone.png',
     imageAlt: 'One-on-one professional mentorship session',
     href: '/services/mentorship',
     ctaText: 'Explore Mentorship Program',
@@ -76,7 +76,7 @@ const services = [
       'Interdisciplinary networking seminars with business leaders and municipal partners',
       'Access to partner initiatives, regional startup hubs, and innovation projects',
     ],
-    image: 'https://placehold.co/800x600/e5e7eb/131f5b?text=Employer+Matchmaking',
+    image: '/images/services/networking/hero.png',
     imageAlt: 'Professional networking and employer matchmaking in Finland',
     href: '/services/networking',
     ctaText: 'Explore Networking & Matchmaking',
@@ -194,11 +194,24 @@ const faqs = [
             employer connections.
           </p>
 
-          <div class="services-hero-audience-chips">
-            <span class="audience-chip">Foreign Degree Holders</span>
-            <span class="audience-chip">Skilled Job Seekers</span>
-            <span class="audience-chip">Regulated Profession Licensure</span>
-            <span class="audience-chip">Mid-Career Professionals</span>
+          <div class="services-hero-media-wrap-mobile">
+            <div class="services-hero-frame">
+              <img
+                src="/images/services/career-guidance/career-consultation.jpg"
+                alt="InterProFinland individualized advisory consultation and career pathways"
+                class="services-hero-img"
+                width="800"
+                height="450"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <div class="services-hero-audience-chips">
+              <span class="audience-chip">Foreign Degree Holders</span>
+              <span class="audience-chip">Skilled Job Seekers</span>
+              <span class="audience-chip">Regulated Profession Licensure</span>
+              <span class="audience-chip">Mid-Career Professionals</span>
+            </div>
           </div>
 
           <div class="services-hero-actions">
@@ -217,10 +230,10 @@ const faqs = [
           </div>
         </div>
 
-        <div class="services-hero-media-wrap">
+        <div class="services-hero-media-wrap-desktop">
           <div class="services-hero-frame">
             <img
-              src="https://placehold.co/800x450/131f5b/ffd26f?text=Advisory+Services+Hub"
+              src="/images/services/career-guidance/career-consultation.jpg"
               alt="InterProFinland individualized advisory consultation and career pathways"
               class="services-hero-img"
               width="800"
@@ -256,12 +269,13 @@ const faqs = [
               <div class="service-editorial-content">
                 <div class="service-meta-header">
                   <span class="service-index-number">{svc.index}</span>
-                  <span class="service-category-tag">{svc.category}</span>
+                  <div class="service-header-text">
+                    <span class="service-category-tag">{svc.category}</span>
+                    <h3 class="service-heading">
+                      <a href={svc.href} class="service-heading-link">{svc.title}</a>
+                    </h3>
+                  </div>
                 </div>
-
-                <h3 class="service-heading">
-                  <a href={svc.href} class="service-heading-link">{svc.title}</a>
-                </h3>
 
                 <p class="service-description-text">{svc.description}</p>
 
@@ -369,8 +383,10 @@ const faqs = [
         {
           workflowSteps.map((wf) => (
             <div class="workflow-step-card">
-              <div class="step-badge">{wf.step}</div>
-              <h3 class="step-title">{wf.title}</h3>
+              <div class="workflow-header">
+                <span class="step-badge">{wf.step}</span>
+                <h3 class="step-title">{wf.title}</h3>
+              </div>
               <p class="step-desc">{wf.desc}</p>
             </div>
           ))
@@ -466,7 +482,7 @@ const faqs = [
   .section-eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-2);
+    gap: var(--space-3);
     font-family: var(--font-display);
     font-size: 0.8125rem;
     font-weight: 700;
@@ -474,6 +490,14 @@ const faqs = [
     text-transform: uppercase;
     color: var(--color-primary-600, #1E3A8A);
     margin-bottom: var(--space-2);
+  }
+
+  .section-eyebrow::before,
+  .section-eyebrow::after {
+    content: '━━━';
+    color: var(--color-gold, #FFD26F);
+    letter-spacing: -0.15em;
+    font-size: 0.75rem;
   }
 
   .section-heading {
@@ -492,7 +516,7 @@ const faqs = [
     font-size: 1rem;
     color: var(--color-text-secondary);
     max-width: 65ch;
-    margin: 0 auto var(--space-8);
+    margin: 0 auto var(--space-6);
     line-height: var(--line-height-relaxed);
     text-align: center;
   }
@@ -501,16 +525,32 @@ const faqs = [
   .services-hero-layout {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(2.5rem, 5vw, 4.5rem);
+    gap: clamp(2rem, 4vw, 3.5rem);
     align-items: center;
-    padding: clamp(2rem, 4vw, 3.5rem) 0;
+    padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+  }
+
+  @media (max-width: 768px) {
+    .services-hero-layout {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+    
+    .services-hero-media-wrap {
+      order: 2;
+    }
+    
+    .services-hero-info {
+      order: 1;
+    }
   }
 
   .services-hero-info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-4);
+    gap: var(--space-3);
   }
 
   .services-hero-pill-row {
@@ -634,7 +674,19 @@ const faqs = [
     width: 100%;
   }
 
+  .services-hero-media-wrap-mobile {
+    display: none;
+    width: 100%;
+    position: relative;
+  }
+
+  .services-hero-media-wrap-desktop {
+    display: block;
+    width: 100%;
+  }
+
   .services-hero-frame {
+    position: relative;
     position: relative;
     border-radius: var(--radius-lg, 16px);
     overflow: hidden;
@@ -659,13 +711,13 @@ const faqs = [
   /* ── 4 Core Services Editorial Stack (4:3 Media Frame) ── */
   .services-section-header {
     text-align: center;
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-6);
   }
 
   .services-editorial-stack {
     display: flex;
     flex-direction: column;
-    margin-bottom: var(--space-12);
+    margin-bottom: var(--space-8);
   }
 
   .service-editorial-card {
@@ -702,18 +754,30 @@ const faqs = [
 
   .service-meta-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--space-3);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-primary-600, #1E3A8A);
+    margin-bottom: var(--space-3);
+    width: 100%;
   }
 
   .service-index-number {
     font-family: var(--font-display);
-    font-size: 1.4rem;
+    font-size: 1.75rem;
     font-weight: 800;
     color: #131F5B;
-    opacity: 0.35;
     line-height: 1;
     letter-spacing: -0.02em;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .service-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
   }
 
   .service-category-tag {
@@ -723,11 +787,12 @@ const faqs = [
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-primary-700, #1E3A8A);
+    display: none;
   }
 
   .service-heading {
     font-family: var(--font-display);
-    font-size: clamp(1.35rem, 2vw, 1.65rem);
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
     font-weight: 700;
     color: var(--color-text-primary);
     line-height: 1.25;
@@ -864,47 +929,54 @@ const faqs = [
   .pathways-comparison-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-8);
-    margin-bottom: var(--space-8);
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
   }
 
   .pathway-matrix-card {
     background: #ffffff;
-    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border: 2px solid #131F5B;
     border-radius: var(--radius-lg, 16px);
-    padding: var(--space-8);
+    padding: var(--space-6);
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    gap: var(--space-4);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+
+  .pathway-matrix-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(19, 31, 91, 0.15);
   }
 
   .pathway-card-header {
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
+    gap: var(--space-2);
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid #131F5B;
   }
 
   .pathway-badge {
-    display: inline-flex;
     font-family: var(--font-display);
-    font-size: 0.72rem;
+    font-size: 0.6875rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #131F5B;
-    background-color: #f1f5f9;
-    padding: 3px 8px;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+    background-color: #131F5B;
+    padding: 4px 12px;
     border-radius: var(--radius-sm);
-    width: fit-content;
+    align-self: flex-start;
   }
 
   .pathway-title {
     font-family: var(--font-display);
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--color-text-primary);
+    color: #131F5B;
     margin: 0;
+    line-height: 1.3;
   }
 
   .pathway-desc {
@@ -918,23 +990,29 @@ const faqs = [
   .pathway-meta-box,
   .pathway-action-box {
     background-color: #f8fafc;
-    padding: var(--space-3);
-    border-radius: var(--radius-sm);
-    font-size: 0.84375rem;
-    line-height: 1.5;
-    color: var(--color-gray-700);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border-left: 3px solid #131F5B;
   }
 
   .pathway-meta-box strong,
   .pathway-action-box strong {
     display: block;
     color: #131F5B;
-    margin-bottom: 2px;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-2);
   }
 
   .pathway-meta-box p,
   .pathway-action-box p {
     margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-gray-700);
   }
 
   .pathways-cta-footer {
@@ -956,7 +1034,7 @@ const faqs = [
     padding: var(--space-6);
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
+    gap: var(--space-3);
     transition: transform 250ms ease, box-shadow 250ms ease;
   }
 
@@ -965,18 +1043,21 @@ const faqs = [
     box-shadow: 0 10px 24px -6px rgba(19, 31, 91, 0.1);
   }
 
-  .step-badge {
-    display: inline-flex;
+  .workflow-header {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    background-color: #131F5B;
-    color: #FFD26F;
+    gap: var(--space-3);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-primary-600, #1E3A8A);
+  }
+
+  .step-badge {
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 0.9375rem;
-    border-radius: var(--radius-md);
+    font-size: 1.25rem;
+    color: #131F5B;
+    line-height: 1;
+    flex-shrink: 0;
   }
 
   .step-title {
@@ -984,7 +1065,8 @@ const faqs = [
     font-size: 1.0625rem;
     font-weight: 700;
     color: var(--color-text-primary);
-    margin: var(--space-1) 0 0;
+    margin: 0;
+    flex: 1;
   }
 
   .step-desc {
@@ -1026,9 +1108,9 @@ const faqs = [
 
   .checklist-number {
     font-family: var(--font-display);
-    font-size: 0.9375rem;
+    font-size: 1.125rem;
     font-weight: 800;
-    color: #1E3A8A;
+    color: #131F5B;
   }
 
   .checklist-content {
@@ -1146,8 +1228,44 @@ const faqs = [
       gap: var(--space-6);
     }
 
-    .services-hero-media-wrap {
-      order: -1;
+    .services-hero-media-wrap-desktop {
+      display: none;
+    }
+
+    .services-hero-media-wrap-mobile {
+      display: block;
+      margin: var(--space-4) 0;
+    }
+
+    .services-hero-media-wrap-mobile .services-hero-audience-chips {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      background: linear-gradient(to top, rgba(19, 31, 91, 0.85), transparent);
+      padding: var(--space-4) var(--space-3) var(--space-3);
+      border-radius: 0 0 var(--radius-lg, 16px) var(--radius-lg, 16px);
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    .services-hero-media-wrap-mobile .audience-chip {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      font-size: 0.625rem;
+      font-weight: 400;
+      padding: 2px 6px;
+      backdrop-filter: blur(4px);
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .services-hero-info > .services-hero-audience-chips {
+      display: none;
     }
 
     .service-editorial-card {
@@ -1165,6 +1283,15 @@ const faqs = [
 
     .pathways-comparison-grid {
       grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    .pathway-matrix-card {
+      padding: var(--space-5);
+    }
+
+    .pathway-title {
+      font-size: 1.125rem;
     }
 
     .workflow-steps-grid {
@@ -1180,10 +1307,126 @@ const faqs = [
     }
   }
 
+  /* ── Desktop: Show original chips, hide mobile overlay ── */
+  @media (min-width: 1025px) {
+    .services-hero-media-wrap-mobile .services-hero-audience-chips {
+      display: none;
+    }
+
+    .services-hero-info > .services-hero-audience-chips {
+      display: flex !important;
+    }
+  }
+
   /* ── 768px: Mobile ── */
   @media (max-width: 768px) {
     .services-hero-layout {
-      padding: var(--space-6) 0;
+      padding: var(--space-2) 0 var(--space-6) 0;
+    }
+
+    .services-hero-pill-row {
+      margin-bottom: var(--space-1);
+    }
+
+    .hero-status-pill {
+      display: none;
+    }
+
+    .services-hero-info {
+      gap: var(--space-2);
+      align-items: center;
+      text-align: center;
+    }
+
+    .services-hero-title {
+      text-align: center;
+    }
+
+    .services-hero-lead {
+      text-align: center;
+    }
+
+    .service-editorial-card {
+      padding: var(--space-4) 0;
+      gap: var(--space-4);
+    }
+
+    .service-editorial-card.is-reversed .service-editorial-content {
+      order: 1;
+    }
+
+    .service-editorial-card.is-reversed .service-editorial-visual {
+      order: 2;
+    }
+
+    .service-editorial-content {
+      display: contents;
+    }
+
+    .service-meta-header {
+      order: 1;
+    }
+
+    .service-description-text {
+      order: 2;
+    }
+
+    .service-benefits-block {
+      order: 3;
+    }
+
+    .service-editorial-visual {
+      order: 4;
+    }
+
+    .service-actions-row {
+      order: 5;
+    }
+
+    .service-image-box {
+      aspect-ratio: 16 / 9;
+      max-height: 200px;
+    }
+
+    .service-meta-header {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-2);
+      padding-bottom: var(--space-2);
+      margin-bottom: var(--space-2);
+    }
+
+    .service-index-number {
+      font-size: 1.5rem;
+    }
+
+    .service-category-tag {
+      font-size: 0.6875rem;
+    }
+
+    .service-heading {
+      font-size: 1.125rem;
+      line-height: 1.3;
+    }
+
+    .service-description-text {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      max-width: 100%;
+    }
+
+    .service-benefits-block {
+      display: none;
+    }
+
+    .service-actions-row {
+      width: 100%;
+      margin-top: var(--space-2);
+    }
+
+    .btn-service-view {
+      font-size: 0.875rem;
+      padding: var(--space-2) var(--space-4);
     }
 
     .services-hero-title {
@@ -1201,6 +1444,17 @@ const faqs = [
     .section-intro {
       font-size: 0.9375rem;
       margin-bottom: var(--space-6);
+    }
+
+    .section-eyebrow {
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    .services-section-header {
+      margin-bottom: var(--space-5);
     }
 
     .services-hero-actions {

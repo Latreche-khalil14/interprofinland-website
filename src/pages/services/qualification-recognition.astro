@@ -142,11 +142,36 @@ const recognitionFaqs = [
             comparability or licensing pathways.
           </p>
 
-          <div class="service-hero-chips" aria-label="Key Recognition Focus Areas">
-            <span class="hero-chip">OPH Comparability Decisions</span>
-            <span class="hero-chip">Valvira Healthcare Licensing</span>
-            <span class="hero-chip">Sworn Translation Guidance</span>
-            <span class="hero-chip">Regulated Profession Rights</span>
+          <!-- Key Areas - Desktop -->
+          <div class="hero-areas-list" aria-label="Key Recognition Focus Areas">
+            <span class="area-item">OPH Comparability Decisions</span>
+            <span class="area-divider">•</span>
+            <span class="area-item">Valvira Healthcare Licensing</span>
+            <span class="area-divider">•</span>
+            <span class="area-item">Sworn Translation Guidance</span>
+            <span class="area-divider">•</span>
+            <span class="area-item">Regulated Profession Rights</span>
+          </div>
+
+          <!-- Mobile Image with Overlay Chips -->
+          <div class="hero-image-mobile">
+            <div class="service-hero-frame">
+              <img
+                src="/images/services/Qualification-Recognition/recognition-hero.jpg"
+                alt="Professional reviewing international degree certificates and academic credentials for Finnish recognition process"
+                class="service-hero-img"
+                width="800"
+                height="450"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <div class="hero-areas-list-overlay">
+              <span class="area-item">OPH Comparability</span>
+              <span class="area-item">Valvira Licensing</span>
+              <span class="area-item">Sworn Translations</span>
+              <span class="area-item">Profession Rights</span>
+            </div>
           </div>
 
           <div class="service-hero-actions">
@@ -165,7 +190,7 @@ const recognitionFaqs = [
           </div>
         </div>
 
-        <div class="service-hero-media">
+        <div class="service-hero-media hero-image-desktop">
           <div class="service-hero-frame">
             <img
               src="/images/services/Qualification-Recognition/recognition-hero.jpg"
@@ -183,7 +208,7 @@ const recognitionFaqs = [
   </Section>
 
   <!-- ==========================================================================
-       AUTHORITIES DIRECTORY: Categorized Official Bodies (4-Column Grid)
+       AUTHORITIES DIRECTORY: Clean 2×2 Grid Layout
        ========================================================================== -->
   <Section>
     <div id="authorities-directory"></div>
@@ -200,18 +225,25 @@ const recognitionFaqs = [
       <div class="authorities-grid">
         {
           authorities.map((auth) => (
-            <div class="authority-card">
-              <div class="authority-card-header">
-                <span class="authority-category-tag">{auth.category}</span>
-                <span class="authority-code-badge">{auth.code}</span>
+            <details class="authority-card" open>
+              <summary class="authority-summary">
+                <div class="authority-header">
+                  <div class="authority-top-row">
+                    <span class="authority-code">{auth.code}</span>
+                    <span class="authority-category">{auth.category}</span>
+                  </div>
+                  <h3 class="authority-name">{auth.name}</h3>
+                </div>
+                <span class="authority-toggle-icon" aria-hidden="true">▼</span>
+              </summary>
+              <div class="authority-content">
+                <p class="authority-scope">{auth.scope}</p>
+                <a href={auth.link} target="_blank" rel="noopener noreferrer" class="authority-link">
+                  <span>Visit Official Portal</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
               </div>
-              <h3 class="authority-name">{auth.name}</h3>
-              <p class="authority-scope">{auth.scope}</p>
-              <a href={auth.link} target="_blank" rel="noopener noreferrer" class="authority-ext-link">
-                <span>Visit Official Portal</span>
-                <span aria-hidden="true">↗</span>
-              </a>
-            </div>
+            </details>
           ))
         }
       </div>
@@ -219,7 +251,7 @@ const recognitionFaqs = [
   </Section>
 
   <!-- ==========================================================================
-       ROADMAP: 4-Stage Recognition Process (Cards with Secondary Finnish Terms)
+       ROADMAP: 2×2 Grid — Clean Process Cards
        ========================================================================== -->
   <Section background="surface">
     <div id="roadmap"></div>
@@ -235,14 +267,22 @@ const recognitionFaqs = [
       <div class="roadmap-grid">
         {
           roadmapStages.map((st) => (
-            <div class="roadmap-card">
-              <div class="roadmap-card-top">
-                <span class="roadmap-badge">{st.stage}</span>
-                <span class="roadmap-finnish-badge">{st.finnishTerm}</span>
+            <details class="roadmap-card" open>
+              <summary class="roadmap-summary">
+                <div class="roadmap-header">
+                  <span class="roadmap-number">{st.stage}</span>
+                  <h3 class="roadmap-title">{st.title}</h3>
+                </div>
+                <span class="roadmap-toggle-icon" aria-hidden="true">▼</span>
+              </summary>
+              <div class="roadmap-content">
+                <p class="roadmap-desc">{st.description}</p>
+                <div class="roadmap-finnish-term">
+                  <span class="term-label">Finnish Term:</span>
+                  <span class="term-text">{st.finnishTerm}</span>
+                </div>
               </div>
-              <h3 class="roadmap-title">{st.title}</h3>
-              <p class="roadmap-desc">{st.description}</p>
-            </div>
+            </details>
           ))
         }
       </div>
@@ -445,19 +485,30 @@ const recognitionFaqs = [
   .section-eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-2);
+    gap: var(--space-3);
     font-family: var(--font-display);
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-primary-600, #1E3A8A);
-    margin-bottom: var(--space-2);
+    color: var(--color-primary-500);
+    margin-bottom: var(--space-3);
+    line-height: 1;
+  }
+
+  .section-eyebrow::before,
+  .section-eyebrow::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2.5px;
+    background-color: #ffd26f;
+    flex-shrink: 0;
   }
 
   .section-heading {
     font-family: var(--font-display);
-    font-size: clamp(1.75rem, 2.8vw, 2.35rem);
+    font-size: clamp(1.875rem, 3vw, 2.5rem);
     font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
     margin: 0 0 var(--space-3);
@@ -471,30 +522,30 @@ const recognitionFaqs = [
     font-size: 1rem;
     color: var(--color-text-secondary);
     max-width: 65ch;
-    margin: 0 auto var(--space-8);
+    margin: 0 auto var(--space-6);
     line-height: var(--line-height-relaxed);
     text-align: center;
   }
 
   .section-header-center {
     text-align: center;
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-6);
   }
 
   /* ── Hero Section (16:9 Frame) ── */
   .service-hero-layout {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
-    gap: clamp(2.5rem, 5vw, 4.5rem);
+    gap: clamp(2rem, 4vw, 3.5rem);
     align-items: center;
-    padding: clamp(2rem, 4vw, 3.5rem) 0;
+    padding: clamp(0.5rem, 1.5vw, 1.5rem) 0 clamp(2rem, 3vw, 3rem);
   }
 
   .service-hero-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--space-4);
+    gap: var(--space-3);
   }
 
   .service-hero-breadcrumb {
@@ -548,6 +599,27 @@ const recognitionFaqs = [
     line-height: var(--line-height-relaxed);
     color: var(--color-gray-800);
     margin: 0;
+  }
+
+  /* Key Areas List — Clean & Simple */
+  .hero-areas-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-gray-600);
+  }
+
+  .area-item {
+    color: var(--color-text-primary);
+    font-weight: 500;
+  }
+
+  .area-divider {
+    color: var(--color-gray-400);
+    font-weight: 300;
   }
 
   .service-hero-chips {
@@ -644,11 +716,13 @@ const recognitionFaqs = [
     transform: scale(1.03);
   }
 
-  /* ── Authorities Grid ── */
+  /* ── Authorities Grid — 2×2 Clean Layout ── */
   .authorities-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-6);
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .authority-card {
@@ -656,36 +730,145 @@ const recognitionFaqs = [
     border: 1px solid var(--color-border-subtle, #e2e8f0);
     border-radius: var(--radius-lg, 16px);
     padding: var(--space-6);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-    transition: transform 250ms ease, box-shadow 250ms ease;
+    transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
   }
 
   .authority-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 24px -6px rgba(19, 31, 91, 0.1);
+    border-color: #93c5fd;
   }
 
-  .authority-code-badge {
+  .authority-card[open] {
+    border-color: #93c5fd;
+  }
+
+  /* Desktop: Open by default */
+  @media (min-width: 769px) {
+    .authority-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    /* Force open and disable interaction on desktop */
+    .authority-card[open] {
+      pointer-events: auto;
+    }
+
+    .authority-summary {
+      display: contents;
+      cursor: default;
+      list-style: none;
+      user-select: auto;
+      pointer-events: none;
+    }
+
+    .authority-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .authority-toggle-icon {
+      display: none;
+    }
+
+    .authority-content {
+      display: contents;
+      pointer-events: auto;
+    }
+
+    /* Restore pointer events for links */
+    .authority-link {
+      pointer-events: auto;
+    }
+  }
+
+  /* Mobile: Accordion behavior */
+  @media (max-width: 768px) {
+    .authority-summary {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-3);
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    .authority-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .authority-toggle-icon {
+      display: inline-block;
+      font-size: 1rem;
+      color: var(--color-primary-600, #1E3A8A);
+      flex-shrink: 0;
+      transition: transform 250ms ease, color 200ms ease;
+      margin-top: 4px;
+      line-height: 1;
+    }
+
+    .authority-card[open] .authority-toggle-icon {
+      transform: rotate(180deg);
+      color: var(--color-primary-700, #131F5B);
+    }
+
+    .authority-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding-top: var(--space-4);
+      margin-top: var(--space-3);
+      border-top: 1px solid var(--color-border-subtle, #e2e8f0);
+    }
+  }
+
+  .authority-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    flex: 1;
+  }
+
+  .authority-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-bottom: var(--space-3);
+    border-bottom: 2px solid var(--color-border-subtle, #e2e8f0);
+  }
+
+  .authority-code {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-family: var(--font-display);
     font-weight: 800;
-    font-size: 0.875rem;
-    color: #131F5B;
-    background-color: #f1f5f9;
-    border: 1px solid var(--color-border-subtle, #e2e8f0);
-    padding: 3px 10px;
-    border-radius: var(--radius-sm);
-    width: fit-content;
+    font-size: 1.125rem;
+    color: #ffffff;
+    background-color: #1E3A8A;
+    padding: 6px 14px;
+    border-radius: var(--radius-sm, 6px);
+    letter-spacing: 0.02em;
+  }
+
+  .authority-category {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-gray-500);
+    text-align: right;
+    line-height: 1.2;
   }
 
   .authority-name {
     font-family: var(--font-display);
-    font-size: 1.0625rem;
+    font-size: 1.125rem;
     font-weight: 700;
     color: var(--color-text-primary);
     margin: 0;
@@ -694,34 +877,38 @@ const recognitionFaqs = [
 
   .authority-scope {
     font-family: var(--font-body);
-    font-size: 0.84375rem;
-    line-height: 1.55;
-    color: var(--color-gray-600);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-gray-700);
     margin: 0;
-    flex-grow: 1;
   }
 
-  .authority-ext-link {
+  .authority-link {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     font-family: var(--font-display);
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     font-weight: 700;
     color: var(--color-primary-600, #1E3A8A);
     text-decoration: none;
-    margin-top: var(--space-2);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-border-subtle, #f1f5f9);
+    transition: color 200ms ease;
   }
 
-  .authority-ext-link:hover {
+  .authority-link:hover {
+    color: #131F5B;
     text-decoration: underline;
   }
 
-  /* ── Roadmap Cards (4 Stages) ── */
+  /* ── Roadmap Cards — 2×2 Grid with Accordion on Mobile ── */
   .roadmap-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-6);
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .roadmap-card {
@@ -729,40 +916,160 @@ const recognitionFaqs = [
     border: 1px solid var(--color-border-subtle, #e2e8f0);
     border-radius: var(--radius-lg, 16px);
     padding: var(--space-6);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    transition: all 300ms ease;
   }
 
-  .roadmap-badge {
+  .roadmap-card:hover {
+    border-color: #1E3A8A;
+    box-shadow: 0 8px 24px -4px rgba(19, 31, 91, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .roadmap-card[open] {
+    border-color: #1E3A8A;
+  }
+
+  /* Desktop: Open by default */
+  @media (min-width: 769px) {
+    .roadmap-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    /* Force open and disable interaction on desktop */
+    .roadmap-card[open] {
+      pointer-events: auto;
+    }
+
+    .roadmap-summary {
+      display: contents;
+      cursor: default;
+      list-style: none;
+      user-select: auto;
+      pointer-events: none;
+    }
+
+    .roadmap-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .roadmap-toggle-icon {
+      display: none;
+    }
+
+    .roadmap-content {
+      display: contents;
+      pointer-events: auto;
+    }
+  }
+
+  /* Mobile: Accordion behavior */
+  @media (max-width: 768px) {
+    .roadmap-summary {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-3);
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    .roadmap-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .roadmap-toggle-icon {
+      display: inline-block;
+      font-size: 1rem;
+      color: var(--color-primary-600, #1E3A8A);
+      flex-shrink: 0;
+      transition: transform 250ms ease, color 200ms ease;
+      margin-top: 4px;
+      line-height: 1;
+    }
+
+    .roadmap-card[open] .roadmap-toggle-icon {
+      transform: rotate(180deg);
+      color: var(--color-primary-700, #131F5B);
+    }
+
+    .roadmap-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding-top: var(--space-4);
+      margin-top: var(--space-3);
+      border-top: 1px solid var(--color-border-subtle, #e2e8f0);
+    }
+  }
+
+  .roadmap-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex: 1;
+  }
+
+  .roadmap-number {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    background-color: #131F5B;
-    color: #FFD26F;
+    width: 48px;
+    height: 48px;
+    background-color: #1E3A8A;
+    color: #ffffff;
     font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 0.9375rem;
-    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 1.125rem;
+    border-radius: var(--radius-md, 12px);
+    flex-shrink: 0;
+    letter-spacing: -0.01em;
   }
 
   .roadmap-title {
     font-family: var(--font-display);
-    font-size: 1.0625rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--color-text-primary);
-    margin: var(--space-1) 0 0;
+    margin: 0;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
   }
 
   .roadmap-desc {
     font-family: var(--font-body);
-    font-size: 0.875rem;
-    line-height: 1.55;
-    color: var(--color-gray-600);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-gray-700);
     margin: 0;
+  }
+
+  .roadmap-finnish-term {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding-top: var(--space-2);
+    margin-top: var(--space-2);
+    border-top: 1px solid var(--color-border-subtle, #f1f5f9);
+  }
+
+  .term-label {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-gray-500);
+  }
+
+  .term-text {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-style: italic;
+    color: var(--color-gray-600);
   }
 
   /* ── Split Editorial: Document Checklist (4:3 Frame) ── */
@@ -795,6 +1102,38 @@ const recognitionFaqs = [
     line-height: 1.6;
     color: var(--color-gray-700);
     margin: 0 0 var(--space-2);
+  }
+
+  .document-disclaimer-note {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius-md, 10px);
+    padding: var(--space-4);
+    margin-bottom: var(--space-2);
+  }
+
+  .disclaimer-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #1E3A8A;
+    color: #ffffff;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+  }
+
+  .disclaimer-text {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: #1e40af;
+    margin: 0;
   }
 
   .requirements-list {
@@ -1096,25 +1435,120 @@ const recognitionFaqs = [
   }
 
   /* ── Responsive Adaptations ── */
-  /* ── 1024px: Tablet ── */
+  /* Mobile Image with Overlay */
+  .hero-image-mobile {
+    display: none;
+    width: 100%;
+    position: relative;
+    margin: var(--space-4) 0;
+  }
+
+  .hero-areas-list-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: linear-gradient(to top, rgba(19, 31, 91, 0.85), transparent);
+    padding: var(--space-4) var(--space-3) var(--space-3);
+    border-radius: 0 0 var(--radius-lg, 16px) var(--radius-lg, 16px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .hero-areas-list-overlay .area-item {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-size: 0.625rem;
+    font-weight: 400;
+    padding: 2px 6px;
+    backdrop-filter: blur(4px);
+    text-align: center;
+    line-height: 1.3;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ── Mobile Optimizations (≤1024px) ── */
   @media (max-width: 1024px) {
+    /* Hero Layout */
     .service-hero-layout {
       grid-template-columns: 1fr;
-      gap: var(--space-6);
+      gap: var(--space-4);
+      padding: var(--space-2) 0 var(--space-4);
     }
 
-    .service-hero-media {
-      order: -1;
+    .service-hero-content {
+      align-items: center;
+      text-align: center;
     }
 
+    .service-hero-title {
+      text-align: center;
+    }
+
+    .service-hero-lead {
+      text-align: center;
+      max-width: 100%;
+    }
+
+    /* Hide desktop image and regular chips */
+    .hero-image-desktop {
+      display: none;
+    }
+
+    .hero-areas-list {
+      display: none;
+    }
+
+    /* Show mobile image with overlay */
+    .hero-image-mobile {
+      display: block;
+    }
+
+    /* Center section eyebrows */
+    .section-eyebrow {
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Center CTAs */
+    .service-hero-actions {
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Reduce section spacing */
+    .section-header-center {
+      margin-bottom: var(--space-4);
+    }
+
+    /* Authorities grid to single column */
     .authorities-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
     }
 
+    /* Roadmap grid to single column */
     .roadmap-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
     }
 
+    .roadmap-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .roadmap-number {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+    }
+
+    /* Editorial split to single column */
     .editorial-split-layout {
       grid-template-columns: 1fr;
       gap: var(--space-6);
@@ -1124,6 +1558,18 @@ const recognitionFaqs = [
       order: -1;
     }
 
+    /* Handbook spotlight */
+    .handbook-spotlight-card {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+      padding: var(--space-5);
+    }
+
+    .handbook-visual {
+      order: -1;
+    }
+
+    /* FAQ grid to single column */
     .faqs-grid {
       max-width: 100%;
     }
@@ -1174,12 +1620,28 @@ const recognitionFaqs = [
       grid-template-columns: 1fr;
     }
 
-    .authority-card {
-      padding: var(--space-4);
+    .roadmap-number {
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
     }
 
-    .handbook-spotlight {
-      padding: var(--space-5) var(--space-4);
+    .authority-card {
+      padding: var(--space-5);
+    }
+
+    .roadmap-card {
+      padding: var(--space-5);
+    }
+
+    .handbook-spotlight-card {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      padding: var(--space-6);
+    }
+
+    .handbook-visual {
+      order: -1;
     }
 
     .faq-accordion-item {
@@ -1195,20 +1657,129 @@ const recognitionFaqs = [
     }
   }
 
+  /* Mobile Image with Overlay */
+  .hero-image-mobile {
+    display: none;
+    width: 100%;
+    position: relative;
+    margin: var(--space-4) 0;
+  }
+
+  .hero-areas-list-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: linear-gradient(to top, rgba(19, 31, 91, 0.85), transparent);
+    padding: var(--space-4) var(--space-3) var(--space-3);
+    border-radius: 0 0 var(--radius-lg, 16px) var(--radius-lg, 16px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .hero-areas-list-overlay .area-item {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-size: 0.625rem;
+    font-weight: 400;
+    padding: 2px 6px;
+    backdrop-filter: blur(4px);
+    text-align: center;
+    line-height: 1.3;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ── Mobile Optimizations (≤1024px) ── */
+  @media (max-width: 1024px) {
+    /* Hero Layout */
+    .service-hero-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      padding: var(--space-2) 0 var(--space-4);
+    }
+
+    .service-hero-content {
+      align-items: center;
+      text-align: center;
+    }
+
+    .service-hero-title {
+      text-align: center;
+    }
+
+    .service-hero-lead {
+      text-align: center;
+      max-width: 100%;
+    }
+
+    /* Hide desktop image and regular chips */
+    .hero-image-desktop {
+      display: none;
+    }
+
+    .hero-areas-list {
+      display: none;
+    }
+
+    /* Show mobile image with overlay */
+    .hero-image-mobile {
+      display: block;
+    }
+
+    /* Center section eyebrows */
+    .section-eyebrow {
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Center CTAs */
+    .service-hero-actions {
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Reduce section spacing */
+    .section-header-center {
+      margin-bottom: var(--space-4);
+    }
+
+    /* Authorities grid to single column */
+    .authorities-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    /* Roadmap grid to single column */
+    .roadmap-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    /* Editorial split to single column */
+    .editorial-split-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    /* Checklist grid to single column */
+    .checklist-grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* FAQ grid to single column */
+    .recognition-faqs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* ── 480px: Small phones ── */
   @media (max-width: 480px) {
     .service-hero-title {
       font-size: 1.625rem;
       letter-spacing: -0.02em;
-    }
-
-    .service-hero-chips {
-      gap: var(--space-1);
-    }
-
-    .hero-chip {
-      font-size: 0.71875rem;
-      padding: 3px 8px;
     }
 
     .breadcrumb-current {
@@ -1222,5 +1793,19 @@ const recognitionFaqs = [
     .step-number {
       font-size: 1.5rem;
     }
+
+    .hero-areas-list-overlay .area-item {
+      font-size: 0.5625rem;
+      padding: 1px 4px;
+    }
   }
 </style>
+
+<script>
+  // Remove 'open' attribute on mobile for accordion behavior
+  if (window.innerWidth <= 768) {
+    document.querySelectorAll('.authority-card[open], .roadmap-card[open]').forEach((detail) => {
+      detail.removeAttribute('open');
+    });
+  }
+</script>
