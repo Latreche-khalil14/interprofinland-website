@@ -156,15 +156,16 @@ const partnerLogos = [
       <!-- Service 01: Career Guidance (Text | Image) -->
       <article class="editorial-service-split">
         <div class="service-split-content">
-          <div class="service-index-badge">
-            <span>01</span>
+          <div class="service-title-with-badge">
+            <div class="service-index-badge">
+              <span>01</span>
+            </div>
+            <h3 class="service-title">
+              <a href="/services/career-guidance" class="service-title-link">
+                Career Guidance & Workplace Culture
+              </a>
+            </h3>
           </div>
-          <span class="service-category">Labour Market Guidance</span>
-          <h3 class="service-title">
-            <a href="/services/career-guidance" class="service-title-link">
-              Career Guidance & Workplace Culture
-            </a>
-          </h3>
           <p class="service-description">
             Gain practical insights into the Finnish labour market, working culture expectations,
             recruitment standards, and strategic job search approaches tailored to your profession.
@@ -190,15 +191,16 @@ const partnerLogos = [
       <!-- Service 02: Qualification Recognition (Image | Text - Reversed) -->
       <article class="editorial-service-split is-reversed">
         <div class="service-split-content">
-          <div class="service-index-badge">
-            <span>02</span>
+          <div class="service-title-with-badge">
+            <div class="service-index-badge">
+              <span>02</span>
+            </div>
+            <h3 class="service-title">
+              <a href="/services/qualification-recognition" class="service-title-link">
+                Foreign Qualification & Degree Recognition
+              </a>
+            </h3>
           </div>
-          <span class="service-category">Diploma Equivalency</span>
-          <h3 class="service-title">
-            <a href="/services/qualification-recognition" class="service-title-link">
-              Foreign Qualification & Degree Recognition
-            </a>
-          </h3>
           <p class="service-description">
             Step-by-step navigation through OPH, Valvira, and regulated profession authorities to
             navigate the recognition of your international qualifications and professional
@@ -225,15 +227,16 @@ const partnerLogos = [
       <!-- Service 03: Mentorship (Text | Image) -->
       <article class="editorial-service-split">
         <div class="service-split-content">
-          <div class="service-index-badge">
-            <span>03</span>
+          <div class="service-title-with-badge">
+            <div class="service-index-badge">
+              <span>03</span>
+            </div>
+            <h3 class="service-title">
+              <a href="/services/mentorship" class="service-title-link">
+                1-on-1 Mentorship & Peer Community
+              </a>
+            </h3>
           </div>
-          <span class="service-category">Mentorship & Clubs</span>
-          <h3 class="service-title">
-            <a href="/services/mentorship" class="service-title-link">
-              1-on-1 Mentorship & Peer Community
-            </a>
-          </h3>
           <p class="service-description">
             Connect directly with experienced professionals in your field and participate in weekly
             Finnish language clubs (Kielikaverit) to gain local industry context and lasting
@@ -260,15 +263,16 @@ const partnerLogos = [
       <!-- Service 04: Networking (Image | Text - Reversed) -->
       <article class="editorial-service-split is-reversed">
         <div class="service-split-content">
-          <div class="service-index-badge">
-            <span>04</span>
+          <div class="service-title-with-badge">
+            <div class="service-index-badge">
+              <span>04</span>
+            </div>
+            <h3 class="service-title">
+              <a href="/services/networking" class="service-title-link">
+                Networking & Regional Opportunities
+              </a>
+            </h3>
           </div>
-          <span class="service-category">Professional Networks</span>
-          <h3 class="service-title">
-            <a href="/services/networking" class="service-title-link">
-              Networking & Regional Opportunities
-            </a>
-          </h3>
           <p class="service-description">
             Bridge the gap to Finnish working life through regional employer linkups, professional
             networks, and annual international talent fairs across Satakunta.
@@ -514,29 +518,14 @@ const partnerLogos = [
               </div>
 
               <div class="program-showcase-content">
-                <div class="program-header-meta">
+                <div class="program-title-with-index">
                   <span class="program-index">0{idx + 1}</span>
-                  <div class="program-meta-chips">
-                    <span class="meta-chip">
-                      <span class="chip-icon" aria-hidden="true">
-                        🗓
-                      </span>
-                      <span>{evt.schedule}</span>
-                    </span>
-                    <span class="meta-chip">
-                      <span class="chip-icon" aria-hidden="true">
-                        📍
-                      </span>
-                      <span>{evt.location}</span>
-                    </span>
-                  </div>
+                  <h3 class="program-title">
+                    <a href={evt.href} class="program-title-link">
+                      {evt.title}
+                    </a>
+                  </h3>
                 </div>
-
-                <h3 class="program-title">
-                  <a href={evt.href} class="program-title-link">
-                    {evt.title}
-                  </a>
-                </h3>
 
                 <p class="program-desc">{evt.description}</p>
 
@@ -967,10 +956,18 @@ const partnerLogos = [
     flex-direction: column;
   }
 
+  .service-title-with-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+  }
+
   .service-index-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 50%;
@@ -979,19 +976,7 @@ const partnerLogos = [
     font-family: var(--font-display);
     font-size: 1.25rem;
     font-weight: 800;
-    margin-bottom: var(--space-5);
     box-shadow: 0 4px 12px rgba(19, 31, 91, 0.2);
-  }
-
-  .service-category {
-    display: inline-block;
-    font-family: var(--font-display);
-    font-size: 0.8125rem;
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-primary-700);
-    margin-bottom: var(--space-3);
   }
 
   .service-title {
@@ -1001,7 +986,7 @@ const partnerLogos = [
     color: var(--color-text-primary);
     line-height: 1.15;
     letter-spacing: -0.025em;
-    margin: 0 0 var(--space-5);
+    margin: 0;
   }
 
   .service-title-link {
@@ -2018,11 +2003,11 @@ const partnerLogos = [
     gap: var(--space-2);
   }
 
-  .program-header-meta {
+  .program-title-with-index {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
-    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
   }
 
   .program-index {
@@ -2033,31 +2018,7 @@ const partnerLogos = [
     opacity: 0.3;
     line-height: 1;
     letter-spacing: -0.02em;
-  }
-
-  .program-meta-chips {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    flex-wrap: wrap;
-  }
-
-  .meta-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-family: var(--font-display);
-    font-size: 0.78125rem;
-    font-weight: 600;
-    color: #131f5b;
-    background-color: #f1f5f9;
-    padding: 3px 8px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--color-border-subtle, #e2e8f0);
-  }
-
-  .chip-icon {
-    font-size: 0.78125rem;
+    flex-shrink: 0;
   }
 
   .program-title {
@@ -2067,7 +2028,7 @@ const partnerLogos = [
     color: var(--color-text-primary);
     line-height: 1.25;
     letter-spacing: -0.015em;
-    margin: var(--space-1) 0;
+    margin: 0;
   }
 
   .program-title-link {
@@ -2502,31 +2463,32 @@ const partnerLogos = [
     }
 
     .service-split-content {
-      display: contents;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-title-with-badge {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: var(--space-3);
     }
 
     .service-index-badge {
       order: 1 !important;
-      margin-bottom: var(--space-2);
-    }
-
-    .service-category {
-      order: 2 !important;
-      margin-bottom: var(--space-3);
     }
 
     .service-title {
-      order: 3 !important;
+      order: 2 !important;
       margin-bottom: var(--space-4);
     }
 
     .service-description {
-      order: 4 !important;
+      order: 3 !important;
       margin-bottom: var(--space-5);
     }
 
     .service-split-visual {
-      order: 5 !important;
+      order: 4 !important;
       max-width: 500px;
       margin: 0 auto var(--space-5);
       width: 100%;
