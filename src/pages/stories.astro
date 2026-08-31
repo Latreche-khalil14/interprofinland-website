@@ -1,43 +1,864 @@
 ---
 /**
  * Stories — InterProFinland
+ * Editorial showcase of member experiences.
+ * Design: Hero → Featured Story → Stories Grid → CTA
  */
-
 import Layout from '@/layouts/Layout.astro';
 import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
+import { featuredStory, remainingStories, PROGRAM_LABELS } from '@/data/stories';
 ---
 
 <Layout
-  title="Stories — InterProFinland"
-  description="Real experiences from international professionals navigating their career journey in Finland."
+  title="Member Stories — InterProFinland"
+  description="Real experiences from international professionals who navigated qualification recognition, career integration, and mentorship in Finland."
 >
-  <Section>
-    <Container size="content">
-      <div style="text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
-      <h1>Stories</h1>
-      
-      <h2 style="margin-top: 2rem;">📋 Page Sections</h2>
-      <p style="text-align: left; line-height: 2;">
-        • Hero<br>
-        • Featured Story<br>
-        • Testimonials<br>
-        • Success Stories<br>
-        • Community Stories<br>
-        • Career journeys<br>
-        • Project stories<br>
-        • Filters/categories (if necessary)<br>
-        • Story cards<br>
-        • Individual story pages (later)<br>
-        • CTA
-      </p>
 
-      <p style="background: #e7f3ff; padding: 1rem; border-radius: 8px; margin: 2rem 0;">
-        <strong>💡 Note:</strong> These are NOT just testimonials — full stories with context.
-      </p>
+  <!-- ======================================================================
+       SUBNAV BAR
+       ====================================================================== -->
+  <div class="stories-subnav">
+    <Container size="page">
+      <div class="subnav-inner">
+        <nav class="subnav-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/" class="crumb-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            Home
+          </a>
+          <span class="crumb-sep" aria-hidden="true">/</span>
+          <span class="crumb-current">Member Stories</span>
+        </nav>
+        <span class="subnav-tagline">Real experiences of international professionals in Finland</span>
+      </div>
+    </Container>
+  </div>
 
-      <p style="margin-top: 2rem;"><em>Page under construction</em></p>
+  <!-- ======================================================================
+       HERO
+       ====================================================================== -->
+  <section class="stories-hero" aria-label="Stories hero">
+    <Container size="page">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <span class="section-eyebrow">InterProFinland Community</span>
+          <h1 class="hero-title">Real Experiences.<br>Real People.</h1>
+          <p class="hero-desc">
+            Discover how international professionals in Finland navigated qualification recognition,
+            career transitions, mentorship, and integration — in their own words.
+          </p>
+          <div class="hero-tags-row" aria-label="Story categories">
+            <span class="hero-tag">Degree Recognition</span>
+            <span class="hero-tag">Mentorship</span>
+            <span class="hero-tag">Career Development</span>
+            <span class="hero-tag">Community</span>
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <img
+            src="/images/about/Networking.jpg"
+            alt="International professionals networking at an InterProFinland event"
+            class="hero-image"
+            width="900"
+            height="540"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- ======================================================================
+       FEATURED STORY
+       ====================================================================== -->
+  <Section background="default">
+    <Container size="page">
+      <div class="featured-label-row">
+        <span class="featured-label">Featured Story</span>
+      </div>
+      <div class="featured-layout">
+        <!-- Photo -->
+        <div class="featured-photo-col">
+          <div class="featured-photo-frame">
+            <img
+              src={featuredStory.image}
+              alt={featuredStory.name + ' — ' + featuredStory.role}
+              class="featured-photo-img"
+              width="540"
+              height="640"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="featured-content-col">
+          <span class="featured-program-tag">{PROGRAM_LABELS[featuredStory.program]}</span>
+          <h2 class="featured-headline">{featuredStory.headline}</h2>
+          <blockquote class="featured-quote">
+            <p>"{featuredStory.pullQuote}"</p>
+          </blockquote>
+          <div class="featured-byline">
+            <span class="featured-name">{featuredStory.name}</span>
+            <span class="featured-role">{featuredStory.role}</span>
+          </div>
+          <a href={'/stories/' + featuredStory.id} class="featured-read-link">
+            Read Story
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
       </div>
     </Container>
   </Section>
+
+  <!-- ======================================================================
+       MORE STORIES GRID
+       ====================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="grid-header">
+        <span class="grid-eyebrow">Community Voices</span>
+        <h2 class="grid-title">More Stories from Our Network</h2>
+        <p class="grid-desc">Each path is unique. Find the story that resonates with yours.</p>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="filter-bar" role="tablist" aria-label="Filter by program">
+        <button class="filter-btn filter-btn--active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-filter="Degree Recognition" role="tab" aria-selected="false">Degree Recognition</button>
+        <button class="filter-btn" data-filter="Degree Amplify" role="tab" aria-selected="false">Degree Amplify</button>
+        <button class="filter-btn" data-filter="One Mentor One" role="tab" aria-selected="false">One Mentor One</button>
+        <button class="filter-btn" data-filter="SATAtalents" role="tab" aria-selected="false">SATAtalents</button>
+      </div>
+
+      <!-- Story Cards -->
+      <div class="stories-grid" id="stories-grid">
+        {remainingStories.map((story) => (
+          <article
+            class="story-card"
+            data-program={story.program}
+          >
+            <!-- Photo -->
+            <a href={'/stories/' + story.id} class="card-photo-link" tabindex="-1" aria-hidden="true">
+              <div class="card-photo-frame">
+                <img
+                  src={story.image}
+                  alt={story.name + ' — ' + story.role}
+                  class="card-photo-img"
+                  width="400"
+                  height="300"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </a>
+
+            <!-- Body -->
+            <div class="card-body">
+              <span class="card-program">{PROGRAM_LABELS[story.program]}</span>
+              <div class="card-person">
+                <h3 class="card-name">{story.name}</h3>
+                <p class="card-role">{story.role}</p>
+              </div>
+              <p class="card-quote">"{story.pullQuote}"</p>
+              <a href={'/stories/' + story.id} class="card-read-link">
+                Read Story
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ======================================================================
+       CTA — Share Your Story
+       ====================================================================== -->
+  <Section background="default">
+    <Container size="content">
+      <div class="share-cta">
+        <span class="section-eyebrow">Your Story Matters</span>
+        <h2 class="section-heading">Have a Story to Share?</h2>
+        <p class="share-desc">
+          Your experience could help another international professional take their next step in Finland.
+          We'd love to hear from you.
+        </p>
+        <a href="/contact" class="share-btn">
+          Share Your Experience
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </Container>
+  </Section>
+
 </Layout>
+
+<script>
+  // Filter tabs
+  const grid = document.getElementById('stories-grid');
+  const btns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset['filter'] ?? 'all';
+
+      // Update tabs
+      btns.forEach((b) => {
+        b.classList.toggle('filter-btn--active', b === btn);
+        b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+      });
+
+      // Show/hide cards
+      grid?.querySelectorAll<HTMLElement>('.story-card').forEach((card) => {
+        const match = filter === 'all' || card.dataset['program'] === filter;
+        card.style.display = match ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+<style>
+  /* ── Subnav ── */
+  .stories-subnav {
+    background: #ffffff;
+    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+  }
+
+  .subnav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    gap: 16px;
+  }
+
+  .subnav-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .subnav-breadcrumbs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .crumb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-gray-500);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .crumb-link:hover { color: #131F5B; }
+
+  .crumb-sep { color: #cbd5e1; font-size: 0.75rem; flex-shrink: 0; }
+
+  .crumb-current {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #131F5B;
+    flex-shrink: 0;
+  }
+
+  .subnav-tagline {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: var(--color-gray-400);
+    text-align: right;
+  }
+
+  @media (max-width: 768px) {
+    .subnav-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 10px 0;
+    }
+    .subnav-tagline { display: none; }
+  }
+
+  /* ── Hero ── */
+  .stories-hero {
+    padding: clamp(2rem, 5vw, 4.5rem) 0 clamp(1.75rem, 4vw, 3.25rem);
+    background: #ffffff;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.75rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  @media (max-width: 860px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+    .hero-image-wrap {
+      order: 1;
+      aspect-ratio: 16 / 9;
+      max-height: 360px;
+    }
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+
+  .hero-desc {
+    font-family: var(--font-body);
+    font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+    color: #475569;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 48ch;
+  }
+
+  .hero-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .hero-tag {
+    font-family: var(--font-display);
+    font-size: 0.71875rem;
+    font-weight: 600;
+    color: #334155;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 4px 10px;
+  }
+
+  .hero-image-wrap {
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 5 / 3;
+    background: #f1f5f9;
+    box-shadow: 0 20px 60px -10px rgba(15, 23, 42, 0.12);
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  /* ── Featured Story Eyebrow (Homepage Signature) ── */
+  .featured-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .featured-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary-500, #1E3A8A);
+    line-height: 1;
+    margin: 0;
+  }
+
+  .featured-label::before,
+  .featured-label::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2.5px;
+    background-color: #ffd26f;
+    flex-shrink: 0;
+  }
+
+  .featured-layout {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .featured-layout {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+    .featured-photo-col {
+      max-width: 320px;
+      width: 100%;
+    }
+  }
+
+  .featured-photo-frame {
+    border-radius: 12px;
+    overflow: hidden;
+    height: 420px;
+    max-width: 360px;
+    background: #f1f5f9;
+    box-shadow: 0 20px 50px -10px rgba(15, 23, 42, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 640px) {
+    .featured-photo-frame {
+      height: 320px;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+  }
+
+  .featured-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .featured-content-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .featured-program-tag {
+    font-family: var(--font-display);
+    font-size: 0.71875rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+  }
+
+  .featured-headline {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 3.5vw, 2.125rem);
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.22;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .featured-quote {
+    margin: 0;
+    padding: clamp(12px, 2.5vw, 18px);
+    background: #f8fafc;
+    border-left: 3px solid #131F5B;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .featured-quote p {
+    font-family: var(--font-display);
+    font-size: clamp(0.9375rem, 1.8vw, 1.125rem);
+    font-weight: 500;
+    font-style: italic;
+    color: #1e293b;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .featured-byline {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: var(--space-2);
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .featured-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .featured-role {
+    font-family: var(--font-body);
+    font-size: 0.84375rem;
+    color: #64748b;
+  }
+
+  .featured-read-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-display);
+    font-size: 0.90625rem;
+    font-weight: 700;
+    color: #131F5B;
+    text-decoration: none;
+    width: fit-content;
+    border-bottom: 2px solid #131F5B;
+    padding-bottom: 2px;
+    transition: gap 180ms ease, color 180ms ease;
+  }
+
+  .featured-read-link:hover {
+    gap: 10px;
+    color: #1E3A8A;
+  }
+
+  /* ── Grid Section Header (Homepage Signature) ── */
+  .grid-header {
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .grid-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary-500, #1E3A8A);
+    margin-bottom: var(--space-3);
+    line-height: 1;
+  }
+
+  .grid-eyebrow::before,
+  .grid-eyebrow::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2.5px;
+    background-color: #ffd26f;
+    flex-shrink: 0;
+  }
+
+  .grid-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 var(--space-3);
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .grid-desc {
+    font-family: var(--font-body);
+    font-size: clamp(0.96875rem, 1.4vw, 1.09375rem);
+    color: #475569;
+    margin: 0 auto;
+    max-width: 58ch;
+    line-height: 1.7;
+  }
+
+  /* ── Filter Bar ── */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: var(--space-7);
+    padding-bottom: var(--space-5);
+  }
+
+  .filter-btn {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #475569;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 9px 16px;
+    cursor: pointer;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .filter-bar {
+      gap: 6px;
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-4);
+    }
+    .filter-btn {
+      font-size: 0.75rem;
+      padding: 7px 13px;
+    }
+  }
+
+  .filter-btn:hover {
+    border-color: #131F5B;
+    color: #131F5B;
+  }
+
+  .filter-btn--active {
+    background: #131F5B;
+    border-color: #131F5B;
+    color: #ffffff;
+  }
+
+  /* ── Stories Grid ── */
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: clamp(1.25rem, 2vw, 1.75rem);
+  }
+
+  @media (min-width: 1280px) {
+    .stories-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .stories-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  /* ── Story Card (Horizontal: Photo Left, Content Right) ── */
+  .story-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  }
+
+  .story-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08);
+    border-color: #cbd5e1;
+  }
+
+  /* Photo (Left Side) */
+  .card-photo-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 14px;
+    flex-shrink: 0;
+  }
+
+  .card-photo-frame {
+    width: 145px;
+    height: 185px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 440px) {
+    .card-photo-link {
+      padding: 12px 8px 12px 12px;
+    }
+    .card-photo-frame {
+      width: 115px;
+      height: 150px;
+    }
+  }
+
+  .card-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Body (Right Side) */
+  .card-body {
+    padding: 14px 16px 14px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-program {
+    font-family: var(--font-display);
+    font-size: 0.65625rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+  }
+
+  .card-person {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .card-name {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .card-role {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: #64748b;
+    margin: 0;
+  }
+
+  .card-quote {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-style: italic;
+    color: #334155;
+    line-height: 1.45;
+    margin: 2px 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-read-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #131F5B;
+    text-decoration: none;
+    margin-top: auto;
+    padding-top: 4px;
+    width: fit-content;
+    transition: gap 150ms ease;
+  }
+
+  .card-read-link:hover {
+    gap: 9px;
+    text-decoration: underline;
+  }
+
+  /* ── Share CTA ── */
+  .share-cta {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    padding: clamp(2rem, 4vw, 3.5rem) 0;
+  }
+
+  .share-desc {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: #64748b;
+    max-width: 50ch;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 0.90625rem;
+    font-weight: 700;
+    color: #131F5B;
+    background: #FFD26F;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    margin-top: 8px;
+    border: 2px solid #FFD26F;
+    box-shadow: 0 4px 14px rgba(255, 210, 111, 0.35);
+    transition: all 180ms ease;
+  }
+
+  .share-btn:hover {
+    background: #131F5B;
+    border-color: #131F5B;
+    color: #ffffff;
+    gap: 12px;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(19, 31, 91, 0.2);
+  }
+
+  @media (max-width: 480px) {
+    .share-btn {
+      width: 100%;
+    }
+  }
+</style>

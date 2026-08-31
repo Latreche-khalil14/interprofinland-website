@@ -1,0 +1,758 @@
+---
+/**
+ * /stories/[id] — Individual Story Page
+ * Full editorial layout: header → portrait + quote → interview body → more stories
+ */
+import Layout from '@/layouts/Layout.astro';
+import Section from '@/components/ui/Section.astro';
+import Container from '@/components/ui/Container.astro';
+import { stories, PROGRAM_LABELS } from '@/data/stories';
+
+export function getStaticPaths() {
+  return stories.map((story) => ({
+    params: { id: story.id },
+    props: { story },
+  }));
+}
+
+const { story } = Astro.props;
+const otherStories = stories.filter((s) => s.id !== story.id).slice(0, 3);
+---
+
+<Layout
+  title={story.headline + ' — InterProFinland'}
+  description={story.summary}
+>
+
+  <!-- ====================================================================
+       SUBNAV
+       ==================================================================== -->
+  <div class="story-subnav">
+    <Container size="page">
+      <div class="subnav-inner">
+        <nav aria-label="Breadcrumb" class="subnav-crumbs">
+          <a href="/" class="crumb-link">Home</a>
+          <span class="crumb-sep" aria-hidden="true">/</span>
+          <a href="/stories" class="crumb-link">Member Stories</a>
+          <span class="crumb-sep" aria-hidden="true">/</span>
+          <span class="crumb-current" aria-current="page">{story.name}</span>
+        </nav>
+        <a href="/stories" class="back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back to Stories
+        </a>
+      </div>
+    </Container>
+  </div>
+
+  <!-- ====================================================================
+       PAGE HEADER  (program + headline + byline)
+       ==================================================================== -->
+  <section class="story-hero" aria-label="Story introduction">
+    <Container size="page">
+      <div class="story-hero-inner">
+
+        <!-- Left: text -->
+        <div class="hero-text">
+          <span class="hero-program-tag">{PROGRAM_LABELS[story.program]}</span>
+          <h1 class="hero-headline">{story.headline}</h1>
+          <p class="hero-summary">{story.summary}</p>
+          <div class="hero-byline">
+            <div class="byline-avatar">
+              <img
+                src={story.image}
+                alt={story.name}
+                class="byline-avatar-img"
+                width="48"
+                height="48"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <div class="byline-text">
+              <span class="byline-name">{story.name}</span>
+              <span class="byline-role">{story.role}{story.origin !== 'International' ? ` · ${story.origin}` : ''}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: portrait -->
+        <div class="hero-portrait">
+          <div class="hero-portrait-frame">
+            <img
+              src={story.image}
+              alt={story.name + ' — ' + story.role}
+              class="hero-portrait-img"
+              width="440"
+              height="520"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+        </div>
+
+      </div>
+    </Container>
+  </section>
+
+  <!-- ====================================================================
+       STORY CONTENT (pull-quote + interview)
+       ==================================================================== -->
+  <Section background="default">
+    <Container size="page">
+
+      <div class="story-body-layout">
+        
+        <!-- Left Column: Quote + LinkedIn -->
+        <aside class="story-sidebar">
+          <!-- Pull Quote -->
+          <blockquote class="story-quote">
+            <p class="quote-text">{story.pullQuote}</p>
+            <cite class="quote-author">— {story.name}</cite>
+          </blockquote>
+
+          <!-- LinkedIn Button -->
+          {story.linkedin && (
+            <a
+              href={story.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="linkedin-btn"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+              Connect on LinkedIn
+            </a>
+          )}
+        </aside>
+
+        <!-- Right Column: Interview -->
+        {story.fullStory.length > 0 && (
+          <article class="story-interview">
+            <header class="interview-header">
+              <h2 class="interview-heading">In Their Own Words</h2>
+            </header>
+            
+            <div class="qa-list">
+              {story.fullStory.map((item) => (
+                <div class="qa-block">
+                  <p class="qa-q">{item.q}</p>
+                  <p class="qa-a">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </article>
+        )}
+
+      </div>
+
+    </Container>
+  </Section>
+
+  <!-- ====================================================================
+       MORE STORIES
+       ==================================================================== -->
+  {otherStories.length > 0 && (
+    <Section background="surface">
+      <Container size="page">
+        <div class="more-header">
+          <h2 class="more-title">More Stories</h2>
+          <a href="/stories" class="more-all-link">View all →</a>
+        </div>
+        <div class="more-grid">
+          {otherStories.map((s) => (
+            <a href={'/stories/' + s.id} class="more-card">
+              <div class="more-card-photo">
+                <img
+                  src={s.image}
+                  alt={s.name}
+                  class="more-card-img"
+                  width="300"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="more-card-body">
+                <span class="more-card-program">{PROGRAM_LABELS[s.program]}</span>
+                <span class="more-card-name">{s.name}</span>
+                <span class="more-card-role">{s.role}</span>
+                <p class="more-card-quote">"{s.pullQuote}"</p>
+                <span class="more-card-cta">Read Story →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </Container>
+    </Section>
+  )}
+
+  <!-- ====================================================================
+       CTA
+       ==================================================================== -->
+  <Section background="default">
+    <Container size="narrow">
+      <div class="story-cta-block">
+        <div class="story-cta-text-group">
+          <p class="story-cta-heading">Have a story to share?</p>
+          <p class="story-cta-sub">Your experience could help another international professional take their next step in Finland.</p>
+        </div>
+        <a href="/contact" class="story-cta-btn">
+          Get in Touch
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </Container>
+  </Section>
+
+</Layout>
+
+<style>
+  /* ── Subnav ── */
+  .story-subnav {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .subnav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    gap: 16px;
+  }
+
+  .subnav-crumbs {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .subnav-crumbs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .crumb-link {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: color 140ms ease;
+    flex-shrink: 0;
+  }
+
+  .crumb-link:hover { color: #131F5B; }
+
+  .crumb-sep { color: #cbd5e1; font-size: 0.75rem; flex-shrink: 0; }
+
+  .crumb-current {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #131F5B;
+    flex-shrink: 0;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #475569;
+    text-decoration: none;
+    transition: color 140ms ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .back-link:hover { color: #131F5B; }
+
+  @media (max-width: 640px) {
+    .subnav-inner {
+      padding: 10px 0;
+      gap: 10px;
+    }
+  }
+
+  /* ── Hero / Header ── */
+  .story-hero {
+    background: #ffffff;
+    padding: clamp(2rem, 5vw, 4.5rem) 0 clamp(1.75rem, 4vw, 3.25rem);
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .story-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  @media (max-width: 860px) {
+    .story-hero-inner {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+    .hero-portrait {
+      order: -1;
+      max-width: 320px;
+      width: 100%;
+    }
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .hero-program-tag {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+  }
+
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2.75rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+
+  .hero-summary {
+    font-family: var(--font-body);
+    font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+    color: #475569;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 52ch;
+  }
+
+  .hero-byline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: var(--space-3);
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .byline-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #f1f5f9;
+    border: 2px solid #e2e8f0;
+    flex-shrink: 0;
+  }
+
+  .byline-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 10%;
+    display: block;
+  }
+
+  .byline-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .byline-name {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .byline-role {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: #64748b;
+  }
+
+  /* Portrait */
+  .hero-portrait-frame {
+    border-radius: 14px;
+    overflow: hidden;
+    height: 400px;
+    background: #f1f5f9;
+    box-shadow: 0 20px 56px -10px rgba(15, 23, 42, 0.13);
+    max-width: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 640px) {
+    .hero-portrait-frame {
+      height: 300px;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+  }
+
+  .hero-portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* ── Story Content Layout ── */
+  .story-body-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: clamp(2.5rem, 5vw, 4rem);
+    align-items: start;
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
+  }
+
+  @media (max-width: 900px) {
+    .story-body-layout {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+
+  /* ── Sidebar (Quote + LinkedIn) ── */
+  .story-sidebar {
+    position: sticky;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  @media (max-width: 900px) {
+    .story-sidebar {
+      position: static;
+      max-width: 600px;
+    }
+  }
+
+  /* Quote */
+  .story-quote {
+    background: #f8fafc;
+    border-left: 3px solid #131F5B;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    border-radius: 8px;
+    margin: 0;
+  }
+
+  .quote-text {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    font-weight: 500;
+    font-style: italic;
+    color: #334155;
+    line-height: 1.55;
+    margin: 0 0 var(--space-2);
+  }
+
+  .quote-author {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #94a3b8;
+    font-style: normal;
+    display: block;
+  }
+
+  /* LinkedIn */
+  .linkedin-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: #0A66C2;
+    text-decoration: none;
+    padding: 11px 18px;
+    border-radius: 7px;
+    transition: background 150ms ease;
+  }
+
+  .linkedin-btn:hover {
+    background: #004182;
+  }
+
+  @media (max-width: 900px) {
+    .linkedin-btn {
+      width: 100%;
+    }
+  }
+
+  /* ── Interview ── */
+  .story-interview {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .interview-header {
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .interview-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+
+  /* Q&A */
+  .qa-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .qa-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .qa-q {
+    font-family: var(--font-display);
+    font-size: clamp(0.9375rem, 1.8vw, 1.0625rem);
+    font-weight: 700;
+    color: #131F5B;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .qa-a {
+    font-family: var(--font-body);
+    font-size: clamp(0.9375rem, 1.8vw, 1.0625rem);
+    color: #475569;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ── More Stories ── */
+  .more-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-5);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .more-title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+
+  .more-all-link {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #131F5B;
+    text-decoration: none;
+  }
+
+  .more-all-link:hover { text-decoration: underline; }
+
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  @media (max-width: 768px) {
+    .more-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .more-grid { grid-template-columns: 1fr; }
+  }
+
+  .more-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .more-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.08);
+  }
+
+  .more-card-photo {
+    width: 125px;
+    height: 160px;
+    overflow: hidden;
+    background: #f1f5f9;
+    padding: 10px 0 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .more-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+    display: block;
+  }
+
+  .more-card-body {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .more-card-program {
+    font-family: var(--font-display);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+    margin-bottom: 3px;
+  }
+
+  .more-card-name {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .more-card-role {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+
+  .more-card-quote {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-style: italic;
+    color: #475569;
+    line-height: 1.45;
+    margin: 8px 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .more-card-cta {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #131F5B;
+    margin-top: 10px;
+  }
+
+  /* ── Bottom CTA ── */
+  .story-cta-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  @media (max-width: 600px) {
+    .story-cta-block {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+      gap: 16px;
+    }
+  }
+
+  .story-cta-text-group { display: flex; flex-direction: column; gap: 4px; }
+
+  .story-cta-heading {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+
+  .story-cta-sub {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+    max-width: 50ch;
+  }
+
+  .story-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: #131F5B;
+    text-decoration: none;
+    padding: 11px 22px;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: background 160ms ease, gap 160ms ease;
+  }
+
+  .story-cta-btn:hover {
+    background: #1E3A8A;
+    gap: 11px;
+  }
+
+  @media (max-width: 600px) {
+    .story-cta-btn {
+      width: 100%;
+    }
+  }
+</style>

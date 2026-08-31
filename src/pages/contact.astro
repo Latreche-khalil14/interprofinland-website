@@ -1,41 +1,1404 @@
 ---
 /**
- * Contact — InterProFinland
+ * Contact Us — InterProFinland
+ * Production-ready contact page with Astro Actions (server-side), Zod validation, and Resend integration.
+ * Matches luxury editorial design language of Home, About, and Services.
  */
 
 import Layout from '@/layouts/Layout.astro';
 import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+import { actions } from 'astro:actions';
+
+// Handle native POST fallback if submitted without JavaScript
+const result = Astro.getActionResult(actions.contact);
+
+const contactFaqs = [
+  {
+    q: 'How quickly will I receive a response to my message?',
+    a: 'We aim to reply to all inquiries within 1–2 business days. For urgent matters regarding foreign qualification deadlines or upcoming interviews, please mention the deadline in your message.',
+  },
+  {
+    q: 'Can I visit the InterProFinland office without a prior appointment?',
+    a: 'To guarantee dedicated one-on-one time and avoid scheduling conflicts, in-person visits to our Pori headquarters are by appointment only on Mondays and Wednesdays (9:00–15:00). You can reserve a visiting slot via WhatsApp or our contact form.',
+  },
+  {
+    q: 'In which languages can I communicate with your team?',
+    a: 'Our advisory team provides guidance in English and Finnish. We also have multilingual volunteers who can assist with additional European and international language orientations upon request.',
+  },
+  {
+    q: 'Does InterProFinland issue official recognition decisions directly?',
+    a: 'No. Official comparability decisions and practice licenses are issued exclusively by competent Finnish authorities (such as OPH, Valvira, Ruokavirasto, or Traficom). InterProFinland provides structured preparation, dossier reviews, and strategic guidance to help you navigate these official processes successfully.',
+  },
+  {
+    q: 'How do I apply for official InterProFinland membership?',
+    a: 'You can submit your application directly online through our secure membership application form on Jotform. Membership gives you access to specialized workshops, peer mentorship, and exclusive community resources.',
+  },
+  {
+    q: 'How can companies, universities, or municipalities collaborate with InterProFinland?',
+    a: 'We actively partner with regional employers, educational institutions, and European inclusion networks. Select "Organization & Municipal Partnership" in the contact form, and our leadership team will schedule an exploratory meeting.',
+  },
+];
 ---
 
 <Layout
   title="Contact Us — InterProFinland"
-  description="Get in touch with InterProFinland for support, inquiries, or collaboration opportunities."
+  description="Get in touch with InterProFinland for individualized career guidance, degree recognition assistance, mentorship, or partnership inquiries in Finland."
 >
-  <Section>
-    <Container size="content">
-      <div style="text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
-      <h1>Contact Us</h1>
-      
-      <h2 style="margin-top: 2rem;">📋 Page Sections</h2>
-      <p style="text-align: left; line-height: 2;">
-        • Hero<br>
-        • Contact introduction<br>
-        • Office information<br>
-        • Address<br>
-        • Email<br>
-        • Phone/WhatsApp (after confirmation)<br>
-        • Visiting rules<br>
-        • Appointment information<br>
-        • Contact form<br>
-        • Degree recognition contact<br>
-        • Social links<br>
-        • Map (if valuable)<br>
-        • Privacy notice
-      </p>
+  <!-- ==========================================================================
+       SIMPLIFIED SUB-NAVBAR (Breadcrumb + Quick Actions Only)
+       ========================================================================== -->
+  <div class="contact-subnav-bar">
+    <Container size="page">
+      <div class="subnav-inner">
+        <!-- Left: Breadcrumb -->
+        <nav class="subnav-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/" class="subnav-crumb-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
+          </a>
+          <span class="subnav-crumb-sep" aria-hidden="true">/</span>
+          <span class="subnav-crumb-current">Contact Us</span>
+        </nav>
 
-      <p style="margin-top: 2rem;"><em>Page under construction</em></p>
+        <!-- Right: Quick Contact Actions -->
+        <div class="subnav-right">
+          <a
+            href="tel:+358417282563"
+            class="subnav-action-chip"
+            aria-label="Call +358 41 728 2563"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>Call Us</span>
+          </a>
+
+          <a
+            href="https://wa.me/358449367069"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="subnav-action-chip subnav-action-chip--whatsapp"
+            aria-label="Chat on WhatsApp"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </Container>
+  </div>
+
+  <!-- ==========================================================================
+       MAIN CONTENT: Split Layout (Form 60% · Streamlined Contact Card 40%)
+       ========================================================================== -->
+  <Section>
+    <Container size="page">
+      <div class="contact-main-grid">
+        <!-- ── Left Column: Contact Form (Astro Actions + Zod + Resend) ── -->
+        <div class="contact-form-column">
+          <div class="contact-form-card" id="contact-form-container">
+            <div class="card-header">
+              <span class="form-kicker">Direct Inquiry</span>
+              <h2 class="card-title">Send Us a Message</h2>
+              <p class="card-desc">
+                Fill out the details below. Our advisory coordinators will direct your message to the appropriate specialist.
+              </p>
+            </div>
+
+            <!-- Server Action Result Notification (for non-JS fallback) -->
+            {
+              result?.error && (
+                <div class="form-alert form-alert--error" role="alert">
+                  <span class="alert-icon" aria-hidden="true">⚠</span>
+                  <div>
+                    <strong>Unable to submit form:</strong>
+                    <p>{result.error.message || 'Please check the required fields and try again.'}</p>
+                  </div>
+                </div>
+              )
+            }
+
+            {
+              result?.data?.success && (
+                <div class="form-alert form-alert--success" role="status">
+                  <span class="alert-icon" aria-hidden="true">✓</span>
+                  <div>
+                    <strong>Message sent successfully!</strong>
+                    <p>Thank you for reaching out. We have received your inquiry and will be in touch shortly.</p>
+                  </div>
+                </div>
+              )
+            }
+
+            <!-- Form Success Overlay / View (Interactive) -->
+            <div id="form-success-state" class="form-success-state" style="display: none;" aria-live="polite">
+              <div class="success-icon-wrap" aria-hidden="true">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <h3 class="success-title">Message Sent Successfully!</h3>
+              <p class="success-desc">
+                Thank you for contacting InterProFinland. Our advisory team has received your message and will review your request within <strong>1–2 business days</strong>.
+              </p>
+              <div class="success-actions">
+                <button type="button" id="btn-send-another" class="btn-success-reset">
+                  <span>Send Another Message</span>
+                </button>
+                <a href="/services" class="btn-success-link">
+                  <span>Explore Our Services →</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Live Form -->
+            <form
+              id="contact-form"
+              action={actions.contact}
+              method="POST"
+              class="contact-form-element"
+              novalidate
+            >
+              <!-- Honeypot Anti-Spam (Hidden from real users) -->
+              <div class="visually-hidden" aria-hidden="true">
+                <label for="botField">Leave this field blank</label>
+                <input type="text" name="botField" id="botField" tabindex="-1" autocomplete="off" />
+              </div>
+
+              <!-- Row 1: Name & Email -->
+              <div class="form-row-2">
+                <div class="form-group" id="group-name">
+                  <label for="field-name" class="form-label">
+                    Full Name <span class="req-star" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="field-name"
+                    name="name"
+                    required
+                    autocomplete="name"
+                    placeholder="name"
+                    class="form-input"
+                  />
+                  <span class="field-error-msg" id="error-name" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group" id="group-email">
+                  <label for="field-email" class="form-label">
+                    Email Address <span class="req-star" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="field-email"
+                    name="email"
+                    required
+                    autocomplete="email"
+                    placeholder="email"
+                    class="form-input"
+                  />
+                  <span class="field-error-msg" id="error-email" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <!-- Row 2: Phone & Service Area -->
+              <div class="form-row-2">
+                <div class="form-group" id="group-phone">
+                  <label for="field-phone" class="form-label">
+                    Phone / WhatsApp <span class="opt-label">(Optional)</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="field-phone"
+                    name="phone"
+                    autocomplete="tel"
+                    placeholder="phone"
+                    class="form-input"
+                  />
+                  <span class="field-error-msg" id="error-phone" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group" id="group-service">
+                  <label for="field-service" class="form-label">
+                    Topic / Service Area <span class="req-star" aria-hidden="true">*</span>
+                  </label>
+                  <div class="select-wrapper">
+                    <select id="field-service" name="service" required class="form-select">
+                      <option value="" disabled selected>Select topic...</option>
+                      <optgroup label="Direct Advisory &amp; Services">
+                        <option value="career-guidance">Career Guidance &amp; CV Review</option>
+                        <option value="qualification-recognition">Qualification &amp; Degree Recognition (OPH / Valvira)</option>
+                        <option value="mentorship-mentee">Mentorship Program — Become a Mentee</option>
+                        <option value="mentorship-mentor">Mentorship Program — Become a Mentor</option>
+                      </optgroup>
+                      <optgroup label="Community, Events &amp; Partnerships">
+                        <option value="networking-events">Networking &amp; Community Events</option>
+                        <option value="partnership">Organization &amp; Municipal Partnership</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="other">Other Inquiry</option>
+                      </optgroup>
+                    </select>
+                    <div class="select-chevron" aria-hidden="true">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                  <span class="field-error-msg" id="error-service" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <!-- Row 3: Subject (Optional) -->
+              <div class="form-group" id="group-subject">
+                <label for="field-subject" class="form-label">
+                  Subject <span class="opt-label">(Optional)</span>
+                </label>
+                <input
+                  type="text"
+                  id="field-subject"
+                  name="subject"
+                  placeholder="How can we help you?"
+                  class="form-input"
+                />
+                <span class="field-error-msg" id="error-subject" aria-live="polite"></span>
+              </div>
+
+              <!-- Row 4: Message -->
+              <div class="form-group" id="group-message">
+                <div class="label-row">
+                  <label for="field-message" class="form-label">
+                    Your Message <span class="req-star" aria-hidden="true">*</span>
+                  </label>
+                  <span class="char-counter" id="char-counter">Minimum 10 characters</span>
+                </div>
+                <textarea
+                  id="field-message"
+                  name="message"
+                  required
+                  rows="5"
+                  placeholder="Write your message here..."
+                  class="form-textarea"
+                ></textarea>
+                <span class="field-error-msg" id="error-message" aria-live="polite"></span>
+              </div>
+
+              <!-- Privacy Notice & Consent -->
+              <div class="form-group form-group--checkbox" id="group-consent">
+                <label class="checkbox-container">
+                  <input type="checkbox" id="field-consent" name="consent" required class="checkbox-input" />
+                  <span class="checkbox-custom" aria-hidden="true"></span>
+                  <span class="checkbox-text">
+                    I agree to the processing of my personal details in accordance with InterProFinland’s
+                    <a href="/privacy-policy" target="_blank" class="link-inline">Privacy Policy</a> to respond to my inquiry.
+                  </span>
+                </label>
+                <span class="field-error-msg" id="error-consent" aria-live="polite"></span>
+              </div>
+
+              <!-- Global Form Error Banner (JS interactive) -->
+              <div id="form-general-error" class="form-alert form-alert--error" style="display: none;" role="alert">
+                <span class="alert-icon" aria-hidden="true">⚠</span>
+                <span id="form-general-error-text">An error occurred. Please check your entries and try again.</span>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="form-action-row">
+                <button type="submit" id="btn-submit-contact" class="btn-submit-primary">
+                  <span class="btn-text">Send Message</span>
+                  <span class="btn-arrow" aria-hidden="true">→</span>
+                  <span class="btn-spinner" aria-hidden="true" style="display: none;">
+                    <svg class="spinner-svg" viewBox="0 0 24 24">
+                      <circle class="spinner-track" cx="12" cy="12" r="10" fill="none" stroke-width="3"></circle>
+                      <circle class="spinner-head" cx="12" cy="12" r="10" fill="none" stroke-width="3"></circle>
+                    </svg>
+                  </span>
+                </button>
+
+                <p class="form-security-note">
+                  <span aria-hidden="true">🔒</span>
+                  <span>Your information is handled confidentially and never shared with third parties.</span>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- ── Right Column: Redesigned Contact Info ── -->
+        <div class="contact-info-column">
+
+          <!-- Single unified info card -->
+          <div class="info-card-unified">
+
+            <!-- Header -->
+            <div class="uic-header">
+              <div class="uic-location-pill">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Pori, Finland</span>
+              </div>
+              <h3 class="uic-title">Get in Touch</h3>
+              <p class="uic-subtitle">Our team is here to help you navigate your professional journey in Finland.</p>
+            </div>
+
+            <!-- Contact items -->
+            <div class="uic-items">
+
+              <!-- Phone -->
+              <a href="tel:+358417282563" class="uic-item uic-item--link">
+                <div class="uic-item-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </div>
+                <div class="uic-item-body">
+                  <span class="uic-item-label">Phone</span>
+                  <span class="uic-item-value">+358 41 728 2563</span>
+                </div>
+                <span class="uic-item-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <!-- WhatsApp -->
+              <a href="https://wa.me/358449367069" target="_blank" rel="noopener noreferrer" class="uic-item uic-item--link uic-item--whatsapp">
+                <div class="uic-item-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                </div>
+                <div class="uic-item-body">
+                  <span class="uic-item-label">WhatsApp</span>
+                  <span class="uic-item-value">+358 44 936 7069</span>
+                </div>
+                <span class="uic-item-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <!-- Email -->
+              <a href="mailto:info@interprofinland.fi" class="uic-item uic-item--link">
+                <div class="uic-item-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </div>
+                <div class="uic-item-body">
+                  <span class="uic-item-label">Email</span>
+                  <span class="uic-item-value">info@interprofinland.fi</span>
+                </div>
+                <span class="uic-item-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <!-- Address -->
+              <a href="https://maps.google.com/?q=Otavankatu+5+A,+28100+Pori,+Finland" target="_blank" rel="noopener noreferrer" class="uic-item uic-item--link">
+                <div class="uic-item-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div class="uic-item-body">
+                  <span class="uic-item-label">Office Address</span>
+                  <span class="uic-item-value">Otavankatu 5 A, 28100 Pori</span>
+                </div>
+                <span class="uic-item-arrow" aria-hidden="true">↗</span>
+              </a>
+
+              <!-- Hours -->
+              <div class="uic-item uic-item--static">
+                <div class="uic-item-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div class="uic-item-body">
+                  <span class="uic-item-label">Office Hours</span>
+                  <span class="uic-item-value">Mon – Fri &nbsp;·&nbsp; 9:00 – 15:00</span>
+                  <span class="uic-item-note">In-person by appointment: Mon &amp; Wed</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Divider -->
+            <div class="uic-divider"></div>
+
+            <!-- Membership footer strip -->
+            <div class="uic-membership">
+              <div class="uic-membership-text">
+                <span class="uic-membership-title">Become a Member</span>
+                <span class="uic-membership-desc">Open to international professionals in Finland</span>
+              </div>
+              <a
+                href="https://form.jotform.com/InterProFinland/membership-application-form"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="uic-membership-btn"
+              >Apply ↗</a>
+            </div>
+
+            <!-- Social row -->
+            <div class="uic-socials">
+              <a href="https://www.linkedin.com/company/interprofinland" target="_blank" rel="noopener noreferrer" class="uic-social-link" aria-label="LinkedIn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://www.facebook.com/interprofinland" target="_blank" rel="noopener noreferrer" class="uic-social-link" aria-label="Facebook">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                <span>Facebook</span>
+              </a>
+              <a href="https://www.instagram.com/interprofinland" target="_blank" rel="noopener noreferrer" class="uic-social-link" aria-label="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                <span>Instagram</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
       </div>
     </Container>
   </Section>
+
+  <!-- ==========================================================================
+       FAQS SECTION: Standalone with Enhanced Spacing
+       ========================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="section-header-center">
+        <span class="section-eyebrow">Frequently Asked Questions</span>
+        <h2 class="section-heading">Common Inquiries &amp; Information</h2>
+        <p class="section-intro">
+          Find fast answers regarding our office protocols, advisory scopes, and community membership.
+        </p>
+      </div>
+
+      <div class="contact-faqs-grid">
+        {
+          contactFaqs.map((faq) => (
+            <details class="faq-item">
+              <summary class="faq-trigger">
+                <span class="faq-q">{faq.q}</span>
+                <span class="faq-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </summary>
+              <div class="faq-body">
+                <p class="faq-a">{faq.a}</p>
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ==========================================================================
+       BOTTOM CTA
+       ========================================================================== -->
+  <CtaSection
+    heading="Ready to Accelerate Your Career in Finland?"
+    subheading="Join InterProFinland today to access personalized career roadmaps, degree recognition guidance, and our nationwide network of international professionals."
+    background="surface"
+    cta={{
+      label: 'Apply for Membership',
+      href: 'https://form.jotform.com/InterProFinland/membership-application-form',
+      target: '_blank',
+    }}
+    secondaryCta={{
+      label: 'Explore Our Services',
+      href: '/services',
+    }}
+  />
 </Layout>
+<style>
+  /* ── Executive Sub-Navbar ── */
+  .contact-subnav-bar {
+    background: #ffffff;
+    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+    box-shadow: 0 4px 16px -4px rgba(19, 31, 91, 0.04);
+    padding: 12px 0;
+    position: relative;
+    z-index: 10;
+  }
+  .subnav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+  .subnav-breadcrumbs {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+  }
+  .subnav-crumb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--color-gray-600);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 150ms ease;
+  }
+  .subnav-crumb-link svg { color: #64748b; }
+  .subnav-crumb-link:hover { color: var(--color-text-primary); }
+  .subnav-crumb-sep { color: var(--color-gray-400); font-size: 0.75rem; }
+  .subnav-crumb-current { color: var(--color-text-primary); font-weight: 700; }
+  .subnav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .subnav-action-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f8fafc;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: 6px;
+    padding: 6px 11px;
+    font-family: var(--font-display);
+    font-size: 0.78125rem;
+    font-weight: 600;
+    color: var(--color-gray-700);
+    text-decoration: none;
+    transition: all 180ms ease;
+  }
+  .subnav-action-chip:hover {
+    background: #ffffff;
+    border-color: #94a3b8;
+    color: var(--color-text-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .subnav-action-chip--whatsapp {
+    background: #25d366;
+    border-color: #25d366;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(37,211,102,0.25);
+  }
+  .subnav-action-chip--whatsapp:hover {
+    background: #1da851;
+    border-color: #1da851;
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  /* ── Main Grid ── */
+  .contact-main-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.95fr;
+    gap: clamp(2rem, 4.5vw, 3.75rem);
+    align-items: start;
+  }
+
+  /* ── Contact Form Card ── */
+  .contact-form-card {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: clamp(1.75rem, 3.5vw, 2.75rem);
+    box-shadow: 0 12px 36px -8px rgba(19, 31, 91, 0.08),
+                0 0 0 1px rgba(19, 31, 91, 0.04);
+  }
+  .card-header { margin-bottom: var(--space-6); }
+  .form-kicker {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748b;
+  }
+  .card-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.2vw, 1.875rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: var(--space-1) 0 var(--space-2);
+  }
+  .card-desc {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--color-gray-600);
+    margin: 0;
+  }
+
+  /* ── Form Fields ── */
+  .contact-form-element {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .form-label {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+  .req-star { color: #dc2626; font-weight: 700; }
+  .opt-label { font-size: 0.75rem; color: var(--color-gray-400); font-weight: 400; }
+  .char-counter {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    color: var(--color-gray-500);
+    transition: color 200ms ease;
+  }
+  .char-counter--valid { color: var(--color-success, #2d7a4f); font-weight: 600; }
+  .form-input,
+  .form-textarea,
+  .form-select {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-text-primary);
+    background-color: #f8fafc;
+    border: 1.5px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-sm, 8px);
+    padding: 11px 14px;
+    line-height: 1.5;
+    transition: border-color 200ms ease, background-color 200ms ease, box-shadow 200ms ease;
+  }
+  .form-input::placeholder,
+  .form-textarea::placeholder { color: var(--color-gray-400); font-weight: 400; opacity: 0.85; }
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    outline: none;
+    background-color: #ffffff;
+    border-color: #94a3b8;
+    box-shadow: 0 0 0 3px rgba(148,163,184,0.15);
+  }
+  .form-group.has-error .form-input,
+  .form-group.has-error .form-textarea,
+  .form-group.has-error .form-select {
+    border-color: #dc2626;
+    background-color: #fef2f2;
+  }
+  .field-error-msg {
+    font-family: var(--font-display);
+    font-size: 0.78125rem;
+    color: #dc2626;
+    font-weight: 500;
+    min-height: 1rem;
+  }
+  .form-textarea { resize: vertical; min-height: 130px; }
+  .select-wrapper { position: relative; width: 100%; }
+  .form-select {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+  .select-chevron {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-gray-500);
+    pointer-events: none;
+    transition: transform 200ms ease, color 200ms ease;
+    display: flex;
+    align-items: center;
+  }
+  .form-select:focus + .select-chevron,
+  .select-wrapper:focus-within .select-chevron {
+    transform: translateY(-50%) rotate(180deg);
+    color: #64748b;
+  }
+  .form-select optgroup { font-weight: 700; color: var(--color-text-primary); }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ── Checkbox ── */
+  .form-group--checkbox { gap: 4px; }
+  .checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .checkbox-input {
+    margin-top: 3px;
+    width: 17px;
+    height: 17px;
+    accent-color: #475569;
+    cursor: pointer;
+  }
+  .checkbox-text {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: var(--color-gray-600);
+  }
+  .link-inline { color: #475569; text-decoration: underline; font-weight: 600; }
+  .link-inline:hover { color: var(--color-text-primary); }
+
+  /* ── Form Actions ── */
+  .form-action-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+  .btn-submit-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    background-color: var(--color-gold, #FFD26F);
+    color: #131F5B;
+    border: 2px solid var(--color-gold, #FFD26F);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 13px 28px;
+    border-radius: var(--radius-sm, 8px);
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255,210,111,0.4);
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 150ms ease;
+  }
+  .btn-submit-primary:hover:not(:disabled) {
+    background-color: #131F5B;
+    border-color: #131F5B;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+  .btn-submit-primary:disabled { opacity: 0.75; cursor: not-allowed; }
+  .btn-spinner { display: inline-flex; align-items: center; justify-content: center; }
+  .spinner-svg { width: 20px; height: 20px; animation: spin 0.9s linear infinite; }
+  .spinner-track { stroke: rgba(19,31,91,0.25); }
+  .spinner-head { stroke: #131F5B; stroke-dasharray: 40; stroke-dashoffset: 20; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .form-security-note {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--color-gray-500);
+    margin: 0;
+  }
+
+  /* ── Form Alerts ── */
+  .form-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm, 8px);
+    font-family: var(--font-display);
+    font-size: 0.84375rem;
+    line-height: 1.45;
+    margin-bottom: var(--space-4);
+  }
+  .form-alert--error { background-color: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+  .form-alert--success { background-color: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+  .alert-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── Success State ── */
+  .form-success-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-8) var(--space-4);
+    gap: var(--space-4);
+  }
+  .success-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background-color: #f0fdf4;
+    border: 2px solid #bbf7d0;
+    color: #16a34a;
+    box-shadow: 0 8px 24px -4px rgba(22,163,74,0.2);
+  }
+  .success-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+  .success-desc {
+    font-family: var(--font-body);
+    font-size: 0.96875rem;
+    line-height: 1.6;
+    color: var(--color-gray-700);
+    max-width: 48ch;
+    margin: 0;
+  }
+  .success-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: var(--space-2);
+  }
+  .btn-success-reset {
+    background-color: var(--color-gold, #FFD26F);
+    color: #131F5B;
+    border: 2px solid var(--color-gold, #FFD26F);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm, 6px);
+    cursor: pointer;
+    transition: all 180ms ease;
+  }
+  .btn-success-reset:hover { background-color: #131F5B; border-color: #131F5B; color: #ffffff; }
+  .btn-success-link {
+    color: var(--color-text-primary);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1.5px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-sm, 6px);
+    transition: all 180ms ease;
+  }
+  .btn-success-link:hover { background-color: #f8fafc; border-color: #94a3b8; }
+
+  /* ── Right Column: Unified Info Card ── */
+  .contact-info-column {
+    position: sticky;
+    top: 100px;
+  }
+  .info-card-unified {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px -8px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.02);
+  }
+  .uic-header {
+    padding: 1.75rem 1.75rem 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .uic-location-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #64748b;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 3px 10px 3px 7px;
+    margin-bottom: 10px;
+  }
+  .uic-location-pill svg { color: #94a3b8; }
+  .uic-title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 6px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  .uic-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--color-gray-500);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .uic-items { display: flex; flex-direction: column; }
+  .uic-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 1.75rem;
+    border-bottom: 1px solid #f8fafc;
+    text-decoration: none;
+    transition: background-color 150ms ease;
+  }
+  .uic-item:last-child { border-bottom: none; }
+  .uic-item--link:hover { background-color: #f8fafc; }
+  .uic-item--link:hover .uic-item-arrow { opacity: 1; transform: translate(1px, -1px); }
+  .uic-item--whatsapp .uic-item-icon { background: #f0fdf4; border-color: #bbf7d0; color: #16a34a; }
+  .uic-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    flex-shrink: 0;
+  }
+  .uic-item-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    flex: 1;
+    min-width: 0;
+  }
+  .uic-item-label {
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #94a3b8;
+  }
+  .uic-item-value {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .uic-item-note {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-top: 2px;
+    line-height: 1.35;
+    white-space: normal;
+  }
+  .uic-item-arrow {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 150ms ease, transform 150ms ease;
+  }
+  .uic-item--static .uic-item-value {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-gray-700);
+  }
+  .uic-divider { height: 1px; background: #f1f5f9; }
+  .uic-membership {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 1.125rem 1.75rem;
+    background: #131F5B;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .uic-membership-text { display: flex; flex-direction: column; gap: 2px; }
+  .uic-membership-title {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+  }
+  .uic-membership-desc {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.35;
+  }
+  .uic-membership-btn {
+    background: #FFD26F;
+    color: #131F5B;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 800;
+    text-decoration: none;
+    padding: 7px 16px;
+    border-radius: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 150ms ease;
+  }
+  .uic-membership-btn:hover { background: #ffc94a; transform: translateY(-1px); }
+  .uic-socials {
+    display: flex;
+    align-items: center;
+    background: #131F5B;
+    border-radius: 0 0 18px 18px;
+  }
+  .uic-social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+    padding: 11px 8px;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    transition: color 150ms ease, background-color 150ms ease;
+  }
+  .uic-social-link:last-child { border-right: none; border-radius: 0 0 18px 0; }
+  .uic-social-link:first-child { border-radius: 0 0 0 18px; }
+  .uic-social-link:hover { color: #ffffff; background-color: rgba(255,255,255,0.07); }
+
+  /* ── Section Headers ── */
+  .section-header-center {
+    text-align: center;
+    margin-bottom: var(--space-12);
+    padding-top: var(--space-2);
+  }
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: var(--space-2);
+  }
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2.8vw, 2.35rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--space-3);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .section-intro {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    max-width: 65ch;
+    margin: 0 auto;
+    line-height: var(--line-height-relaxed);
+  }
+
+  /* ── FAQs ── */
+  /* ── FAQ Section Header (Homepage Signature) ── */
+  .section-header-center {
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary-500, #1E3A8A);
+    margin-bottom: var(--space-3);
+    line-height: 1;
+  }
+
+  .section-eyebrow::before,
+  .section-eyebrow::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2.5px;
+    background-color: #ffd26f;
+    flex-shrink: 0;
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 var(--space-3);
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .section-intro {
+    font-family: var(--font-body);
+    font-size: clamp(0.96875rem, 1.4vw, 1.09375rem);
+    color: #475569;
+    margin: 0 auto;
+    max-width: 62ch;
+    line-height: 1.7;
+  }
+
+  .contact-faqs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    background: #ffffff;
+    border: 1px solid var(--color-border-subtle, #e2e8f0);
+    border-radius: var(--radius-lg, 14px);
+    padding: var(--space-5) var(--space-6);
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+  .faq-item[open] { border-color: #93c5fd; box-shadow: 0 6px 20px -4px rgba(19,31,91,0.08); }
+  .faq-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+  .faq-trigger::-webkit-details-marker { display: none; }
+  .faq-q {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.35;
+    margin: 0;
+    transition: color 200ms ease;
+  }
+  .faq-item[open] .faq-q { color: var(--color-primary-600, #1E3A8A); }
+  .faq-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm, 6px);
+    background-color: #f1f5f9;
+    color: #131F5B;
+    flex-shrink: 0;
+    transition: transform 250ms ease, background-color 200ms ease, color 200ms ease;
+  }
+  .faq-item[open] .faq-icon { transform: rotate(180deg); background-color: #131F5B; color: #FFD26F; }
+  .faq-body {
+    padding-top: var(--space-3);
+    margin-top: var(--space-3);
+    border-top: 1px solid var(--color-border-subtle, #f1f5f9);
+  }
+  .faq-a {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-gray-700);
+    margin: 0;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .contact-main-grid { grid-template-columns: 1fr; gap: var(--space-8); }
+    .contact-info-column { position: static; }
+  }
+  @media (max-width: 860px) {
+    .subnav-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .subnav-right { width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 2px; -webkit-overflow-scrolling: touch; }
+    .subnav-action-chip { white-space: nowrap; flex-shrink: 0; }
+  }
+  @media (max-width: 768px) {
+    .form-row-2 { grid-template-columns: 1fr; gap: var(--space-4); }
+    .contact-form-card { padding: clamp(1.25rem, 4vw, 1.75rem); border-radius: 12px; }
+    .form-input, .form-textarea, .form-select { font-size: 16px; }
+    .form-action-row { flex-direction: column; align-items: stretch; gap: 12px; }
+    .btn-submit-primary { width: 100%; justify-content: center; padding: 14px 20px; }
+    .form-security-note { justify-content: center; text-align: center; }
+    .faq-item { padding: var(--space-4) var(--space-5); }
+    .faq-q { font-size: 1rem; }
+    .uic-membership { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .uic-membership-btn { width: 100%; text-align: center; }
+  }
+  @media (max-width: 540px) {
+    .subnav-inner { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .subnav-right { width: 100%; }
+    .subnav-action-chip { flex: 1; text-align: center; padding: 8px 12px; font-size: 0.75rem; }
+    .contact-form-card { padding: 1.25rem 1rem; border-radius: 10px; }
+    .card-title { font-size: 1.375rem; }
+    .section-header-center { margin-bottom: var(--space-8); padding-top: 0; }
+    .uic-header { padding: 1.25rem; }
+    .uic-item { padding: 12px 1.25rem; }
+    .uic-membership { padding: 1rem 1.25rem; }
+    .uic-item-value { font-size: 0.875rem; }
+  }
+</style>
+<script>
+  import { actions, isInputError } from 'astro:actions';
+
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('btn-submit-contact') as HTMLButtonElement | null;
+  const successState = document.getElementById('form-success-state');
+  const generalError = document.getElementById('form-general-error');
+  const generalErrorText = document.getElementById('form-general-error-text');
+  const sendAnotherBtn = document.getElementById('btn-send-another');
+  const messageInput = document.getElementById('field-message') as HTMLTextAreaElement | null;
+  const charCounter = document.getElementById('char-counter');
+
+  // Character counter
+  if (messageInput && charCounter) {
+    messageInput.addEventListener('input', () => {
+      const len = messageInput.value.trim().length;
+      if (len === 0) {
+        charCounter.textContent = 'Minimum 10 characters';
+        charCounter.classList.remove('char-counter--valid');
+      } else if (len < 10) {
+        charCounter.textContent = `${10 - len} more character${10 - len === 1 ? '' : 's'} needed`;
+        charCounter.classList.remove('char-counter--valid');
+      } else {
+        charCounter.textContent = `${len} characters entered (Valid)`;
+        charCounter.classList.add('char-counter--valid');
+      }
+    });
+  }
+
+  function clearFieldErrors() {
+    document.querySelectorAll('.field-error-msg').forEach((el) => { el.textContent = ''; });
+    document.querySelectorAll('.form-group').forEach((el) => { el.classList.remove('has-error'); });
+    if (generalError) generalError.style.display = 'none';
+  }
+
+  function setFieldError(fieldName: string, message: string) {
+    const errorEl = document.getElementById(`error-${fieldName}`);
+    const groupEl = document.getElementById(`group-${fieldName}`);
+    if (errorEl) errorEl.textContent = message;
+    if (groupEl) groupEl.classList.add('has-error');
+  }
+
+  if (form && submitBtn) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearFieldErrors();
+
+      const serviceField = document.getElementById('field-service') as HTMLSelectElement | null;
+      if (serviceField && !serviceField.value) {
+        setFieldError('service', 'Please select a topic or service area.');
+        return;
+      }
+
+      const consentField = document.getElementById('field-consent') as HTMLInputElement | null;
+      if (consentField && !consentField.checked) {
+        setFieldError('consent', 'Please agree to the privacy policy to submit your message.');
+        return;
+      }
+
+      // Show loading state
+      const btnText = submitBtn.querySelector('.btn-text') as HTMLElement | null;
+      const btnArrow = submitBtn.querySelector('.btn-arrow') as HTMLElement | null;
+      const btnSpinner = submitBtn.querySelector('.btn-spinner') as HTMLElement | null;
+      submitBtn.disabled = true;
+      if (btnText) btnText.style.display = 'none';
+      if (btnArrow) btnArrow.style.display = 'none';
+      if (btnSpinner) btnSpinner.style.display = 'inline-flex';
+
+      try {
+        const formData = new FormData(form);
+        const { data, error } = await actions.contact(formData);
+
+        if (error) {
+          if (isInputError(error)) {
+            const fieldErrors = error.fields as Record<string, string[]>;
+            for (const [field, messages] of Object.entries(fieldErrors)) {
+              if (messages && messages.length > 0 && messages[0]) {
+                setFieldError(field, messages[0]);
+              }
+            }
+          } else {
+            if (generalError && generalErrorText) {
+              generalErrorText.textContent = error.message || 'An unexpected error occurred. Please try again.';
+              generalError.style.display = 'flex';
+            }
+          }
+          return;
+        }
+
+        if (data?.success) {
+          form.style.display = 'none';
+          const cardHeader = document.querySelector('.card-header') as HTMLElement | null;
+          if (cardHeader) cardHeader.style.display = 'none';
+          if (successState) successState.style.display = 'flex';
+        }
+
+      } catch (err) {
+        if (generalError && generalErrorText) {
+          generalErrorText.textContent = 'A network error occurred. Please check your connection and try again.';
+          generalError.style.display = 'flex';
+        }
+      } finally {
+        submitBtn.disabled = false;
+        if (btnText) btnText.style.display = '';
+        if (btnArrow) btnArrow.style.display = '';
+        if (btnSpinner) btnSpinner.style.display = 'none';
+      }
+    });
+  }
+
+  // Reset form button
+  if (sendAnotherBtn && form && successState) {
+    sendAnotherBtn.addEventListener('click', () => {
+      form.reset();
+      clearFieldErrors();
+      form.style.display = '';
+      const cardHeader = document.querySelector('.card-header') as HTMLElement | null;
+      if (cardHeader) cardHeader.style.display = '';
+      successState.style.display = 'none';
+      if (charCounter) {
+        charCounter.textContent = 'Minimum 10 characters';
+        charCounter.classList.remove('char-counter--valid');
+      }
+    });
+  }
+</script>
