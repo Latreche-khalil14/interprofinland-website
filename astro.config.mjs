@@ -9,6 +9,8 @@ export default defineConfig({
   output: 'hybrid',
   adapter: vercel({
     webAnalytics: { enabled: false },
+    imageService: true,
+    devImageService: 'sharp',
   }),
   trailingSlash: 'never',
   build: {
