@@ -8,7 +8,7 @@ import Layout from '@/layouts/Layout.astro';
 import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
 import CtaSection from '@/components/sections/CtaSection.astro';
-import { upcomingEvents, eventsByYear, EVENT_TYPE_LABELS, eventYears } from '@/data/events';
+import { eventsByYear, EVENT_TYPE_LABELS, eventYears } from '@/data/events';
 import type { EventType } from '@/data/events';
 
 const typeColors: Record<EventType, string> = {
@@ -18,6 +18,7 @@ const typeColors: Record<EventType, string> = {
   networking: 'badge-networking',
   community:  'badge-community',
   seminar:    'badge-seminar',
+  programme:  'badge-flagship', // Use flagship style for programmes
 };
 ---
 
@@ -611,8 +612,8 @@ const typeColors: Record<EventType, string> = {
     const selectedType = typeFilter.value;
 
     eventCards.forEach(card => {
-      const cardYear = card.dataset.year;
-      const cardType = card.dataset.type;
+      const cardYear = card.dataset['year'];
+      const cardType = card.dataset['type'];
 
       const yearMatch = selectedYear === 'all' || cardYear === selectedYear;
       const typeMatch = selectedType === 'all' || cardType === selectedType;
