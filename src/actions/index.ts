@@ -8,7 +8,7 @@ export const server = {
     input: z.object({
       name: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name is too long'),
       email: z.string().email('Please enter a valid email address'),
-      phone: z.string().optional(),
+      phone: z.string().optional().or(z.literal('')).nullable(),
       service: z
         .enum([
           'general',
@@ -21,11 +21,14 @@ export const server = {
           'other',
         ])
         .default('general'),
-      subject: z.string().max(150, 'Subject is too long').optional().default(''),
+      subject: z.string().max(150, 'Subject is too long').optional().or(z.literal('')).nullable(),
       message: z.string().min(10, 'Message must be at least 10 characters').max(3000, 'Message is too long'),
-      botField: z.string().max(0, 'Spam detected').optional().or(z.literal('')),
+      consent: z.string().optional().or(z.literal('on')).nullable(),
+      botField: z.string().optional().or(z.literal('')).nullable(),
     }),
     handler: async (input) => {
+      console.log('[Contact Action] Received input:', input);
+      
       // Spam honeypot detection
       if (input.botField && input.botField.length > 0) {
         return { success: true, simulated: true };

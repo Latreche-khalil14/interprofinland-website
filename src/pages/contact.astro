@@ -1276,7 +1276,9 @@ const contactFaqs = [
     .uic-item-value { font-size: 0.875rem; }
   }
 </style>
+
 <script>
+  console.log('Contact form script loaded');
   import { actions, isInputError } from 'astro:actions';
 
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
@@ -1319,21 +1321,29 @@ const contactFaqs = [
   }
 
   if (form && submitBtn) {
+    console.log('Form and submit button found');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      console.log('Form submitted, preventing default');
       clearFieldErrors();
 
       const serviceField = document.getElementById('field-service') as HTMLSelectElement | null;
+      console.log('Service field:', serviceField?.value);
       if (serviceField && !serviceField.value) {
+        console.log('Service validation failed');
         setFieldError('service', 'Please select a topic or service area.');
         return;
       }
 
       const consentField = document.getElementById('field-consent') as HTMLInputElement | null;
+      console.log('Consent field:', consentField?.checked);
       if (consentField && !consentField.checked) {
+        console.log('Consent validation failed');
         setFieldError('consent', 'Please agree to the privacy policy to submit your message.');
         return;
       }
+
+      console.log('Client-side validation passed');
 
       // Show loading state
       const btnText = submitBtn.querySelector('.btn-text') as HTMLElement | null;
@@ -1346,9 +1356,19 @@ const contactFaqs = [
 
       try {
         const formData = new FormData(form);
+        console.log('Submitting form data...');
+        
+        // Log all form data
+        console.log('Form fields:');
+        for (let [key, value] of formData.entries()) {
+          console.log(`  ${key}:`, value);
+        }
+        
         const { data, error } = await actions.contact(formData);
-
+        console.log('Response:', { data, error });
+        
         if (error) {
+          console.error('Error details:', error);
           if (isInputError(error)) {
             const fieldErrors = error.fields as Record<string, string[]>;
             for (const [field, messages] of Object.entries(fieldErrors)) {
