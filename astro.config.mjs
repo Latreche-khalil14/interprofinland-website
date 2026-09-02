@@ -7,11 +7,7 @@ import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
   site: 'https://www.interprofinland.fi',
   output: 'hybrid',
-  adapter: vercel({
-    webAnalytics: { enabled: false },
-    imageService: true,
-    devImageService: 'sharp',
-  }),
+  adapter: vercel(),
   trailingSlash: 'never',
   build: {
     format: 'directory',
