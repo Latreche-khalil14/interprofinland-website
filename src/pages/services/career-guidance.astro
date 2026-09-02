@@ -124,17 +124,31 @@ const processSteps = [
   title="Career Guidance & Workplace Culture — InterProFinland"
   description="Master the Finnish labour market with individualized CV reviews, hidden job search strategies, interview coaching, and workplace culture orientation."
 >
-  <!-- ==========================================================================
-       HERO SECTION: Clear Visual Hierarchy — Title → Description → Chips → CTAs → Image
-       ========================================================================== -->
+  <!-- SUBNAV -->
+  <div class="community-subnav">
+    <Container size="page">
+      <div class="subnav-inner">
+        <nav class="subnav-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/" class="crumb-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            Home
+          </a>
+          <span class="crumb-sep" aria-hidden="true">/</span>
+          <a href="/services" class="crumb-link">Services</a>
+          <span class="crumb-sep" aria-hidden="true">/</span>
+          <span class="crumb-current" aria-current="page">Career Guidance</span>
+        </nav>
+        <span class="subnav-tagline">Navigate the Finnish labour market with confidence</span>
+      </div>
+    </Container>
+  </div>
+
+  <!-- HERO SECTION -->
   <Section background="surface">
     <Container size="page">
-      <!-- Breadcrumb -->
-      <nav class="service-breadcrumb" aria-label="Breadcrumb">
-        <a href="/services" class="breadcrumb-back">← Back to Services</a>
-        <span class="breadcrumb-sep" aria-hidden="true">/</span>
-        <span class="breadcrumb-current">Career Guidance</span>
-      </nav>
 
       <!-- Hero: Two-Column Layout (Text Left · Image Right) -->
       <div class="hero-split-layout">
@@ -755,6 +769,7 @@ const processSteps = [
   .section-eyebrow {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-3);
     font-family: var(--font-display);
     font-size: 0.875rem;
@@ -778,13 +793,14 @@ const processSteps = [
 
   .section-heading {
     font-family: var(--font-display);
-    font-size: clamp(1.875rem, 3vw, 2.5rem);
-    font-weight: var(--font-weight-bold);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 800;
     color: var(--color-text-primary);
     margin: 0 0 var(--space-3);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
     text-align: center;
+    text-wrap: balance;
   }
 
   .section-intro {
@@ -798,8 +814,11 @@ const processSteps = [
   }
 
   .section-header-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    margin-bottom: var(--space-6);
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
 
   /* ── Process Grid (Clean & Elegant) ── */
@@ -1445,5 +1464,56 @@ const processSteps = [
     .hero-image-mobile {
       display: none !important;
     }
+  }
+
+  /* ── Subnav (same as Community page) ── */
+  .community-subnav {
+    background: #ffffff;
+    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+    padding: 12px 0;
+  }
+
+  .subnav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .subnav-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .crumb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-gray-500);
+    text-decoration: none;
+    transition: color 140ms ease;
+  }
+
+  .crumb-link:hover { color: #131F5B; }
+  .crumb-sep { color: #cbd5e1; font-size: 0.75rem; }
+  .crumb-current {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #131F5B;
+  }
+
+  .subnav-tagline {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: var(--color-gray-400);
+  }
+
+  @media (max-width: 768px) {
+    .subnav-tagline { display: none; }
   }
 </style>

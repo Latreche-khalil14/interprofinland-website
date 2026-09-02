@@ -119,18 +119,33 @@ const recognitionFaqs = [
   title="Foreign Qualification & Degree Recognition — InterProFinland"
   description="Step-by-step guidance on validating foreign degrees, navigating OPH and Valvira regulations, and achieving professional practice rights in Finland."
 >
-  <!-- ==========================================================================
-       HERO SECTION: Purpose Manifesto Pattern (16:9 Realistic Frame)
-       ========================================================================== -->
+  <!-- SUBNAV -->
+  <div class="community-subnav">
+    <Container size="page">
+      <div class="subnav-inner">
+        <nav class="subnav-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/" class="crumb-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            Home
+          </a>
+          <span class="crumb-sep" aria-hidden="true">/</span>
+          <a href="/services" class="crumb-link">Services</a>
+          <span class="crumb-sep" aria-hidden="true">/</span>
+          <span class="crumb-current" aria-current="page">Qualification Recognition</span>
+        </nav>
+        <span class="subnav-tagline">Validate your foreign credentials in Finland</span>
+      </div>
+    </Container>
+  </div>
+
+  <!-- HERO SECTION -->
   <Section background="surface">
     <Container size="page">
       <div class="service-hero-layout">
         <div class="service-hero-content">
-          <div class="service-hero-breadcrumb">
-            <a href="/services" class="breadcrumb-back">← Back to Services</a>
-            <span class="breadcrumb-separator">/</span>
-            <span class="breadcrumb-current">Qualification Recognition</span>
-          </div>
 
           <h1 class="service-hero-title">
             Foreign Qualification &amp; Degree <span class="service-hero-serif">Recognition in Finland</span>
@@ -492,6 +507,7 @@ const recognitionFaqs = [
   .section-eyebrow {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-3);
     font-family: var(--font-display);
     font-size: 0.875rem;
@@ -515,13 +531,14 @@ const recognitionFaqs = [
 
   .section-heading {
     font-family: var(--font-display);
-    font-size: clamp(1.875rem, 3vw, 2.5rem);
-    font-weight: var(--font-weight-bold);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 800;
     color: var(--color-text-primary);
     margin: 0 0 var(--space-3);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
     text-align: center;
+    text-wrap: balance;
   }
 
   .section-intro {
@@ -535,8 +552,11 @@ const recognitionFaqs = [
   }
 
   .section-header-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    margin-bottom: var(--space-6);
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
 
   /* ── Hero Section (16:9 Frame) ── */
@@ -1886,5 +1906,56 @@ const recognitionFaqs = [
       font-size: 0.5625rem;
       padding: 1px 4px;
     }
+  }
+
+  /* ── Subnav (same as Community page) ── */
+  .community-subnav {
+    background: #ffffff;
+    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+    padding: 12px 0;
+  }
+
+  .subnav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .subnav-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .crumb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-gray-500);
+    text-decoration: none;
+    transition: color 140ms ease;
+  }
+
+  .crumb-link:hover { color: #131F5B; }
+  .crumb-sep { color: #cbd5e1; font-size: 0.75rem; }
+  .crumb-current {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #131F5B;
+  }
+
+  .subnav-tagline {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: var(--color-gray-400);
+  }
+
+  @media (max-width: 768px) {
+    .subnav-tagline { display: none; }
   }
 </style>

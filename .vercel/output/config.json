@@ -1,0 +1,161 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"src": "/404/",
+			"headers": {
+				"Location": "/404"
+			},
+			"status": 308
+		},
+		{
+			"src": "/about/",
+			"headers": {
+				"Location": "/about"
+			},
+			"status": 308
+		},
+		{
+			"src": "/community/",
+			"headers": {
+				"Location": "/community"
+			},
+			"status": 308
+		},
+		{
+			"src": "/contact/",
+			"headers": {
+				"Location": "/contact"
+			},
+			"status": 308
+		},
+		{
+			"src": "/cookie-policy/",
+			"headers": {
+				"Location": "/cookie-policy"
+			},
+			"status": 308
+		},
+		{
+			"src": "/events/archive/",
+			"headers": {
+				"Location": "/events/archive"
+			},
+			"status": 308
+		},
+		{
+			"src": "/events/",
+			"headers": {
+				"Location": "/events"
+			},
+			"status": 308
+		},
+		{
+			"src": "/magazine/",
+			"headers": {
+				"Location": "/magazine"
+			},
+			"status": 308
+		},
+		{
+			"src": "/privacy-policy/",
+			"headers": {
+				"Location": "/privacy-policy"
+			},
+			"status": 308
+		},
+		{
+			"src": "/projects/career-connect/",
+			"headers": {
+				"Location": "/projects/career-connect"
+			},
+			"status": 308
+		},
+		{
+			"src": "/projects/degree-amplify/",
+			"headers": {
+				"Location": "/projects/degree-amplify"
+			},
+			"status": 308
+		},
+		{
+			"src": "/projects/",
+			"headers": {
+				"Location": "/projects"
+			},
+			"status": 308
+		},
+		{
+			"src": "/services/career-guidance/",
+			"headers": {
+				"Location": "/services/career-guidance"
+			},
+			"status": 308
+		},
+		{
+			"src": "/services/mentorship/",
+			"headers": {
+				"Location": "/services/mentorship"
+			},
+			"status": 308
+		},
+		{
+			"src": "/services/networking/",
+			"headers": {
+				"Location": "/services/networking"
+			},
+			"status": 308
+		},
+		{
+			"src": "/services/qualification-recognition/",
+			"headers": {
+				"Location": "/services/qualification-recognition"
+			},
+			"status": 308
+		},
+		{
+			"src": "/services/",
+			"headers": {
+				"Location": "/services"
+			},
+			"status": 308
+		},
+		{
+			"src": "/stories/([^/]+?)/",
+			"headers": {
+				"Location": "/stories/$1"
+			},
+			"status": 308
+		},
+		{
+			"src": "/stories/",
+			"headers": {
+				"Location": "/stories"
+			},
+			"status": 308
+		},
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^\\/_actions(?:\\/(.*?))?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/_image$",
+			"dest": "_render"
+		},
+		{
+			"src": "/.*",
+			"dest": "/404.html",
+			"status": 404
+		}
+	]
+}

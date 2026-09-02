@@ -1,0 +1,1 @@
+import"./hoisted.COTlRy3j.js";const e=document.querySelector(".hero-video");e&&(window.matchMedia("(prefers-reduced-motion: reduce)").matches?e.pause():new IntersectionObserver(r=>{r.forEach(o=>{o.isIntersecting?e.play().catch(()=>{}):e.pause()})},{threshold:.15}).observe(e));

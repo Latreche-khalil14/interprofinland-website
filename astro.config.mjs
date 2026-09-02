@@ -14,6 +14,10 @@ export default defineConfig({
   build: {
     format: 'directory',
   },
+  redirects: {
+    '/projects': '/events',
+    '/projects/[slug]': '/events',
+  },
   integrations: [
     tailwind({
       applyBaseStyles: false,

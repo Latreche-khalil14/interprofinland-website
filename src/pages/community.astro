@@ -1,49 +1,1533 @@
 ---
 /**
- * Community — InterProFinland
+ * Community Page — InterProFinland
+ * A Community Where International Professionals Connect, Grow & Belong
+ * Editorial layout with verified authentic assets and responsive design.
  */
-
 import Layout from '@/layouts/Layout.astro';
 import Section from '@/components/ui/Section.astro';
 import Container from '@/components/ui/Container.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+import { stories, PROGRAM_LABELS } from '@/data/stories';
+
+// Showcase 2 member testimonials
+const communityTestimonials = stories.slice(0, 2);
 ---
 
 <Layout
   title="Community — InterProFinland"
-  description="Join our vibrant community of international professionals in Finland."
+  description="A community where international professionals connect, grow, and belong. Join 1,800+ professionals from 74 nationalities across 80+ professions in Finland."
 >
-  <Section>
-    <Container size="content">
-      <div style="text-align: center; max-width: 800px; margin: 0 auto; padding: 4rem 2rem;">
-      <h1>Community</h1>
-      
-      <h2 style="margin-top: 2rem;">📋 Page Sections</h2>
-      <p style="text-align: left; line-height: 2;">
-        • Hero<br>
-        • Community introduction<br>
-        • Community statistics (1,800+, 80+, 74)<br>
-        • Peer Support Clubs<br>
-        • Kielikaverit<br>
-        • Connect & Integrate<br>
-        • Community activities<br>
-        • Facebook Community<br>
-        • Partners<br>
-        • Membership<br>
-        • Apply for Membership → Jotform<br>
-        • Get involved<br>
-        • CTA
-      </p>
 
-      <h2 style="margin-top: 2rem;">✨ Also includes</h2>
-      <p style="text-align: left; line-height: 2;">
-        • Volunteers<br>
-        • Community initiatives<br>
-        • Language clubs<br>
-        • Peer activities
-      </p>
+  <!-- ====================================================================
+       SUBNAV
+       ==================================================================== -->
+  <div class="community-subnav">
+    <Container size="page">
+      <div class="subnav-inner">
+        <nav class="subnav-breadcrumbs" aria-label="Breadcrumb">
+          <a href="/" class="crumb-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            Home
+          </a>
+          <span class="crumb-sep" aria-hidden="true">/</span>
+          <span class="crumb-current" aria-current="page">Community</span>
+        </nav>
+        <span class="subnav-tagline">Network of 1,800+ international professionals in Finland</span>
+      </div>
+    </Container>
+  </div>
 
-      <p style="margin-top: 2rem;"><em>Page under construction</em></p>
+  <!-- ====================================================================
+       1. HERO SECTION
+       ==================================================================== -->
+  <section class="community-hero" aria-label="Community introduction">
+    <Container size="page">
+      <div class="hero-grid">
+        
+        <!-- Left: Content -->
+        <div class="hero-content">
+          <span class="section-eyebrow">InterProFinland Community</span>
+          <h1 class="hero-title">Where International Professionals Connect, Grow & Belong</h1>
+          <p class="hero-description">
+            InterProFinland is more than services — we are an active network of skilled international 
+            residents supporting each other across Finland. Share experiences, build lasting relationships, 
+            and advance your career together.
+          </p>
+
+          <!-- Mobile Image: shown between description and stats on small screens -->
+          <div class="hero-image-mobile">
+            <img
+              src="/images/about/Social Gatherings.jpg"
+              alt="International professionals gathered at an InterProFinland community event"
+              class="hero-image"
+              width="640"
+              height="460"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+          
+          <div class="hero-stats" aria-label="Community statistics">
+            <div class="hero-stat">
+              <div class="stat-number">1,800+</div>
+              <div class="stat-label">Community Members</div>
+            </div>
+            <div class="hero-stat">
+              <div class="stat-number">80+</div>
+              <div class="stat-label">Professions</div>
+            </div>
+            <div class="hero-stat">
+              <div class="stat-number">74</div>
+              <div class="stat-label">Nationalities</div>
+            </div>
+          </div>
+
+          <div class="hero-cta-group">
+            <a 
+              href="https://form.jotform.com/InterProFinland/membership-application-form" 
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary"
+            >
+              Join the Community
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#activities" class="btn-outline">
+              Explore Activities
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Image -->
+        <div class="hero-image-wrapper">
+          <img
+            src="/images/about/Social Gatherings.jpg"
+            alt="International professionals gathered at an InterProFinland community event"
+            class="hero-image"
+            width="640"
+            height="460"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+      </div>
+    </Container>
+  </section>
+
+  <!-- ====================================================================
+       2. COMMUNITY IN ACTION (3 Pillars)
+       ==================================================================== -->
+  <div id="activities">
+    <Section background="surface">
+      <Container size="page">
+      <div class="section-header">
+        <span class="section-eyebrow">Community Life</span>
+        <h2 class="section-title">Building Connections in Action</h2>
+        <p class="section-description">
+          From informal social gatherings to structured professional development, our community 
+          creates spaces where foreign talents feel supported and empowered.
+        </p>
+      </div>
+
+      <div class="action-grid">
+        
+        <!-- 01. Picnics & Gatherings -->
+        <article class="action-card">
+          <div class="action-image-wrapper">
+            <img
+              src="/images/home/Community Picnics.jpg"
+              alt="Community members enjoying an informal outdoor gathering"
+              class="action-image"
+              width="600"
+              height="380"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="action-content">
+            <div class="action-num">01</div>
+            <span class="action-tag">Social Connection</span>
+            <h3 class="action-title">Community Picnics & Social Gatherings</h3>
+            <p class="action-description">
+              Relax, meet peers, and build genuine friendships in informal outdoor settings. 
+              Our community picnics bring members and families together for meaningful cross-cultural conversations.
+            </p>
+            <a href="/contact" class="action-link">
+              Participate in Social Events
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 02. Workshops -->
+        <article class="action-card">
+          <div class="action-image-wrapper">
+            <img
+              src="/images/about/Collaborative Workshops.jpg"
+              alt="Interactive collaborative workshop for career advancement"
+              class="action-image"
+              width="600"
+              height="380"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="action-content">
+            <div class="action-num">02</div>
+            <span class="action-tag">Professional Growth</span>
+            <h3 class="action-title">Interactive Workshops & Career Skills</h3>
+            <p class="action-description">
+              Sharpen your competencies through hands-on sessions covering the Finnish job market, 
+              workplace culture, Finnish employment regulations, and professional networking tactics.
+            </p>
+            <a href="/services/career-guidance" class="action-link">
+              Explore Career Guidance
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 03. Wellness & Integration -->
+        <article class="action-card">
+          <div class="action-image-wrapper">
+            <img
+              src="/images/home/Wellness & Integration Activities.png"
+              alt="Cultural wellness and integration activities"
+              class="action-image"
+              width="600"
+              height="380"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="action-content">
+            <div class="action-num">03</div>
+            <span class="action-tag">Wellbeing & Belonging</span>
+            <h3 class="action-title">Wellness & Cultural Integration</h3>
+            <p class="action-description">
+              Balance the demands of your career path with community wellbeing activities, outdoor walks, 
+              and peer discussion circles designed to support healthy integration in Finland.
+            </p>
+            <a href="/contact" class="action-link">
+              Join Integration Circles
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
       </div>
     </Container>
   </Section>
+  </div>
+
+  <!-- ====================================================================
+       3. SIGNATURE PROGRAMS
+       ==================================================================== -->
+  <Section background="default">
+    <Container size="page">
+      <div class="section-header">
+        <span class="section-eyebrow">Flagship Initiatives</span>
+        <h2 class="section-title">Programs You Can Be Part Of</h2>
+        <p class="section-description">
+          Participate in structured initiatives created specifically to tackle real hurdles in the Finnish labour market.
+        </p>
+      </div>
+
+      <div class="programs-grid">
+        
+        <!-- Kielikaverit -->
+        <article class="program-card">
+          <div class="program-image-wrapper">
+            <img
+              src="/images/home/Finnish Language Club.png"
+              alt="Kielikaverit Finnish language club gathering"
+              class="program-image"
+              width="440"
+              height="280"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="program-body">
+            <span class="program-badge">Weekly Club</span>
+            <h3 class="program-title">Kielikaverit — Language Club</h3>
+            <p class="program-description">
+              Informal Finnish conversation practice for all skill levels. Meet native Finnish speakers 
+              and international residents in a relaxed, encouraging setting.
+            </p>
+            <div class="program-meta">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              Every Wednesday · 17:00 – 18:30 (Pori & Online)
+            </div>
+            <a href="/contact" class="program-link">
+              Join Kielikaverit
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Degree AMPLIFY -->
+        <article class="program-card">
+          <div class="program-image-wrapper">
+            <img
+              src="/images/home/Foreign Degree .png"
+              alt="Foreign Degree recognition and OPH Valvira advisory"
+              class="program-image"
+              width="440"
+              height="280"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="program-body">
+            <span class="program-badge">Award Finalist</span>
+            <h3 class="program-title">Degree AMPLIFY Project</h3>
+            <p class="program-description">
+              Comprehensive guidance and peer cohort support helping internationally educated 
+              professionals navigate OPH equivalency and Valvira healthcare licensing.
+            </p>
+            <div class="program-meta">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              Seasonal Webinar Series · Online on Zoom
+            </div>
+            <a href="/projects/degree-amplify" class="program-link">
+              Explore Degree AMPLIFY
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- SIPF Fair -->
+        <article class="program-card">
+          <div class="program-image-wrapper">
+            <img
+              src="/images/home/sipf.webp"
+              alt="Satakunta International Professionals Fair networking"
+              class="program-image"
+              width="440"
+              height="280"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="program-body">
+            <span class="program-badge">Flagship Gathering</span>
+            <h3 class="program-title">Satakunta Fair (SIPF)</h3>
+            <p class="program-description">
+              The premier regional event connecting international talents with hiring employers, 
+              municipal leaders, universities, and regional development partners.
+            </p>
+            <div class="program-meta">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              Annual Flagship Event · Pori, Satakunta
+            </div>
+            <a href="/events" class="program-link">
+              View Fair Details
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ====================================================================
+       4. MENTORSHIP & PEER SUPPORT (Split Section)
+       ==================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="mentorship-split">
+        
+        <div class="mentorship-image-wrapper">
+          <img
+            src="/images/home/one-mentor-one.png"
+            alt="One-on-one mentorship session between professional mentor and mentee"
+            class="mentorship-image"
+            width="560"
+            height="420"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <div class="mentorship-content">
+          <span class="section-eyebrow">Guidance & Mentorship</span>
+          <h2 class="mentorship-heading">You Don't Have to Navigate Finland Alone</h2>
+          <p class="mentorship-intro">
+            Connect with seasoned mentors who understand the realities of relocating to Finland, 
+            navigating Finnish workplace norms, and unlocking your professional potential.
+          </p>
+
+          <div class="mentorship-blocks">
+            <div class="mentorship-item">
+              <div class="mentorship-icon-box">🤝</div>
+              <div>
+                <h3 class="mentorship-title">One Mentor One Program</h3>
+                <p class="mentorship-desc">
+                  Tailored 1-on-1 mentorship matching you with an established professional in your industry 
+                  for practical job-hunting advice and localized industry insight.
+                </p>
+                <a href="/services/mentorship" class="mentorship-sublink">Learn about Mentorship →</a>
+              </div>
+            </div>
+
+            <div class="mentorship-item">
+              <div class="mentorship-icon-box">💬</div>
+              <div>
+                <h3 class="mentorship-title">Peer Support Circles</h3>
+                <p class="mentorship-desc">
+                  Safe, welcoming spaces to ask honest questions, share integration experiences, 
+                  and gain encouragement from colleagues on similar career paths.
+                </p>
+                <a href="/contact" class="mentorship-sublink">Join a Peer Group →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ====================================================================
+       5. MEMBERSHIP BENEFITS
+       ==================================================================== -->
+  <Section background="default">
+    <Container size="page">
+      <div class="section-header">
+        <span class="section-eyebrow">Why Join</span>
+        <h2 class="section-title">What You Gain as an InterProFinland Member</h2>
+        <p class="section-description">
+          Gain direct access to specialized toolkits, individual advisory sessions, and exclusive network privileges.
+        </p>
+      </div>
+
+      <div class="benefits-grid">
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">📘</div>
+          <h3 class="benefit-title">Degree Recognition Handbook</h3>
+          <p class="benefit-description">
+            Complete step-by-step documentation on OPH equivalency, sworn translation rules, and Valvira licensing.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">👤</div>
+          <h3 class="benefit-title">Personal Mentor Matching</h3>
+          <p class="benefit-description">
+            Individualized pairing with a peer or veteran advisor in your field to support your integration.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🎓</div>
+          <h3 class="benefit-title">Member-Only Workshops</h3>
+          <p class="benefit-description">
+            Exclusive briefings on Finnish labour rights, taxation (Vero), social security (Kela), and resume tailoring.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">💼</div>
+          <h3 class="benefit-title">Direct Employer Networks</h3>
+          <p class="benefit-description">
+            Access to regional recruitment roundtables, company visits, and professional networking events.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🗂️</div>
+          <h3 class="benefit-title">Tools & Career Resource Hub</h3>
+          <p class="benefit-description">
+            Downloadable CV templates, cover letter frameworks for the Finnish market, and job portal checklists.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">🗣️</div>
+          <h3 class="benefit-title">Finnish Language Practice</h3>
+          <p class="benefit-description">
+            Weekly speaking club access (Kielikaverit) with native speakers and customized conversational themes.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="benefits-cta">
+        <a 
+          href="https://form.jotform.com/InterProFinland/membership-application-form" 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary"
+        >
+          Apply for Membership
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ====================================================================
+       6. FACEBOOK COMMUNITY HUB
+       ==================================================================== -->
+  <Section background="surface">
+    <Container size="page">
+      <div class="facebook-hub-card">
+        <div class="facebook-hub-left">
+          <div class="facebook-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            <span>Official Online Community</span>
+          </div>
+          <h2 class="facebook-hub-title">Stay Connected with 1,800+ Peers on Facebook</h2>
+          <p class="facebook-hub-desc">
+            Our Facebook group is the active day-to-day meeting point for international talents in Finland. 
+            Ask questions, share job leads, organize casual meetups, and hear first about upcoming workshops.
+          </p>
+          <a 
+            href="https://www.facebook.com/groups/interprofinland" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-facebook"
+          >
+            Join Our Facebook Group
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <div class="facebook-hub-right">
+          <div class="facebook-stats-box">
+            <div class="fb-stat">
+              <span class="fb-stat-num">1,800+</span>
+              <span class="fb-stat-lbl">Active Members</span>
+            </div>
+            <div class="fb-stat-divider"></div>
+            <div class="fb-stat">
+              <span class="fb-stat-num">74</span>
+              <span class="fb-stat-lbl">Countries Represented</span>
+            </div>
+            <div class="fb-stat-divider"></div>
+            <div class="fb-stat">
+              <span class="fb-stat-num">Daily</span>
+              <span class="fb-stat-lbl">Peer Discussions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ====================================================================
+       7. MEMBER STORIES SNIPPET
+       ==================================================================== -->
+  <Section background="default">
+    <Container size="page">
+      <div class="section-header">
+        <span class="section-eyebrow">Real Experiences</span>
+        <h2 class="section-title">Hear From Our Community Members</h2>
+        <p class="section-description">
+          Real stories from international professionals who found their career trajectory in Finland.
+        </p>
+      </div>
+
+      <div class="community-stories-grid">
+        {communityTestimonials.map((story) => (
+          <article class="community-story-card">
+            <div class="story-card-photo">
+              <img
+                src={story.image}
+                alt={story.name + ' — ' + story.role}
+                class="story-card-img"
+                width="140"
+                height="175"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="story-card-content">
+              <span class="story-card-tag">{PROGRAM_LABELS[story.program]}</span>
+              <h3 class="story-card-name">{story.name}</h3>
+              <p class="story-card-role">{story.role}</p>
+              <p class="story-card-quote">"{story.pullQuote}"</p>
+              <a href={'/stories/' + story.id} class="story-card-link">
+                Read Full Story →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="stories-cta-footer">
+        <a href="/stories" class="btn-outline">
+          View All Community Stories
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- ====================================================================
+       8. FINAL CTA
+       ==================================================================== -->
+  <CtaSection
+    eyebrow="Join Us"
+    heading="Find Your Place in the Community"
+    subheading="Whether you're looking for peer connections, Finnish language practice, qualification guidance, or mentorship — there is a supportive seat waiting for you."
+    cta={{
+      label: 'Join the Community',
+      href: 'https://form.jotform.com/InterProFinland/membership-application-form',
+      target: '_blank'
+    }}
+    secondaryCta={{
+      label: 'Contact Our Team',
+      href: '/contact'
+    }}
+  />
+
 </Layout>
+
+<style>
+  /* ── Subnav ── */
+  .community-subnav {
+    background: #ffffff;
+    border-bottom: 1px solid var(--color-border-subtle, #e2e8f0);
+    padding: 12px 0;
+  }
+
+  .subnav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .subnav-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .crumb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-gray-500);
+    text-decoration: none;
+    transition: color 140ms ease;
+  }
+
+  .crumb-link:hover { color: #131F5B; }
+  .crumb-sep { color: #cbd5e1; font-size: 0.75rem; }
+  .crumb-current {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #131F5B;
+  }
+
+  .subnav-tagline {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: var(--color-gray-400);
+  }
+
+  @media (max-width: 768px) {
+    .subnav-tagline { display: none; }
+  }
+
+  /* ── 1. Hero ── */
+  .community-hero {
+    background: #ffffff;
+    padding: clamp(2.5rem, 5vw, 4.5rem) 0;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .hero-image-wrapper {
+      display: none;
+    }
+  }
+
+  .hero-image-mobile {
+    display: none;
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    max-height: 320px;
+    background: #f1f5f9;
+    box-shadow: 0 12px 40px -8px rgba(15, 23, 42, 0.12);
+  }
+
+  @media (max-width: 900px) {
+    .hero-image-mobile {
+      display: block;
+    }
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+    line-height: 1;
+  }
+
+  .section-eyebrow::before,
+  .section-eyebrow::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2.5px;
+    background-color: #ffd26f;
+    flex-shrink: 0;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+
+  .hero-description {
+    font-family: var(--font-body);
+    font-size: clamp(0.9375rem, 1.8vw, 1.0625rem);
+    color: #475569;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 52ch;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    padding: clamp(1.25rem, 2.5vw, 1.5rem) 0;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .hero-stat .stat-number {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+    font-weight: 800;
+    color: #131F5B;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .hero-stat .stat-label {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #64748b;
+    line-height: 1.35;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 6px;
+  }
+
+  .hero-image-wrapper {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #f1f5f9;
+    box-shadow: 0 20px 50px -10px rgba(15, 23, 42, 0.12);
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Section Headers (Homepage Signature) ── */
+  .section-header {
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary-500, #1E3A8A);
+    margin-bottom: var(--space-3);
+    line-height: 1;
+  }
+
+  .section-eyebrow::before,
+  .section-eyebrow::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2.5px;
+    background-color: #ffd26f;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 var(--space-3);
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .section-description {
+    font-family: var(--font-body);
+    font-size: clamp(0.96875rem, 1.4vw, 1.09375rem);
+    color: #475569;
+    margin: 0 auto;
+    max-width: 62ch;
+    line-height: 1.7;
+  }
+
+  /* ── 2. Community in Action ── */
+  .action-grid {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 3vw, 2.25rem);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .action-card {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    align-items: center;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+
+  .action-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.09);
+    border-color: #cbd5e1;
+  }
+
+  @media (max-width: 860px) {
+    .action-card {
+      grid-template-columns: 1fr;
+    }
+    .action-image-wrapper {
+      max-height: 240px;
+    }
+  }
+
+  .action-image-wrapper {
+    width: 100%;
+    height: 100%;
+    min-height: 240px;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+
+  .action-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .action-content {
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .action-num {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #cbd5e1;
+    line-height: 1;
+  }
+
+  .action-tag {
+    font-family: var(--font-display);
+    font-size: 0.65625rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+  }
+
+  .action-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.125rem, 2vw, 1.3125rem);
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  .action-description {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0 0 6px;
+  }
+
+  .action-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-display);
+    font-size: 0.84375rem;
+    font-weight: 700;
+    color: #131F5B;
+    text-decoration: none;
+    width: fit-content;
+    transition: gap 140ms ease;
+  }
+
+  .action-link:hover {
+    gap: 10px;
+    text-decoration: underline;
+  }
+
+  /* ── 3. Programs Grid ── */
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.25rem, 2vw, 1.75rem);
+  }
+
+  @media (max-width: 900px) {
+    .programs-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .programs-grid { grid-template-columns: 1fr; }
+  }
+
+  .program-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .program-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 32px -6px rgba(15, 23, 42, 0.08);
+  }
+
+  .program-image-wrapper {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+
+  .program-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .program-body {
+    padding: 16px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .program-badge {
+    font-family: var(--font-display);
+    font-size: 0.65625rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+  }
+
+  .program-title {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  .program-description {
+    font-family: var(--font-body);
+    font-size: 0.84375rem;
+    color: #475569;
+    line-height: 1.55;
+    margin: 0;
+    flex: 1;
+  }
+
+  .program-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+    padding: 8px 0;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .program-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #131F5B;
+    text-decoration: none;
+    margin-top: 4px;
+    width: fit-content;
+    transition: gap 140ms ease;
+  }
+
+  .program-link:hover {
+    gap: 9px;
+    text-decoration: underline;
+  }
+
+  /* ── 4. Mentorship Split ── */
+  .mentorship-split {
+    display: grid;
+    grid-template-columns: 460px 1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .mentorship-split {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .mentorship-image-wrapper {
+    border-radius: 14px;
+    overflow: hidden;
+    background: #f1f5f9;
+    box-shadow: 0 20px 50px -10px rgba(15, 23, 42, 0.12);
+  }
+
+  .mentorship-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .mentorship-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .mentorship-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.125rem);
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .mentorship-intro {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .mentorship-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-2);
+  }
+
+  .mentorship-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .mentorship-icon-box {
+    font-size: 1.5rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .mentorship-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px;
+  }
+
+  .mentorship-desc {
+    font-family: var(--font-body);
+    font-size: 0.84375rem;
+    color: #475569;
+    line-height: 1.55;
+    margin: 0 0 6px;
+  }
+
+  .mentorship-sublink {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: #131F5B;
+    text-decoration: none;
+  }
+
+  .mentorship-sublink:hover {
+    text-decoration: underline;
+  }
+
+  /* ── 5. Benefits Grid ── */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: var(--space-7);
+  }
+
+  @media (max-width: 900px) {
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .benefits-grid { grid-template-columns: 1fr; }
+  }
+
+  .benefit-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform 160ms ease, border-color 160ms ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-2px);
+    border-color: #131F5B;
+  }
+
+  .benefit-icon {
+    font-size: 1.75rem;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .benefit-title {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+
+  .benefit-description {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: #64748b;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .benefits-cta {
+    text-align: center;
+  }
+
+  /* ── 6. Facebook Hub Card ── */
+  .facebook-hub-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: clamp(2rem, 4vw, 3rem);
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: center;
+  }
+
+  @media (max-width: 860px) {
+    .facebook-hub-card {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .facebook-badge {
+      justify-content: center;
+    }
+    .btn-facebook {
+      margin: 0 auto;
+    }
+  }
+
+  .facebook-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 0.78125rem;
+    font-weight: 700;
+    color: #1877F2;
+    margin-bottom: 8px;
+  }
+
+  .facebook-hub-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 3vw, 1.875rem);
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 10px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+
+  .facebook-hub-desc {
+    font-family: var(--font-body);
+    font-size: 0.90625rem;
+    color: #475569;
+    line-height: 1.65;
+    margin: 0 0 18px;
+  }
+
+  .btn-facebook {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 0.90625rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: #1877F2;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    width: fit-content;
+    transition: background 150ms ease, transform 150ms ease;
+  }
+
+  .btn-facebook:hover {
+    background: #166fe5;
+    transform: translateY(-1px);
+  }
+
+  .facebook-stats-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .fb-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .fb-stat-num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #131F5B;
+  }
+
+  .fb-stat-lbl {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+  }
+
+  .fb-stat-divider {
+    height: 1px;
+    background: #e2e8f0;
+  }
+
+  /* ── 7. Community Stories Grid ── */
+  .community-stories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    margin-bottom: var(--space-7);
+  }
+
+  @media (max-width: 768px) {
+    .community-stories-grid { grid-template-columns: 1fr; }
+  }
+
+  .community-story-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .community-story-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.08);
+  }
+
+  .story-card-photo {
+    width: 130px;
+    height: 170px;
+    overflow: hidden;
+    background: #f1f5f9;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .story-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .story-card-content {
+    padding: 14px 16px 14px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .story-card-tag {
+    font-family: var(--font-display);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--color-primary-600, #1E3A8A);
+  }
+
+  .story-card-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+
+  .story-card-role {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0;
+  }
+
+  .story-card-quote {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-style: italic;
+    color: #334155;
+    line-height: 1.45;
+    margin: 4px 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .story-card-link {
+    font-family: var(--font-display);
+    font-size: 0.78125rem;
+    font-weight: 700;
+    color: #131F5B;
+    text-decoration: none;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+
+  .story-card-link:hover { text-decoration: underline; }
+
+  .stories-cta-footer {
+    text-align: center;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 0.90625rem;
+    font-weight: 700;
+    color: #131F5B;
+    background: #FFD26F;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 2px solid #FFD26F;
+    box-shadow: 0 4px 14px rgba(255, 210, 111, 0.35);
+    transition: all 160ms ease;
+  }
+
+  .btn-primary:hover {
+    background: #131F5B;
+    border-color: #131F5B;
+    color: #ffffff;
+    transform: translateY(-2px);
+    gap: 11px;
+    box-shadow: 0 8px 20px rgba(19, 31, 91, 0.2);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 0.90625rem;
+    font-weight: 700;
+    color: #131F5B;
+    background: transparent;
+    border: 1.5px solid #131F5B;
+    padding: 11px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 160ms ease, color 160ms ease, gap 160ms ease;
+  }
+
+  .btn-outline:hover {
+    background: #131F5B;
+    color: #ffffff;
+    gap: 11px;
+  }
+</style>
