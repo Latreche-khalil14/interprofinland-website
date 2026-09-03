@@ -1,0 +1,100 @@
+---
+/**
+ * Web Vitals Monitoring Component
+ * Tracks Core Web Vitals and sends to analytics
+ * Place this component in Layout.astro before </body>
+ */
+---
+
+<script>
+  import { onCLS, onFCP, onINP, onLCP, onTTFB } from 'web-vitals';
+
+  function sendToAnalytics(metric: any) {
+    const body = JSON.stringify({
+      name: metric.name,
+      value: metric.value,
+      rating: metric.rating,
+      delta: metric.delta,
+      id: metric.id,
+      navigationType: metric.navigationType || 'navigate',
+    });
+
+    // Log in development
+    if (import.meta.env.DEV) {
+      const color =
+        metric.rating === 'good'
+          ? 'color: green; font-weight: bold'
+          : metric.rating === 'needs-improvement'
+            ? 'color: orange; font-weight: bold'
+            : 'color: red; font-weight: bold';
+
+      console.log(
+        `%c${metric.name}: ${metric.value.toFixed(2)}ms (${metric.rating})`,
+        color
+      );
+      console.table(metric);
+    }
+
+    // Send to Google Analytics 4 (if available)
+    if (typeof window !== 'undefined' && 'gtag' in window) {
+      (window as any).gtag('event', metric.name, {
+        value: Math.round(metric.value),
+        metric_id: metric.id,
+        metric_value: metric.value,
+        metric_delta: metric.delta,
+        metric_rating: metric.rating,
+      });
+    }
+
+    // Send to custom analytics endpoint (if configured)
+    const analyticsEndpoint = import.meta.env['PUBLIC_ANALYTICS_ENDPOINT'];
+    if (analyticsEndpoint) {
+      const url = `${analyticsEndpoint}/vitals`;
+      
+      // Use sendBeacon if available (more reliable)
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(url, body);
+      } else {
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body,
+          keepalive: true,
+        }).catch((error) => {
+          console.error('Failed to send metric:', error);
+        });
+      }
+    }
+  }
+
+  // Track all Core Web Vitals
+  onCLS(sendToAnalytics);
+  onFCP(sendToAnalytics);
+  onINP(sendToAnalytics);
+  onLCP(sendToAnalytics);
+  onTTFB(sendToAnalytics);
+
+  // Performance marks for custom metrics
+  if (typeof performance !== 'undefined') {
+    // Mark when interactive
+    if (document.readyState === 'complete') {
+      performance.mark('page-interactive');
+    } else {
+      window.addEventListener('load', () => {
+        performance.mark('page-interactive');
+      });
+    }
+
+    // Mark first interaction
+    const markFirstInteraction = () => {
+      performance.mark('first-interaction');
+      ['click', 'keydown', 'touchstart'].forEach((event) => {
+        document.removeEventListener(event, markFirstInteraction);
+      });
+    };
+
+    ['click', 'keydown', 'touchstart'].forEach((event) => {
+      document.addEventListener(event, markFirstInteraction, { once: true });
+    });
+  }
+</script>

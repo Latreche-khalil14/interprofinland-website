@@ -317,3 +317,103 @@ img {
 img {
   background: var(--color-gray-100);
 }
+
+
+/* ============================================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================================ */
+
+/* GPU Acceleration for animations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Content visibility for below-the-fold content */
+.auto-visibility {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Optimize rendering for large lists */
+.contain-layout {
+  contain: layout;
+}
+
+.contain-paint {
+  contain: paint;
+}
+
+.contain-strict {
+  contain: strict;
+}
+
+/* Font rendering optimization */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Prevent layout shift from scrollbar */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+/* Hardware acceleration for transforms */
+.hw-accelerate {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize images for performance */
+img {
+  content-visibility: auto;
+}
+
+/* Lazy load iframes */
+iframe {
+  loading: lazy;
+}
+
+/* ============================================================
+   WEB VITALS OPTIMIZATIONS
+   ============================================================ */
+
+/* Reduce Cumulative Layout Shift (CLS) */
+img,
+video,
+iframe {
+  display: block;
+}
+
+/* Prevent font flashing (FOIT/FOUT) */
+@font-face {
+  font-display: swap;
+}
+
+/* Optimize for Interaction to Next Paint (INP) */
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+/* ============================================================
+   CRITICAL CSS INLINING HINT
+   ============================================================ */
+
+/*
+  For production optimization, consider:
+  1. Inlining critical CSS (above-the-fold styles)
+  2. Defer non-critical CSS
+  3. Use font-display: swap for web fonts
+  4. Minimize render-blocking resources
+*/

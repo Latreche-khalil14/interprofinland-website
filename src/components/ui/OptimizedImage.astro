@@ -1,0 +1,92 @@
+---
+/**
+ * Optimized Image Component
+ * Performance-optimized image with lazy loading, proper sizing, and fallbacks
+ */
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  className?: string;
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  decoding = 'async',
+  fetchpriority = 'auto',
+  className = '',
+  sizes,
+} = Astro.props;
+---
+
+<img
+  src={src}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding={decoding}
+  fetchpriority={fetchpriority}
+  sizes={sizes}
+  class={className}
+  style={width && height ? `aspect-ratio: ${width} / ${height};` : undefined}
+/>
+
+<style>
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Prevent layout shift */
+  img[width][height] {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Loading placeholder */
+  img:not([src]) {
+    background: var(--color-gray-100);
+  }
+
+  /* Smooth fade-in when loaded */
+  img {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  img.loaded,
+  img[loading='eager'] {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  // Add loaded class when image loads
+  document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    
+    images.forEach((img) => {
+      const image = img as HTMLImageElement;
+      if (image.complete) {
+        image.classList.add('loaded');
+      } else {
+        image.addEventListener('load', () => {
+          image.classList.add('loaded');
+        });
+      }
+    });
+  });
+</script>

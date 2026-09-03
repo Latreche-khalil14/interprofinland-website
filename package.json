@@ -28,6 +28,7 @@
     "astro": "^4.16.18",
     "resend": "^6.25.0",
     "sharp": "^0.35.4",
+    "web-vitals": "^6.2.1",
     "zod": "^3.24.1"
   },
   "devDependencies": {
