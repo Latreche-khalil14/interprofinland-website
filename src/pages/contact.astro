@@ -845,7 +845,20 @@ const contactFaqs = [
     text-align: center;
     padding: var(--space-8) var(--space-4);
     gap: var(--space-4);
+    animation: fadeInUp 0.5s ease-out;
   }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .success-icon-wrap {
     display: flex;
     align-items: center;
@@ -857,6 +870,16 @@ const contactFaqs = [
     border: 2px solid #bbf7d0;
     color: #16a34a;
     box-shadow: 0 8px 24px -4px rgba(22,163,74,0.2);
+    animation: scaleIn 0.5s ease-out 0.2s backwards;
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
   }
   .success-title {
     font-family: var(--font-display);
@@ -1320,19 +1343,71 @@ const contactFaqs = [
   }
 
   if (form && submitBtn) {
+    // Real-time validation
+    const nameInput = document.getElementById('field-name') as HTMLInputElement | null;
+    const emailInput = document.getElementById('field-email') as HTMLInputElement | null;
+    const serviceField = document.getElementById('field-service') as HTMLSelectElement | null;
+    const messageInput = document.getElementById('field-message') as HTMLTextAreaElement | null;
+    const consentField = document.getElementById('field-consent') as HTMLInputElement | null;
+
+    // Real-time validation for name
+    nameInput?.addEventListener('blur', () => {
+      if (nameInput.value.trim().length < 2) {
+        setFieldError('name', 'Name must be at least 2 characters');
+      } else {
+        clearFieldError('name');
+      }
+    });
+
+    // Real-time email validation
+    emailInput?.addEventListener('blur', () => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailInput.value && !emailRegex.test(emailInput.value)) {
+        setFieldError('email', 'Please enter a valid email address');
+      } else if (emailInput.value) {
+        clearFieldError('email');
+      }
+    });
+
+    // Real-time message validation
+    messageInput?.addEventListener('input', () => {
+      const len = messageInput.value.trim().length;
+      if (len > 0 && len < 10) {
+        setFieldError('message', `${10 - len} more characters needed`);
+      } else if (len >= 10) {
+        clearFieldError('message');
+      }
+    });
+
+    // Helper function to clear single field error
+    function clearFieldError(fieldName: string) {
+      const errorEl = document.getElementById(`error-${fieldName}`);
+      const groupEl = document.getElementById(`group-${fieldName}`);
+      if (errorEl) errorEl.textContent = '';
+      if (groupEl) groupEl.classList.remove('has-error');
+    }
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       clearFieldErrors();
 
-      const serviceField = document.getElementById('field-service') as HTMLSelectElement | null;
+      // Focus on first error field
+      let firstErrorField: HTMLElement | null = null;
+
       if (serviceField && !serviceField.value) {
         setFieldError('service', 'Please select a topic or service area.');
-        return;
+        if (!firstErrorField) firstErrorField = serviceField;
       }
 
-      const consentField = document.getElementById('field-consent') as HTMLInputElement | null;
       if (consentField && !consentField.checked) {
         setFieldError('consent', 'Please agree to the privacy policy to submit your message.');
+        if (!firstErrorField) firstErrorField = consentField;
+      }
+
+      // Focus on first error
+      if (firstErrorField) {
+        firstErrorField.focus();
+        firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
 
