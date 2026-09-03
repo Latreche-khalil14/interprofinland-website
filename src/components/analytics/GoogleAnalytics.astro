@@ -1,0 +1,27 @@
+---
+/**
+ * Google Analytics Component
+ * Add your GA4 Measurement ID in .env as PUBLIC_GA_MEASUREMENT_ID
+ */
+
+const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const isDev = import.meta.env.DEV;
+
+// Don't load analytics in development
+if (isDev || !measurementId) {
+  console.log('[Analytics] Skipped in development or no ID configured');
+}
+---
+
+{!isDev && measurementId && (
+  <>
+    <!-- Google tag (gtag.js) -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+    <script define:vars={{ measurementId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', measurementId);
+    </script>
+  </>
+)}
