@@ -1,0 +1,418 @@
+/**
+ * Print Styles
+ * Optimized styles for printing pages
+ */
+
+@media print {
+  /* ============================================================
+     RESET & BASICS
+     ============================================================ */
+
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Page setup */
+  @page {
+    margin: 2cm;
+    size: A4;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  /* ============================================================
+     HIDE ELEMENTS
+     ============================================================ */
+
+  /* Hide navigation and interactive elements */
+  header,
+  nav,
+  footer,
+  .header,
+  .footer,
+  .nav,
+  .navigation,
+  .menu,
+  .sidebar,
+  .back-to-top,
+  .breadcrumbs,
+  button,
+  .button,
+  .btn,
+  form,
+  input,
+  textarea,
+  select,
+  .search,
+  .social-links,
+  .cookie-banner,
+  .modal,
+  .popup,
+  .advertisement,
+  .ad,
+  video,
+  audio,
+  iframe,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Hide decorative elements */
+  .icon-decorative,
+  .background-pattern,
+  .background-image,
+  .decoration {
+    display: none !important;
+  }
+
+  /* ============================================================
+     TYPOGRAPHY
+     ============================================================ */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
+
+  h1 {
+    font-size: 24pt;
+    border-bottom: 2pt solid #000;
+    padding-bottom: 0.25em;
+  }
+
+  h2 {
+    font-size: 18pt;
+  }
+
+  h3 {
+    font-size: 14pt;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-size: 12pt;
+  }
+
+  p,
+  li,
+  blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+
+  p {
+    margin: 0 0 1em 0;
+  }
+
+  /* ============================================================
+     LINKS
+     ============================================================ */
+
+  a {
+    text-decoration: underline;
+    color: #000 !important;
+  }
+
+  /* Show URL after links */
+  a[href]::after {
+    content: ' (' attr(href) ')';
+    font-size: 90%;
+    word-wrap: break-word;
+  }
+
+  /* Don't show URL for internal links */
+  a[href^='#']::after,
+  a[href^='/']::after {
+    content: '';
+  }
+
+  /* ============================================================
+     IMAGES
+     ============================================================ */
+
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+    page-break-after: avoid;
+  }
+
+  /* High quality images for print */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Hide decorative images */
+  img[alt=''],
+  img:not([alt]) {
+    display: none !important;
+  }
+
+  /* ============================================================
+     TABLES
+     ============================================================ */
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr {
+    page-break-inside: avoid;
+  }
+
+  th,
+  td {
+    border: 1pt solid #000;
+    padding: 0.5em;
+    text-align: left;
+  }
+
+  th {
+    font-weight: bold;
+    background: #f0f0f0 !important;
+  }
+
+  /* ============================================================
+     LISTS
+     ============================================================ */
+
+  ul,
+  ol {
+    margin: 0 0 1em 1.5em;
+  }
+
+  li {
+    margin-bottom: 0.5em;
+  }
+
+  /* ============================================================
+     BLOCKQUOTES
+     ============================================================ */
+
+  blockquote {
+    border-left: 3pt solid #000;
+    padding-left: 1em;
+    margin: 1em 0;
+    font-style: italic;
+    page-break-inside: avoid;
+  }
+
+  /* ============================================================
+     CODE
+     ============================================================ */
+
+  code,
+  pre {
+    font-family: 'Courier New', monospace;
+    border: 1pt solid #000;
+    padding: 0.25em 0.5em;
+    background: #f5f5f5 !important;
+  }
+
+  pre {
+    page-break-inside: avoid;
+    padding: 1em;
+    overflow: visible;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* ============================================================
+     PAGE BREAKS
+     ============================================================ */
+
+  /* Avoid page breaks */
+  .avoid-page-break,
+  .no-break {
+    page-break-inside: avoid;
+  }
+
+  /* Force page break */
+  .page-break,
+  .page-break-before {
+    page-break-before: always;
+  }
+
+  .page-break-after {
+    page-break-after: always;
+  }
+
+  /* ============================================================
+     CONTENT SECTIONS
+     ============================================================ */
+
+  article,
+  section {
+    page-break-inside: avoid;
+    margin-bottom: 2em;
+  }
+
+  /* Main content area */
+  main {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Container adjustments */
+  .container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* ============================================================
+     SPECIFIC COMPONENTS
+     ============================================================ */
+
+  /* Story cards */
+  .story-card,
+  .service-card,
+  .event-card {
+    border: 1pt solid #000;
+    padding: 1em;
+    margin-bottom: 1em;
+    page-break-inside: avoid;
+  }
+
+  /* Magazine covers */
+  .magazine-cover {
+    max-width: 300px;
+    page-break-inside: avoid;
+  }
+
+  /* Hero sections - simplify */
+  .hero {
+    padding: 1em 0 !important;
+  }
+
+  /* Remove animations and transitions */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* ============================================================
+     ACCESSIBILITY
+     ============================================================ */
+
+  /* Print abbreviations */
+  abbr[title]::after {
+    content: ' (' attr(title) ')';
+  }
+
+  /* ============================================================
+     UTILITY CLASSES
+     ============================================================ */
+
+  /* Show only on print */
+  .print-only {
+    display: block !important;
+  }
+
+  /* Print header/footer */
+  .print-header,
+  .print-footer {
+    display: block !important;
+    margin: 1em 0;
+    padding: 0.5em 0;
+    border-top: 1pt solid #000;
+  }
+
+  /* ============================================================
+     SITE-SPECIFIC
+     ============================================================ */
+
+  /* InterProFinland branding */
+  .print-logo {
+    display: block !important;
+    max-width: 200px;
+    margin-bottom: 1em;
+  }
+
+  /* Contact information */
+  .contact-info {
+    display: block !important;
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1pt solid #000;
+    font-size: 10pt;
+  }
+
+  /* Page URL footer */
+  body::after {
+    content: 'Printed from: ' attr(data-url);
+    display: block;
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1pt solid #000;
+    font-size: 10pt;
+    color: #666 !important;
+  }
+}
+
+/* ============================================================
+   PRINT PREPARATION (SCREEN)
+   ============================================================ */
+
+/* Print button styling */
+.print-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.print-button:hover {
+  border-color: var(--color-primary-500);
+  color: var(--color-primary-500);
+}
+
+.print-button:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+@media print {
+  .print-button {
+    display: none !important;
+  }
+}

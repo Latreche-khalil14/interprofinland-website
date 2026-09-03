@@ -1,0 +1,409 @@
+/**
+ * Loading States & Skeleton Screens
+ * Provides visual feedback during content loading
+ */
+
+/* ============================================================
+   SKELETON BASE
+   ============================================================ */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-200) 0%,
+    var(--color-gray-100) 50%,
+    var(--color-gray-200) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Shimmer effect overlay */
+.skeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: skeleton-shimmer 2s infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ============================================================
+   SKELETON VARIANTS
+   ============================================================ */
+
+/* Text skeleton */
+.skeleton-text {
+  height: 1em;
+  margin-bottom: 0.5em;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-text:last-child {
+  margin-bottom: 0;
+  width: 80%; /* Last line is typically shorter */
+}
+
+/* Heading skeleton */
+.skeleton-heading {
+  height: 2em;
+  margin-bottom: 1rem;
+  border-radius: var(--radius-sm);
+}
+
+/* Image skeleton */
+.skeleton-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+}
+
+/* Avatar skeleton */
+.skeleton-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.skeleton-avatar-sm {
+  width: 32px;
+  height: 32px;
+}
+
+.skeleton-avatar-lg {
+  width: 64px;
+  height: 64px;
+}
+
+/* Card skeleton */
+.skeleton-card {
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.skeleton-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Button skeleton */
+.skeleton-button {
+  height: 44px;
+  width: 120px;
+  border-radius: var(--radius-md);
+}
+
+/* ============================================================
+   LOADING SPINNER
+   ============================================================ */
+
+.loading-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--color-gray-200);
+  border-top-color: var(--color-primary-500);
+  border-radius: 50%;
+  animation: spinner-rotate 0.8s linear infinite;
+}
+
+@keyframes spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner-sm {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+
+.loading-spinner-lg {
+  width: 60px;
+  height: 60px;
+  border-width: 6px;
+}
+
+/* ============================================================
+   LOADING CONTAINER
+   ============================================================ */
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12) var(--space-4);
+  min-height: 300px;
+}
+
+.loading-text {
+  margin-top: var(--space-4);
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+/* ============================================================
+   IMAGE LOADING STATES
+   ============================================================ */
+
+/* Image wrapper with loading state */
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-gray-100);
+}
+
+.image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-wrapper img.loaded {
+  opacity: 1;
+}
+
+/* Loading overlay for images */
+.image-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-gray-100);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-loading-overlay.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ============================================================
+   PROGRESSIVE LOADING
+   ============================================================ */
+
+/* Blur-up technique for images */
+.image-blur-up {
+  filter: blur(10px);
+  transform: scale(1.1);
+  transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.image-blur-up.loaded {
+  filter: blur(0);
+  transform: scale(1);
+}
+
+/* ============================================================
+   CONTENT STATES
+   ============================================================ */
+
+/* Fade in animation for loaded content */
+.fade-in {
+  animation: fade-in 0.4s ease-in-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide up animation */
+.slide-up {
+  animation: slide-up 0.4s ease-out;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   FORM LOADING STATES
+   ============================================================ */
+
+.form-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.form-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Button loading state */
+.button-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.button-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spinner-rotate 0.6s linear infinite;
+}
+
+/* ============================================================
+   SKELETON LAYOUTS
+   ============================================================ */
+
+/* Story card skeleton */
+.skeleton-story-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.skeleton-story-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Service card skeleton */
+.skeleton-service-card {
+  padding: var(--space-8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/* Event card skeleton */
+.skeleton-event-card {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 640px) {
+  .skeleton-event-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton,
+  .skeleton::after,
+  .loading-spinner,
+  .image-wrapper img,
+  .fade-in,
+  .slide-up {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .skeleton {
+    background: var(--color-gray-200);
+  }
+
+  .image-blur-up {
+    filter: none;
+    transform: none;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+/* Screen reader only text for loading states */
+.sr-loading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ARIA live region for loading announcements */
+[aria-live] {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

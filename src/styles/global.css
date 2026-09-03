@@ -301,3 +301,19 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+/* ============================================================
+   IMAGE LOADING OPTIMIZATION
+   ============================================================ */
+
+/* Image aspect ratio preservation */
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Background for images while loading */
+img {
+  background: var(--color-gray-100);
+}

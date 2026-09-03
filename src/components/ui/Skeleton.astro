@@ -1,0 +1,43 @@
+---
+/**
+ * Skeleton Component
+ * Reusable skeleton loader for different content types
+ */
+
+interface Props {
+  type?: 'text' | 'heading' | 'image' | 'avatar' | 'button' | 'card';
+  width?: string;
+  height?: string;
+  className?: string;
+  count?: number;
+}
+
+const {
+  type = 'text',
+  width,
+  height,
+  className = '',
+  count = 1,
+} = Astro.props;
+
+const baseClass = `skeleton skeleton-${type}`;
+const customStyle = width || height ? `width: ${width || 'auto'}; height: ${height || 'auto'};` : '';
+---
+
+{count > 1 ? (
+  <div class="skeleton-group">
+    {Array.from({ length: count }).map(() => (
+      <div class={`${baseClass} ${className}`} style={customStyle} aria-hidden="true"></div>
+    ))}
+  </div>
+) : (
+  <div class={`${baseClass} ${className}`} style={customStyle} aria-hidden="true"></div>
+)}
+
+<style>
+  .skeleton-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+</style>
