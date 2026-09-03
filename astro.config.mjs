@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import vercel from '@astrojs/vercel/serverless';
-import sitemap from '@astrojs/sitemap';
+// import sitemap from '@astrojs/sitemap'; // Temporarily disabled
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,7 +21,7 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    // sitemap(), // Temporarily disabled due to build issues
   ],
   vite: {
     resolve: {

@@ -27,15 +27,47 @@
     scroll-behavior: smooth;
   }
 
+  /* Respect user preference for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   body {
     background-color: var(--color-bg-page);
     color: var(--color-text-primary);
   }
 
-  /* Focus styles for accessibility */
+  /* Focus styles for accessibility - Enhanced */
   *:focus-visible {
-    outline: 2px solid var(--color-border-focus);
-    outline-offset: 2px;
+    outline: 3px solid var(--color-primary-600);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Better focus for buttons */
+  button:focus-visible,
+  a:focus-visible {
+    outline: 3px solid var(--color-primary-600);
+    outline-offset: 3px;
+  }
+
+  /* Form inputs focus */
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--color-primary-600);
+    outline-offset: 0;
+    box-shadow: 0 0 0 3px rgba(19, 31, 91, 0.1);
   }
 
   /* Selection color */
