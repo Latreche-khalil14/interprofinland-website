@@ -1,0 +1,32 @@
+---
+/**
+ * Structured Data (JSON-LD) for SEO
+ * Organization schema for InterProFinland
+ */
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'InterProFinland',
+  url: 'https://www.interprofinland.fi',
+  logo: 'https://www.interprofinland.fi/images/logo.png',
+  description: 'Supporting international professionals in Finland with career guidance, mentorship, and qualification recognition.',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'FI',
+    addressLocality: 'Finland',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'Customer Service',
+    availableLanguage: ['English', 'Finnish'],
+  },
+  sameAs: [
+    // Add social media links here
+    // 'https://www.facebook.com/interprofinland',
+    // 'https://www.linkedin.com/company/interprofinland',
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />

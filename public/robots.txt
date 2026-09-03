@@ -1,0 +1,9 @@
+# InterProFinland - Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.interprofinland.fi/sitemap-index.xml
+
+# Disallow admin areas (if any in future)
+# Disallow: /admin/

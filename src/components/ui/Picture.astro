@@ -1,0 +1,47 @@
+---
+/**
+ * Picture Component with WebP Support
+ * Provides WebP images with automatic fallback to original format
+ * Supports lazy loading and responsive images
+ */
+
+import { getWebPPath } from '@/utils/imageUtils';
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: className = '',
+  loading = 'lazy',
+  sizes,
+} = Astro.props;
+
+const webpSrc = getWebPPath(src);
+---
+
+<picture>
+  <!-- WebP version -->
+  <source srcset={webpSrc} type="image/webp" sizes={sizes} />
+  
+  <!-- Fallback to original format -->
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    class={className}
+    loading={loading}
+    decoding="async"
+  />
+</picture>
