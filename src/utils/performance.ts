@@ -32,10 +32,9 @@ export function getRating(
   value: number
 ): 'good' | 'needs-improvement' | 'poor' {
   const thresholds = THRESHOLDS[metricName];
-  if (!thresholds || thresholds.length !== 2) return 'poor';
+  if (!thresholds) return 'poor';
   
-  const good = thresholds[0] as number;
-  const poor = thresholds[1] as number;
+  const [good, poor] = thresholds as [number, number];
   
   if (value <= good) return 'good';
   if (value <= poor) return 'needs-improvement';
