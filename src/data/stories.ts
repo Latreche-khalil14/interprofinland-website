@@ -58,7 +58,7 @@ export const stories: Story[] = [
     program: 'One Mentor One',
     tag: 'Mentorship',
     tagColor: 'gold',
-    image: '/images/people/testimonials/cyrille.webp',
+    image: '/images/about/testimonials/cyrille.webp',
     linkedin: null,
     isFeatured: true,
     headline: 'Navigating Diploma Recognition with 1-on-1 Mentorship',
