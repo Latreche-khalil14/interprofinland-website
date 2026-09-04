@@ -1,5 +1,7 @@
 # InterProFinland Website
 
+Built with Astro 4.16 + TypeScript + Tailwind CSS
+
 Modern, accessible, and fast website for InterProFinland - supporting international professionals in Finland.
 
 **Status:** Phase 5 Complete - Frontend Foundation ✅
